@@ -24,5 +24,23 @@ namespace Proyecto_Grupo13.Administrador
             usuarios.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
             panelContenido.Controls.Add(usuarios); // Agrega el UserControl al panelContenido
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            UcProductos2 productos = new UcProductos2(); // Crea una instancia del UserControl UcProductos2
+            panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
+            productos.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
+            panelContenido.Controls.Add(productos); // Agrega el UserControl al panelContenido
+        }
+
+        private void btnProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

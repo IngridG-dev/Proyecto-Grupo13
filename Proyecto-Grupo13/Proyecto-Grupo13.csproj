@@ -54,6 +54,12 @@
     <Compile Include="Administrador\menuAdmin.Designer.cs">
       <DependentUpon>menuAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\UcProductos2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrador\UcProductos2.Designer.cs">
+      <DependentUpon>UcProductos2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrador\menuAdmin.resx">
       <DependentUpon>menuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\UcProductos2.resx">
+      <DependentUpon>UcProductos2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>

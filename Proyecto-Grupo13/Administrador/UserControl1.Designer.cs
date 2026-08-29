@@ -30,23 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucUsuarios));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lDatosUser = new System.Windows.Forms.Label();
-            this.lNombre = new System.Windows.Forms.Label();
-            this.textNombre = new System.Windows.Forms.TextBox();
-            this.lDni = new System.Windows.Forms.Label();
-            this.textDni = new System.Windows.Forms.TextBox();
-            this.lEmail = new System.Windows.Forms.Label();
-            this.textEmail = new System.Windows.Forms.TextBox();
-            this.lDireccionCalle = new System.Windows.Forms.Label();
-            this.textDireccionCalle = new System.Windows.Forms.TextBox();
-            this.lDireccionNro = new System.Windows.Forms.Label();
-            this.textDireccionNro = new System.Windows.Forms.TextBox();
-            this.lRol = new System.Windows.Forms.Label();
-            this.comboBoxRol = new System.Windows.Forms.ComboBox();
-            this.textTelefono = new System.Windows.Forms.TextBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
+            this.lEstado = new System.Windows.Forms.Label();
             this.lTelefono = new System.Windows.Forms.Label();
-            this.lListaUser = new System.Windows.Forms.Label();
+            this.textTelefono = new System.Windows.Forms.TextBox();
+            this.comboBoxRol = new System.Windows.Forms.ComboBox();
+            this.lRol = new System.Windows.Forms.Label();
+            this.textDireccionNro = new System.Windows.Forms.TextBox();
+            this.lDireccionNro = new System.Windows.Forms.Label();
+            this.textDireccionCalle = new System.Windows.Forms.TextBox();
+            this.lDireccionCalle = new System.Windows.Forms.Label();
+            this.textEmail = new System.Windows.Forms.TextBox();
+            this.lEmail = new System.Windows.Forms.Label();
+            this.textDni = new System.Windows.Forms.TextBox();
+            this.lDni = new System.Windows.Forms.Label();
+            this.textNombre = new System.Windows.Forms.TextBox();
+            this.lNombre = new System.Windows.Forms.Label();
+            this.lDatosUser = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,18 +56,14 @@
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lEstado = new System.Windows.Forms.Label();
-            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel1.Controls.Add(this.btnEliminar);
             this.panel1.Controls.Add(this.btnAgregar);
@@ -89,19 +87,171 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(285, 711);
+            this.panel1.Size = new System.Drawing.Size(317, 711);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // btnEliminar
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Controls.Add(this.lListaUser);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(275, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(535, 711);
-            this.panel2.TabIndex = 1;
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(87, 475);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(102, 44);
+            this.btnEliminar.TabIndex = 16;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.Location = new System.Drawing.Point(87, 423);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(102, 46);
+            this.btnAgregar.TabIndex = 16;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxEstado
+            // 
+            this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Items.AddRange(new object[] {
+            "Activo",
+            "Inactivo"});
+            this.comboBoxEstado.Location = new System.Drawing.Point(91, 371);
+            this.comboBoxEstado.Name = "comboBoxEstado";
+            this.comboBoxEstado.Size = new System.Drawing.Size(163, 24);
+            this.comboBoxEstado.TabIndex = 15;
+            this.comboBoxEstado.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstado_SelectedIndexChanged);
+            // 
+            // lEstado
+            // 
+            this.lEstado.AutoSize = true;
+            this.lEstado.Location = new System.Drawing.Point(19, 379);
+            this.lEstado.Name = "lEstado";
+            this.lEstado.Size = new System.Drawing.Size(50, 16);
+            this.lEstado.TabIndex = 14;
+            this.lEstado.Text = "Estado";
+            // 
+            // lTelefono
+            // 
+            this.lTelefono.AutoSize = true;
+            this.lTelefono.Location = new System.Drawing.Point(19, 209);
+            this.lTelefono.Name = "lTelefono";
+            this.lTelefono.Size = new System.Drawing.Size(61, 16);
+            this.lTelefono.TabIndex = 13;
+            this.lTelefono.Text = "Teléfono";
+            // 
+            // textTelefono
+            // 
+            this.textTelefono.Location = new System.Drawing.Point(91, 206);
+            this.textTelefono.Name = "textTelefono";
+            this.textTelefono.Size = new System.Drawing.Size(163, 22);
+            this.textTelefono.TabIndex = 12;
+            // 
+            // comboBoxRol
+            // 
+            this.comboBoxRol.FormattingEnabled = true;
+            this.comboBoxRol.Items.AddRange(new object[] {
+            "Vendedor",
+            "Administrador",
+            "Gerente"});
+            this.comboBoxRol.Location = new System.Drawing.Point(91, 329);
+            this.comboBoxRol.Name = "comboBoxRol";
+            this.comboBoxRol.Size = new System.Drawing.Size(163, 24);
+            this.comboBoxRol.TabIndex = 0;
+            // 
+            // lRol
+            // 
+            this.lRol.AutoSize = true;
+            this.lRol.Location = new System.Drawing.Point(24, 337);
+            this.lRol.Name = "lRol";
+            this.lRol.Size = new System.Drawing.Size(28, 16);
+            this.lRol.TabIndex = 11;
+            this.lRol.Text = "Rol";
+            // 
+            // textDireccionNro
+            // 
+            this.textDireccionNro.Location = new System.Drawing.Point(91, 288);
+            this.textDireccionNro.Name = "textDireccionNro";
+            this.textDireccionNro.Size = new System.Drawing.Size(163, 22);
+            this.textDireccionNro.TabIndex = 10;
+            // 
+            // lDireccionNro
+            // 
+            this.lDireccionNro.AutoSize = true;
+            this.lDireccionNro.Location = new System.Drawing.Point(22, 291);
+            this.lDireccionNro.Name = "lDireccionNro";
+            this.lDireccionNro.Size = new System.Drawing.Size(55, 16);
+            this.lDireccionNro.TabIndex = 9;
+            this.lDireccionNro.Text = "Número";
+            // 
+            // textDireccionCalle
+            // 
+            this.textDireccionCalle.Location = new System.Drawing.Point(91, 248);
+            this.textDireccionCalle.Name = "textDireccionCalle";
+            this.textDireccionCalle.Size = new System.Drawing.Size(163, 22);
+            this.textDireccionCalle.TabIndex = 8;
+            // 
+            // lDireccionCalle
+            // 
+            this.lDireccionCalle.AutoSize = true;
+            this.lDireccionCalle.Location = new System.Drawing.Point(22, 254);
+            this.lDireccionCalle.Name = "lDireccionCalle";
+            this.lDireccionCalle.Size = new System.Drawing.Size(38, 16);
+            this.lDireccionCalle.TabIndex = 7;
+            this.lDireccionCalle.Text = "Calle";
+            // 
+            // textEmail
+            // 
+            this.textEmail.Location = new System.Drawing.Point(91, 159);
+            this.textEmail.Name = "textEmail";
+            this.textEmail.Size = new System.Drawing.Size(163, 22);
+            this.textEmail.TabIndex = 6;
+            // 
+            // lEmail
+            // 
+            this.lEmail.AutoSize = true;
+            this.lEmail.Location = new System.Drawing.Point(19, 159);
+            this.lEmail.Name = "lEmail";
+            this.lEmail.Size = new System.Drawing.Size(41, 16);
+            this.lEmail.TabIndex = 5;
+            this.lEmail.Text = "Email";
+            // 
+            // textDni
+            // 
+            this.textDni.Location = new System.Drawing.Point(91, 112);
+            this.textDni.Name = "textDni";
+            this.textDni.Size = new System.Drawing.Size(163, 22);
+            this.textDni.TabIndex = 4;
+            // 
+            // lDni
+            // 
+            this.lDni.AutoSize = true;
+            this.lDni.Location = new System.Drawing.Point(19, 112);
+            this.lDni.Name = "lDni";
+            this.lDni.Size = new System.Drawing.Size(30, 16);
+            this.lDni.TabIndex = 3;
+            this.lDni.Text = "DNI";
+            // 
+            // textNombre
+            // 
+            this.textNombre.Location = new System.Drawing.Point(91, 72);
+            this.textNombre.Name = "textNombre";
+            this.textNombre.Size = new System.Drawing.Size(163, 22);
+            this.textNombre.TabIndex = 0;
+            // 
+            // lNombre
+            // 
+            this.lNombre.AutoSize = true;
+            this.lNombre.Location = new System.Drawing.Point(19, 62);
+            this.lNombre.Name = "lNombre";
+            this.lNombre.Size = new System.Drawing.Size(65, 32);
+            this.lNombre.TabIndex = 0;
+            this.lNombre.Text = "Nombre\r\nCompleto";
             // 
             // lDatosUser
             // 
@@ -111,133 +261,6 @@
             this.lDatosUser.Size = new System.Drawing.Size(116, 16);
             this.lDatosUser.TabIndex = 0;
             this.lDatosUser.Text = "Datos de usuarios";
-            // 
-            // lNombre
-            // 
-            this.lNombre.AutoSize = true;
-            this.lNombre.Location = new System.Drawing.Point(16, 125);
-            this.lNombre.Name = "lNombre";
-            this.lNombre.Size = new System.Drawing.Size(65, 32);
-            this.lNombre.TabIndex = 0;
-            this.lNombre.Text = "Nombre\r\nCompleto";
-            // 
-            // textNombre
-            // 
-            this.textNombre.Location = new System.Drawing.Point(84, 125);
-            this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(163, 22);
-            this.textNombre.TabIndex = 0;
-            // 
-            // lDni
-            // 
-            this.lDni.AutoSize = true;
-            this.lDni.Location = new System.Drawing.Point(32, 165);
-            this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(30, 16);
-            this.lDni.TabIndex = 3;
-            this.lDni.Text = "DNI";
-            // 
-            // textDni
-            // 
-            this.textDni.Location = new System.Drawing.Point(84, 165);
-            this.textDni.Name = "textDni";
-            this.textDni.Size = new System.Drawing.Size(163, 22);
-            this.textDni.TabIndex = 4;
-            // 
-            // lEmail
-            // 
-            this.lEmail.AutoSize = true;
-            this.lEmail.Location = new System.Drawing.Point(29, 218);
-            this.lEmail.Name = "lEmail";
-            this.lEmail.Size = new System.Drawing.Size(41, 16);
-            this.lEmail.TabIndex = 5;
-            this.lEmail.Text = "Email";
-            // 
-            // textEmail
-            // 
-            this.textEmail.Location = new System.Drawing.Point(84, 218);
-            this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(163, 22);
-            this.textEmail.TabIndex = 6;
-            // 
-            // lDireccionCalle
-            // 
-            this.lDireccionCalle.AutoSize = true;
-            this.lDireccionCalle.Location = new System.Drawing.Point(32, 307);
-            this.lDireccionCalle.Name = "lDireccionCalle";
-            this.lDireccionCalle.Size = new System.Drawing.Size(38, 16);
-            this.lDireccionCalle.TabIndex = 7;
-            this.lDireccionCalle.Text = "Calle";
-            // 
-            // textDireccionCalle
-            // 
-            this.textDireccionCalle.Location = new System.Drawing.Point(84, 301);
-            this.textDireccionCalle.Name = "textDireccionCalle";
-            this.textDireccionCalle.Size = new System.Drawing.Size(163, 22);
-            this.textDireccionCalle.TabIndex = 8;
-            // 
-            // lDireccionNro
-            // 
-            this.lDireccionNro.AutoSize = true;
-            this.lDireccionNro.Location = new System.Drawing.Point(22, 347);
-            this.lDireccionNro.Name = "lDireccionNro";
-            this.lDireccionNro.Size = new System.Drawing.Size(55, 16);
-            this.lDireccionNro.TabIndex = 9;
-            this.lDireccionNro.Text = "Número";
-            // 
-            // textDireccionNro
-            // 
-            this.textDireccionNro.Location = new System.Drawing.Point(84, 341);
-            this.textDireccionNro.Name = "textDireccionNro";
-            this.textDireccionNro.Size = new System.Drawing.Size(163, 22);
-            this.textDireccionNro.TabIndex = 10;
-            // 
-            // lRol
-            // 
-            this.lRol.AutoSize = true;
-            this.lRol.Location = new System.Drawing.Point(32, 390);
-            this.lRol.Name = "lRol";
-            this.lRol.Size = new System.Drawing.Size(28, 16);
-            this.lRol.TabIndex = 11;
-            this.lRol.Text = "Rol";
-            // 
-            // comboBoxRol
-            // 
-            this.comboBoxRol.FormattingEnabled = true;
-            this.comboBoxRol.Items.AddRange(new object[] {
-            "Vendedor",
-            "Administrador",
-            "Gerente"});
-            this.comboBoxRol.Location = new System.Drawing.Point(84, 382);
-            this.comboBoxRol.Name = "comboBoxRol";
-            this.comboBoxRol.Size = new System.Drawing.Size(163, 24);
-            this.comboBoxRol.TabIndex = 0;
-            // 
-            // textTelefono
-            // 
-            this.textTelefono.Location = new System.Drawing.Point(84, 259);
-            this.textTelefono.Name = "textTelefono";
-            this.textTelefono.Size = new System.Drawing.Size(163, 22);
-            this.textTelefono.TabIndex = 12;
-            // 
-            // lTelefono
-            // 
-            this.lTelefono.AutoSize = true;
-            this.lTelefono.Location = new System.Drawing.Point(16, 265);
-            this.lTelefono.Name = "lTelefono";
-            this.lTelefono.Size = new System.Drawing.Size(61, 16);
-            this.lTelefono.TabIndex = 13;
-            this.lTelefono.Text = "Teléfono";
-            // 
-            // lListaUser
-            // 
-            this.lListaUser.AutoSize = true;
-            this.lListaUser.Location = new System.Drawing.Point(195, 35);
-            this.lListaUser.Name = "lListaUser";
-            this.lListaUser.Size = new System.Drawing.Size(111, 16);
-            this.lListaUser.TabIndex = 14;
-            this.lListaUser.Text = "Lista de Usuarios";
-            this.lListaUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
             // 
@@ -250,13 +273,13 @@
             this.Rol,
             this.Estado,
             this.Editar});
-            this.dataGridView1.Location = new System.Drawing.Point(16, 72);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(317, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(503, 366);
-            this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.Size = new System.Drawing.Size(957, 711);
+            this.dataGridView1.TabIndex = 17;
             // 
             // Nombre
             // 
@@ -300,27 +323,6 @@
             this.Estado.Name = "Estado";
             this.Estado.Width = 125;
             // 
-            // lEstado
-            // 
-            this.lEstado.AutoSize = true;
-            this.lEstado.Location = new System.Drawing.Point(22, 432);
-            this.lEstado.Name = "lEstado";
-            this.lEstado.Size = new System.Drawing.Size(50, 16);
-            this.lEstado.TabIndex = 14;
-            this.lEstado.Text = "Estado";
-            // 
-            // comboBoxEstado
-            // 
-            this.comboBoxEstado.FormattingEnabled = true;
-            this.comboBoxEstado.Items.AddRange(new object[] {
-            "Activo",
-            "Inactivo"});
-            this.comboBoxEstado.Location = new System.Drawing.Point(84, 424);
-            this.comboBoxEstado.Name = "comboBoxEstado";
-            this.comboBoxEstado.Size = new System.Drawing.Size(163, 24);
-            this.comboBoxEstado.TabIndex = 15;
-            this.comboBoxEstado.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstado_SelectedIndexChanged);
-            // 
             // Editar
             // 
             this.Editar.HeaderText = "Editar";
@@ -328,43 +330,17 @@
             this.Editar.Name = "Editar";
             this.Editar.Width = 125;
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(80, 476);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(102, 46);
-            this.btnAgregar.TabIndex = 16;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(80, 528);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(102, 44);
-            this.btnEliminar.TabIndex = 16;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
             // ucUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
+            this.AutoScroll = true;
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Name = "ucUsuarios";
-            this.Size = new System.Drawing.Size(810, 711);
+            this.Size = new System.Drawing.Size(1274, 711);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -373,7 +349,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textDni;
         private System.Windows.Forms.Label lDni;
         private System.Windows.Forms.TextBox textNombre;
@@ -389,7 +364,10 @@
         private System.Windows.Forms.Label lRol;
         private System.Windows.Forms.Label lTelefono;
         private System.Windows.Forms.TextBox textTelefono;
-        private System.Windows.Forms.Label lListaUser;
+        private System.Windows.Forms.ComboBox comboBoxEstado;
+        private System.Windows.Forms.Label lEstado;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
@@ -397,10 +375,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.ComboBox comboBoxEstado;
-        private System.Windows.Forms.Label lEstado;
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnAgregar;
     }
 }
