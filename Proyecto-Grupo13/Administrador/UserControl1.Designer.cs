@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucUsuarios));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.comboBoxEstado = new System.Windows.Forms.ComboBox();
@@ -38,10 +37,8 @@
             this.textTelefono = new System.Windows.Forms.TextBox();
             this.comboBoxRol = new System.Windows.Forms.ComboBox();
             this.lRol = new System.Windows.Forms.Label();
-            this.textDireccionNro = new System.Windows.Forms.TextBox();
-            this.lDireccionNro = new System.Windows.Forms.Label();
             this.textDireccionCalle = new System.Windows.Forms.TextBox();
-            this.lDireccionCalle = new System.Windows.Forms.Label();
+            this.lDireccion = new System.Windows.Forms.Label();
             this.textEmail = new System.Windows.Forms.TextBox();
             this.lEmail = new System.Windows.Forms.Label();
             this.textDni = new System.Windows.Forms.TextBox();
@@ -53,313 +50,322 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1.SuspendLayout();
+            this.Estado = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.btnEliminar);
-            this.panel1.Controls.Add(this.btnAgregar);
-            this.panel1.Controls.Add(this.comboBoxEstado);
-            this.panel1.Controls.Add(this.lEstado);
-            this.panel1.Controls.Add(this.lTelefono);
-            this.panel1.Controls.Add(this.textTelefono);
-            this.panel1.Controls.Add(this.comboBoxRol);
-            this.panel1.Controls.Add(this.lRol);
-            this.panel1.Controls.Add(this.textDireccionNro);
-            this.panel1.Controls.Add(this.lDireccionNro);
-            this.panel1.Controls.Add(this.textDireccionCalle);
-            this.panel1.Controls.Add(this.lDireccionCalle);
-            this.panel1.Controls.Add(this.textEmail);
-            this.panel1.Controls.Add(this.lEmail);
-            this.panel1.Controls.Add(this.textDni);
-            this.panel1.Controls.Add(this.lDni);
-            this.panel1.Controls.Add(this.textNombre);
-            this.panel1.Controls.Add(this.lNombre);
-            this.panel1.Controls.Add(this.lDatosUser);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(317, 711);
-            this.panel1.TabIndex = 0;
-            // 
             // btnEliminar
             // 
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(87, 475);
+            this.btnEliminar.Location = new System.Drawing.Point(132, 355);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(102, 44);
+            this.btnEliminar.Size = new System.Drawing.Size(99, 43);
             this.btnEliminar.TabIndex = 16;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.UseVisualStyleBackColor = false;
             // 
             // btnAgregar
             // 
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAgregar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(87, 423);
+            this.btnAgregar.Location = new System.Drawing.Point(19, 354);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(102, 46);
+            this.btnAgregar.Size = new System.Drawing.Size(99, 44);
             this.btnAgregar.TabIndex = 16;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.UseVisualStyleBackColor = false;
             // 
             // comboBoxEstado
             // 
+            this.comboBoxEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboBoxEstado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxEstado.FormattingEnabled = true;
             this.comboBoxEstado.Items.AddRange(new object[] {
             "Activo",
             "Inactivo"});
-            this.comboBoxEstado.Location = new System.Drawing.Point(91, 371);
+            this.comboBoxEstado.Location = new System.Drawing.Point(83, 312);
+            this.comboBoxEstado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxEstado.Name = "comboBoxEstado";
-            this.comboBoxEstado.Size = new System.Drawing.Size(163, 24);
+            this.comboBoxEstado.Size = new System.Drawing.Size(123, 23);
             this.comboBoxEstado.TabIndex = 15;
             this.comboBoxEstado.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstado_SelectedIndexChanged);
             // 
             // lEstado
             // 
             this.lEstado.AutoSize = true;
-            this.lEstado.Location = new System.Drawing.Point(19, 379);
+            this.lEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lEstado.Location = new System.Drawing.Point(29, 319);
+            this.lEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEstado.Name = "lEstado";
-            this.lEstado.Size = new System.Drawing.Size(50, 16);
+            this.lEstado.Size = new System.Drawing.Size(42, 15);
             this.lEstado.TabIndex = 14;
             this.lEstado.Text = "Estado";
             // 
             // lTelefono
             // 
             this.lTelefono.AutoSize = true;
-            this.lTelefono.Location = new System.Drawing.Point(19, 209);
+            this.lTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lTelefono.Location = new System.Drawing.Point(18, 181);
+            this.lTelefono.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTelefono.Name = "lTelefono";
-            this.lTelefono.Size = new System.Drawing.Size(61, 16);
+            this.lTelefono.Size = new System.Drawing.Size(53, 15);
             this.lTelefono.TabIndex = 13;
             this.lTelefono.Text = "Teléfono";
             // 
             // textTelefono
             // 
-            this.textTelefono.Location = new System.Drawing.Point(91, 206);
+            this.textTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textTelefono.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textTelefono.Location = new System.Drawing.Point(83, 179);
+            this.textTelefono.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textTelefono.Name = "textTelefono";
-            this.textTelefono.Size = new System.Drawing.Size(163, 22);
+            this.textTelefono.Size = new System.Drawing.Size(123, 22);
             this.textTelefono.TabIndex = 12;
             // 
             // comboBoxRol
             // 
+            this.comboBoxRol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboBoxRol.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxRol.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRol.FormattingEnabled = true;
             this.comboBoxRol.Items.AddRange(new object[] {
             "Vendedor",
             "Administrador",
             "Gerente"});
-            this.comboBoxRol.Location = new System.Drawing.Point(91, 329);
+            this.comboBoxRol.Location = new System.Drawing.Point(83, 267);
+            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxRol.Name = "comboBoxRol";
-            this.comboBoxRol.Size = new System.Drawing.Size(163, 24);
+            this.comboBoxRol.Size = new System.Drawing.Size(123, 21);
             this.comboBoxRol.TabIndex = 0;
             // 
             // lRol
             // 
             this.lRol.AutoSize = true;
-            this.lRol.Location = new System.Drawing.Point(24, 337);
+            this.lRol.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lRol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lRol.Location = new System.Drawing.Point(33, 274);
+            this.lRol.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lRol.Name = "lRol";
-            this.lRol.Size = new System.Drawing.Size(28, 16);
+            this.lRol.Size = new System.Drawing.Size(24, 15);
             this.lRol.TabIndex = 11;
             this.lRol.Text = "Rol";
             // 
-            // textDireccionNro
-            // 
-            this.textDireccionNro.Location = new System.Drawing.Point(91, 288);
-            this.textDireccionNro.Name = "textDireccionNro";
-            this.textDireccionNro.Size = new System.Drawing.Size(163, 22);
-            this.textDireccionNro.TabIndex = 10;
-            // 
-            // lDireccionNro
-            // 
-            this.lDireccionNro.AutoSize = true;
-            this.lDireccionNro.Location = new System.Drawing.Point(22, 291);
-            this.lDireccionNro.Name = "lDireccionNro";
-            this.lDireccionNro.Size = new System.Drawing.Size(55, 16);
-            this.lDireccionNro.TabIndex = 9;
-            this.lDireccionNro.Text = "Número";
-            // 
             // textDireccionCalle
             // 
-            this.textDireccionCalle.Location = new System.Drawing.Point(91, 248);
+            this.textDireccionCalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textDireccionCalle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textDireccionCalle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textDireccionCalle.Location = new System.Drawing.Point(83, 223);
+            this.textDireccionCalle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textDireccionCalle.Name = "textDireccionCalle";
-            this.textDireccionCalle.Size = new System.Drawing.Size(163, 22);
+            this.textDireccionCalle.Size = new System.Drawing.Size(123, 22);
             this.textDireccionCalle.TabIndex = 8;
             // 
-            // lDireccionCalle
+            // lDireccion
             // 
-            this.lDireccionCalle.AutoSize = true;
-            this.lDireccionCalle.Location = new System.Drawing.Point(22, 254);
-            this.lDireccionCalle.Name = "lDireccionCalle";
-            this.lDireccionCalle.Size = new System.Drawing.Size(38, 16);
-            this.lDireccionCalle.TabIndex = 7;
-            this.lDireccionCalle.Text = "Calle";
+            this.lDireccion.AutoSize = true;
+            this.lDireccion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lDireccion.Location = new System.Drawing.Point(20, 225);
+            this.lDireccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lDireccion.Name = "lDireccion";
+            this.lDireccion.Size = new System.Drawing.Size(57, 15);
+            this.lDireccion.TabIndex = 7;
+            this.lDireccion.Text = "Dirección";
             // 
             // textEmail
             // 
-            this.textEmail.Location = new System.Drawing.Point(91, 159);
+            this.textEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEmail.Location = new System.Drawing.Point(83, 139);
+            this.textEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(163, 22);
+            this.textEmail.Size = new System.Drawing.Size(123, 22);
             this.textEmail.TabIndex = 6;
             // 
             // lEmail
             // 
             this.lEmail.AutoSize = true;
-            this.lEmail.Location = new System.Drawing.Point(19, 159);
+            this.lEmail.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lEmail.Location = new System.Drawing.Point(29, 139);
+            this.lEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEmail.Name = "lEmail";
-            this.lEmail.Size = new System.Drawing.Size(41, 16);
+            this.lEmail.Size = new System.Drawing.Size(36, 15);
             this.lEmail.TabIndex = 5;
             this.lEmail.Text = "Email";
             // 
             // textDni
             // 
-            this.textDni.Location = new System.Drawing.Point(91, 112);
+            this.textDni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textDni.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textDni.Location = new System.Drawing.Point(83, 96);
+            this.textDni.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textDni.Name = "textDni";
-            this.textDni.Size = new System.Drawing.Size(163, 22);
+            this.textDni.Size = new System.Drawing.Size(123, 22);
             this.textDni.TabIndex = 4;
             // 
             // lDni
             // 
             this.lDni.AutoSize = true;
-            this.lDni.Location = new System.Drawing.Point(19, 112);
+            this.lDni.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lDni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lDni.Location = new System.Drawing.Point(29, 96);
+            this.lDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(30, 16);
+            this.lDni.Size = new System.Drawing.Size(27, 15);
             this.lDni.TabIndex = 3;
             this.lDni.Text = "DNI";
             // 
             // textNombre
             // 
-            this.textNombre.Location = new System.Drawing.Point(91, 72);
+            this.textNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textNombre.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textNombre.Location = new System.Drawing.Point(83, 54);
+            this.textNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(163, 22);
+            this.textNombre.Size = new System.Drawing.Size(123, 22);
             this.textNombre.TabIndex = 0;
             // 
             // lNombre
             // 
             this.lNombre.AutoSize = true;
-            this.lNombre.Location = new System.Drawing.Point(19, 62);
+            this.lNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lNombre.Location = new System.Drawing.Point(20, 44);
+            this.lNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNombre.Name = "lNombre";
-            this.lNombre.Size = new System.Drawing.Size(65, 32);
+            this.lNombre.Size = new System.Drawing.Size(60, 30);
             this.lNombre.TabIndex = 0;
             this.lNombre.Text = "Nombre\r\nCompleto";
             // 
             // lDatosUser
             // 
             this.lDatosUser.AutoSize = true;
-            this.lDatosUser.Location = new System.Drawing.Point(66, 35);
+            this.lDatosUser.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lDatosUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lDatosUser.Location = new System.Drawing.Point(52, 10);
+            this.lDatosUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDatosUser.Name = "lDatosUser";
-            this.lDatosUser.Size = new System.Drawing.Size(116, 16);
+            this.lDatosUser.Size = new System.Drawing.Size(154, 19);
             this.lDatosUser.TabIndex = 0;
             this.lDatosUser.Text = "Datos de usuarios";
+            this.lDatosUser.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombre,
             this.DNI,
             this.Email,
-            this.Telefono,
+            this.Teléfono,
             this.Rol,
-            this.Estado,
-            this.Editar});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(317, 0);
+            this.Estado});
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.dataGridView1.Location = new System.Drawing.Point(254, 10);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(957, 711);
+            this.dataGridView1.Size = new System.Drawing.Size(793, 542);
             this.dataGridView1.TabIndex = 17;
             // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 125;
             // 
             // DNI
             // 
             this.DNI.HeaderText = "DNI";
-            this.DNI.MinimumWidth = 6;
             this.DNI.Name = "DNI";
-            this.DNI.Width = 125;
             // 
             // Email
             // 
             this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
             this.Email.Name = "Email";
-            this.Email.Width = 125;
             // 
-            // Telefono
+            // Teléfono
             // 
-            this.Telefono.HeaderText = "Teléfono";
-            this.Telefono.MinimumWidth = 6;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.Width = 125;
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.Name = "Teléfono";
             // 
             // Rol
             // 
-            this.Rol.HeaderText = "Rol";
-            this.Rol.MinimumWidth = 6;
+            this.Rol.HeaderText = "ROL";
             this.Rol.Name = "Rol";
-            this.Rol.Width = 125;
             // 
             // Estado
             // 
             this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
-            this.Estado.Width = 125;
-            // 
-            // Editar
-            // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.MinimumWidth = 6;
-            this.Editar.Name = "Editar";
-            this.Editar.Width = 125;
             // 
             // ucUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.textTelefono);
+            this.Controls.Add(this.comboBoxEstado);
+            this.Controls.Add(this.lDatosUser);
+            this.Controls.Add(this.lEstado);
+            this.Controls.Add(this.lNombre);
+            this.Controls.Add(this.lTelefono);
+            this.Controls.Add(this.textNombre);
+            this.Controls.Add(this.lDni);
+            this.Controls.Add(this.comboBoxRol);
+            this.Controls.Add(this.textDni);
+            this.Controls.Add(this.lRol);
+            this.Controls.Add(this.lEmail);
+            this.Controls.Add(this.textEmail);
+            this.Controls.Add(this.lDireccion);
+            this.Controls.Add(this.textDireccionCalle);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ucUsuarios";
-            this.Size = new System.Drawing.Size(1274, 711);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Size = new System.Drawing.Size(1079, 575);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textDni;
         private System.Windows.Forms.Label lDni;
         private System.Windows.Forms.TextBox textNombre;
         private System.Windows.Forms.Label lNombre;
         private System.Windows.Forms.Label lDatosUser;
         private System.Windows.Forms.TextBox textDireccionCalle;
-        private System.Windows.Forms.Label lDireccionCalle;
+        private System.Windows.Forms.Label lDireccion;
         private System.Windows.Forms.TextBox textEmail;
         private System.Windows.Forms.Label lEmail;
-        private System.Windows.Forms.TextBox textDireccionNro;
-        private System.Windows.Forms.Label lDireccionNro;
         private System.Windows.Forms.ComboBox comboBoxRol;
         private System.Windows.Forms.Label lRol;
         private System.Windows.Forms.Label lTelefono;
@@ -372,9 +378,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewButtonColumn Editar;
+        private System.Windows.Forms.DataGridViewButtonColumn Estado;
     }
 }

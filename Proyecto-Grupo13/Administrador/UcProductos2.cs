@@ -21,5 +21,10 @@ namespace Proyecto_Grupo13.Administrador
         {
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

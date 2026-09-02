@@ -17,6 +17,7 @@ namespace Proyecto_Grupo13.Administrador
             InitializeComponent();
         }
 
+
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             ucUsuarios usuarios = new ucUsuarios(); // Crea una instancia del UserControl ucUsuarios

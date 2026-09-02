@@ -35,11 +35,14 @@
             // 
             // btnAdmin
             // 
-            this.btnAdmin.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnAdmin.Font = new System.Drawing.Font("Stencil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdmin.Location = new System.Drawing.Point(194, 81);
+            this.btnAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdmin.Font = new System.Drawing.Font("Cooper Black", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.btnAdmin.Location = new System.Drawing.Point(146, 66);
+            this.btnAdmin.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(322, 99);
+            this.btnAdmin.Size = new System.Drawing.Size(242, 80);
             this.btnAdmin.TabIndex = 0;
             this.btnAdmin.Text = "ADMINISTRADOR";
             this.btnAdmin.UseVisualStyleBackColor = false;
@@ -47,36 +50,45 @@
             // 
             // btnVendedor
             // 
-            this.btnVendedor.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnVendedor.Font = new System.Drawing.Font("Stencil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVendedor.Location = new System.Drawing.Point(194, 262);
+            this.btnVendedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnVendedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVendedor.Font = new System.Drawing.Font("Cooper Black", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVendedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.btnVendedor.Location = new System.Drawing.Point(146, 213);
+            this.btnVendedor.Margin = new System.Windows.Forms.Padding(2);
             this.btnVendedor.Name = "btnVendedor";
-            this.btnVendedor.Size = new System.Drawing.Size(322, 94);
+            this.btnVendedor.Size = new System.Drawing.Size(242, 76);
             this.btnVendedor.TabIndex = 1;
             this.btnVendedor.Text = "VENDEDOR";
             this.btnVendedor.UseVisualStyleBackColor = false;
             // 
             // btnGerente
             // 
-            this.btnGerente.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnGerente.Font = new System.Drawing.Font("Stencil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGerente.Location = new System.Drawing.Point(194, 429);
+            this.btnGerente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnGerente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGerente.Font = new System.Drawing.Font("Cooper Black", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.btnGerente.Location = new System.Drawing.Point(146, 349);
+            this.btnGerente.Margin = new System.Windows.Forms.Padding(2);
             this.btnGerente.Name = "btnGerente";
-            this.btnGerente.Size = new System.Drawing.Size(322, 94);
+            this.btnGerente.Size = new System.Drawing.Size(242, 76);
             this.btnGerente.TabIndex = 2;
             this.btnGerente.Text = "GERENTE";
             this.btnGerente.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 604);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.ClientSize = new System.Drawing.Size(600, 491);
             this.Controls.Add(this.btnGerente);
             this.Controls.Add(this.btnVendedor);
             this.Controls.Add(this.btnAdmin);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Principal";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

@@ -41,8 +41,8 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnListarVentas);
             this.panel1.Controls.Add(this.btnProveedor);
             this.panel1.Controls.Add(this.btnProductos);
@@ -58,9 +58,12 @@
             // 
             // btnListarVentas
             // 
-            this.btnListarVentas.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnListarVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnListarVentas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnListarVentas.BackgroundImage")));
             this.btnListarVentas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnListarVentas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnListarVentas.Font = new System.Drawing.Font("Cooper Black", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListarVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnListarVentas.Location = new System.Drawing.Point(466, 79);
             this.btnListarVentas.Name = "btnListarVentas";
             this.btnListarVentas.Size = new System.Drawing.Size(113, 74);
@@ -71,9 +74,12 @@
             // 
             // btnProveedor
             // 
-            this.btnProveedor.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnProveedor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnProveedor.BackgroundImage")));
             this.btnProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProveedor.Font = new System.Drawing.Font("Cooper Black", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnProveedor.Location = new System.Drawing.Point(318, 79);
             this.btnProveedor.Name = "btnProveedor";
             this.btnProveedor.Size = new System.Drawing.Size(113, 74);
@@ -85,9 +91,12 @@
             // 
             // btnProductos
             // 
-            this.btnProductos.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnProductos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnProductos.BackgroundImage")));
             this.btnProductos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProductos.Font = new System.Drawing.Font("Cooper Black", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnProductos.Location = new System.Drawing.Point(166, 79);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(113, 74);
@@ -99,9 +108,12 @@
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnUsuarios.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.BackgroundImage")));
             this.btnUsuarios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUsuarios.Font = new System.Drawing.Font("Cooper Black", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnUsuarios.Location = new System.Drawing.Point(16, 79);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(113, 74);
@@ -115,16 +127,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Cooper Black", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.label1.Location = new System.Drawing.Point(10, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(289, 34);
+            this.label1.Size = new System.Drawing.Size(273, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "GESTIÓN DE VENTAS";
             // 
             // panelContenido
             // 
             this.panelContenido.AutoScroll = true;
+            this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenido.Location = new System.Drawing.Point(0, 172);
             this.panelContenido.Name = "panelContenido";
@@ -133,7 +147,7 @@
             // 
             // menuAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 747);
             this.Controls.Add(this.panelContenido);
@@ -142,6 +156,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "menuAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "menuAdmin";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
