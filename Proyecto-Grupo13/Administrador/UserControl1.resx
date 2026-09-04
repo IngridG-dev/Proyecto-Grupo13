@@ -175,10 +175,24 @@
   <metadata name="Teléfono.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="Direccion.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="Rol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="Estado.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="buttonBuscar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAAHUAAAB1AePCB2UAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAABC0lEQVQ4T5XSyyutYRTH8Q91YiITUWdALsVI5JIYYoZ0OsfdCCMUA3InGSBO/mQtPdtltbW37+St
+        9/uu9a71ex4+aMQKrnGOU1zhBO2fvqtKK54xgnlc4Ai/0IFLzOSiCvHnKO4rz/HkD7CIPQwl90aMPYr/
+        aM6ysIkp3GcRxM5zmMgicYdV9GdxVnZuyCIRYfZiPYtoEKnX4hBd2MoiEt5FWxaJm5LDdBYxWneNKXqw
+        X/JqyrJyzgvYrpJF7P2EQbwk985sWWOspB3THJex4/xbSgZr+JeLKwzjAcvoxG9MlrHjjsT7II7yb6r9
+        wgA2sFMCq+y89JMm35Gb/Em+Lj43qXq16yHGf8TtK23sJgw0GE9lAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

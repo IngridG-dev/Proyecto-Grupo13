@@ -50,6 +50,13 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelProductos = new System.Windows.Forms.Label();
+            this.labelListaProductos = new System.Windows.Forms.Label();
+            this.buttonBuscar2 = new System.Windows.Forms.Button();
+            this.comboBoxBuscarPor2 = new System.Windows.Forms.ComboBox();
+            this.labelBuscar2 = new System.Windows.Forms.Label();
+            this.textBuscar2 = new System.Windows.Forms.TextBox();
+            this.labelBuscarPor2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -58,6 +65,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(25)))), ((int)(((byte)(105)))));
+            this.panel1.Controls.Add(this.labelProductos);
             this.panel1.Controls.Add(this.btnEliminarProd);
             this.panel1.Controls.Add(this.btnAgregarProd);
             this.panel1.Controls.Add(this.btnEditarProd);
@@ -73,9 +81,9 @@
             this.panel1.Controls.Add(this.lNombreP);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(238, 578);
+            this.panel1.Size = new System.Drawing.Size(317, 711);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -87,14 +95,15 @@
             this.btnEliminarProd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnEliminarProd.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarProd.Image")));
             this.btnEliminarProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarProd.Location = new System.Drawing.Point(70, 287);
-            this.btnEliminarProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminarProd.Location = new System.Drawing.Point(93, 353);
+            this.btnEliminarProd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminarProd.Name = "btnEliminarProd";
-            this.btnEliminarProd.Size = new System.Drawing.Size(93, 39);
+            this.btnEliminarProd.Size = new System.Drawing.Size(124, 48);
             this.btnEliminarProd.TabIndex = 10;
             this.btnEliminarProd.Text = "Eliminar";
             this.btnEliminarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminarProd.UseVisualStyleBackColor = false;
+            this.btnEliminarProd.Click += new System.EventHandler(this.btnEliminarProd_Click);
             // 
             // btnAgregarProd
             // 
@@ -104,14 +113,15 @@
             this.btnAgregarProd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnAgregarProd.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarProd.Image")));
             this.btnAgregarProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarProd.Location = new System.Drawing.Point(119, 243);
-            this.btnAgregarProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregarProd.Location = new System.Drawing.Point(159, 299);
+            this.btnAgregarProd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarProd.Name = "btnAgregarProd";
-            this.btnAgregarProd.Size = new System.Drawing.Size(88, 40);
+            this.btnAgregarProd.Size = new System.Drawing.Size(117, 49);
             this.btnAgregarProd.TabIndex = 9;
             this.btnAgregarProd.Text = "Agregar";
             this.btnAgregarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarProd.UseVisualStyleBackColor = false;
+            this.btnAgregarProd.Click += new System.EventHandler(this.btnAgregarProd_Click);
             // 
             // btnEditarProd
             // 
@@ -121,114 +131,126 @@
             this.btnEditarProd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnEditarProd.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarProd.Image")));
             this.btnEditarProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditarProd.Location = new System.Drawing.Point(20, 243);
-            this.btnEditarProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEditarProd.Location = new System.Drawing.Point(27, 299);
+            this.btnEditarProd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEditarProd.Name = "btnEditarProd";
-            this.btnEditarProd.Size = new System.Drawing.Size(76, 40);
+            this.btnEditarProd.Size = new System.Drawing.Size(101, 49);
             this.btnEditarProd.TabIndex = 0;
             this.btnEditarProd.Text = "Editar";
             this.btnEditarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditarProd.UseVisualStyleBackColor = false;
+            this.btnEditarProd.Click += new System.EventHandler(this.btnEditarProd_Click);
             // 
             // comboBoxCatego
             // 
             this.comboBoxCatego.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboBoxCatego.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.comboBoxCatego.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxCatego.FormattingEnabled = true;
             this.comboBoxCatego.Items.AddRange(new object[] {
             "Vinilos",
             "CDs",
             "Instrumentos Musicales",
             "Reproductores"});
-            this.comboBoxCatego.Location = new System.Drawing.Point(91, 152);
-            this.comboBoxCatego.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxCatego.Location = new System.Drawing.Point(139, 192);
+            this.comboBoxCatego.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxCatego.Name = "comboBoxCatego";
-            this.comboBoxCatego.Size = new System.Drawing.Size(116, 21);
+            this.comboBoxCatego.Size = new System.Drawing.Size(153, 33);
             this.comboBoxCatego.TabIndex = 0;
             // 
             // textStock
             // 
             this.textStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.textStock.Location = new System.Drawing.Point(91, 193);
-            this.textStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textStock.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.textStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.textStock.Location = new System.Drawing.Point(139, 245);
+            this.textStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textStock.Name = "textStock";
-            this.textStock.Size = new System.Drawing.Size(116, 20);
+            this.textStock.Size = new System.Drawing.Size(153, 25);
             this.textStock.TabIndex = 8;
+            this.textStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textStock_KeyPress);
             // 
             // textDescripcion
             // 
             this.textDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textDescripcion.Location = new System.Drawing.Point(91, 113);
-            this.textDescripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textDescripcion.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.textDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.textDescripcion.Location = new System.Drawing.Point(139, 147);
+            this.textDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textDescripcion.Name = "textDescripcion";
-            this.textDescripcion.Size = new System.Drawing.Size(116, 13);
+            this.textDescripcion.Size = new System.Drawing.Size(153, 25);
             this.textDescripcion.TabIndex = 6;
+            this.textDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDescripcion_KeyPress);
             // 
             // textCodigo
             // 
             this.textCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textCodigo.Location = new System.Drawing.Point(91, 75);
-            this.textCodigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textCodigo.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.textCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.textCodigo.Location = new System.Drawing.Point(139, 102);
+            this.textCodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textCodigo.Name = "textCodigo";
-            this.textCodigo.Size = new System.Drawing.Size(116, 13);
+            this.textCodigo.Size = new System.Drawing.Size(153, 25);
             this.textCodigo.TabIndex = 5;
+            this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCodigo_KeyPress);
             // 
             // textNombre
             // 
             this.textNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textNombre.Location = new System.Drawing.Point(91, 38);
-            this.textNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textNombre.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.textNombre.Location = new System.Drawing.Point(139, 53);
+            this.textNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(116, 13);
+            this.textNombre.Size = new System.Drawing.Size(153, 24);
             this.textNombre.TabIndex = 0;
+            this.textNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNombre_KeyPress);
             // 
             // lStock
             // 
             this.lStock.AutoSize = true;
-            this.lStock.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lStock.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lStock.Location = new System.Drawing.Point(17, 198);
-            this.lStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lStock.Location = new System.Drawing.Point(3, 239);
             this.lStock.Name = "lStock";
-            this.lStock.Size = new System.Drawing.Size(36, 15);
+            this.lStock.Size = new System.Drawing.Size(60, 28);
             this.lStock.TabIndex = 4;
             this.lStock.Text = "Stock";
             // 
             // lCategoria
             // 
             this.lCategoria.AutoSize = true;
-            this.lCategoria.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lCategoria.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCategoria.Location = new System.Drawing.Point(17, 159);
-            this.lCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lCategoria.Location = new System.Drawing.Point(3, 191);
             this.lCategoria.Name = "lCategoria";
-            this.lCategoria.Size = new System.Drawing.Size(58, 15);
+            this.lCategoria.Size = new System.Drawing.Size(97, 28);
             this.lCategoria.TabIndex = 3;
             this.lCategoria.Text = "Categoría";
             // 
             // lDescripcion
             // 
             this.lDescripcion.AutoSize = true;
-            this.lDescripcion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lDescripcion.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDescripcion.Location = new System.Drawing.Point(11, 120);
-            this.lDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lDescripcion.Location = new System.Drawing.Point(3, 144);
             this.lDescripcion.Name = "lDescripcion";
-            this.lDescripcion.Size = new System.Drawing.Size(69, 15);
+            this.lDescripcion.Size = new System.Drawing.Size(114, 28);
             this.lDescripcion.TabIndex = 2;
             this.lDescripcion.Text = "Descripción";
             // 
             // lCodigo
             // 
             this.lCodigo.AutoSize = true;
-            this.lCodigo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lCodigo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCodigo.Location = new System.Drawing.Point(17, 80);
-            this.lCodigo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lCodigo.Location = new System.Drawing.Point(3, 93);
             this.lCodigo.Name = "lCodigo";
-            this.lCodigo.Size = new System.Drawing.Size(46, 15);
+            this.lCodigo.Size = new System.Drawing.Size(77, 28);
             this.lCodigo.TabIndex = 1;
             this.lCodigo.Text = "Código";
             this.lCodigo.Click += new System.EventHandler(this.label1_Click);
@@ -236,28 +258,34 @@
             // lNombreP
             // 
             this.lNombreP.AutoSize = true;
-            this.lNombreP.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lNombreP.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lNombreP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lNombreP.Location = new System.Drawing.Point(17, 43);
-            this.lNombreP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lNombreP.Location = new System.Drawing.Point(3, 48);
             this.lNombreP.Name = "lNombreP";
-            this.lNombreP.Size = new System.Drawing.Size(51, 15);
+            this.lNombreP.Size = new System.Drawing.Size(85, 28);
             this.lNombreP.TabIndex = 0;
             this.lNombreP.Text = "Nombre";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.panel2.Controls.Add(this.labelBuscarPor2);
+            this.panel2.Controls.Add(this.buttonBuscar2);
+            this.panel2.Controls.Add(this.comboBoxBuscarPor2);
+            this.panel2.Controls.Add(this.labelBuscar2);
+            this.panel2.Controls.Add(this.textBuscar2);
+            this.panel2.Controls.Add(this.labelListaProductos);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(238, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Location = new System.Drawing.Point(317, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(269, 578);
+            this.panel2.Size = new System.Drawing.Size(678, 711);
             this.panel2.TabIndex = 1;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -266,13 +294,13 @@
             this.Descripcion,
             this.Categoria,
             this.Stock});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 78);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(269, 578);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(740, 631);
             this.dataGridView1.TabIndex = 0;
             // 
             // Nombre
@@ -280,48 +308,129 @@
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 125;
             // 
             // Codigo
             // 
             this.Codigo.HeaderText = "Codigo";
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
-            this.Codigo.Width = 125;
             // 
             // Descripcion
             // 
             this.Descripcion.HeaderText = "Descripción";
             this.Descripcion.MinimumWidth = 6;
             this.Descripcion.Name = "Descripcion";
-            this.Descripcion.Width = 125;
             // 
             // Categoria
             // 
             this.Categoria.HeaderText = "Categoría";
             this.Categoria.MinimumWidth = 6;
             this.Categoria.Name = "Categoria";
-            this.Categoria.Width = 125;
             // 
             // Stock
             // 
             this.Stock.HeaderText = "Stock";
             this.Stock.MinimumWidth = 6;
             this.Stock.Name = "Stock";
-            this.Stock.Width = 125;
+            // 
+            // labelProductos
+            // 
+            this.labelProductos.AutoSize = true;
+            this.labelProductos.Font = new System.Drawing.Font("Cooper Black", 12F);
+            this.labelProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.labelProductos.Location = new System.Drawing.Point(68, 14);
+            this.labelProductos.Name = "labelProductos";
+            this.labelProductos.Size = new System.Drawing.Size(179, 23);
+            this.labelProductos.TabIndex = 1;
+            this.labelProductos.Text = "Datos Productos";
+            // 
+            // labelListaProductos
+            // 
+            this.labelListaProductos.AutoSize = true;
+            this.labelListaProductos.Font = new System.Drawing.Font("Cooper Black", 12F);
+            this.labelListaProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.labelListaProductos.Location = new System.Drawing.Point(326, 14);
+            this.labelListaProductos.Name = "labelListaProductos";
+            this.labelListaProductos.Size = new System.Drawing.Size(200, 23);
+            this.labelListaProductos.TabIndex = 11;
+            this.labelListaProductos.Text = "Lista de Productos";
+            this.labelListaProductos.Click += new System.EventHandler(this.labelListaProductos_Click);
+            // 
+            // buttonBuscar2
+            // 
+            this.buttonBuscar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.buttonBuscar2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonBuscar2.Image = ((System.Drawing.Image)(resources.GetObject("buttonBuscar2.Image")));
+            this.buttonBuscar2.Location = new System.Drawing.Point(274, 42);
+            this.buttonBuscar2.Name = "buttonBuscar2";
+            this.buttonBuscar2.Size = new System.Drawing.Size(58, 23);
+            this.buttonBuscar2.TabIndex = 26;
+            this.buttonBuscar2.UseVisualStyleBackColor = false;
+            // 
+            // comboBoxBuscarPor2
+            // 
+            this.comboBoxBuscarPor2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboBoxBuscarPor2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxBuscarPor2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.comboBoxBuscarPor2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.comboBoxBuscarPor2.FormattingEnabled = true;
+            this.comboBoxBuscarPor2.Items.AddRange(new object[] {
+            "DNI",
+            "Email",
+            "Nombre Completo"});
+            this.comboBoxBuscarPor2.Location = new System.Drawing.Point(559, 39);
+            this.comboBoxBuscarPor2.Name = "comboBoxBuscarPor2";
+            this.comboBoxBuscarPor2.Size = new System.Drawing.Size(156, 28);
+            this.comboBoxBuscarPor2.TabIndex = 25;
+            // 
+            // labelBuscar2
+            // 
+            this.labelBuscar2.AutoSize = true;
+            this.labelBuscar2.Font = new System.Drawing.Font("Cooper Black", 9F);
+            this.labelBuscar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.labelBuscar2.Location = new System.Drawing.Point(6, 47);
+            this.labelBuscar2.Name = "labelBuscar2";
+            this.labelBuscar2.Size = new System.Drawing.Size(61, 17);
+            this.labelBuscar2.TabIndex = 24;
+            this.labelBuscar2.Text = "Buscar";
+            this.labelBuscar2.Click += new System.EventHandler(this.labelBuscar_Click);
+            // 
+            // textBuscar2
+            // 
+            this.textBuscar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textBuscar2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBuscar2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBuscar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.textBuscar2.Location = new System.Drawing.Point(73, 42);
+            this.textBuscar2.Multiline = true;
+            this.textBuscar2.Name = "textBuscar2";
+            this.textBuscar2.Size = new System.Drawing.Size(195, 22);
+            this.textBuscar2.TabIndex = 23;
+            // 
+            // labelBuscarPor2
+            // 
+            this.labelBuscarPor2.AutoSize = true;
+            this.labelBuscarPor2.Font = new System.Drawing.Font("Cooper Black", 9F);
+            this.labelBuscarPor2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.labelBuscarPor2.Location = new System.Drawing.Point(461, 44);
+            this.labelBuscarPor2.Name = "labelBuscarPor2";
+            this.labelBuscarPor2.Size = new System.Drawing.Size(92, 17);
+            this.labelBuscarPor2.TabIndex = 27;
+            this.labelBuscarPor2.Text = "Buscar por";
             // 
             // UcProductos2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UcProductos2";
-            this.Size = new System.Drawing.Size(507, 578);
+            this.Size = new System.Drawing.Size(995, 711);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -350,5 +459,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
+        private System.Windows.Forms.Label labelProductos;
+        private System.Windows.Forms.Label labelListaProductos;
+        private System.Windows.Forms.Button buttonBuscar2;
+        private System.Windows.Forms.ComboBox comboBoxBuscarPor2;
+        private System.Windows.Forms.Label labelBuscar2;
+        private System.Windows.Forms.TextBox textBuscar2;
+        private System.Windows.Forms.Label labelBuscarPor2;
     }
 }
