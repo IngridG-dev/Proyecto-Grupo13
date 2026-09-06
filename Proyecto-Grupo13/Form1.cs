@@ -24,7 +24,7 @@ namespace Proyecto_Grupo13
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            menuAdmin menuAdmin = new menuAdmin();
+            menuAdministrador menuAdmin = new menuAdministrador();
             menuAdmin.Show();
         }
     }

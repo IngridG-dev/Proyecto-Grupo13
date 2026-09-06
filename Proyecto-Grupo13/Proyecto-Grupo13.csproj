@@ -49,23 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador\menuAdmin.cs">
+    <Compile Include="Administrador\menuAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrador\menuAdmin.Designer.cs">
-      <DependentUpon>menuAdmin.cs</DependentUpon>
+    <Compile Include="Administrador\menuAdministrador.Designer.cs">
+      <DependentUpon>menuAdministrador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\UcProductos2.cs">
+    <Compile Include="Administrador\UcProductos1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrador\UcProductos2.Designer.cs">
-      <DependentUpon>UcProductos2.cs</DependentUpon>
+    <Compile Include="Administrador\UcProductos1.Designer.cs">
+      <DependentUpon>UcProductos1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\UserControl1.cs">
+    <Compile Include="Administrador\UserControl2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrador\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="Administrador\UserControl2.Designer.cs">
+      <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -75,14 +75,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Administrador\menuAdmin.resx">
-      <DependentUpon>menuAdmin.cs</DependentUpon>
+    <EmbeddedResource Include="Administrador\menuAdministrador.resx">
+      <DependentUpon>menuAdministrador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrador\UcProductos2.resx">
-      <DependentUpon>UcProductos2.cs</DependentUpon>
+    <EmbeddedResource Include="Administrador\UcProductos1.resx">
+      <DependentUpon>UcProductos1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrador\UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="Administrador\UserControl2.resx">
+      <DependentUpon>UserControl2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
