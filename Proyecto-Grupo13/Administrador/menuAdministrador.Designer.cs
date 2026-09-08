@@ -52,7 +52,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 120);
+            this.panel1.Size = new System.Drawing.Size(1101, 120);
             this.panel1.TabIndex = 1;
             // 
             // btnListarVentas
@@ -141,14 +141,14 @@
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenido.Location = new System.Drawing.Point(0, 120);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(800, 365);
+            this.panelContenido.Size = new System.Drawing.Size(1101, 437);
             this.panelContenido.TabIndex = 2;
             // 
             // menuAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 485);
+            this.ClientSize = new System.Drawing.Size(1101, 557);
             this.Controls.Add(this.panelContenido);
             this.Controls.Add(this.panel1);
             this.Name = "menuAdministrador";
