@@ -38,6 +38,8 @@
             this.iconMenuVentas = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuReportes = new FontAwesome.Sharp.IconMenuItem();
             this.panelContenido = new System.Windows.Forms.Panel();
+            this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verDetalleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,6 +144,9 @@
             // iconMenuVentas
             // 
             this.iconMenuVentas.AutoSize = false;
+            this.iconMenuVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarToolStripMenuItem,
+            this.verDetalleToolStripMenuItem});
             this.iconMenuVentas.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuVentas.IconChar = FontAwesome.Sharp.IconChar.Tag;
@@ -176,6 +181,18 @@
             this.panelContenido.Size = new System.Drawing.Size(843, 412);
             this.panelContenido.TabIndex = 0;
             // 
+            // registrarToolStripMenuItem
+            // 
+            this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registrarToolStripMenuItem.Text = "Registrar";
+            // 
+            // verDetalleToolStripMenuItem
+            // 
+            this.verDetalleToolStripMenuItem.Name = "verDetalleToolStripMenuItem";
+            this.verDetalleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verDetalleToolStripMenuItem.Text = "Ver Detalle";
+            // 
             // menuAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,5 +223,7 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuVentas;
         private FontAwesome.Sharp.IconMenuItem iconMenuReportes;
         private System.Windows.Forms.Panel panelContenido;
+        private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verDetalleToolStripMenuItem;
     }
 }
