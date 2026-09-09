@@ -39,5 +39,15 @@ namespace Proyecto_Grupo13.Administrador
             proveedor.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
             panelContenido.Controls.Add(proveedor); // Agrega el UserControl al panelContenido
         }
+
+        private void iconMenuVentas_Click(object sender, EventArgs e){}
+
+        private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ucRegistrarV registrarV = new ucRegistrarV(); // Crea una instancia del UserControl ucRegistrarV
+            panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
+            registrarV.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
+            panelContenido.Controls.Add(registrarV); // Agrega el UserControl al panelContenido
+        }
     }
 }

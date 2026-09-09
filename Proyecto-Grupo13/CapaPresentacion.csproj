@@ -74,6 +74,12 @@
     <Compile Include="Administrador\ucProveedor.Designer.cs">
       <DependentUpon>ucProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\ucRegistrarV.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrador\ucRegistrarV.Designer.cs">
+      <DependentUpon>ucRegistrarV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\UserControl2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\ucProveedor.resx">
       <DependentUpon>ucProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\ucRegistrarV.resx">
+      <DependentUpon>ucRegistrarV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
