@@ -281,7 +281,7 @@
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(552, 371);
+            this.dataGridView2.Size = new System.Drawing.Size(552, 297);
             this.dataGridView2.TabIndex = 43;
             // 
             // dataGridViewTextBoxColumn1
@@ -406,7 +406,7 @@
             this.Controls.Add(this.lCodigo);
             this.Controls.Add(this.lNombreP);
             this.Name = "UcProductos1";
-            this.Size = new System.Drawing.Size(816, 524);
+            this.Size = new System.Drawing.Size(812, 520);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

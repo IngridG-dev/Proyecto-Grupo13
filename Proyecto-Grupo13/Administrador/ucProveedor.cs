@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace Proyecto_Grupo13.Administrador
 {
-    public partial class UserControl2 : UserControl
+    public partial class ucProveedor : UserControl
     {
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
-        public UserControl2()
+        public ucProveedor()
         {
             InitializeComponent();
         }
-
         // VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
-        private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
+        private void textRazonSocial_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Validar que solo se ingresen letras y espacios
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
@@ -59,30 +58,21 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Solo se permiten números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void textDireccion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true; // Evita que el carácter se ingrese en el TextBox
-                // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten letras, números y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
         private bool ValidarCamposVacios()
         {
             bool esValido = true;
 
             // Color normal de los TextBox
             Color colorNormal = Color.FromArgb(70, 75, 85);
-            // NOMBRE
-            if (string.IsNullOrWhiteSpace(textNombre.Text))
+            // RAZON SOCIAL
+            if (string.IsNullOrWhiteSpace(textRazonSocial.Text))
             {
-                textNombre.BackColor = Color.LightPink;
+                textRazonSocial.BackColor = Color.LightPink;
                 esValido = false;
             }
             else
             {
-                textNombre.BackColor = colorNormal;
+                textRazonSocial.BackColor = colorNormal;
             }
 
             // DNI
@@ -116,26 +106,6 @@ namespace Proyecto_Grupo13.Administrador
             {
                 textTelefono.BackColor = colorNormal;
             }
-            // DIRECCIÓN
-            if (string.IsNullOrWhiteSpace(textDireccion.Text))
-            {
-                textDireccion.BackColor = Color.LightPink;
-                esValido = false;
-            }
-            else
-            {
-                textDireccion.BackColor = colorNormal;
-            }
-            // ROL
-            if (comboBoxRol.SelectedIndex == -1)
-            {
-                comboBoxRol.BackColor = Color.LightPink;
-                esValido = false;
-            }
-            else
-            {
-                comboBoxRol.BackColor = colorNormal;
-            }
             // ESTADO
             if (comboBoxEstado.SelectedIndex == -1)
             {
@@ -166,26 +136,22 @@ namespace Proyecto_Grupo13.Administrador
             {
                 if (filaEditar != -1)
                 {
-                    DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del proveedor?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (askEdit == DialogResult.Yes)
                     {
                         // Actualizar la fila seleccionada con los nuevos datos
-                        dataGridView1.Rows[filaEditar].Cells[0].Value = formatearTexto(textNombre.Text);
-                        dataGridView1.Rows[filaEditar].Cells[1].Value = textDNI.Text;
-                        dataGridView1.Rows[filaEditar].Cells[2].Value = textEmail.Text;
-                        dataGridView1.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
-                        dataGridView1.Rows[filaEditar].Cells[4].Value = textDireccion.Text;
-                        dataGridView1.Rows[filaEditar].Cells[5].Value = comboBoxRol.Text;
-                        dataGridView1.Rows[filaEditar].Cells[6].Value = comboBoxEstado.Text;
-                        // Aquí iría la lógica para actualizar el usuario en la base de datos o lista (NOTA)
-                        MessageBox.Show("Usuario editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridProveedor.Rows[filaEditar].Cells[0].Value = formatearTexto(textRazonSocial.Text);
+                        dataGridProveedor.Rows[filaEditar].Cells[1].Value = textDNI.Text;
+                        dataGridProveedor.Rows[filaEditar].Cells[2].Value = textEmail.Text;
+                        dataGridProveedor.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
+                        dataGridProveedor.Rows[filaEditar].Cells[4].Value = comboBoxEstado.Text;
+                        // Aquí iría la lógica para actualizar el proveedor en la base de datos o lista (NOTA)
+                        MessageBox.Show("Proveedor editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // Limpiar los campos de texto y restablecer el índice de la fila a editar
-                        textNombre.Clear();
+                        textRazonSocial.Clear();
                         textDNI.Clear();
                         textEmail.Clear();
                         textTelefono.Clear();
-                        textDireccion.Clear();
-                        comboBoxRol.SelectedIndex = -1;
                         comboBoxEstado.SelectedIndex = -1;
                         filaEditar = -1; // Reinicia el índice de la fila a editar
                     }
@@ -197,30 +163,28 @@ namespace Proyecto_Grupo13.Administrador
                 }
                 else
                 {
-                    // Hacemos una pregunta de confirmación antes de insertar el nuevo usuario
-                    DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo usuario?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                    // Hacemos una pregunta de confirmación antes de insertar el nuevo proveedor
+                    DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo proveedor?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
-                    // Si aprieta "Sí", se procede a insertar el nuevo usuario en la tabla
+                    // Si aprieta "Sí", se procede a insertar el nuevo proveedor en la tabla
                     if (ask == DialogResult.Yes)
                     {
                         // Formateamos el texto del nombre
-                        string nombre = formatearTexto(textNombre.Text);
+                        string nombre = formatearTexto(textRazonSocial.Text);
 
                         // Agregamos los datos a la tabla
-                        dataGridView1.Rows.Add(nombre, textDNI.Text, textEmail.Text, textTelefono.Text, textDireccion.Text, comboBoxRol.Text, comboBoxEstado.Text);
+                        dataGridProveedor.Rows.Add(nombre, textDNI.Text, textEmail.Text, textTelefono.Text, comboBoxEstado.Text);
 
-                        MessageBox.Show("El usuario " + nombre + " se insertó correctamente en la tabla.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("El proveedor " + nombre + " se insertó correctamente en la tabla.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Limpiamos los campos
-                        textNombre.Clear();
+                        textRazonSocial.Clear();
                         textDNI.Clear();
-                        textDireccion.Clear();
                         textEmail.Clear();
                         textTelefono.Clear();
-                        comboBoxRol.SelectedIndex = -1;
                         comboBoxEstado.SelectedIndex = -1;
 
-                        textNombre.Focus();
+                        textRazonSocial.Focus();
                     }
                     // Si aprieta "NO" no se hace nada y se cancela la insercion
                 }
@@ -233,7 +197,7 @@ namespace Proyecto_Grupo13.Administrador
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridProveedor.SelectedRows.Count > 0)
             {
                 // Preguntamos si esta seguro de eliminar 
                 DialogResult ask = MessageBox.Show("¿Seguro que desea eliminar el registro seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
@@ -242,10 +206,10 @@ namespace Proyecto_Grupo13.Administrador
                 if (ask == DialogResult.Yes)
                 {
                     // Verificamos que no intente borrar la ultima fila en blanco (la que usa el DataGridView para agregar nuevos datos a mano)
-                    if (!dataGridView1.SelectedRows[0].IsNewRow)
+                    if (!dataGridProveedor.SelectedRows[0].IsNewRow)
                     {
                         // Borramos la fila usando el indice de la que esta seleccionada
-                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                        dataGridProveedor.Rows.RemoveAt(dataGridProveedor.SelectedRows[0].Index);
 
                         MessageBox.Show("El registro se eliminó correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -262,53 +226,32 @@ namespace Proyecto_Grupo13.Administrador
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textDireccion_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridProveedor.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, seleccione un usuario para editar.", "Sin selección",
+                MessageBox.Show("Por favor, seleccione un proveedor para editar.", "Sin selección",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            filaEditar = dataGridView1.SelectedRows[0].Index; //guarda el indice de la fila seleccionada
-            if (dataGridView1.Rows[filaEditar].IsNewRow)
+            filaEditar = dataGridProveedor.SelectedRows[0].Index; //guarda el indice de la fila seleccionada
+            if (dataGridProveedor.Rows[filaEditar].IsNewRow)
             {
                 MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 filaEditar = -1; // Reinicia el índice de la fila a editar
                 return;
             }
-            DataGridViewRow fila = dataGridView1.Rows[filaEditar]; // Obtiene la fila seleccionada
+            DataGridViewRow fila = dataGridProveedor.Rows[filaEditar]; // Obtiene la fila seleccionada
 
             //se pasa los datos de la tabla a los campos de texto para poder editarlos
-            textNombre.Text = fila.Cells[0].Value?.ToString();
+            textRazonSocial.Text = fila.Cells[0].Value?.ToString();
             textDNI.Text = fila.Cells[1].Value?.ToString();
             textEmail.Text = fila.Cells[2].Value?.ToString();
             textTelefono.Text = fila.Cells[3].Value?.ToString();
-            textDireccion.Text = fila.Cells[4].Value?.ToString();
-            comboBoxRol.Text = fila.Cells[5].Value?.ToString();
-            comboBoxEstado.Text = fila.Cells[6].Value?.ToString();
+            comboBoxEstado.Text = fila.Cells[4].Value?.ToString();
+            
+            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

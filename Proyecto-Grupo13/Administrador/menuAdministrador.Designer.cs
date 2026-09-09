@@ -28,145 +28,183 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(menuAdministrador));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnListarVentas = new System.Windows.Forms.Button();
-            this.btnProveedor = new System.Windows.Forms.Button();
-            this.btnProductos = new System.Windows.Forms.Button();
-            this.btnUsuarios = new System.Windows.Forms.Button();
+            this.menuStripTitulo = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.iconMenuUsuarios = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuProductos = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuProveedor = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuCompra = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuVentas = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuReportes = new FontAwesome.Sharp.IconMenuItem();
             this.panelContenido = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // menuStripTitulo
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnListarVentas);
-            this.panel1.Controls.Add(this.btnProveedor);
-            this.panel1.Controls.Add(this.btnProductos);
-            this.panel1.Controls.Add(this.btnUsuarios);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1101, 120);
-            this.panel1.TabIndex = 1;
-            // 
-            // btnListarVentas
-            // 
-            this.btnListarVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnListarVentas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnListarVentas.BackgroundImage")));
-            this.btnListarVentas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnListarVentas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnListarVentas.Font = new System.Drawing.Font("Cooper Black", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListarVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.btnListarVentas.Location = new System.Drawing.Point(311, 58);
-            this.btnListarVentas.Name = "btnListarVentas";
-            this.btnListarVentas.Size = new System.Drawing.Size(90, 44);
-            this.btnListarVentas.TabIndex = 4;
-            this.btnListarVentas.Text = "Ventas";
-            this.btnListarVentas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnListarVentas.UseVisualStyleBackColor = false;
-            // 
-            // btnProveedor
-            // 
-            this.btnProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnProveedor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnProveedor.BackgroundImage")));
-            this.btnProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnProveedor.Font = new System.Drawing.Font("Cooper Black", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.btnProveedor.Location = new System.Drawing.Point(203, 58);
-            this.btnProveedor.Name = "btnProveedor";
-            this.btnProveedor.Size = new System.Drawing.Size(102, 44);
-            this.btnProveedor.TabIndex = 3;
-            this.btnProveedor.Text = "Proveedores";
-            this.btnProveedor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnProveedor.UseVisualStyleBackColor = false;
-            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click_1);
-            // 
-            // btnProductos
-            // 
-            this.btnProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnProductos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnProductos.BackgroundImage")));
-            this.btnProductos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnProductos.Font = new System.Drawing.Font("Cooper Black", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.btnProductos.Location = new System.Drawing.Point(107, 58);
-            this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Size = new System.Drawing.Size(90, 44);
-            this.btnProductos.TabIndex = 2;
-            this.btnProductos.Text = "Productos";
-            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnProductos.UseVisualStyleBackColor = false;
-            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click_1);
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnUsuarios.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.BackgroundImage")));
-            this.btnUsuarios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUsuarios.Font = new System.Drawing.Font("Cooper Black", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.btnUsuarios.Location = new System.Drawing.Point(11, 58);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(90, 44);
-            this.btnUsuarios.TabIndex = 1;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUsuarios.UseVisualStyleBackColor = false;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click_1);
+            this.menuStripTitulo.AutoSize = false;
+            this.menuStripTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.menuStripTitulo.Location = new System.Drawing.Point(0, 0);
+            this.menuStripTitulo.Name = "menuStripTitulo";
+            this.menuStripTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.menuStripTitulo.Size = new System.Drawing.Size(843, 48);
+            this.menuStripTitulo.TabIndex = 7;
+            this.menuStripTitulo.Text = "menuStrip2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Cooper Black", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.label1.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label1.Location = new System.Drawing.Point(6, 8);
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(273, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "GESTIÓN DE VENTAS";
+            this.label1.Size = new System.Drawing.Size(122, 24);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "The B-Side";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iconMenuUsuarios,
+            this.iconMenuProductos,
+            this.iconMenuProveedor,
+            this.iconMenuCompra,
+            this.iconMenuVentas,
+            this.iconMenuReportes});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 48);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(843, 73);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // iconMenuUsuarios
+            // 
+            this.iconMenuUsuarios.AutoSize = false;
+            this.iconMenuUsuarios.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.iconMenuUsuarios.IconChar = FontAwesome.Sharp.IconChar.Users;
+            this.iconMenuUsuarios.IconColor = System.Drawing.Color.Black;
+            this.iconMenuUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuUsuarios.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuUsuarios.Name = "iconMenuUsuarios";
+            this.iconMenuUsuarios.Size = new System.Drawing.Size(80, 69);
+            this.iconMenuUsuarios.Text = "Usuarios";
+            this.iconMenuUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconMenuUsuarios.Click += new System.EventHandler(this.iconMenuUsuarios_Click);
+            // 
+            // iconMenuProductos
+            // 
+            this.iconMenuProductos.AutoSize = false;
+            this.iconMenuProductos.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.iconMenuProductos.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
+            this.iconMenuProductos.IconColor = System.Drawing.Color.Black;
+            this.iconMenuProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuProductos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuProductos.Name = "iconMenuProductos";
+            this.iconMenuProductos.Size = new System.Drawing.Size(80, 69);
+            this.iconMenuProductos.Text = "Productos";
+            this.iconMenuProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconMenuProductos.Click += new System.EventHandler(this.iconMenuProductos_Click);
+            // 
+            // iconMenuProveedor
+            // 
+            this.iconMenuProveedor.AutoSize = false;
+            this.iconMenuProveedor.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.iconMenuProveedor.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
+            this.iconMenuProveedor.IconColor = System.Drawing.Color.Black;
+            this.iconMenuProveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuProveedor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuProveedor.Name = "iconMenuProveedor";
+            this.iconMenuProveedor.Size = new System.Drawing.Size(80, 69);
+            this.iconMenuProveedor.Text = "Proveedores";
+            this.iconMenuProveedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconMenuProveedor.Click += new System.EventHandler(this.iconMenuProveedor_Click);
+            // 
+            // iconMenuCompra
+            // 
+            this.iconMenuCompra.AutoSize = false;
+            this.iconMenuCompra.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.iconMenuCompra.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
+            this.iconMenuCompra.IconColor = System.Drawing.Color.Black;
+            this.iconMenuCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuCompra.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuCompra.Name = "iconMenuCompra";
+            this.iconMenuCompra.Size = new System.Drawing.Size(80, 69);
+            this.iconMenuCompra.Text = "Compras";
+            this.iconMenuCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // iconMenuVentas
+            // 
+            this.iconMenuVentas.AutoSize = false;
+            this.iconMenuVentas.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.iconMenuVentas.IconChar = FontAwesome.Sharp.IconChar.Tag;
+            this.iconMenuVentas.IconColor = System.Drawing.Color.Black;
+            this.iconMenuVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuVentas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuVentas.Name = "iconMenuVentas";
+            this.iconMenuVentas.Size = new System.Drawing.Size(80, 69);
+            this.iconMenuVentas.Text = "Ventas";
+            this.iconMenuVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // iconMenuReportes
+            // 
+            this.iconMenuReportes.AutoSize = false;
+            this.iconMenuReportes.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.iconMenuReportes.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
+            this.iconMenuReportes.IconColor = System.Drawing.Color.Black;
+            this.iconMenuReportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuReportes.Name = "iconMenuReportes";
+            this.iconMenuReportes.Size = new System.Drawing.Size(80, 69);
+            this.iconMenuReportes.Text = "Reportes";
+            this.iconMenuReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // panelContenido
             // 
-            this.panelContenido.AutoScroll = true;
             this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenido.Location = new System.Drawing.Point(0, 120);
+            this.panelContenido.Location = new System.Drawing.Point(0, 121);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1101, 437);
-            this.panelContenido.TabIndex = 2;
+            this.panelContenido.Size = new System.Drawing.Size(843, 412);
+            this.panelContenido.TabIndex = 0;
             // 
             // menuAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 557);
+            this.ClientSize = new System.Drawing.Size(843, 533);
             this.Controls.Add(this.panelContenido);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStripTitulo);
             this.Name = "menuAdministrador";
             this.Text = "menuAdministrador";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnListarVentas;
-        private System.Windows.Forms.Button btnProveedor;
-        private System.Windows.Forms.Button btnProductos;
-        private System.Windows.Forms.Button btnUsuarios;
+        private System.Windows.Forms.MenuStrip menuStripTitulo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private FontAwesome.Sharp.IconMenuItem iconMenuUsuarios;
+        private FontAwesome.Sharp.IconMenuItem iconMenuProductos;
+        private FontAwesome.Sharp.IconMenuItem iconMenuProveedor;
+        private FontAwesome.Sharp.IconMenuItem iconMenuCompra;
+        private FontAwesome.Sharp.IconMenuItem iconMenuVentas;
+        private FontAwesome.Sharp.IconMenuItem iconMenuReportes;
         private System.Windows.Forms.Panel panelContenido;
     }
 }

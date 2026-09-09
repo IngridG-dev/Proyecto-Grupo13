@@ -16,7 +16,7 @@ namespace Proyecto_Grupo13.Administrador
         {
             InitializeComponent();
         }
-        private void btnUsuarios_Click_1(object sender, EventArgs e)
+        private void iconMenuUsuarios_Click(object sender, EventArgs e)
         {
             UserControl2 usuarios = new UserControl2(); // Crea una instancia del UserControl ucUsuarios
             panelContenido.Controls.Clear();// Limpia los controles existentes en el panelContenido
@@ -24,7 +24,7 @@ namespace Proyecto_Grupo13.Administrador
             panelContenido.Controls.Add(usuarios); // Agrega el UserControl al panelContenido
         }
 
-        private void btnProductos_Click_1(object sender, EventArgs e)
+        private void iconMenuProductos_Click(object sender, EventArgs e)
         {
             UcProductos1 productos = new UcProductos1(); // Crea una instancia del UserControl UcProductos1
             panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
@@ -32,9 +32,12 @@ namespace Proyecto_Grupo13.Administrador
             panelContenido.Controls.Add(productos); // Agrega el UserControl al panelContenido
         }
 
-        private void btnProveedor_Click_1(object sender, EventArgs e)
+        private void iconMenuProveedor_Click(object sender, EventArgs e)
         {
-
+            ucProveedor proveedor = new ucProveedor(); // Crea una instancia del UserControl ucProveedor
+            panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
+            proveedor.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
+            panelContenido.Controls.Add(proveedor); // Agrega el UserControl al panelContenido
         }
     }
 }
