@@ -86,7 +86,7 @@
             this.iconMenuUsuarios.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuUsuarios.IconChar = FontAwesome.Sharp.IconChar.Users;
-            this.iconMenuUsuarios.IconColor = System.Drawing.Color.Black;
+            this.iconMenuUsuarios.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuUsuarios.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuUsuarios.Name = "iconMenuUsuarios";
@@ -101,7 +101,7 @@
             this.iconMenuProductos.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuProductos.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
-            this.iconMenuProductos.IconColor = System.Drawing.Color.Black;
+            this.iconMenuProductos.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuProductos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuProductos.Name = "iconMenuProductos";
@@ -116,7 +116,7 @@
             this.iconMenuProveedor.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuProveedor.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
-            this.iconMenuProveedor.IconColor = System.Drawing.Color.Black;
+            this.iconMenuProveedor.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuProveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuProveedor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuProveedor.Name = "iconMenuProveedor";
@@ -131,7 +131,7 @@
             this.iconMenuCompra.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuCompra.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
-            this.iconMenuCompra.IconColor = System.Drawing.Color.Black;
+            this.iconMenuCompra.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuCompra.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuCompra.Name = "iconMenuCompra";
@@ -145,7 +145,7 @@
             this.iconMenuVentas.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuVentas.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            this.iconMenuVentas.IconColor = System.Drawing.Color.Black;
+            this.iconMenuVentas.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuVentas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuVentas.Name = "iconMenuVentas";
@@ -159,7 +159,7 @@
             this.iconMenuReportes.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuReportes.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
-            this.iconMenuReportes.IconColor = System.Drawing.Color.Black;
+            this.iconMenuReportes.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuReportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuReportes.Name = "iconMenuReportes";
