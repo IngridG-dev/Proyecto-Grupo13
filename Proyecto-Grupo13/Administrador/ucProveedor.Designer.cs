@@ -41,19 +41,19 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dataGridProveedor = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelListaProveedores = new System.Windows.Forms.Label();
-            this.lDatosUser = new System.Windows.Forms.Label();
-            this.lEstado = new System.Windows.Forms.Label();
-            this.lRazonSocial = new System.Windows.Forms.Label();
-            this.lTelefono = new System.Windows.Forms.Label();
-            this.lDni = new System.Windows.Forms.Label();
-            this.lEmail = new System.Windows.Forms.Label();
             this.RazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelListaProveedores = new System.Windows.Forms.Label();
+            this.lDatosProveedor = new System.Windows.Forms.Label();
+            this.lEstado = new System.Windows.Forms.Label();
+            this.lRazonSocial = new System.Windows.Forms.Label();
+            this.lTelefono = new System.Windows.Forms.Label();
+            this.lDni = new System.Windows.Forms.Label();
+            this.lEmail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -166,9 +166,8 @@
             this.comboBoxBuscar.FormattingEnabled = true;
             this.comboBoxBuscar.Items.AddRange(new object[] {
             "DNI",
-            "Email",
-            "Nombre Completo",
-            "Rol"});
+            "Razón Social",
+            "Email"});
             this.comboBoxBuscar.Location = new System.Drawing.Point(321, 41);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
@@ -244,6 +243,38 @@
             this.dataGridProveedor.Size = new System.Drawing.Size(552, 310);
             this.dataGridProveedor.TabIndex = 67;
             // 
+            // RazonSocial
+            // 
+            this.RazonSocial.HeaderText = "Razon Social";
+            this.RazonSocial.MinimumWidth = 6;
+            this.RazonSocial.Name = "RazonSocial";
+            // 
+            // DNI
+            // 
+            this.DNI.HeaderText = "DNI";
+            this.DNI.MinimumWidth = 6;
+            this.DNI.Name = "DNI";
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            // 
+            // Teléfono
+            // 
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.MinimumWidth = 6;
+            this.Teléfono.Name = "Teléfono";
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -268,18 +299,18 @@
             this.labelListaProveedores.TabIndex = 64;
             this.labelListaProveedores.Text = "Lista de Proveedores";
             // 
-            // lDatosUser
+            // lDatosProveedor
             // 
-            this.lDatosUser.AutoSize = true;
-            this.lDatosUser.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lDatosUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDatosUser.Location = new System.Drawing.Point(32, 10);
-            this.lDatosUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lDatosUser.Name = "lDatosUser";
-            this.lDatosUser.Size = new System.Drawing.Size(154, 19);
-            this.lDatosUser.TabIndex = 56;
-            this.lDatosUser.Text = "Datos de usuarios";
-            this.lDatosUser.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lDatosProveedor.AutoSize = true;
+            this.lDatosProveedor.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lDatosProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lDatosProveedor.Location = new System.Drawing.Point(32, 10);
+            this.lDatosProveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lDatosProveedor.Name = "lDatosProveedor";
+            this.lDatosProveedor.Size = new System.Drawing.Size(173, 19);
+            this.lDatosProveedor.TabIndex = 56;
+            this.lDatosProveedor.Text = "Datos del Proveedor";
+            this.lDatosProveedor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lEstado
             // 
@@ -341,38 +372,6 @@
             this.lEmail.TabIndex = 59;
             this.lEmail.Text = "Email";
             // 
-            // RazonSocial
-            // 
-            this.RazonSocial.HeaderText = "Razon Social";
-            this.RazonSocial.MinimumWidth = 6;
-            this.RazonSocial.Name = "RazonSocial";
-            // 
-            // DNI
-            // 
-            this.DNI.HeaderText = "DNI";
-            this.DNI.MinimumWidth = 6;
-            this.DNI.Name = "DNI";
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
-            this.Email.Name = "Email";
-            // 
-            // Teléfono
-            // 
-            this.Teléfono.HeaderText = "Teléfono";
-            this.Teléfono.MinimumWidth = 6;
-            this.Teléfono.Name = "Teléfono";
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // ucProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,7 +391,7 @@
             this.Controls.Add(this.dataGridProveedor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelListaProveedores);
-            this.Controls.Add(this.lDatosUser);
+            this.Controls.Add(this.lDatosProveedor);
             this.Controls.Add(this.lEstado);
             this.Controls.Add(this.lRazonSocial);
             this.Controls.Add(this.lTelefono);
@@ -422,7 +421,7 @@
         private System.Windows.Forms.DataGridView dataGridProveedor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelListaProveedores;
-        private System.Windows.Forms.Label lDatosUser;
+        private System.Windows.Forms.Label lDatosProveedor;
         private System.Windows.Forms.Label lEstado;
         private System.Windows.Forms.Label lRazonSocial;
         private System.Windows.Forms.Label lTelefono;
