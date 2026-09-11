@@ -62,6 +62,12 @@
     <Compile Include="Administrador\menuAdministrador.Designer.cs">
       <DependentUpon>menuAdministrador.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\ucDetalleCompra.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrador\ucDetalleCompra.Designer.cs">
+      <DependentUpon>ucDetalleCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\UcProductos1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </Compile>
     <EmbeddedResource Include="Administrador\menuAdministrador.resx">
       <DependentUpon>menuAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\ucDetalleCompra.resx">
+      <DependentUpon>ucDetalleCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\UcProductos1.resx">
       <DependentUpon>UcProductos1.cs</DependentUpon>
