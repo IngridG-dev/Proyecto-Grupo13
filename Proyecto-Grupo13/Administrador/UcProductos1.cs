@@ -254,5 +254,15 @@ namespace Proyecto_Grupo13.Administrador
             MessageBox.Show("Edite los campos y haga clic en 'Agregar Producto' para guardar los cambios.", "Editar Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelProductos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

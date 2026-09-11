@@ -35,8 +35,9 @@
             this.iconMenuProductos = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuProveedor = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuCompra = new FontAwesome.Sharp.IconMenuItem();
-            this.iconMenuVentas = new FontAwesome.Sharp.IconMenuItem();
             this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verDetalleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.iconMenuVentas = new FontAwesome.Sharp.IconMenuItem();
             this.verDetalleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuReportes = new FontAwesome.Sharp.IconMenuItem();
             this.panelContenido = new System.Windows.Forms.Panel();
@@ -51,7 +52,7 @@
             this.menuStripTitulo.Location = new System.Drawing.Point(0, 0);
             this.menuStripTitulo.Name = "menuStripTitulo";
             this.menuStripTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStripTitulo.Size = new System.Drawing.Size(1124, 59);
+            this.menuStripTitulo.Size = new System.Drawing.Size(1318, 59);
             this.menuStripTitulo.TabIndex = 7;
             this.menuStripTitulo.Text = "menuStrip2";
             // 
@@ -70,6 +71,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -81,7 +83,7 @@
             this.iconMenuReportes});
             this.menuStrip1.Location = new System.Drawing.Point(0, 59);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1124, 73);
+            this.menuStrip1.Size = new System.Drawing.Size(1318, 73);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -133,6 +135,9 @@
             // iconMenuCompra
             // 
             this.iconMenuCompra.AutoSize = false;
+            this.iconMenuCompra.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarToolStripMenuItem,
+            this.verDetalleToolStripMenuItem1});
             this.iconMenuCompra.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuCompra.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
@@ -144,11 +149,23 @@
             this.iconMenuCompra.Text = "Compras";
             this.iconMenuCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // registrarToolStripMenuItem
+            // 
+            this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registrarToolStripMenuItem.Text = "Registrar";
+            this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
+            // 
+            // verDetalleToolStripMenuItem1
+            // 
+            this.verDetalleToolStripMenuItem1.Name = "verDetalleToolStripMenuItem1";
+            this.verDetalleToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.verDetalleToolStripMenuItem1.Text = "Ver Detalle";
+            // 
             // iconMenuVentas
             // 
             this.iconMenuVentas.AutoSize = false;
             this.iconMenuVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registrarToolStripMenuItem,
             this.verDetalleToolStripMenuItem});
             this.iconMenuVentas.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
@@ -162,18 +179,12 @@
             this.iconMenuVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconMenuVentas.Click += new System.EventHandler(this.iconMenuVentas_Click);
             // 
-            // registrarToolStripMenuItem
-            // 
-            this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.registrarToolStripMenuItem.Text = "Registrar";
-            this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
-            // 
             // verDetalleToolStripMenuItem
             // 
             this.verDetalleToolStripMenuItem.Name = "verDetalleToolStripMenuItem";
-            this.verDetalleToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.verDetalleToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.verDetalleToolStripMenuItem.Text = "Ver Detalle";
+            this.verDetalleToolStripMenuItem.Click += new System.EventHandler(this.verDetalleToolStripMenuItem_Click);
             // 
             // iconMenuReportes
             // 
@@ -194,23 +205,25 @@
             this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenido.Location = new System.Drawing.Point(0, 132);
-            this.panelContenido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelContenido.Margin = new System.Windows.Forms.Padding(4);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1124, 524);
+            this.panelContenido.Size = new System.Drawing.Size(1318, 672);
             this.panelContenido.TabIndex = 0;
             // 
             // menuAdministrador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1124, 656);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.ClientSize = new System.Drawing.Size(1318, 804);
             this.Controls.Add(this.panelContenido);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStripTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "menuAdministrador";
             this.Text = "menuAdministrador";
+            this.Load += new System.EventHandler(this.menuAdministrador_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -230,7 +243,8 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuVentas;
         private FontAwesome.Sharp.IconMenuItem iconMenuReportes;
         private System.Windows.Forms.Panel panelContenido;
-        private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verDetalleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verDetalleToolStripMenuItem1;
     }
 }

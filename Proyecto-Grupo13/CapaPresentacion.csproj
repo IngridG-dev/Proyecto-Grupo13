@@ -74,11 +74,17 @@
     <Compile Include="Administrador\ucProveedor.Designer.cs">
       <DependentUpon>ucProveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\ucRegistrarV.cs">
+    <Compile Include="Administrador\ucVerDetalleV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrador\ucRegistrarV.Designer.cs">
-      <DependentUpon>ucRegistrarV.cs</DependentUpon>
+    <Compile Include="Administrador\ucVerDetalleV.Designer.cs">
+      <DependentUpon>ucVerDetalleV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\usRegistrarCom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrador\usRegistrarCom.Designer.cs">
+      <DependentUpon>usRegistrarCom.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrador\UserControl2.cs">
       <SubType>UserControl</SubType>
@@ -94,6 +100,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendedor\menuVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\menuVendedor.Designer.cs">
+      <DependentUpon>menuVendedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vendedor\ucRegistroVenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vendedor\ucRegistroVenta.Designer.cs">
+      <DependentUpon>ucRegistroVenta.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Administrador\menuAdministrador.resx">
       <DependentUpon>menuAdministrador.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,8 +121,11 @@
     <EmbeddedResource Include="Administrador\ucProveedor.resx">
       <DependentUpon>ucProveedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrador\ucRegistrarV.resx">
-      <DependentUpon>ucRegistrarV.cs</DependentUpon>
+    <EmbeddedResource Include="Administrador\ucVerDetalleV.resx">
+      <DependentUpon>ucVerDetalleV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\usRegistrarCom.resx">
+      <DependentUpon>usRegistrarCom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
@@ -121,6 +142,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vendedor\menuVendedor.resx">
+      <DependentUpon>menuVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\ucRegistroVenta.resx">
+      <DependentUpon>ucRegistroVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -135,8 +162,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Vendedor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
