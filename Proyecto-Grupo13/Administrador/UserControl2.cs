@@ -261,27 +261,6 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Por favor, seleccione toda la fila que desea eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textDireccion_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -310,5 +289,11 @@ namespace Proyecto_Grupo13.Administrador
 
             MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private void btnBuscar_Click(object sender, EventArgs e){}
+        private void textNombre_TextChanged(object sender, EventArgs e){}
+        private void textDireccion_TextChanged(object sender, EventArgs e){}
+        private void label1_Click(object sender, EventArgs e){}
+
+        
     }
 }
