@@ -229,6 +229,7 @@
             this.panelContenido.Name = "panelContenido";
             this.panelContenido.Size = new System.Drawing.Size(1054, 482);
             this.panelContenido.TabIndex = 0;
+            this.panelContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenido_Paint);
             // 
             // menuAdministrador
             // 

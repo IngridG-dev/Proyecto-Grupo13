@@ -86,5 +86,10 @@ namespace Proyecto_Grupo13.Administrador
             reporteVenta.Dock = DockStyle.Fill;
             panelContenido.Controls.Add(reporteVenta);
         }
+
+        private void panelContenido_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

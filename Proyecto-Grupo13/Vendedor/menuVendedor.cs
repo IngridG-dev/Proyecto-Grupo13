@@ -39,5 +39,13 @@ namespace Proyecto_Grupo13.Vendedor
             registrarVenta.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio disponible
             panelContenidoV.Controls.Add(registrarVenta); // Agrega el UserControl al panel
         }
+
+        private void iconUsuarios_Click(object sender, EventArgs e)
+        {
+            ucClientes clientes = new ucClientes(); // Crea una instancia del UserControl ucClientes
+            panelContenidoV.Controls.Clear(); // Limpia cualquier control existente en el panel
+            clientes.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio disponible
+            panelContenidoV.Controls.Add(clientes); // Agrega el UserControl al panel
+        }
     }
 }

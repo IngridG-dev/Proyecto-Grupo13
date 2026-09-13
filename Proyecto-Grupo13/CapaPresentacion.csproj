@@ -124,6 +124,12 @@
     <Compile Include="Vendedor\menuVendedor.Designer.cs">
       <DependentUpon>menuVendedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vendedor\ucClientes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vendedor\ucClientes.Designer.cs">
+      <DependentUpon>ucClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vendedor\ucRegistroVenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </Compile>
     <EmbeddedResource Include="Vendedor\menuVendedor.resx">
       <DependentUpon>menuVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\ucClientes.resx">
+      <DependentUpon>ucClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\ucRegistroVenta.resx">
       <DependentUpon>ucRegistroVenta.cs</DependentUpon>
