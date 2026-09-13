@@ -86,6 +86,12 @@
     <Compile Include="Administrador\ucReporteCompra.Designer.cs">
       <DependentUpon>ucReporteCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\ucReporteVenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrador\ucReporteVenta.Designer.cs">
+      <DependentUpon>ucReporteVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\ucVerDetalleV.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\ucReporteCompra.resx">
       <DependentUpon>ucReporteCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\ucReporteVenta.resx">
+      <DependentUpon>ucReporteVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\ucVerDetalleV.resx">
       <DependentUpon>ucVerDetalleV.cs</DependentUpon>

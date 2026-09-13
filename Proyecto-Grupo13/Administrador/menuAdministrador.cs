@@ -78,5 +78,13 @@ namespace Proyecto_Grupo13.Administrador
             reporteCompra.Dock = DockStyle.Fill;
             panelContenido.Controls.Add(reporteCompra);
         }
+
+        private void reporteVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ucReporteVenta reporteVenta = new ucReporteVenta(); // Crea una instancia del UserControl ucReporteVenta
+            panelContenido.Controls.Clear();
+            reporteVenta.Dock = DockStyle.Fill;
+            panelContenido.Controls.Add(reporteVenta);
+        }
     }
 }

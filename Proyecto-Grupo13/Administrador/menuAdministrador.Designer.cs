@@ -40,9 +40,9 @@
             this.iconMenuVentas = new FontAwesome.Sharp.IconMenuItem();
             this.verDetalleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuReportes = new FontAwesome.Sharp.IconMenuItem();
-            this.panelContenido = new System.Windows.Forms.Panel();
             this.reporteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelContenido = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -207,15 +207,6 @@
             this.iconMenuReportes.Text = "Reportes";
             this.iconMenuReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // panelContenido
-            // 
-            this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenido.Location = new System.Drawing.Point(0, 117);
-            this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1054, 482);
-            this.panelContenido.TabIndex = 0;
-            // 
             // reporteCompraToolStripMenuItem
             // 
             this.reporteCompraToolStripMenuItem.Name = "reporteCompraToolStripMenuItem";
@@ -228,6 +219,16 @@
             this.reporteVentaToolStripMenuItem.Name = "reporteVentaToolStripMenuItem";
             this.reporteVentaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reporteVentaToolStripMenuItem.Text = "Reporte venta";
+            this.reporteVentaToolStripMenuItem.Click += new System.EventHandler(this.reporteVentaToolStripMenuItem_Click);
+            // 
+            // panelContenido
+            // 
+            this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenido.Location = new System.Drawing.Point(0, 117);
+            this.panelContenido.Name = "panelContenido";
+            this.panelContenido.Size = new System.Drawing.Size(1054, 482);
+            this.panelContenido.TabIndex = 0;
             // 
             // menuAdministrador
             // 
