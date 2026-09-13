@@ -79,9 +79,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(288, 37);
+            this.label1.Location = new System.Drawing.Point(230, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 23);
+            this.label1.Size = new System.Drawing.Size(147, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Registar Compra";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -94,9 +95,11 @@
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(292, 81);
+            this.groupBox1.Location = new System.Drawing.Point(234, 65);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(368, 87);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(294, 70);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información Compra";
@@ -106,9 +109,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(192, 21);
+            this.label2.Location = new System.Drawing.Point(154, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 20);
+            this.label2.Size = new System.Drawing.Size(100, 15);
             this.label2.TabIndex = 12;
             this.label2.Text = "Tipo Documento:";
             // 
@@ -119,9 +123,10 @@
             this.comboTipoDocumento.Items.AddRange(new object[] {
             "Boleta",
             "Factura"});
-            this.comboTipoDocumento.Location = new System.Drawing.Point(196, 44);
+            this.comboTipoDocumento.Location = new System.Drawing.Point(157, 35);
+            this.comboTipoDocumento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboTipoDocumento.Name = "comboTipoDocumento";
-            this.comboTipoDocumento.Size = new System.Drawing.Size(139, 28);
+            this.comboTipoDocumento.Size = new System.Drawing.Size(112, 23);
             this.comboTipoDocumento.TabIndex = 13;
             // 
             // labelFecha
@@ -129,18 +134,20 @@
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFecha.ForeColor = System.Drawing.Color.White;
-            this.labelFecha.Location = new System.Drawing.Point(6, 21);
+            this.labelFecha.Location = new System.Drawing.Point(5, 17);
+            this.labelFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(50, 20);
+            this.labelFecha.Size = new System.Drawing.Size(41, 15);
             this.labelFecha.TabIndex = 10;
             this.labelFecha.Text = "Fecha:";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(10, 44);
+            this.dateTimePicker1.Location = new System.Drawing.Point(8, 35);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(139, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(112, 23);
             this.dateTimePicker1.TabIndex = 11;
             // 
             // groupBox2
@@ -152,9 +159,11 @@
             this.groupBox2.Controls.Add(this.labelNumDocumento);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(677, 81);
+            this.groupBox2.Location = new System.Drawing.Point(542, 65);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(394, 87);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(315, 70);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Proveedor";
@@ -165,10 +174,9 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(164, 51);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Location = new System.Drawing.Point(131, 41);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(47, 24);
+            this.btnBuscar.Size = new System.Drawing.Size(38, 19);
             this.btnBuscar.TabIndex = 48;
             this.btnBuscar.UseVisualStyleBackColor = false;
             // 
@@ -176,20 +184,22 @@
             // 
             this.textRazonSocial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textRazonSocial.Location = new System.Drawing.Point(238, 51);
+            this.textRazonSocial.Location = new System.Drawing.Point(190, 41);
+            this.textRazonSocial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textRazonSocial.Multiline = true;
             this.textRazonSocial.Name = "textRazonSocial";
-            this.textRazonSocial.Size = new System.Drawing.Size(135, 22);
+            this.textRazonSocial.Size = new System.Drawing.Size(108, 18);
             this.textRazonSocial.TabIndex = 47;
             // 
             // textNumDocumento
             // 
             this.textNumDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textNumDocumento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textNumDocumento.Location = new System.Drawing.Point(22, 51);
+            this.textNumDocumento.Location = new System.Drawing.Point(18, 41);
+            this.textNumDocumento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textNumDocumento.Multiline = true;
             this.textNumDocumento.Name = "textNumDocumento";
-            this.textNumDocumento.Size = new System.Drawing.Size(135, 24);
+            this.textNumDocumento.Size = new System.Drawing.Size(108, 19);
             this.textNumDocumento.TabIndex = 46;
             // 
             // labelNombComple
@@ -197,9 +207,10 @@
             this.labelNombComple.AutoSize = true;
             this.labelNombComple.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelNombComple.ForeColor = System.Drawing.Color.White;
-            this.labelNombComple.Location = new System.Drawing.Point(234, 28);
+            this.labelNombComple.Location = new System.Drawing.Point(187, 22);
+            this.labelNombComple.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNombComple.Name = "labelNombComple";
-            this.labelNombComple.Size = new System.Drawing.Size(97, 20);
+            this.labelNombComple.Size = new System.Drawing.Size(76, 15);
             this.labelNombComple.TabIndex = 45;
             this.labelNombComple.Text = "Razón Social:";
             // 
@@ -208,9 +219,10 @@
             this.labelNumDocumento.AutoSize = true;
             this.labelNumDocumento.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelNumDocumento.ForeColor = System.Drawing.Color.White;
-            this.labelNumDocumento.Location = new System.Drawing.Point(18, 28);
+            this.labelNumDocumento.Location = new System.Drawing.Point(14, 22);
+            this.labelNumDocumento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNumDocumento.Name = "labelNumDocumento";
-            this.labelNumDocumento.Size = new System.Drawing.Size(148, 20);
+            this.labelNumDocumento.Size = new System.Drawing.Size(120, 15);
             this.labelNumDocumento.TabIndex = 44;
             this.labelNumDocumento.Text = "Número Documento:";
             // 
@@ -229,9 +241,11 @@
             this.groupBox3.Controls.Add(this.labelCodigoProdu);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(292, 186);
+            this.groupBox3.Location = new System.Drawing.Point(234, 149);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(698, 89);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(558, 71);
             this.groupBox3.TabIndex = 49;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información Producto";
@@ -241,7 +255,8 @@
             this.numericCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.numericCantidad.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericCantidad.ForeColor = System.Drawing.Color.White;
-            this.numericCantidad.Location = new System.Drawing.Point(576, 55);
+            this.numericCantidad.Location = new System.Drawing.Point(461, 44);
+            this.numericCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericCantidad.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -253,7 +268,7 @@
             0,
             0});
             this.numericCantidad.Name = "numericCantidad";
-            this.numericCantidad.Size = new System.Drawing.Size(100, 23);
+            this.numericCantidad.Size = new System.Drawing.Size(80, 19);
             this.numericCantidad.TabIndex = 52;
             this.numericCantidad.Value = new decimal(new int[] {
             1,
@@ -265,10 +280,11 @@
             // 
             this.textStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textStock.Location = new System.Drawing.Point(456, 55);
+            this.textStock.Location = new System.Drawing.Point(365, 44);
+            this.textStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textStock.Multiline = true;
             this.textStock.Name = "textStock";
-            this.textStock.Size = new System.Drawing.Size(100, 23);
+            this.textStock.Size = new System.Drawing.Size(80, 18);
             this.textStock.TabIndex = 62;
             this.textStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textStock_KeyPress);
             // 
@@ -276,10 +292,11 @@
             // 
             this.textPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textPrecio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textPrecio.Location = new System.Drawing.Point(336, 55);
+            this.textPrecio.Location = new System.Drawing.Point(269, 44);
+            this.textPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textPrecio.Multiline = true;
             this.textPrecio.Name = "textPrecio";
-            this.textPrecio.Size = new System.Drawing.Size(100, 23);
+            this.textPrecio.Size = new System.Drawing.Size(80, 18);
             this.textPrecio.TabIndex = 61;
             this.textPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textPrecio_KeyPress);
             // 
@@ -287,20 +304,22 @@
             // 
             this.textProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textProducto.Location = new System.Drawing.Point(204, 54);
+            this.textProducto.Location = new System.Drawing.Point(163, 43);
+            this.textProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textProducto.Multiline = true;
             this.textProducto.Name = "textProducto";
-            this.textProducto.Size = new System.Drawing.Size(100, 23);
+            this.textProducto.Size = new System.Drawing.Size(80, 18);
             this.textProducto.TabIndex = 60;
             // 
             // textBoxCodProduct
             // 
             this.textBoxCodProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textBoxCodProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCodProduct.Location = new System.Drawing.Point(20, 55);
+            this.textBoxCodProduct.Location = new System.Drawing.Point(16, 44);
+            this.textBoxCodProduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxCodProduct.Multiline = true;
             this.textBoxCodProduct.Name = "textBoxCodProduct";
-            this.textBoxCodProduct.Size = new System.Drawing.Size(100, 23);
+            this.textBoxCodProduct.Size = new System.Drawing.Size(80, 18);
             this.textBoxCodProduct.TabIndex = 59;
             // 
             // labelCantidad
@@ -308,9 +327,10 @@
             this.labelCantidad.AutoSize = true;
             this.labelCantidad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCantidad.ForeColor = System.Drawing.Color.White;
-            this.labelCantidad.Location = new System.Drawing.Point(572, 30);
+            this.labelCantidad.Location = new System.Drawing.Point(458, 24);
+            this.labelCantidad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCantidad.Name = "labelCantidad";
-            this.labelCantidad.Size = new System.Drawing.Size(72, 20);
+            this.labelCantidad.Size = new System.Drawing.Size(58, 15);
             this.labelCantidad.TabIndex = 58;
             this.labelCantidad.Text = "Cantidad:";
             // 
@@ -319,9 +339,10 @@
             this.labelStock.AutoSize = true;
             this.labelStock.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStock.ForeColor = System.Drawing.Color.White;
-            this.labelStock.Location = new System.Drawing.Point(452, 30);
+            this.labelStock.Location = new System.Drawing.Point(362, 24);
+            this.labelStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStock.Name = "labelStock";
-            this.labelStock.Size = new System.Drawing.Size(94, 20);
+            this.labelStock.Size = new System.Drawing.Size(75, 15);
             this.labelStock.TabIndex = 57;
             this.labelStock.Text = "Precio Venta:";
             // 
@@ -330,9 +351,10 @@
             this.labelPrecio.AutoSize = true;
             this.labelPrecio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPrecio.ForeColor = System.Drawing.Color.White;
-            this.labelPrecio.Location = new System.Drawing.Point(332, 30);
+            this.labelPrecio.Location = new System.Drawing.Point(266, 24);
+            this.labelPrecio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPrecio.Name = "labelPrecio";
-            this.labelPrecio.Size = new System.Drawing.Size(110, 20);
+            this.labelPrecio.Size = new System.Drawing.Size(89, 15);
             this.labelPrecio.TabIndex = 56;
             this.labelPrecio.Text = "Precio Compra:";
             // 
@@ -342,10 +364,9 @@
             this.btnBuscarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscarProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscarProducto.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarProducto.Image")));
-            this.btnBuscarProducto.Location = new System.Drawing.Point(127, 55);
-            this.btnBuscarProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarProducto.Location = new System.Drawing.Point(102, 44);
             this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(56, 23);
+            this.btnBuscarProducto.Size = new System.Drawing.Size(45, 18);
             this.btnBuscarProducto.TabIndex = 55;
             this.btnBuscarProducto.UseVisualStyleBackColor = false;
             // 
@@ -354,9 +375,10 @@
             this.labelProducto.AutoSize = true;
             this.labelProducto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProducto.ForeColor = System.Drawing.Color.White;
-            this.labelProducto.Location = new System.Drawing.Point(200, 30);
+            this.labelProducto.Location = new System.Drawing.Point(160, 24);
+            this.labelProducto.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProducto.Name = "labelProducto";
-            this.labelProducto.Size = new System.Drawing.Size(72, 20);
+            this.labelProducto.Size = new System.Drawing.Size(59, 15);
             this.labelProducto.TabIndex = 54;
             this.labelProducto.Text = "Producto:";
             // 
@@ -365,9 +387,10 @@
             this.labelCodigoProdu.AutoSize = true;
             this.labelCodigoProdu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCodigoProdu.ForeColor = System.Drawing.Color.White;
-            this.labelCodigoProdu.Location = new System.Drawing.Point(16, 30);
+            this.labelCodigoProdu.Location = new System.Drawing.Point(13, 24);
+            this.labelCodigoProdu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCodigoProdu.Name = "labelCodigoProdu";
-            this.labelCodigoProdu.Size = new System.Drawing.Size(106, 20);
+            this.labelCodigoProdu.Size = new System.Drawing.Size(87, 15);
             this.labelCodigoProdu.TabIndex = 53;
             this.labelCodigoProdu.Text = "Cod. Producto:";
             // 
@@ -384,11 +407,12 @@
             this.Cantidad,
             this.SubTotal,
             this.btnEliminar});
-            this.dataGridView1.Location = new System.Drawing.Point(292, 281);
+            this.dataGridView1.Location = new System.Drawing.Point(234, 225);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(698, 226);
+            this.dataGridView1.Size = new System.Drawing.Size(558, 181);
             this.dataGridView1.TabIndex = 50;
             // 
             // idProducto
@@ -444,9 +468,10 @@
             this.iconBtnAgregarC.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.iconBtnAgregarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.iconBtnAgregarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnAgregarC.Location = new System.Drawing.Point(996, 204);
+            this.iconBtnAgregarC.Location = new System.Drawing.Point(797, 158);
+            this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.iconBtnAgregarC.Name = "iconBtnAgregarC";
-            this.iconBtnAgregarC.Size = new System.Drawing.Size(75, 60);
+            this.iconBtnAgregarC.Size = new System.Drawing.Size(75, 62);
             this.iconBtnAgregarC.TabIndex = 51;
             this.iconBtnAgregarC.Text = "Agregar";
             this.iconBtnAgregarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -458,10 +483,11 @@
             this.textTotalPagar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textTotalPagar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textTotalPagar.ForeColor = System.Drawing.Color.White;
-            this.textTotalPagar.Location = new System.Drawing.Point(996, 434);
+            this.textTotalPagar.Location = new System.Drawing.Point(797, 347);
+            this.textTotalPagar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textTotalPagar.Multiline = true;
             this.textTotalPagar.Name = "textTotalPagar";
-            this.textTotalPagar.Size = new System.Drawing.Size(108, 22);
+            this.textTotalPagar.Size = new System.Drawing.Size(86, 18);
             this.textTotalPagar.TabIndex = 53;
             this.textTotalPagar.Text = "0";
             // 
@@ -470,9 +496,10 @@
             this.lTotalPagar.AutoSize = true;
             this.lTotalPagar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTotalPagar.ForeColor = System.Drawing.Color.White;
-            this.lTotalPagar.Location = new System.Drawing.Point(992, 406);
+            this.lTotalPagar.Location = new System.Drawing.Point(794, 325);
+            this.lTotalPagar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTotalPagar.Name = "lTotalPagar";
-            this.lTotalPagar.Size = new System.Drawing.Size(98, 20);
+            this.lTotalPagar.Size = new System.Drawing.Size(78, 15);
             this.lTotalPagar.TabIndex = 52;
             this.lTotalPagar.Text = "Total a Pagar:";
             // 
@@ -484,9 +511,10 @@
             this.iconBtnRegistrarC.IconColor = System.Drawing.Color.Brown;
             this.iconBtnRegistrarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnRegistrarC.IconSize = 20;
-            this.iconBtnRegistrarC.Location = new System.Drawing.Point(996, 471);
+            this.iconBtnRegistrarC.Location = new System.Drawing.Point(797, 377);
+            this.iconBtnRegistrarC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.iconBtnRegistrarC.Name = "iconBtnRegistrarC";
-            this.iconBtnRegistrarC.Size = new System.Drawing.Size(108, 34);
+            this.iconBtnRegistrarC.Size = new System.Drawing.Size(86, 27);
             this.iconBtnRegistrarC.TabIndex = 54;
             this.iconBtnRegistrarC.Text = "Registrar";
             this.iconBtnRegistrarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -496,14 +524,15 @@
             // label3
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(269, 34);
+            this.label3.Location = new System.Drawing.Point(215, 27);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(849, 487);
+            this.label3.Size = new System.Drawing.Size(680, 390);
             this.label3.TabIndex = 55;
             // 
             // usRegistrarCom
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.iconBtnRegistrarC);
@@ -516,8 +545,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "usRegistrarCom";
-            this.Size = new System.Drawing.Size(1392, 564);
+            this.Size = new System.Drawing.Size(1114, 451);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

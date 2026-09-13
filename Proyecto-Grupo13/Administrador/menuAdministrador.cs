@@ -70,5 +70,13 @@ namespace Proyecto_Grupo13.Administrador
             detalleCompra.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
             panelContenido.Controls.Add(detalleCompra); // Agrega el UserControl al panelContenido
         }
+
+        private void reporteCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ucReporteCompra reporteCompra = new ucReporteCompra(); // Crea una instancia del UserControl ucReporteCompra
+            panelContenido.Controls.Clear();
+            reporteCompra.Dock = DockStyle.Fill;
+            panelContenido.Controls.Add(reporteCompra);
+        }
     }
 }
