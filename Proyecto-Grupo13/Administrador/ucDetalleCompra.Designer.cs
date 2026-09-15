@@ -121,6 +121,7 @@
             // 
             // iconLimpiar
             // 
+            this.iconLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconLimpiar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.iconLimpiar.ForeColor = System.Drawing.Color.White;
@@ -135,10 +136,11 @@
             this.iconLimpiar.TabIndex = 59;
             this.iconLimpiar.Text = "Limpiar";
             this.iconLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconLimpiar.UseVisualStyleBackColor = true;
+            this.iconLimpiar.UseVisualStyleBackColor = false;
             // 
             // iconBuscar
             // 
+            this.iconBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconBuscar.ForeColor = System.Drawing.Color.White;
             this.iconBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
@@ -152,7 +154,7 @@
             this.iconBuscar.TabIndex = 58;
             this.iconBuscar.Text = "Buscar";
             this.iconBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBuscar.UseVisualStyleBackColor = true;
+            this.iconBuscar.UseVisualStyleBackColor = false;
             // 
             // iconButton1
             // 
@@ -337,7 +339,7 @@
             this.Cantidad,
             this.SubTotal});
             this.dataGridView1.Location = new System.Drawing.Point(219, 264);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -385,7 +387,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelRegistrarV);
             this.Controls.Add(this.label15);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucDetalleCompra";
             this.Size = new System.Drawing.Size(1114, 532);
             this.groupBox4.ResumeLayout(false);
