@@ -130,6 +130,18 @@
     <Compile Include="Vendedor\ucClientes.Designer.cs">
       <DependentUpon>ucClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vendedor\ucDetalleVenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vendedor\ucDetalleVenta.Designer.cs">
+      <DependentUpon>ucDetalleVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vendedor\ucProductos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vendedor\ucProductos.Designer.cs">
+      <DependentUpon>ucProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vendedor\ucRegistroVenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +192,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\ucClientes.resx">
       <DependentUpon>ucClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\ucDetalleVenta.resx">
+      <DependentUpon>ucDetalleVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\ucProductos.resx">
+      <DependentUpon>ucProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\ucRegistroVenta.resx">
       <DependentUpon>ucRegistroVenta.cs</DependentUpon>

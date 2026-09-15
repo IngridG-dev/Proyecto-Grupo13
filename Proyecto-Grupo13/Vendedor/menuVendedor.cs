@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Grupo13.Administrador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,6 +47,22 @@ namespace Proyecto_Grupo13.Vendedor
             panelContenidoV.Controls.Clear(); // Limpia cualquier control existente en el panel
             clientes.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio disponible
             panelContenidoV.Controls.Add(clientes); // Agrega el UserControl al panel
+        }
+
+        private void verDetalleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ucDetalleVenta detalleVenta = new ucDetalleVenta(); // Crea una instancia del UserControl ucDetalleVenta
+            panelContenidoV.Controls.Clear(); // Limpia cualquier control existente en el panel
+            detalleVenta.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio disponible
+            panelContenidoV.Controls.Add(detalleVenta); // Agrega el UserControl al panel
+        }
+
+        private void iconProductos_Click(object sender, EventArgs e)
+        {
+            ucProductos productos = new ucProductos(); // Crea una instancia del UserControl ucProductos
+            panelContenidoV.Controls.Clear(); // Limpia cualquier control existente en el panel
+            productos.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio disponible
+            panelContenidoV.Controls.Add(productos); // Agrega el UserControl al panel
         }
     }
 }

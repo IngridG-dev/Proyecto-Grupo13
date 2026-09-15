@@ -12,6 +12,7 @@ namespace Proyecto_Grupo13.Vendedor
 {
     public partial class ucRegistroVenta : UserControl
     {
+        private int filaEditando = -1; // Variable para almacenar el índice de la fila que se está editando
         decimal totalAPagar = 0;
         public ucRegistroVenta()
         {
@@ -84,57 +85,118 @@ namespace Proyecto_Grupo13.Vendedor
         // Evento para agregar un producto al DataGridView
         private void iconBtnAgregarV_Click(object sender, EventArgs e)
         {
-            // Capturar los datos de los TextBox
-            string producto = textProducto.Text;
-            decimal precio = Convert.ToDecimal(textPrecio.Text);
-            int cantidad = Convert.ToInt32((int)numericCantidad.Value);
+            // Validar que el producto no esté vacío
+            if (string.IsNullOrWhiteSpace(textProducto.Text))
+            {
+                MessageBox.Show("Ingrese un producto.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Calcular el Sub Total
+            // Validar que el precio sea correcto
+            if (!decimal.TryParse(textPrecio.Text, out decimal precio))
+            {
+                MessageBox.Show("Ingrese un precio válido.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener cantidad
+            int cantidad = (int)numericCantidad.Value;
+
+            if (cantidad <= 0)
+            {
+                MessageBox.Show("La cantidad debe ser mayor a 0.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Calcular subtotal
             decimal subTotal = precio * cantidad;
 
-            // Agregar la fila al DataGridView 
-            dataGridView1.Rows.Add(new object[] {
-                producto,
-                precio.ToString("0.00"),
-                cantidad,
-                subTotal.ToString("0.00")
+            // SI ESTAMOS EDITANDO
+            if (filaEditando != -1)
+            {
+                // Obtener el subtotal anterior
+                decimal subTotalAnterior = Convert.ToDecimal(
+                    dataGridView1.Rows[filaEditando].Cells["SubTotal"].Value
+                );
+
+                // Actualizar los valores de la fila
+                dataGridView1.Rows[filaEditando].Cells["CodigoProducto"].Value =
+                    textBoxCodProduct.Text;
+
+                dataGridView1.Rows[filaEditando].Cells["Producto"].Value =
+                    textProducto.Text;
+
+                dataGridView1.Rows[filaEditando].Cells["Precio"].Value =
+                    precio.ToString("0.00");
+
+                dataGridView1.Rows[filaEditando].Cells["Cantidad"].Value =
+                    cantidad;
+
+                dataGridView1.Rows[filaEditando].Cells["SubTotal"].Value =
+                    subTotal.ToString("0.00");
+
+                // Actualizar el total general
+                CalcularTotal();
+
+                textTotalPagar.Text = totalAPagar.ToString("0.00");
+
+                // Salir del modo edición
+                filaEditando = -1;
+                iconBtnAgregarV.Text = "Agregar";
+
+                LimpiarCampos();
+
+                return;
+            }
+
+            // SI NO ESTAMOS EDITANDO SE AGREGA PRODUCTO NUEVO
+            dataGridView1.Rows.Add(new object[]
+            {
+        textBoxCodProduct.Text,
+        textProducto.Text,
+        precio.ToString("0.00"),
+        cantidad,
+        subTotal.ToString("0.00")
             });
 
-            // Sumar al Total general y mostrarlo en pantalla
-            totalAPagar += subTotal;
-            textTotalPagar.Text = totalAPagar.ToString("0.00");
-            // Limpiar los TextBox y el NumericUpDown
+            // Sumar al total general
+            CalcularTotal();
+
+            // Limpiar campos
+            LimpiarCampos();
+        }
+
+        // Limpiar campos del formulario
+        private void LimpiarCampos()
+        {
+            textBoxCodProduct.Clear();
             textProducto.Clear();
             textPrecio.Clear();
             numericCantidad.Value = 0;
         }
-
-        private void textPagaCon_TextChanged(object sender, EventArgs e)
+        // Calcular el total general de la venta
+        private void CalcularTotal()
         {
-            // Verificamos que la caja no esté vacía para evitar errores
-            if (!string.IsNullOrEmpty(textPagaCon.Text))
-            {
-                // Usamos TryParse por si el usuario escribe letras sin querer
-                if (decimal.TryParse(textPagaCon.Text, out decimal pagaCon))
-                {
-                    decimal cambio = pagaCon - totalAPagar;
+            decimal total = 0;
 
-                    // Verificamos si el pago alcanza
-                    if (cambio >= 0)
-                    {
-                        textCambio.Text = cambio.ToString("0.00");
-                    }
-                    else
-                    {
-                        textCambio.Text = "Falta dinero";
-                    }
+            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            {
+                if (fila.IsNewRow)
+                    continue;
+
+                if (decimal.TryParse(
+                    fila.Cells["SubTotal"].Value?.ToString(),
+                    out decimal subTotal))
+                {
+                    total += subTotal;
                 }
             }
-            // Si la caja está vacía, mostramos 0.00 como cambio
-            else
-            {
-                textCambio.Text = "0.00";
-            }
+
+            totalAPagar = total;
+            textTotalPagar.Text = totalAPagar.ToString("0.00");
         }
 
         private void iconBtnCrearVenta_Click(object sender, EventArgs e)
@@ -156,6 +218,87 @@ namespace Proyecto_Grupo13.Vendedor
         private void ucRegistroVenta_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // Botón Editar
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "btnEditar")
+            {
+                int fila = e.RowIndex;
+
+                // Obtener los valores de forma segura evitando NullReferenceException
+                string codigoProducto = dataGridView1.Rows[fila].Cells["CodigoProducto"].Value?.ToString() ?? "";
+                string producto = dataGridView1.Rows[fila].Cells["Producto"].Value?.ToString() ?? "";
+
+                // Lectura segura de Precio (soporta decimales)
+                decimal.TryParse(dataGridView1.Rows[fila].Cells["Precio"].Value?.ToString(), out decimal precio);
+
+                // Lectura segura de Cantidad (evita FormatException)
+                object valCantidad = dataGridView1.Rows[fila].Cells["Cantidad"].Value;
+                int cantidad = 0;
+
+                if (valCantidad != null)
+                {
+                    // Si el valor viene como decimal/double/string, convertimos primero a decimal y luego a entero
+                    if (decimal.TryParse(valCantidad.ToString(), out decimal cantDecimal))
+                    {
+                        cantidad = (int)cantDecimal;
+                    }
+                }
+
+                // Mostrar los valores en los controles
+                textBoxCodProduct.Text = codigoProducto;
+                textProducto.Text = producto;
+                textPrecio.Text = precio.ToString("0.00");
+
+                // Asignar al NumericUpDown (validando que el valor no supere sus límites)
+                numericCantidad.Value = Math.Max(numericCantidad.Minimum, Math.Min(numericCantidad.Maximum, cantidad));
+
+                filaEditando = fila; // Guardar el índice de la fila en edición
+                iconBtnAgregarV.Text = "Actualizar";
+            }
+
+            // Botón Eliminar
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
+            {
+                DialogResult result = MessageBox.Show(
+                    "¿Está seguro de que desea eliminar este producto de la venta?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    dataGridView1.Rows.RemoveAt(e.RowIndex);
+                    // Actualizar el total general después de eliminar
+                    CalcularTotal();
+                }
+            }
+        }
+
+        private void textPagaCon_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(textPagaCon.Text, out decimal pagaCon))
+            {
+                decimal cambio = pagaCon - totalAPagar;
+
+                if (cambio >= 0)
+                {
+                    textCambio.Text = cambio.ToString("0.00");
+                }
+                else
+                {
+                    textCambio.Text = "0.00";
+                }
+            }
+            else
+            {
+                textCambio.Text = "0.00";
+            }
         }
     }
 }
