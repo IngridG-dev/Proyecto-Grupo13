@@ -217,7 +217,7 @@
             this.Estado});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.dataGridView1.Location = new System.Drawing.Point(479, 122);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -275,7 +275,7 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(778, 84);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(59, 22);
             this.btnBuscar.TabIndex = 42;
@@ -328,8 +328,10 @@
             this.comboBoxBuscar.FormattingEnabled = true;
             this.comboBoxBuscar.Items.AddRange(new object[] {
             "DNI",
-            "Email",
             "Nombre Completo",
+            "Email",
+            "Telefono",
+            "Direccion",
             "Rol"});
             this.comboBoxBuscar.Location = new System.Drawing.Point(988, 84);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
@@ -450,7 +452,7 @@
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.textBuscar.Location = new System.Drawing.Point(574, 81);
-            this.textBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.textBuscar.Name = "textBuscar";
             this.textBuscar.Size = new System.Drawing.Size(194, 31);
             this.textBuscar.TabIndex = 53;
@@ -470,7 +472,7 @@
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditar.Location = new System.Drawing.Point(250, 505);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(120, 54);
             this.btnEditar.TabIndex = 55;
@@ -529,7 +531,7 @@
             this.Controls.Add(this.lDireccion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControl2";
             this.Size = new System.Drawing.Size(1392, 682);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

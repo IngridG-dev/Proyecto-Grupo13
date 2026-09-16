@@ -31,11 +31,11 @@
             this.menuStripTitulo = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.panelContenido = new System.Windows.Forms.Panel();
             this.iconMenuReportes = new FontAwesome.Sharp.IconMenuItem();
             this.reporteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
-            this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuProdVendidos = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuGenerarInfo = new FontAwesome.Sharp.IconMenuItem();
+            this.panelContenido = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,24 +78,13 @@
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // panelContenido
-            // 
-            this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.panelContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenido.Location = new System.Drawing.Point(0, 161);
-            this.panelContenido.Margin = new System.Windows.Forms.Padding(4);
-            this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1318, 588);
-            this.panelContenido.TabIndex = 11;
-            // 
             // iconMenuReportes
             // 
             this.iconMenuReportes.AutoSize = false;
             this.iconMenuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reporteCompraToolStripMenuItem,
-            this.iconMenuItem1,
-            this.iconMenuItem2});
+            this.iconMenuProdVendidos,
+            this.iconMenuGenerarInfo});
             this.iconMenuReportes.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuReportes.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
@@ -114,23 +103,35 @@
             this.reporteCompraToolStripMenuItem.Text = "Estadísticas de ventas";
             this.reporteCompraToolStripMenuItem.Click += new System.EventHandler(this.reporteCompraToolStripMenuItem_Click);
             // 
-            // iconMenuItem1
+            // iconMenuProdVendidos
             // 
-            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(274, 26);
-            this.iconMenuItem1.Text = "Productos más vendidos";
+            this.iconMenuProdVendidos.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconMenuProdVendidos.IconColor = System.Drawing.Color.Black;
+            this.iconMenuProdVendidos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuProdVendidos.Name = "iconMenuProdVendidos";
+            this.iconMenuProdVendidos.Size = new System.Drawing.Size(274, 26);
+            this.iconMenuProdVendidos.Text = "Productos más vendidos";
+            this.iconMenuProdVendidos.Click += new System.EventHandler(this.iconMenuProdVendidos_Click);
             // 
-            // iconMenuItem2
+            // iconMenuGenerarInfo
             // 
-            this.iconMenuItem2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMenuItem2.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem2.Name = "iconMenuItem2";
-            this.iconMenuItem2.Size = new System.Drawing.Size(274, 26);
-            this.iconMenuItem2.Text = "Generar informes";
+            this.iconMenuGenerarInfo.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconMenuGenerarInfo.IconColor = System.Drawing.Color.Black;
+            this.iconMenuGenerarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuGenerarInfo.Name = "iconMenuGenerarInfo";
+            this.iconMenuGenerarInfo.Size = new System.Drawing.Size(274, 26);
+            this.iconMenuGenerarInfo.Text = "Generar informes";
+            // 
+            // panelContenido
+            // 
+            this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.panelContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenido.Location = new System.Drawing.Point(0, 161);
+            this.panelContenido.Margin = new System.Windows.Forms.Padding(4);
+            this.panelContenido.Name = "panelContenido";
+            this.panelContenido.Size = new System.Drawing.Size(1318, 588);
+            this.panelContenido.TabIndex = 11;
             // 
             // menuGerente
             // 
@@ -160,7 +161,7 @@
         private System.Windows.Forms.Panel panelContenido;
         private FontAwesome.Sharp.IconMenuItem iconMenuReportes;
         private System.Windows.Forms.ToolStripMenuItem reporteCompraToolStripMenuItem;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
+        private FontAwesome.Sharp.IconMenuItem iconMenuProdVendidos;
+        private FontAwesome.Sharp.IconMenuItem iconMenuGenerarInfo;
     }
 }

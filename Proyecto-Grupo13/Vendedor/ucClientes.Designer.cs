@@ -100,7 +100,9 @@
             this.comboBoxBuscar.Items.AddRange(new object[] {
             "DNI",
             "Nombre Completo",
-            "Email"});
+            "Email",
+            "Telefono",
+            "Dirección"});
             this.comboBoxBuscar.Location = new System.Drawing.Point(575, 84);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";

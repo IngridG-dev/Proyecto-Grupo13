@@ -72,7 +72,7 @@
             this.panel2.Controls.Add(this.comboBoxBuscar);
             this.panel2.Controls.Add(this.labelBuscarPor2);
             this.panel2.Location = new System.Drawing.Point(40, 198);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1319, 421);
             this.panel2.TabIndex = 65;
@@ -102,7 +102,7 @@
             this.categoria,
             this.PrecioVenta});
             this.GridReporteVenta.Location = new System.Drawing.Point(-11, 50);
-            this.GridReporteVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridReporteVenta.Margin = new System.Windows.Forms.Padding(4);
             this.GridReporteVenta.Name = "GridReporteVenta";
             this.GridReporteVenta.RowHeadersWidth = 51;
             this.GridReporteVenta.Size = new System.Drawing.Size(1356, 360);
@@ -183,7 +183,7 @@
             this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnExcel.IconSize = 15;
             this.iconBtnExcel.Location = new System.Drawing.Point(9, 15);
-            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnExcel.Name = "iconBtnExcel";
             this.iconBtnExcel.Size = new System.Drawing.Size(138, 28);
             this.iconBtnExcel.TabIndex = 68;
@@ -201,7 +201,7 @@
             this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconBtnLimpiar.IconSize = 16;
             this.iconBtnLimpiar.Location = new System.Drawing.Point(1260, 14);
-            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnLimpiar.Name = "iconBtnLimpiar";
             this.iconBtnLimpiar.Size = new System.Drawing.Size(51, 24);
             this.iconBtnLimpiar.TabIndex = 67;
@@ -216,7 +216,7 @@
             this.iconBtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconBtnBuscar.IconSize = 16;
             this.iconBtnBuscar.Location = new System.Drawing.Point(1201, 14);
-            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnBuscar.Name = "iconBtnBuscar";
             this.iconBtnBuscar.Size = new System.Drawing.Size(51, 24);
             this.iconBtnBuscar.TabIndex = 66;
@@ -241,9 +241,17 @@
             this.comboBoxBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxBuscar.FormattingEnabled = true;
             this.comboBoxBuscar.Items.AddRange(new object[] {
-            "Codigo",
-            "Nombre",
-            "Categoría"});
+            "Fecha Registro ",
+            "Tipo Documento",
+            "Numero Documento",
+            "Monto Total",
+            "Usuario Registrado",
+            "Documento Cliente",
+            "Nombre Cliente",
+            "Codigo Producto",
+            "Nombre Producto",
+            "Categoria ",
+            "Precio Venta "});
             this.comboBoxBuscar.Location = new System.Drawing.Point(880, 10);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
@@ -272,7 +280,7 @@
             this.panel1.Controls.Add(this.labelFechaInicio);
             this.panel1.Controls.Add(this.labelReporteV);
             this.panel1.Location = new System.Drawing.Point(40, 65);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1318, 114);
             this.panel1.TabIndex = 64;
@@ -285,7 +293,7 @@
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.Location = new System.Drawing.Point(471, 49);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(81, 25);
             this.btnBuscar.TabIndex = 62;
@@ -364,7 +372,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label16);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucReporteVenta";
             this.Size = new System.Drawing.Size(1392, 682);
             this.panel2.ResumeLayout(false);

@@ -48,7 +48,7 @@
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalVentas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.iconBtnPDF = new FontAwesome.Sharp.IconButton();
             this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEstadisticaVen)).BeginInit();
@@ -256,22 +256,22 @@
             this.totalVentas.MinimumWidth = 6;
             this.totalVentas.Name = "totalVentas";
             // 
-            // iconButton1
+            // iconBtnPDF
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
-            this.iconButton1.IconColor = System.Drawing.Color.Brown;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 20;
-            this.iconButton1.Location = new System.Drawing.Point(464, 533);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(146, 40);
-            this.iconButton1.TabIndex = 73;
-            this.iconButton1.Text = "Descargar PDF";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconBtnPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnPDF.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconBtnPDF.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.iconBtnPDF.IconColor = System.Drawing.Color.Brown;
+            this.iconBtnPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnPDF.IconSize = 20;
+            this.iconBtnPDF.Location = new System.Drawing.Point(464, 533);
+            this.iconBtnPDF.Margin = new System.Windows.Forms.Padding(2);
+            this.iconBtnPDF.Name = "iconBtnPDF";
+            this.iconBtnPDF.Size = new System.Drawing.Size(146, 40);
+            this.iconBtnPDF.TabIndex = 73;
+            this.iconBtnPDF.Text = "Descargar PDF";
+            this.iconBtnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconBtnPDF.UseVisualStyleBackColor = false;
             // 
             // iconBtnExcel
             // 
@@ -297,7 +297,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.iconBtnExcel);
-            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.iconBtnPDF);
             this.Controls.Add(this.dataGridEstadisticaVen);
             this.Controls.Add(this.textIngresos);
             this.Controls.Add(this.textProductosVendidos);
@@ -339,7 +339,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalVentas;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconBtnPDF;
         private FontAwesome.Sharp.IconButton iconBtnExcel;
     }
 }

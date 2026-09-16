@@ -34,5 +34,13 @@ namespace Proyecto_Grupo13.Gerente
             panelContenido.Controls.Clear(); // Limpiar cualquier control existente en el panel
             panelContenido.Controls.Add(estadisticas); // Agregar el UserControl al panel
         }
+
+        private void iconMenuProdVendidos_Click(object sender, EventArgs e)
+        {
+            ucProdMasVendidos prodMasVendidos = new ucProdMasVendidos(); // Crear una instancia del UserControl
+            prodMasVendidos.Dock = DockStyle.Fill; // Ajustar el UserControl para que ocupe todo el espacio del panel
+            panelContenido.Controls.Clear(); // Limpiar cualquier control existente en el panel
+            panelContenido.Controls.Add(prodMasVendidos); // Agregar el UserControl al panel
+        }
     }
 }
