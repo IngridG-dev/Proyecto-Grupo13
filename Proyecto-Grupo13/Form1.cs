@@ -1,4 +1,5 @@
 ﻿using Proyecto_Grupo13.Administrador;
+using Proyecto_Grupo13.Gerente;
 using Proyecto_Grupo13.Vendedor;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,12 @@ namespace Proyecto_Grupo13
         {
             menuVendedor ventaMenuuVendedor = new menuVendedor();
             ventaMenuuVendedor.Show();
+        }
+
+        private void btnGerente_Click(object sender, EventArgs e)
+        {
+            menuGerente vistaMenuGerente = new menuGerente();
+            vistaMenuGerente.Show();
         }
     }
 }
