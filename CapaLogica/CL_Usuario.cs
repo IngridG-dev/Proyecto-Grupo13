@@ -15,5 +15,11 @@ namespace CapaLogica
         {
             return objCD_Usuario.ListarUsuarios(); // Llamada al método ListarUsuarios de la clase CD_Usuario
         }
+
+        // Método para registrar un nuevo usuario
+        public Usuario Login(int dni, string contraseña)
+        {
+            return objCD_Usuario.Login(dni, contraseña);
+        }
     }
 }
