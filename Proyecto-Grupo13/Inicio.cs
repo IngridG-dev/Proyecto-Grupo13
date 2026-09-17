@@ -67,7 +67,7 @@ namespace Proyecto_Grupo13
             }
 
             // Verificar estado
-            if (usuario.estado != "Activo")
+            if (usuario.estado != 1)
             {
                 MessageBox.Show(
                     "El usuario se encuentra inactivo.",
@@ -80,7 +80,7 @@ namespace Proyecto_Grupo13
             }
 
             // Abrir formulario según el rol
-            if (usuario.rol.descripcion == "Administrador")
+            if (usuario.rol.descripcion == "ADMINISTRADOR")
             {
                 menuAdministrador form = new menuAdministrador();
                 form.Show();

@@ -36,7 +36,7 @@ namespace CapaDatos
                                 telefono = dr["telefono"].ToString(),
                                 direccion = dr["direccion"].ToString(),
                                 contraseña = dr["contraseña"].ToString(),
-                                estado = dr["estado"].ToString()
+                                estado = Convert.ToInt32(dr["estado"])
                             });
                         }
                     }
@@ -99,7 +99,7 @@ namespace CapaDatos
                                 telefono = dr["telefono"].ToString(),
                                 direccion = dr["direccion"].ToString(),
                                 contraseña = dr["contraseña"].ToString(),
-                                estado = dr["estado"].ToString(),
+                                estado = Convert.ToInt32(dr["estado"]),
                                 fechaCreacion = dr["fechaCreacion"].ToString(),
 
                                 rol = new Rol()

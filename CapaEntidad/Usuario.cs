@@ -16,7 +16,7 @@ namespace CapaEntidad
         public string telefono { get; set; }
         public string direccion { get; set; }
         public string contraseña { get; set; }
-        public string estado { get; set; }
+        public int estado { get; set; }
         public Rol rol { get; set; } // Relación con la clase Rol
         public string fechaCreacion { get; set; }
     }
