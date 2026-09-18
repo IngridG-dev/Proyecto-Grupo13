@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,15 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using CapaEntidad;
+using CapaLogica;
 
 namespace Proyecto_Grupo13.Administrador
 {
     public partial class UserControl2 : UserControl
     {
+        private CL_Usuario objCL_Usuario = new CL_Usuario(); 
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
         public UserControl2()
         {
             InitializeComponent();
+
+            CargarRoles();
+            CargarEstados();
+            CargarUsuarios();
         }
 
         // VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
@@ -157,143 +167,458 @@ namespace Proyecto_Grupo13.Administrador
             // Primera letra mayúscula, el resto minúscula
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
+        // LIMPIAR CAMPOS
+        private void LimpiarCampos()
+        {
+            textNombre.Clear();
+            textDNI.Clear();
+            textEmail.Clear();
+            textTelefono.Clear();
+            textDireccion.Clear();
+            comboBoxRol.SelectedIndex = -1;
+            comboBoxEstado.SelectedIndex = -1;
+            textContraseña.Clear(); // limpiar el TextBox de Contraseña
+            textContraseña.Visible = false; // Ocultar el TextBox de Contraseña
+        }
 
-        //BOTONES AGREGAR, ELIMINAR, BUSCAR Y EDITAR
+        // BOTON AGREGAR
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Validamos que no haya campos vacíos antes de insertar en la tabla
-            if (ValidarCamposVacios() == true)
+            // Primero validamos los campos
+            if (!ValidarCamposVacios())
             {
-                if (filaEditar != -1)
+                MessageBox.Show(
+                    "Faltan completar campos.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+
+            // EDITAR USUARIO
+
+            if (filaEditar != -1)
+            {
+                DialogResult askEdit = MessageBox.Show(
+                    "¿Desea guardar los cambios del usuario?",
+                    "Confirmación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (askEdit != DialogResult.Yes)
                 {
-                    DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (askEdit == DialogResult.Yes)
-                    {
-                        // Actualizar la fila seleccionada con los nuevos datos
-                        dataGridView1.Rows[filaEditar].Cells[0].Value = formatearTexto(textNombre.Text);
-                        dataGridView1.Rows[filaEditar].Cells[1].Value = textDNI.Text;
-                        dataGridView1.Rows[filaEditar].Cells[2].Value = textEmail.Text;
-                        dataGridView1.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
-                        dataGridView1.Rows[filaEditar].Cells[4].Value = textDireccion.Text;
-                        dataGridView1.Rows[filaEditar].Cells[5].Value = comboBoxRol.Text;
-                        dataGridView1.Rows[filaEditar].Cells[6].Value = comboBoxEstado.Text;
-                        // Aquí iría la lógica para actualizar el usuario en la base de datos o lista (NOTA)
-                        MessageBox.Show("Usuario editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // Limpiar los campos de texto y restablecer el índice de la fila a editar
-                        textNombre.Clear();
-                        textDNI.Clear();
-                        textEmail.Clear();
-                        textTelefono.Clear();
-                        textDireccion.Clear();
-                        comboBoxRol.SelectedIndex = -1;
-                        comboBoxEstado.SelectedIndex = -1;
-                        filaEditar = -1; // Reinicia el índice de la fila a editar
-                    }
-                    else
-                    {
-                        // Si el usuario no desea guardar los cambios, simplemente se limpia el índice de la fila a editar
-                        filaEditar = -1; // Reinicia el índice de la fila a editar
-                    }
+                    filaEditar = -1;
+                    return;
+                }
+
+
+                Rol rolSeleccionado = (Rol)comboBoxRol.SelectedItem;
+
+
+                Usuario usuario = new Usuario()
+                {
+                    // Recuperamos el ID guardado en Tag
+                    id_usuario = Convert.ToInt32(
+                        dataGridView1.Rows[filaEditar].Tag
+                    ),
+
+                    nombreCompleto =
+                        formatearTexto(textNombre.Text),
+
+                    dni =
+                        Convert.ToInt32(textDNI.Text),
+
+                    email =
+                        textEmail.Text.Trim(),
+
+                    telefono =
+                        textTelefono.Text.Trim(),
+
+                    direccion =
+                        textDireccion.Text.Trim(),
+
+                    contraseña =
+                        textContraseña.Text,
+
+                    estado =
+                        comboBoxEstado.Text == "Activo" ? 1 : 0,
+
+                    rol =
+                        rolSeleccionado
+                };
+
+
+                string mensaje;
+
+                bool respuesta =
+                    objCL_Usuario.EditarUsuario(
+                        usuario,
+                        out mensaje
+                    );
+
+
+                if (respuesta)
+                {
+                    MessageBox.Show(
+                        "Usuario editado exitosamente.",
+                        "Éxito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                    CargarUsuarios();
+                    LimpiarCampos();
+
+                    filaEditar = -1;
                 }
                 else
                 {
-                    // Hacemos una pregunta de confirmación antes de insertar el nuevo usuario
-                    DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo usuario?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-
-                    // Si aprieta "Sí", se procede a insertar el nuevo usuario en la tabla
-                    if (ask == DialogResult.Yes)
-                    {
-                        // Formateamos el texto del nombre
-                        string nombre = formatearTexto(textNombre.Text);
-
-                        // Agregamos los datos a la tabla
-                        dataGridView1.Rows.Add(nombre, textDNI.Text, textEmail.Text, textTelefono.Text, textDireccion.Text, comboBoxRol.Text, comboBoxEstado.Text);
-
-                        MessageBox.Show("El usuario " + nombre + " se insertó correctamente en la tabla.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Limpiamos los campos
-                        textNombre.Clear();
-                        textDNI.Clear();
-                        textDireccion.Clear();
-                        textEmail.Clear();
-                        textTelefono.Clear();
-                        comboBoxRol.SelectedIndex = -1;
-                        comboBoxEstado.SelectedIndex = -1;
-
-                        textNombre.Focus();
-                    }
-                    // Si aprieta "NO" no se hace nada y se cancela la insercion
+                    MessageBox.Show(
+                        mensaje != ""
+                            ? mensaje
+                            : "No se pudo editar el usuario.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
                 }
+
+                return;
+            }
+
+
+            // REGISTRAR NUEVO USUARIO
+
+            DialogResult ask = MessageBox.Show(
+                "¿Seguro que desea insertar este nuevo usuario?",
+                "Confirmar inserción",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1
+            );
+
+
+            if (ask != DialogResult.Yes)
+                return;
+
+
+            Rol rol = (Rol)comboBoxRol.SelectedItem;
+
+
+            Usuario nuevoUsuario = new Usuario()
+            {
+                nombreCompleto =
+                    formatearTexto(textNombre.Text),
+
+                dni =
+                    Convert.ToInt32(textDNI.Text),
+
+                email =
+                    textEmail.Text.Trim(),
+
+                telefono =
+                    textTelefono.Text.Trim(),
+
+                direccion =
+                    textDireccion.Text.Trim(),
+
+                contraseña =
+                    textContraseña.Text,
+
+                estado =
+                    comboBoxEstado.Text == "Activo" ? 1 : 0,
+
+                rol =
+                    rol
+            };
+
+
+            string Mensaje;
+
+            int idUsuarioGenerado =
+                objCL_Usuario.RegistrarUsuario(
+                    nuevoUsuario,
+                    out Mensaje
+                );
+
+
+            if (idUsuarioGenerado != 0)
+            {
+                MessageBox.Show(
+                    "El usuario " +
+                    nuevoUsuario.nombreCompleto +
+                    " se insertó correctamente.",
+                    "Guardar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                // Volvemos a consultar la BD
+                CargarUsuarios();
+
+                // Limpiamos los campos
+                LimpiarCampos();
             }
             else
             {
-                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    Mensaje != ""
+                        ? Mensaje
+                        : "No se pudo registrar el usuario.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
+
+        // BOTON ELIMINAR
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
-                // Preguntamos si esta seguro de eliminar 
-                DialogResult ask = MessageBox.Show("¿Seguro que desea eliminar el registro seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                MessageBox.Show(
+                    "Por favor, seleccione un usuario para eliminar.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
 
-                // Si dice que Si
-                if (ask == DialogResult.Yes)
-                {
-                    // Verificamos que no intente borrar la ultima fila en blanco (la que usa el DataGridView para agregar nuevos datos a mano)
-                    if (!dataGridView1.SelectedRows[0].IsNewRow)
-                    {
-                        // Borramos la fila usando el indice de la que esta seleccionada
-                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                return;
+            }
 
-                        MessageBox.Show("El registro se eliminó correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se puede eliminar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+
+            DataGridViewRow fila =
+                dataGridView1.SelectedRows[0];
+
+
+            if (fila.IsNewRow)
+            {
+                MessageBox.Show(
+                    "No se puede eliminar una fila vacía.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return;
+            }
+
+
+            DialogResult ask = MessageBox.Show(
+                "¿Seguro que desea eliminar el usuario seleccionado?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2
+            );
+
+
+            if (ask != DialogResult.Yes)
+                return;
+
+
+            // Recuperamos el ID real de SQL Server
+            int idUsuario =
+                Convert.ToInt32(fila.Tag);
+
+
+            bool respuesta =
+                objCL_Usuario.EliminarUsuario(idUsuario);
+
+
+            if (respuesta)
+            {
+                MessageBox.Show(
+                    "El usuario se eliminó correctamente.",
+                    "Eliminado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                CargarUsuarios();
+                LimpiarCampos();
+
+                filaEditar = -1;
             }
             else
             {
-                // Si apreto el boton sin seleccionar nada en la tabla
-                MessageBox.Show("Por favor, seleccione toda la fila que desea eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "No se pudo eliminar el usuario.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
+
+        // BOTON EDITAR
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, seleccione un usuario para editar.", "Sin selección",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Por favor, seleccione un usuario para editar.",
+                    "Sin selección",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
                 return;
             }
-            filaEditar = dataGridView1.SelectedRows[0].Index; //guarda el indice de la fila seleccionada
+
+
+            filaEditar =
+                dataGridView1.SelectedRows[0].Index;
+
+
             if (dataGridView1.Rows[filaEditar].IsNewRow)
             {
-                MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                filaEditar = -1; // Reinicia el índice de la fila a editar
+                MessageBox.Show(
+                    "No se puede editar una fila vacía.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                filaEditar = -1;
+
                 return;
             }
-            DataGridViewRow fila = dataGridView1.Rows[filaEditar]; // Obtiene la fila seleccionada
 
-            //se pasa los datos de la tabla a los campos de texto para poder editarlos
-            textNombre.Text = fila.Cells[0].Value?.ToString();
-            textDNI.Text = fila.Cells[1].Value?.ToString();
-            textEmail.Text = fila.Cells[2].Value?.ToString();
-            textTelefono.Text = fila.Cells[3].Value?.ToString();
-            textDireccion.Text = fila.Cells[4].Value?.ToString();
-            comboBoxRol.Text = fila.Cells[5].Value?.ToString();
-            comboBoxEstado.Text = fila.Cells[6].Value?.ToString();
 
-            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DataGridViewRow fila =
+                dataGridView1.Rows[filaEditar];
+
+
+            // Pasamos los datos de la fila a los controles
+
+            textNombre.Text =
+                fila.Cells[0].Value?.ToString();
+
+            textDNI.Text =
+                fila.Cells[1].Value?.ToString();
+
+            textEmail.Text =
+                fila.Cells[2].Value?.ToString();
+
+            textTelefono.Text =
+                fila.Cells[3].Value?.ToString();
+
+            textDireccion.Text =
+                fila.Cells[4].Value?.ToString();
+
+            comboBoxRol.Text =
+                fila.Cells[5].Value?.ToString();
+
+            comboBoxEstado.Text =
+                fila.Cells[6].Value?.ToString();
+
+
+            // La contraseña no se muestra en el DataGridView.
+            // Se limpia para que el usuario ingrese una nueva.
+            textContraseña.Clear();
+
+
+            MessageBox.Show(
+                "Edite los campos y haga clic en 'Agregar' para guardar los cambios.",
+                "Editar Usuario",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
-        private void btnBuscar_Click(object sender, EventArgs e){}
-        private void textNombre_TextChanged(object sender, EventArgs e){}
-        private void textDireccion_TextChanged(object sender, EventArgs e){}
-        private void label1_Click(object sender, EventArgs e){}
+        //Configuramos el label y el texbox de contraseña
+        //para que sean visibles si se selecciona el rol admi, gerente o vendedor
+        //Se oculta si el usuario es Cliente
+        private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string rolSeleccionado = comboBoxRol.Text;
+            if (rolSeleccionado == "Administrador" || rolSeleccionado == "Gerente" || rolSeleccionado == "Vendedor")
+            {
+                textContraseña.Visible = true; // Activar el TextBox de Contraseña
+                lContraseña.Visible = true; // Activar el Label de Contraseña
+            }
+            else
+            {
+                lContraseña.Visible = false; // Desactivar el Label de Contraseña
+                textContraseña.Visible = false; // Desactivar el TextBox de Contraseña
+                textContraseña.Clear(); // Limpiar el TextBox de Contraseña
+            }
+        }
 
-        
+
+        //CARGAR USUARIOS DESDE LA BASE DE DATOS
+        private void CargarUsuarios()
+        {
+            dataGridView1.Rows.Clear();
+
+            List<Usuario> lista = objCL_Usuario.ListarUsuarios();
+
+            foreach (Usuario item in lista)
+            {
+                int indice = dataGridView1.Rows.Add(
+                    item.nombreCompleto,
+                    item.dni,
+                    item.email,
+                    item.telefono,
+                    item.direccion,
+                    item.rol.descripcion,
+                    item.estado == 1 ? "Activo" : "Inactivo"
+                );
+
+                // Guardamos el ID de SQL Server en el Tag de la fila
+                dataGridView1.Rows[indice].Tag = item.id_usuario;
+            }
+        }
+
+        //CARGAR ROLES
+        private void CargarRoles()
+        {
+            comboBoxRol.Items.Clear();
+
+            comboBoxRol.Items.Add(new Rol()
+            {
+                id_rol = 1,
+                descripcion = "Administrador"
+            });
+
+            comboBoxRol.Items.Add(new Rol()
+            {
+                id_rol = 2,
+                descripcion = "Vendedor"
+            });
+
+            comboBoxRol.Items.Add(new Rol()
+            {
+                id_rol = 3,
+                descripcion = "Gerente"
+            });
+
+            comboBoxRol.DisplayMember = "descripcion";
+            comboBoxRol.ValueMember = "id_rol";
+
+            comboBoxRol.SelectedIndex = -1;
+        }
+
+        //CARGAR ESTADOS
+        private void CargarEstados()
+        {
+            comboBoxEstado.Items.Clear();
+
+            comboBoxEstado.Items.Add("Activo");
+            comboBoxEstado.Items.Add("Inactivo");
+
+            comboBoxEstado.SelectedIndex = -1;
+        }
+        private void btnBuscar_Click(object sender, EventArgs e) { }
+        private void textNombre_TextChanged(object sender, EventArgs e) { }
+        private void textDireccion_TextChanged(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
     }
 }
