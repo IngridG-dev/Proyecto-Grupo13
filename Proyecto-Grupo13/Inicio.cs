@@ -85,12 +85,12 @@ namespace Proyecto_Grupo13
                 menuAdministrador form = new menuAdministrador();
                 form.Show();
             }
-            else if (usuario.rol.descripcion == "Vendedor")
+            else if (usuario.rol.descripcion == "VENDEDOR")
             {
                 menuVendedor form = new menuVendedor();
                 form.Show();
             }
-            else if (usuario.rol.descripcion == "Gerente")
+            else if (usuario.rol.descripcion == "GERENTE")
             {
                 menuGerente form = new menuGerente();
                 form.Show();

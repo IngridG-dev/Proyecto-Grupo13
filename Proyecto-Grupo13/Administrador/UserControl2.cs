@@ -463,83 +463,51 @@ namespace Proyecto_Grupo13.Administrador
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show(
-                    "Por favor, seleccione un usuario para editar.",
-                    "Sin selección",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show("Por favor, seleccione un usuario para editar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-            filaEditar =
-                dataGridView1.SelectedRows[0].Index;
-
+            filaEditar = dataGridView1.SelectedRows[0].Index;
 
             if (dataGridView1.Rows[filaEditar].IsNewRow)
             {
-                MessageBox.Show(
-                    "No se puede editar una fila vacía.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-
+                MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 filaEditar = -1;
-
                 return;
             }
 
+            DataGridViewRow fila = dataGridView1.Rows[filaEditar];
 
-            DataGridViewRow fila =
-                dataGridView1.Rows[filaEditar];
+            textNombre.Text = fila.Cells[0].Value?.ToString();
+            textDNI.Text = fila.Cells[1].Value?.ToString();
+            textEmail.Text = fila.Cells[2].Value?.ToString();
+            textTelefono.Text = fila.Cells[3].Value?.ToString();
+            textDireccion.Text = fila.Cells[4].Value?.ToString();
 
+            // Seleccionar el objeto Rol correcto dentro del ComboBox
+            string descripcionRol = fila.Cells[5].Value?.ToString();
+            foreach (Rol item in comboBoxRol.Items)
+            {
+                if (item.descripcion == descripcionRol)
+                {
+                    comboBoxRol.SelectedItem = item;
+                    break;
+                }
+            }
 
-            // Pasamos los datos de la fila a los controles
-
-            textNombre.Text =
-                fila.Cells[0].Value?.ToString();
-
-            textDNI.Text =
-                fila.Cells[1].Value?.ToString();
-
-            textEmail.Text =
-                fila.Cells[2].Value?.ToString();
-
-            textTelefono.Text =
-                fila.Cells[3].Value?.ToString();
-
-            textDireccion.Text =
-                fila.Cells[4].Value?.ToString();
-
-            comboBoxRol.Text =
-                fila.Cells[5].Value?.ToString();
-
-            comboBoxEstado.Text =
-                fila.Cells[6].Value?.ToString();
-
-
-            // La contraseña no se muestra en el DataGridView.
-            // Se limpia para que el usuario ingrese una nueva.
+            comboBoxEstado.Text = fila.Cells[6].Value?.ToString();
             textContraseña.Clear();
 
-
-            MessageBox.Show(
-                "Edite los campos y haga clic en 'Agregar' para guardar los cambios.",
-                "Editar Usuario",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         //Configuramos el label y el texbox de contraseña
         //para que sean visibles si se selecciona el rol admi, gerente o vendedor
         //Se oculta si el usuario es Cliente
         private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
         {
             string rolSeleccionado = comboBoxRol.Text;
-            if (rolSeleccionado == "Administrador" || rolSeleccionado == "Gerente" || rolSeleccionado == "Vendedor")
+            if (rolSeleccionado == "ADMINISTRADOR" || rolSeleccionado == "GERENTE" || rolSeleccionado == "VENDEDOR")
             {
                 textContraseña.Visible = true; // Activar el TextBox de Contraseña
                 lContraseña.Visible = true; // Activar el Label de Contraseña
@@ -582,27 +550,16 @@ namespace Proyecto_Grupo13.Administrador
         {
             comboBoxRol.Items.Clear();
 
-            comboBoxRol.Items.Add(new Rol()
-            {
-                id_rol = 1,
-                descripcion = "Administrador"
-            });
+            // Consultamos los roles reales guardados en SQL Server
+            List<Rol> listaRoles = new CL_Rol().Listar();
 
-            comboBoxRol.Items.Add(new Rol()
+            foreach (Rol item in listaRoles)
             {
-                id_rol = 2,
-                descripcion = "Vendedor"
-            });
-
-            comboBoxRol.Items.Add(new Rol()
-            {
-                id_rol = 3,
-                descripcion = "Gerente"
-            });
+                comboBoxRol.Items.Add(item);
+            }
 
             comboBoxRol.DisplayMember = "descripcion";
             comboBoxRol.ValueMember = "id_rol";
-
             comboBoxRol.SelectedIndex = -1;
         }
 

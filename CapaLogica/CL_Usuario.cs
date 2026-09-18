@@ -28,41 +28,27 @@ namespace CapaLogica
             Mensaje = string.Empty;
 
             if (string.IsNullOrWhiteSpace(obj.nombreCompleto))
-            {
                 Mensaje += "Debe ingresar el nombre completo.\n";
-            }
 
             if (obj.dni == 0)
-            {
                 Mensaje += "Debe ingresar el DNI.\n";
-            }
 
             if (string.IsNullOrWhiteSpace(obj.email))
-            {
                 Mensaje += "Debe ingresar el email.\n";
-            }
 
             if (string.IsNullOrWhiteSpace(obj.telefono))
-            {
                 Mensaje += "Debe ingresar el teléfono.\n";
-            }
 
             if (string.IsNullOrWhiteSpace(obj.direccion))
-            {
                 Mensaje += "Debe ingresar la dirección.\n";
-            }
 
             if (obj.rol == null || obj.rol.id_rol == 0)
-            {
                 Mensaje += "Debe seleccionar un rol.\n";
-            }
 
             if (Mensaje != string.Empty)
-            {
                 return 0;
-            }
 
-            return objCD_Usuario.RegistrarUsuario(obj);
+            return objCD_Usuario.RegistrarUsuario(obj, out Mensaje);
         }
 
         // EDITAR USUARIO

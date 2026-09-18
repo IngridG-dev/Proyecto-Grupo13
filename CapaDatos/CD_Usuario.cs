@@ -19,10 +19,28 @@ namespace CapaDatos
             {
                 try
                 {
-                    string query = "SELECT u.id_usuario, u.nombreCompleto, u.dni, u.email, u.telefono, u.direccion, u.contraseña, u.estado FROM USUARIO u INNER JOIN ROL r ON u.id_rol = r.id_rol ORDER BY u.id_usuario";
+                    // Se agregaron u.fechaCreacion, r.id_rol y r.descripcion a la consulta
+                    string query = @"
+                SELECT 
+                    u.id_usuario, 
+                    u.nombreCompleto, 
+                    u.dni, 
+                    u.email, 
+                    u.telefono, 
+                    u.direccion, 
+                    u.contraseña, 
+                    u.estado,
+                    u.fechaCreacion,
+                    r.id_rol, 
+                    r.descripcion 
+                FROM USUARIO u 
+                INNER JOIN ROL r ON u.id_rol = r.id_rol 
+                ORDER BY u.id_usuario";
+
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
                     oconexion.Open();
+
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -47,16 +65,15 @@ namespace CapaDatos
                             });
                         }
                     }
-
                 }
-                catch
+                catch (Exception ex)
                 {
                     lista = new List<Usuario>();
+                    // Opcional: throw ex; para depurar si persiste algún problema
                 }
             }
             return lista;
         }
-
         // LOGIN DE USUARIO, SE LE PASA EL DNI Y LA CONTRASEÑA, Y SI EXISTE UN USUARIO CON ESOS DATOS, SE DEVUELVE EL OBJETO USUARIO CON SU ROL.
         public Usuario Login(int dni, string contraseña)
         {
@@ -128,17 +145,20 @@ namespace CapaDatos
         }
 
         //REGISTRAR USUARIO 
-        public int RegistrarUsuario(Usuario obj)
+        public int RegistrarUsuario(Usuario obj, out string mensaje)
         {
             int id_usuarioGenerado = 0;
+            mensaje = string.Empty;
 
             using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
-                    string query = @" INSERT INTO USUARIO (nombreCompleto, dni, email, telefono, direccion, contraseña, estado, id_rol)" +
-                        "VALUES (@nombreCompleto, @dni, @email, @telefono, @direccion, @contraseña, @estado, @id_rol);" +
-                        "SELECT SCOPE_IDENTITY();";
+                    // Se incluye fechaCreacion enviando GETDATE() desde SQL
+                    string query = @" 
+                INSERT INTO USUARIO (nombreCompleto, dni, email, telefono, direccion, contraseña, estado, id_rol, fechaCreacion)
+                VALUES (@nombreCompleto, @dni, @email, @telefono, @direccion, @contraseña, @estado, @id_rol, GETDATE());
+                SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
@@ -148,22 +168,21 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@email", obj.email);
                     cmd.Parameters.AddWithValue("@telefono", obj.telefono);
                     cmd.Parameters.AddWithValue("@direccion", obj.direccion);
-                    cmd.Parameters.AddWithValue("@contraseña", obj.contraseña);
+                    cmd.Parameters.AddWithValue("@contraseña", (object)obj.contraseña ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@estado", obj.estado);
                     cmd.Parameters.AddWithValue("@id_rol", obj.rol.id_rol);
 
                     oconexion.Open();
-
                     id_usuarioGenerado = Convert.ToInt32(cmd.ExecuteScalar());
                 }
-                catch
+                catch (Exception ex)
                 {
                     id_usuarioGenerado = 0;
+                    mensaje = ex.Message; // Retorna el error exacto de SQL a la UI
                 }
             }
 
             return id_usuarioGenerado;
-  
         }
 
         // EDITAR USUARIO
