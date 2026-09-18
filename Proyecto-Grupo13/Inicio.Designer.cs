@@ -81,6 +81,7 @@
             this.textNumeroDocum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textNumeroDocum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textNumeroDocum.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textNumeroDocum.ForeColor = System.Drawing.Color.White;
             this.textNumeroDocum.Location = new System.Drawing.Point(294, 64);
             this.textNumeroDocum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textNumeroDocum.Name = "textNumeroDocum";
@@ -92,6 +93,7 @@
             this.textContraseña.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textContraseña.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textContraseña.ForeColor = System.Drawing.Color.White;
             this.textContraseña.Location = new System.Drawing.Point(294, 133);
             this.textContraseña.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textContraseña.Name = "textContraseña";
