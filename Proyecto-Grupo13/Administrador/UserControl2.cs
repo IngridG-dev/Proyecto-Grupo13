@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using CapaEntidad;
-using CapaLogica;
 
 namespace Proyecto_Grupo13.Administrador
 {
