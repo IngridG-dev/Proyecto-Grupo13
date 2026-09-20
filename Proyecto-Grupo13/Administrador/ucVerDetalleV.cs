@@ -79,12 +79,12 @@ namespace Proyecto_Grupo13.Administrador
         //CONFIGURACION DE BOTONES
         private void iconLimpiar_Click(object sender, EventArgs e)
         {
-            textFecha.Clear();
+            
             textnumDocume.Clear();
             textUsuario.Clear();
             textDocumentoCliente.Clear();
             textNomCliente.Clear();
-            textTipoDoc.Clear();
+            
 
             dataGridView2.Rows.Clear();
             textMontoTotal.Clear();

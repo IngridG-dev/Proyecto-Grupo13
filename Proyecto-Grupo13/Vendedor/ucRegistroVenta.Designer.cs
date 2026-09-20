@@ -70,6 +70,7 @@
             this.labelCodigoProdu = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.iconBtnAgregarV = new FontAwesome.Sharp.IconButton();
+            this.btnDescargarTicket = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,7 +86,7 @@
             this.iconBtnCrearVenta.IconColor = System.Drawing.Color.Brown;
             this.iconBtnCrearVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnCrearVenta.IconSize = 20;
-            this.iconBtnCrearVenta.Location = new System.Drawing.Point(984, 478);
+            this.iconBtnCrearVenta.Location = new System.Drawing.Point(1008, 463);
             this.iconBtnCrearVenta.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnCrearVenta.Name = "iconBtnCrearVenta";
             this.iconBtnCrearVenta.Size = new System.Drawing.Size(108, 54);
@@ -99,7 +100,7 @@
             // 
             this.textCambio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textCambio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textCambio.Location = new System.Drawing.Point(984, 451);
+            this.textCambio.Location = new System.Drawing.Point(1008, 436);
             this.textCambio.Margin = new System.Windows.Forms.Padding(2);
             this.textCambio.Multiline = true;
             this.textCambio.Name = "textCambio";
@@ -110,7 +111,7 @@
             // 
             this.textPagaCon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textPagaCon.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textPagaCon.Location = new System.Drawing.Point(985, 395);
+            this.textPagaCon.Location = new System.Drawing.Point(1009, 380);
             this.textPagaCon.Margin = new System.Windows.Forms.Padding(2);
             this.textPagaCon.Multiline = true;
             this.textPagaCon.Name = "textPagaCon";
@@ -122,7 +123,7 @@
             // 
             this.textTotalPagar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textTotalPagar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textTotalPagar.Location = new System.Drawing.Point(984, 348);
+            this.textTotalPagar.Location = new System.Drawing.Point(1008, 333);
             this.textTotalPagar.Margin = new System.Windows.Forms.Padding(2);
             this.textTotalPagar.Multiline = true;
             this.textTotalPagar.Name = "textTotalPagar";
@@ -134,7 +135,7 @@
             this.lCambio.AutoSize = true;
             this.lCambio.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lCambio.ForeColor = System.Drawing.Color.White;
-            this.lCambio.Location = new System.Drawing.Point(981, 428);
+            this.lCambio.Location = new System.Drawing.Point(1005, 413);
             this.lCambio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCambio.Name = "lCambio";
             this.lCambio.Size = new System.Drawing.Size(64, 20);
@@ -146,7 +147,7 @@
             this.lPagaCon.AutoSize = true;
             this.lPagaCon.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lPagaCon.ForeColor = System.Drawing.Color.White;
-            this.lPagaCon.Location = new System.Drawing.Point(981, 374);
+            this.lPagaCon.Location = new System.Drawing.Point(1005, 359);
             this.lPagaCon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lPagaCon.Name = "lPagaCon";
             this.lPagaCon.Size = new System.Drawing.Size(72, 20);
@@ -158,7 +159,7 @@
             this.lTotalPagar.AutoSize = true;
             this.lTotalPagar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTotalPagar.ForeColor = System.Drawing.Color.White;
-            this.lTotalPagar.Location = new System.Drawing.Point(981, 321);
+            this.lTotalPagar.Location = new System.Drawing.Point(1005, 306);
             this.lTotalPagar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTotalPagar.Name = "lTotalPagar";
             this.lTotalPagar.Size = new System.Drawing.Size(98, 20);
@@ -183,7 +184,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(655, 226);
+            this.dataGridView1.Size = new System.Drawing.Size(655, 255);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -315,7 +316,7 @@
             this.groupBox2.Controls.Add(this.labelNumDocumento);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(684, 84);
+            this.groupBox2.Location = new System.Drawing.Point(735, 84);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -331,7 +332,7 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(152, 51);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(48, 24);
             this.btnBuscar.TabIndex = 48;
@@ -508,8 +509,8 @@
             this.buttonBuscar2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonBuscar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.buttonBuscar2.Image = ((System.Drawing.Image)(resources.GetObject("buttonBuscar2.Image")));
-            this.buttonBuscar2.Location = new System.Drawing.Point(140, 55);
-            this.buttonBuscar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonBuscar2.Location = new System.Drawing.Point(126, 53);
+            this.buttonBuscar2.Margin = new System.Windows.Forms.Padding(4);
             this.buttonBuscar2.Name = "buttonBuscar2";
             this.buttonBuscar2.Size = new System.Drawing.Size(56, 22);
             this.buttonBuscar2.TabIndex = 55;
@@ -546,7 +547,7 @@
             this.label2.Location = new System.Drawing.Point(288, 35);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(816, 512);
+            this.label2.Size = new System.Drawing.Size(883, 565);
             this.label2.TabIndex = 35;
             // 
             // iconBtnAgregarV
@@ -556,21 +557,39 @@
             this.iconBtnAgregarV.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.iconBtnAgregarV.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.iconBtnAgregarV.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnAgregarV.Location = new System.Drawing.Point(1018, 206);
+            this.iconBtnAgregarV.Location = new System.Drawing.Point(1028, 207);
             this.iconBtnAgregarV.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnAgregarV.Name = "iconBtnAgregarV";
-            this.iconBtnAgregarV.Size = new System.Drawing.Size(75, 71);
+            this.iconBtnAgregarV.Size = new System.Drawing.Size(75, 70);
             this.iconBtnAgregarV.TabIndex = 23;
             this.iconBtnAgregarV.Text = "Agregar";
             this.iconBtnAgregarV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconBtnAgregarV.UseVisualStyleBackColor = false;
             this.iconBtnAgregarV.Click += new System.EventHandler(this.iconBtnAgregarV_Click);
             // 
+            // btnDescargarTicket
+            // 
+            this.btnDescargarTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnDescargarTicket.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDescargarTicket.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.btnDescargarTicket.IconColor = System.Drawing.Color.Brown;
+            this.btnDescargarTicket.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDescargarTicket.IconSize = 20;
+            this.btnDescargarTicket.Location = new System.Drawing.Point(987, 521);
+            this.btnDescargarTicket.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDescargarTicket.Name = "btnDescargarTicket";
+            this.btnDescargarTicket.Size = new System.Drawing.Size(146, 40);
+            this.btnDescargarTicket.TabIndex = 42;
+            this.btnDescargarTicket.Text = "Imprimir Ticket";
+            this.btnDescargarTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDescargarTicket.UseVisualStyleBackColor = false;
+            // 
             // ucRegistroVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.btnDescargarTicket);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -587,7 +606,7 @@
             this.Controls.Add(this.label2);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucRegistroVenta";
-            this.Size = new System.Drawing.Size(1392, 582);
+            this.Size = new System.Drawing.Size(1392, 641);
             this.Load += new System.EventHandler(this.ucRegistroVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -645,5 +664,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn btnEditar;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
         private FontAwesome.Sharp.IconButton iconBtnAgregarV;
+        private FontAwesome.Sharp.IconButton btnDescargarTicket;
     }
 }

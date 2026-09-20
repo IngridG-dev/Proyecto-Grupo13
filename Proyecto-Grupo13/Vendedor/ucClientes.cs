@@ -177,7 +177,7 @@ namespace Proyecto_Grupo13.Vendedor
                     if (ask == DialogResult.Yes)
                     {
                         string nombre = formatearTexto(textNombre.Text);
-
+                        // Agregar el nuevo cliente al DataGridView
                         GridClientes.Rows.Add(
                             nombre,
                             textDNI.Text,
@@ -185,7 +185,7 @@ namespace Proyecto_Grupo13.Vendedor
                             textTelefono.Text,
                             textDireccion.Text
                         );
-
+                        // Mostrar mensaje de éxito
                         MessageBox.Show("El cliente " + nombre + " se insertó correctamente en la tabla.","Guardar",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
                         // Limpiar campos

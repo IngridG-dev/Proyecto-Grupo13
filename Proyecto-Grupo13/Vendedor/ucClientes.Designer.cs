@@ -35,11 +35,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.GridClientes = new System.Windows.Forms.DataGridView();
-            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.labelListaClientes = new System.Windows.Forms.Label();
             this.lDatosCliente = new System.Windows.Forms.Label();
@@ -55,6 +50,11 @@
             this.textEmail = new System.Windows.Forms.TextBox();
             this.textTelefono = new System.Windows.Forms.TextBox();
             this.textDireccion = new System.Windows.Forms.TextBox();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,8 +147,8 @@
             this.GridClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.GridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DNI,
             this.Nombre,
+            this.DNI,
             this.Email,
             this.Teléfono,
             this.Direccion});
@@ -160,36 +160,6 @@
             this.GridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridClientes.Size = new System.Drawing.Size(736, 426);
             this.GridClientes.TabIndex = 95;
-            // 
-            // DNI
-            // 
-            this.DNI.HeaderText = "DNI";
-            this.DNI.MinimumWidth = 6;
-            this.DNI.Name = "DNI";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
-            this.Email.Name = "Email";
-            // 
-            // Teléfono
-            // 
-            this.Teléfono.HeaderText = "Teléfono";
-            this.Teléfono.MinimumWidth = 6;
-            this.Teléfono.Name = "Teléfono";
-            // 
-            // Direccion
-            // 
-            this.Direccion.HeaderText = "Dirección";
-            this.Direccion.MinimumWidth = 6;
-            this.Direccion.Name = "Direccion";
             // 
             // label1
             // 
@@ -376,6 +346,36 @@
             this.textDireccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDireccion_KeyPress);
             // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            // 
+            // DNI
+            // 
+            this.DNI.HeaderText = "DNI";
+            this.DNI.MinimumWidth = 6;
+            this.DNI.Name = "DNI";
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            // 
+            // Teléfono
+            // 
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.MinimumWidth = 6;
+            this.Teléfono.Name = "Teléfono";
+            // 
+            // Direccion
+            // 
+            this.Direccion.HeaderText = "Dirección";
+            this.Direccion.MinimumWidth = 6;
+            this.Direccion.Name = "Direccion";
+            // 
             // ucClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -429,15 +429,15 @@
         private System.Windows.Forms.Label lDireccion;
         private System.Windows.Forms.Label labelCliente;
         private System.Windows.Forms.Label labelCliente2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.TextBox textNombre;
         private System.Windows.Forms.TextBox textDNI;
         private System.Windows.Forms.TextBox textEmail;
         private System.Windows.Forms.TextBox textTelefono;
         private System.Windows.Forms.TextBox textDireccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
     }
 }

@@ -212,7 +212,13 @@ namespace Proyecto_Grupo13.Vendedor
 
         private void buttonBuscar2_Click(object sender, EventArgs e)
         {
+            // 1. Creamos una "instancia" de tu formulario buscador
+            FormBuscarProducto modalBuscador = new FormBuscarProducto();
 
+            // 2. Usamos ShowDialog() en lugar de Show()
+            // Esto es clave: hace que la ventana se abra bloqueando el fondo (modal)
+            // para que el usuario no pueda tocar la ventana de ventas hasta que cierre el buscador.
+            modalBuscador.ShowDialog();
         }
 
         private void ucRegistroVenta_Load(object sender, EventArgs e)
