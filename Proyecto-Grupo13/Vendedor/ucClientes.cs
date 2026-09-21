@@ -8,15 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaEntidad;
+using CapaLogica;
 
 namespace Proyecto_Grupo13.Vendedor
 {
     public partial class ucClientes : UserControl
     {
+        private CL_Cliente objCL_Cliente = new CL_Cliente(); // Instancia de la clase CL_Cliente
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
         public ucClientes()
         {
             InitializeComponent();
+            cargarClientes();
         }
 
         //VALIDACIONES DE LOS CAMPOS DE TEXTO 
@@ -135,102 +139,198 @@ namespace Proyecto_Grupo13.Vendedor
         //CONFIGURACIÓN DEL BOTÓN AGREGAR Y EDITAR CLIENTE
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (ValidarCamposVacios() == true)
+            // Valida que no haya vacíos
+            if (!ValidarCamposVacios())
             {
-                if (filaEditar != -1)
+                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Corta la ejecución aquí
+            }
+
+            // Validar que el DNI no exista en la BD
+            if (!ValidarDNIUnico())
+            {
+                return; // El mensaje de error ya lo muestra el método ValidarDNIUnico
+            }
+
+            // Crea el objeto con la información de las cajas de texto
+            Cliente objCliente = new Cliente()
+            {
+                nombreCompleto = formatearTexto(textNombre.Text),
+                dni = Convert.ToInt32(textDNI.Text),
+                email = textEmail.Text,
+                telefono = textTelefono.Text,
+                direccion = textDireccion.Text
+            };
+
+            // Evalua si se está editando o creando un cliente nuevo
+            if (filaEditar != -1) // MODO EDITAR
+            {
+                // Obtenemos el ID guardado en el Tag
+                objCliente.id_cliente = Convert.ToInt32(GridClientes.Rows[filaEditar].Tag);
+
+                // Ejecutamos la consulta en la BD
+                bool resultado = objCL_Cliente.EditarCliente(objCliente);
+
+                if (resultado)
                 {
-                    // Editar la fila existente
-                    GridClientes.Rows[filaEditar].Cells[0].Value = textNombre.Text;
-                    GridClientes.Rows[filaEditar].Cells[1].Value = textDNI.Text;
-                    GridClientes.Rows[filaEditar].Cells[2].Value = textEmail.Text;
-                    GridClientes.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
-                    GridClientes.Rows[filaEditar].Cells[4].Value = textDireccion.Text;
+                    // Si la BD se actualizó, actualizamos la tablita visual
+                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombreCompleto;
+                    GridClientes.Rows[filaEditar].Cells[1].Value = objCliente.dni;
+                    GridClientes.Rows[filaEditar].Cells[2].Value = objCliente.email;
+                    GridClientes.Rows[filaEditar].Cells[3].Value = objCliente.telefono;
+                    GridClientes.Rows[filaEditar].Cells[4].Value = objCliente.direccion;
 
-                    MessageBox.Show("Cliente editado correctamente.", "Éxito",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Limpiar campos
-                    textNombre.Clear();
-                    textDNI.Clear();
-                    textEmail.Clear();
-                    textTelefono.Clear();
-                    textDireccion.Clear();
-
-                    // Restaurar color
-                    Color colorNormal = Color.FromArgb(70, 75, 85);
-                    textNombre.BackColor = colorNormal;
-                    textDNI.BackColor = colorNormal;
-                    textEmail.BackColor = colorNormal;
-                    textTelefono.BackColor = colorNormal;
-                    textDireccion.BackColor = colorNormal;
-
-                    filaEditar = -1;
+                    MessageBox.Show("Cliente editado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCampos();
                 }
                 else
                 {
-                    // Agregar nuevo cliente
-                    DialogResult ask = MessageBox.Show(
-                        "¿Seguro que desea insertar este nuevo cliente?","Confirmar inserción",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
+                    MessageBox.Show("No se pudo editar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else // MODO AGREGAR NUEVO
+            {
+                DialogResult ask = MessageBox.Show("¿Seguro que desea registrar este nuevo cliente?", "Confirmar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (ask == DialogResult.Yes)
+                if (ask == DialogResult.Yes)
+                {
+                    // Ejecutamos la inserción en la BD
+                    bool resultado = objCL_Cliente.RegistrarCliente(objCliente);
+
+                    if (resultado)
                     {
-                        string nombre = formatearTexto(textNombre.Text);
-                        // Agregar el nuevo cliente al DataGridView
-                        GridClientes.Rows.Add(
-                            nombre,
-                            textDNI.Text,
-                            textEmail.Text,
-                            textTelefono.Text,
-                            textDireccion.Text
-                        );
-                        // Mostrar mensaje de éxito
-                        MessageBox.Show("El cliente " + nombre + " se insertó correctamente en la tabla.","Guardar",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        // Si se registró exitosamente, recargamos toda la tabla para asegurarnos
+                        // de que obtenemos el ID_CLIENTE autogenerado por SQL Server
+                        cargarClientes();
 
-                        // Limpiar campos
-                        textNombre.Clear();
-                        textDNI.Clear();
-                        textDireccion.Clear();
-                        textEmail.Clear();
-                        textTelefono.Clear();
-                        textNombre.Focus();
+                        MessageBox.Show("El cliente " + objCliente.nombreCompleto + " se registró correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo registrar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Faltan completar campos.","Atención",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-            }
         }
+
+     
         private void btnEditar_Click(object sender, EventArgs e)
         {
             // Verifica si hay una fila seleccionada en el DataGridView
             if (GridClientes.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, seleccione un usuario para editar.", "Sin selección",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, seleccione un cliente para editar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            filaEditar = GridClientes.SelectedRows[0].Index; // guarda el indice de la fila seleccionada
+
             // Verifica si la fila seleccionada es una fila nueva (vacía)
-            filaEditar = GridClientes.SelectedRows[0].Index; //guarda el indice de la fila seleccionada
             if (GridClientes.Rows[filaEditar].IsNewRow)
             {
-                // Muestra un mensaje de error si se intenta editar una fila vacía
                 MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                filaEditar = -1; // Reinicia el índice de la fila a editar
+                filaEditar = -1; // Reinicia el índice
                 return;
             }
+
             DataGridViewRow fila = GridClientes.Rows[filaEditar]; // Obtiene la fila seleccionada
 
-            //se pasa los datos de la tabla a los campos de texto para poder editarlos
+            // Pasa los datos de la tabla a los campos de texto para poder editarlos
             textNombre.Text = fila.Cells[0].Value?.ToString();
             textDNI.Text = fila.Cells[1].Value?.ToString();
             textEmail.Text = fila.Cells[2].Value?.ToString();
             textTelefono.Text = fila.Cells[3].Value?.ToString();
             textDireccion.Text = fila.Cells[4].Value?.ToString();
 
-            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Edite los datos en los campos de texto y haga clic en 'Guardar/Agregar' para aplicar los cambios.", "Modo Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        //CARGAR CLIENTES DE LA BASE DE DATOS
+        private void cargarClientes()
+        {
+            GridClientes.Rows.Clear();
+
+            var listaClientes = objCL_Cliente.ListarClientes();
+
+            foreach (Cliente cliente in listaClientes)
+            {
+                int fila = GridClientes.Rows.Add(
+                    cliente.nombreCompleto,
+                    cliente.dni,
+                    cliente.email,
+                    cliente.telefono,
+                    cliente.direccion
+                );
+
+                // Guarda el ID de la BD en el Tag de la fila para futuras referencias (editar, eliminar)
+                GridClientes.Rows[fila].Tag = cliente.id_cliente;
+            }
+        }
+
+        //VALIDAR DNI UNICO
+        private bool ValidarDNIUnico()
+        {
+            if (string.IsNullOrWhiteSpace(textDNI.Text))
+                return true;
+
+            if (!int.TryParse(textDNI.Text, out int dni))
+                return false;
+
+            int idCliente = 0;
+
+            // Si estamos editando, obtenemos el ID del cliente actual
+            if (filaEditar != -1)
+            {
+                idCliente = Convert.ToInt32(GridClientes.Rows[filaEditar].Tag);
+            }
+
+            bool existe = objCL_Cliente.ExisteDNI(dni, idCliente);
+
+            if (existe)
+            {
+                MessageBox.Show(
+                    "Este DNI ya está registrado en el sistema.",
+                    "DNI duplicado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                textDNI.BackColor = Color.LightPink;
+                textDNI.Focus();
+
+                return false;
+            }
+
+            // Retorna al color normal (ajusta el RGB si usas otro fondo)
+            textDNI.BackColor = Color.FromArgb(70, 75, 85);
+
+            return true;
+        }
+
+        // EVENTO LEAVE DEL TEXTBOX
+        private void textDNI_Leave(object sender, EventArgs e)
+        {
+            ValidarDNIUnico();
+        }
+        // metodo auxiliar para limpiar los campos rapidamente, evita el codigo duplicado
+        private void LimpiarCampos()
+        {
+            textNombre.Clear();
+            textDNI.Clear();
+            textEmail.Clear();
+            textTelefono.Clear();
+            textDireccion.Clear();
+
+            Color colorNormal = Color.FromArgb(70, 75, 85);
+            textNombre.BackColor = colorNormal;
+            textDNI.BackColor = colorNormal;
+            textEmail.BackColor = colorNormal;
+            textTelefono.BackColor = colorNormal;
+            textDireccion.BackColor = colorNormal;
+
+            filaEditar = -1; // Reiniciamos el estado de edición
+            textNombre.Focus();
         }
     }
 }

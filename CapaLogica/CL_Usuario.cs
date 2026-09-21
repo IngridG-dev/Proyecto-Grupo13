@@ -50,6 +50,11 @@ namespace CapaLogica
 
             return objCD_Usuario.RegistrarUsuario(obj, out Mensaje);
         }
+        //VERIFICA DNI EXISTENTE
+        public bool ExisteDNI(int dni, int idUsuario = 0)
+        {
+            return objCD_Usuario.ExisteDNI(dni, idUsuario);
+        }
 
         // EDITAR USUARIO
         public bool EditarUsuario(Usuario obj, out string Mensaje)

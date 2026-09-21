@@ -15,7 +15,7 @@ namespace Proyecto_Grupo13.Administrador
 {
     public partial class UserControl2 : UserControl
     {
-        private CL_Usuario objCL_Usuario = new CL_Usuario(); 
+        private CL_Usuario objCL_Usuario = new CL_Usuario();
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
         public UserControl2()
         {
@@ -195,7 +195,10 @@ namespace Proyecto_Grupo13.Administrador
 
                 return;
             }
-
+            if(!ValidarDNIUnico()) //validar que el DNI sea único
+            {
+                return;
+            }
 
             // EDITAR USUARIO
 
@@ -576,6 +579,50 @@ namespace Proyecto_Grupo13.Administrador
         private void textDireccion_TextChanged(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
 
- 
+        // VALIDAR DNI ÚNICO
+        private bool ValidarDNIUnico()
+        {
+            if (string.IsNullOrWhiteSpace(textDNI.Text))
+                return true;
+
+            if (!int.TryParse(textDNI.Text, out int dni))
+                return false;
+
+            int idUsuario = 0;
+
+            // Si estamos editando, obtenemos el ID del usuario actual
+            if (filaEditar != -1)
+            {
+                idUsuario = Convert.ToInt32(
+                    dataGridView1.Rows[filaEditar].Tag
+                );
+            }
+
+            bool existe = objCL_Usuario.ExisteDNI(dni, idUsuario);
+
+            if (existe)
+            {
+                MessageBox.Show(
+                    "Este DNI ya está registrado.",
+                    "DNI duplicado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                textDNI.BackColor = Color.LightPink;
+                textDNI.Focus();
+
+                return false;
+            }
+
+            textDNI.BackColor = Color.FromArgb(70, 75, 85);
+
+            return true;
+        }
+
+        private void textDNI_Leave(object sender, EventArgs e)
+        {
+            ValidarDNIUnico();
+        }
     }
 }

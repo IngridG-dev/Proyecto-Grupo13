@@ -66,10 +66,9 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     lista = new List<Usuario>();
-                    // Opcional: throw ex; para depurar si persiste algún problema
                 }
             }
             return lista;
@@ -266,6 +265,33 @@ namespace CapaDatos
             }
 
             return resultado;
+        }
+        //VERIFICAR SI EL DNI YA EXISTE EN LA BASE DE DATOS
+        public bool ExisteDNI(int dni, int id_Usuario = 0)
+        {
+            bool existe = false;
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"
+                        SELECT COUNT(*) 
+                        FROM USUARIO 
+                        WHERE dni = @dni AND id_usuario <> @id_usuario";
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    cmd.Parameters.AddWithValue("@id_usuario", id_Usuario);
+                    oconexion.Open();
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    existe = count > 0;
+                }
+                catch
+                {
+                    existe = false;
+                }
+            }
+            return existe;
         }
 
     }
