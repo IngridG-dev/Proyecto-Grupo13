@@ -111,6 +111,12 @@
     <Compile Include="Administrador\UserControl2.Designer.cs">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\verClientes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrador\verClientes.Designer.cs">
+      <DependentUpon>verClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\verClientes.resx">
+      <DependentUpon>verClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

@@ -43,6 +43,8 @@
             this.reporteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelContenido = new System.Windows.Forms.Panel();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +55,6 @@
             this.menuStripTitulo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTitulo.Location = new System.Drawing.Point(0, 0);
             this.menuStripTitulo.Name = "menuStripTitulo";
-            this.menuStripTitulo.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStripTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.menuStripTitulo.Size = new System.Drawing.Size(1318, 59);
             this.menuStripTitulo.TabIndex = 7;
@@ -86,7 +87,6 @@
             this.iconMenuReportes});
             this.menuStrip1.Location = new System.Drawing.Point(0, 59);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1318, 88);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
@@ -94,6 +94,9 @@
             // iconMenuUsuarios
             // 
             this.iconMenuUsuarios.AutoSize = false;
+            this.iconMenuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuariosToolStripMenuItem,
+            this.clientesToolStripMenuItem});
             this.iconMenuUsuarios.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuUsuarios.IconChar = FontAwesome.Sharp.IconChar.Users;
@@ -233,6 +236,20 @@
             this.panelContenido.TabIndex = 0;
             this.panelContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenido_Paint);
             // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
+            // 
             // menuAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -243,7 +260,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStripTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "menuAdministrador";
             this.Text = "menuAdministrador";
             this.Load += new System.EventHandler(this.menuAdministrador_Load);
@@ -271,5 +288,7 @@
         private System.Windows.Forms.ToolStripMenuItem reporteCompraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteVentaToolStripMenuItem;
         private System.Windows.Forms.Panel panelContenido;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
     }
 }
