@@ -77,53 +77,63 @@ namespace Proyecto_Grupo13.Vendedor
             if (string.IsNullOrWhiteSpace(textNombre.Text))
             {
                 textNombre.BackColor = Color.LightPink;
+                textNombre.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textNombre.BackColor = colorNormal;
+                textNombre.ForeColor = Color.White;
             }
 
             // DNI
             if (string.IsNullOrWhiteSpace(textDNI.Text))
             {
                 textDNI.BackColor = Color.LightPink;
+                textDNI.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textDNI.BackColor = colorNormal;
+                textDNI.ForeColor = Color.White;
             }
 
             // EMAIL
             if (string.IsNullOrWhiteSpace(textEmail.Text))
             {
                 textEmail.BackColor = Color.LightPink;
+                textEmail.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textEmail.BackColor = colorNormal;
+                textEmail.ForeColor = Color.White;
             }
             // TELÉFONO
             if (string.IsNullOrWhiteSpace(textTelefono.Text))
             {
                 textTelefono.BackColor = Color.LightPink;
+                textTelefono.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textTelefono.BackColor = colorNormal;
+                textTelefono.ForeColor = Color.White;
             }
             // DIRECCIÓN
             if (string.IsNullOrWhiteSpace(textDireccion.Text))
             {
                 textDireccion.BackColor = Color.LightPink;
+                textDireccion.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textDireccion.BackColor = colorNormal;
+                textDireccion.ForeColor = Color.White;
             }
 
             return esValido;
