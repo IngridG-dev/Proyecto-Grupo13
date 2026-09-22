@@ -306,5 +306,22 @@ namespace Proyecto_Grupo13.Vendedor
                 textCambio.Text = "0.00";
             }
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            using (FormBuscarCliente modal = new FormBuscarCliente())
+            {
+                // Mostrar el buscador como ventana modal
+                DialogResult result = modal.ShowDialog();
+
+                // Si se seleccionó un cliente (se hizo doble clic)
+                if (result == DialogResult.OK && modal.ClienteSeleccionado != null)
+                {
+                    // Completar los campos con los datos retornados
+                    textNumDocumento.Text = modal.ClienteSeleccionado.dni.ToString();
+                    textNombreComple.Text = modal.ClienteSeleccionado.nombreCompleto;
+                }
+            }
+        }
     }
 }

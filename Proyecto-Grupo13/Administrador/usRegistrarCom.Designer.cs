@@ -96,9 +96,9 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(234, 65);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(294, 70);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -124,7 +124,7 @@
             "Boleta",
             "Factura"});
             this.comboTipoDocumento.Location = new System.Drawing.Point(157, 35);
-            this.comboTipoDocumento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboTipoDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.comboTipoDocumento.Name = "comboTipoDocumento";
             this.comboTipoDocumento.Size = new System.Drawing.Size(112, 23);
             this.comboTipoDocumento.TabIndex = 13;
@@ -145,7 +145,7 @@
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(8, 35);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(112, 23);
             this.dateTimePicker1.TabIndex = 11;
@@ -160,9 +160,9 @@
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(542, 65);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(315, 70);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
@@ -170,7 +170,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
@@ -179,13 +179,14 @@
             this.btnBuscar.Size = new System.Drawing.Size(38, 19);
             this.btnBuscar.TabIndex = 48;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // textRazonSocial
             // 
             this.textRazonSocial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textRazonSocial.Location = new System.Drawing.Point(190, 41);
-            this.textRazonSocial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textRazonSocial.Margin = new System.Windows.Forms.Padding(2);
             this.textRazonSocial.Multiline = true;
             this.textRazonSocial.Name = "textRazonSocial";
             this.textRazonSocial.Size = new System.Drawing.Size(108, 18);
@@ -196,7 +197,7 @@
             this.textNumDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textNumDocumento.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textNumDocumento.Location = new System.Drawing.Point(18, 41);
-            this.textNumDocumento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textNumDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.textNumDocumento.Multiline = true;
             this.textNumDocumento.Name = "textNumDocumento";
             this.textNumDocumento.Size = new System.Drawing.Size(108, 19);
@@ -242,9 +243,9 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(234, 149);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(558, 71);
             this.groupBox3.TabIndex = 49;
             this.groupBox3.TabStop = false;
@@ -256,7 +257,7 @@
             this.numericCantidad.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericCantidad.ForeColor = System.Drawing.Color.White;
             this.numericCantidad.Location = new System.Drawing.Point(461, 44);
-            this.numericCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericCantidad.Margin = new System.Windows.Forms.Padding(2);
             this.numericCantidad.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -281,7 +282,7 @@
             this.textStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textStock.Location = new System.Drawing.Point(365, 44);
-            this.textStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textStock.Margin = new System.Windows.Forms.Padding(2);
             this.textStock.Multiline = true;
             this.textStock.Name = "textStock";
             this.textStock.Size = new System.Drawing.Size(80, 18);
@@ -293,7 +294,7 @@
             this.textPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textPrecio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textPrecio.Location = new System.Drawing.Point(269, 44);
-            this.textPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textPrecio.Margin = new System.Windows.Forms.Padding(2);
             this.textPrecio.Multiline = true;
             this.textPrecio.Name = "textPrecio";
             this.textPrecio.Size = new System.Drawing.Size(80, 18);
@@ -305,7 +306,7 @@
             this.textProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textProducto.Location = new System.Drawing.Point(163, 43);
-            this.textProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textProducto.Margin = new System.Windows.Forms.Padding(2);
             this.textProducto.Multiline = true;
             this.textProducto.Name = "textProducto";
             this.textProducto.Size = new System.Drawing.Size(80, 18);
@@ -316,7 +317,7 @@
             this.textBoxCodProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textBoxCodProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCodProduct.Location = new System.Drawing.Point(16, 44);
-            this.textBoxCodProduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxCodProduct.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCodProduct.Multiline = true;
             this.textBoxCodProduct.Name = "textBoxCodProduct";
             this.textBoxCodProduct.Size = new System.Drawing.Size(80, 18);
@@ -362,13 +363,14 @@
             // 
             this.btnBuscarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBuscarProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.btnBuscarProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnBuscarProducto.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarProducto.Image")));
-            this.btnBuscarProducto.Location = new System.Drawing.Point(102, 44);
+            this.btnBuscarProducto.Location = new System.Drawing.Point(102, 43);
             this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(45, 18);
+            this.btnBuscarProducto.Size = new System.Drawing.Size(45, 19);
             this.btnBuscarProducto.TabIndex = 55;
             this.btnBuscarProducto.UseVisualStyleBackColor = false;
+            this.btnBuscarProducto.Click += new System.EventHandler(this.btnBuscarProducto_Click);
             // 
             // labelProducto
             // 
@@ -408,7 +410,7 @@
             this.SubTotal,
             this.btnEliminar});
             this.dataGridView1.Location = new System.Drawing.Point(234, 225);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -469,7 +471,7 @@
             this.iconBtnAgregarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.iconBtnAgregarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnAgregarC.Location = new System.Drawing.Point(797, 158);
-            this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnAgregarC.Name = "iconBtnAgregarC";
             this.iconBtnAgregarC.Size = new System.Drawing.Size(75, 62);
             this.iconBtnAgregarC.TabIndex = 51;
@@ -484,7 +486,7 @@
             this.textTotalPagar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textTotalPagar.ForeColor = System.Drawing.Color.White;
             this.textTotalPagar.Location = new System.Drawing.Point(797, 347);
-            this.textTotalPagar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textTotalPagar.Margin = new System.Windows.Forms.Padding(2);
             this.textTotalPagar.Multiline = true;
             this.textTotalPagar.Name = "textTotalPagar";
             this.textTotalPagar.Size = new System.Drawing.Size(86, 18);
@@ -512,7 +514,7 @@
             this.iconBtnRegistrarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnRegistrarC.IconSize = 20;
             this.iconBtnRegistrarC.Location = new System.Drawing.Point(797, 377);
-            this.iconBtnRegistrarC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconBtnRegistrarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnRegistrarC.Name = "iconBtnRegistrarC";
             this.iconBtnRegistrarC.Size = new System.Drawing.Size(86, 27);
             this.iconBtnRegistrarC.TabIndex = 54;
@@ -545,7 +547,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "usRegistrarCom";
             this.Size = new System.Drawing.Size(1114, 451);
             this.groupBox1.ResumeLayout(false);

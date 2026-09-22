@@ -45,5 +45,20 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Solo se permiten números en este campo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            //abrir el formulario de búsqueda de proveedores
+            FormProveedor buscarProveedor = new FormProveedor();
+
+            buscarProveedor.ShowDialog();
+        }
+
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        {
+            //abrir el formulario de búsqueda de productos
+            FormBuscarProductos buscarProducto = new FormBuscarProductos();
+            buscarProducto.ShowDialog();
+        }
     }
 }
