@@ -61,7 +61,6 @@ namespace CapaDatos
         }
 
 
-        // VERIFICAR SI EL DNI YA EXISTE
         // VERIFICAR SI EL DNI YA EXISTE EN LA BASE DE DATOS DE CLIENTES
         public bool ExisteDNI(int dni, int id_Cliente = 0)
         {

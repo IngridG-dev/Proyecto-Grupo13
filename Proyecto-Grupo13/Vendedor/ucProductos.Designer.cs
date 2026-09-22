@@ -157,6 +157,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(254, 225);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(893, 378);
@@ -167,36 +168,42 @@
             this.Codigo.HeaderText = "Codigo";
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
             // 
             // Producto
             // 
             this.Producto.HeaderText = "Producto";
             this.Producto.MinimumWidth = 6;
             this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
             // 
             // Categoria
             // 
             this.Categoria.HeaderText = "Categoría";
             this.Categoria.MinimumWidth = 6;
             this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
             // 
             // Descripcion
             // 
             this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.MinimumWidth = 6;
             this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
             // 
             // Precio
             // 
             this.Precio.HeaderText = "Precio ";
             this.Precio.MinimumWidth = 6;
             this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
             // 
             // Stock
             // 
             this.Stock.HeaderText = "Stock";
             this.Stock.MinimumWidth = 6;
             this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
             // 
             // ucProductos
             // 
@@ -207,7 +214,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelProductos);
             this.Controls.Add(this.label15);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucProductos";
             this.Size = new System.Drawing.Size(1392, 682);
             this.groupBox1.ResumeLayout(false);
