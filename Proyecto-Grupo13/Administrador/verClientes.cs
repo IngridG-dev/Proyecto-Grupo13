@@ -60,9 +60,11 @@ namespace Proyecto_Grupo13.Administrador
 
                     if (respuesta)
                     {
-                        // 5. Si se eliminó de la BD, lo quitamos visualmente de la grilla sin tener que recargar toda la base
-                        dataGridClientes.Rows.RemoveAt(dataGridClientes.SelectedRows[0].Index);
+                        // Eliminamos el RemoveAt y en su lugar volvemos a cargar la lista
                         MessageBox.Show("Cliente eliminado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Recargamos los datos para que desaparezca el eliminado
+                        dataGridClientes.DataSource = new CL_Cliente().ListarClientes();
                     }
                     else
                     {
@@ -96,11 +98,11 @@ namespace Proyecto_Grupo13.Administrador
             // 3. Revisamos cliente por cliente a ver cuál coincide
             foreach (Cliente c in listaCompleta)
             {
-                if (filtro == "nombreCompleto" && c.nombreCompleto.ToUpper().Contains(textoBusqueda))
+                if (filtro == "Nombre Completo" && c.nombreCompleto.ToUpper().Contains(textoBusqueda))
                 {
                     listaFiltrada.Add(c);
                 }
-                else if (filtro == "dni" && c.dni.ToString().ToUpper().Contains(textoBusqueda))
+                else if (filtro == "DNI" && c.dni.ToString().ToUpper().Contains(textoBusqueda))
                 {
                     listaFiltrada.Add(c);
                 }
