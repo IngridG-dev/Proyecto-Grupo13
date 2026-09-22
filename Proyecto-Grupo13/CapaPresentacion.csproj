@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -128,11 +129,11 @@
     <Compile Include="Gerente\ucEstadisticasV.Designer.cs">
       <DependentUpon>ucEstadisticasV.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gerente\ucProdMasVendidos.cs">
+    <Compile Include="Gerente\ucMasVendidos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Gerente\ucProdMasVendidos.Designer.cs">
-      <DependentUpon>ucProdMasVendidos.cs</DependentUpon>
+    <Compile Include="Gerente\ucMasVendidos.Designer.cs">
+      <DependentUpon>ucMasVendidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,8 +209,8 @@
     <EmbeddedResource Include="Gerente\ucEstadisticasV.resx">
       <DependentUpon>ucEstadisticasV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gerente\ucProdMasVendidos.resx">
-      <DependentUpon>ucProdMasVendidos.cs</DependentUpon>
+    <EmbeddedResource Include="Gerente\ucMasVendidos.resx">
+      <DependentUpon>ucMasVendidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
