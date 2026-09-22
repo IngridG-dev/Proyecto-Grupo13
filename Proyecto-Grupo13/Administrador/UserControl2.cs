@@ -234,6 +234,17 @@ namespace Proyecto_Grupo13.Administrador
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+
+            string dniIngresado = textDNI.Text.Trim();
+
+            // 1. Verificamos si el DNI ya existe en cualquier tabla
+            bool dniDuplicado = new CL_Cliente().ExisteDNIGlobal(dniIngresado);
+
+            if (dniDuplicado)
+            {
+                MessageBox.Show("Error: Este DNI ya se encuentra registrado en el sistema, ya sea como Cliente o como Usuario.", "DNI Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // El 'return' corta la ejecución y evita que se guarde
+            }
             // Validamos los campos
             string mensajeError;
             if (!ValidarCamposVacios(out mensajeError))
