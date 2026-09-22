@@ -230,7 +230,7 @@ namespace CapaDatos
         public bool ExisteDNIGlobal(string dniBuscado)
         {
             bool existe = false;
-            using (SqlConnection oconexion = new SqlConnection("TU_CADENA_DE_CONEXION"))
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
             {
                 // Esta consulta busca el DNI en ambas tablas al mismo tiempo
                 string query = @"
