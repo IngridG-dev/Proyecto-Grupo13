@@ -33,9 +33,21 @@ namespace Proyecto_Grupo13
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            // Validar si faltan completar datos (DNI o Contraseña vacíos)
+            if (string.IsNullOrWhiteSpace(textNumeroDocum.Text) || string.IsNullOrWhiteSpace(textContraseña.Text))
+            {
+                MessageBox.Show(
+                    "Falta completar los datos.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
             int dni;
 
-            // Verificar que el DNI sea un número
+            // Verificar que el DNI sea un número válido
             if (!int.TryParse(textNumeroDocum.Text, out dni))
             {
                 MessageBox.Show(
@@ -44,7 +56,6 @@ namespace Proyecto_Grupo13
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-
                 return;
             }
 
@@ -53,7 +64,7 @@ namespace Proyecto_Grupo13
             // Buscar usuario
             Usuario usuario = objCL_Usuario.Login(dni, contraseña);
 
-            // Si no existe
+            // Si no existe o la contraseña/DNI son incorrectos
             if (usuario == null)
             {
                 MessageBox.Show(
@@ -62,7 +73,6 @@ namespace Proyecto_Grupo13
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-
                 return;
             }
 
@@ -75,7 +85,6 @@ namespace Proyecto_Grupo13
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
@@ -103,7 +112,6 @@ namespace Proyecto_Grupo13
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-
                 return;
             }
 

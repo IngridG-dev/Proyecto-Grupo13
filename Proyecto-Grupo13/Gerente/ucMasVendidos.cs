@@ -141,11 +141,11 @@ namespace Proyecto_Grupo13.Gerente
             // producto = gráfico de columnas
             if (tipo == "Categoría")
             {
-                serie.ChartType = SeriesChartType.Pie;
+                serie.ChartType = SeriesChartType.Pie; //cambia el tipo de gráfico a circular
             }
             else
             {
-                serie.ChartType = SeriesChartType.Column;
+                serie.ChartType = SeriesChartType.Column; //cambia el tipo de gráfico a columnas
             }
 
             serie.IsValueShownAsLabel = true;

@@ -37,6 +37,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelBuscarPor = new System.Windows.Forms.Label();
             this.cmbBuscarPor = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dateTimeFin = new System.Windows.Forms.DateTimePicker();
@@ -61,7 +62,6 @@
             this.textVendedor = new System.Windows.Forms.TextBox();
             this.chartMasVendidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartVendedores = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.labelBuscarPor = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMasVendidos)).BeginInit();
@@ -93,6 +93,18 @@
             this.panel1.Size = new System.Drawing.Size(736, 91);
             this.panel1.TabIndex = 66;
             // 
+            // labelBuscarPor
+            // 
+            this.labelBuscarPor.AutoSize = true;
+            this.labelBuscarPor.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBuscarPor.ForeColor = System.Drawing.Color.White;
+            this.labelBuscarPor.Location = new System.Drawing.Point(388, 34);
+            this.labelBuscarPor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelBuscarPor.Name = "labelBuscarPor";
+            this.labelBuscarPor.Size = new System.Drawing.Size(66, 15);
+            this.labelBuscarPor.TabIndex = 65;
+            this.labelBuscarPor.Text = "Buscar Por:";
+            // 
             // cmbBuscarPor
             // 
             this.cmbBuscarPor.FormattingEnabled = true;
@@ -118,6 +130,7 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dateTimeFin
             // 
@@ -374,18 +387,6 @@
             this.chartVendedores.Size = new System.Drawing.Size(313, 251);
             this.chartVendedores.TabIndex = 78;
             this.chartVendedores.Text = "chart1";
-            // 
-            // labelBuscarPor
-            // 
-            this.labelBuscarPor.AutoSize = true;
-            this.labelBuscarPor.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBuscarPor.ForeColor = System.Drawing.Color.White;
-            this.labelBuscarPor.Location = new System.Drawing.Point(388, 34);
-            this.labelBuscarPor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelBuscarPor.Name = "labelBuscarPor";
-            this.labelBuscarPor.Size = new System.Drawing.Size(66, 15);
-            this.labelBuscarPor.TabIndex = 65;
-            this.labelBuscarPor.Text = "Buscar Por:";
             // 
             // ucMasVendidos
             // 

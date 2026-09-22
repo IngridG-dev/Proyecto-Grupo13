@@ -21,20 +21,20 @@ namespace Proyecto_Grupo13.Administrador
 
         private void verClientes_Load(object sender, EventArgs e)
         {
-            // 1. Traemos los datos y los asignamos a la grilla
+            // Traemos los datos y los asignamos a la grilla
             List<Cliente> listaCliente = new CL_Cliente().ListarClientes();
             dataGridClientes.DataSource = listaCliente;
 
-            // 2. Le cambiamos el título a las columnas para que se vean bien
+            // Le cambiamos el título a las columnas para que se vean bien
             dataGridClientes.Columns["id_cliente"].HeaderText = "ID";
             dataGridClientes.Columns["nombreCompleto"].HeaderText = "Nombre Completo";
             dataGridClientes.Columns["dni"].HeaderText = "D.N.I.";
             dataGridClientes.Columns["email"].HeaderText = "Correo Electrónico";
 
-            // Opcional: Si quieres que el ID del cliente no se vea en la pantalla (porque al admin no le importa el número), lo ocultas así:
+            // Para que no se vea la columna del ID, ya que no es necesario mostrarla
             dataGridClientes.Columns["id_cliente"].Visible = false;
 
-            // 3. Hacemos que las columnas se ajusten automáticamente al tamaño de la pantalla
+            // Hacemos que las columnas se ajusten automáticamente al tamaño de la pantalla
             dataGridClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }

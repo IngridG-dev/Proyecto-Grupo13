@@ -332,5 +332,83 @@ namespace Proyecto_Grupo13.Vendedor
             filaEditar = -1; // Reiniciamos el estado de edición
             textNombre.Focus();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            //Validar que se haya seleccionado un criterio de búsqueda
+            if (comboBoxBuscar.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Por favor, seleccione un criterio en 'Buscar por'.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+            //Validar que el texto de búsqueda no esté vacío
+            if (string.IsNullOrWhiteSpace(textBuscar.Text))
+            {
+                MessageBox.Show(
+                    "Debes completar el campo de búsqueda.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                textBuscar.Focus(); // Pone el foco en el campo de texto para escribir directamente
+                return;
+            }
+
+            string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
+            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
+
+            //Mapear el nombre seleccionado al índice de la columna en la DataGridView
+            int indiceColumna = -1;
+
+            switch (columnaFiltro)
+            {
+                case "Nombre Completo":
+                    indiceColumna = 0;
+                    break;
+                case "DNI":
+                    indiceColumna = 1;
+                    break;
+                case "Email":
+                    indiceColumna = 2;
+                    break;
+                case "Telefono":
+                case "Teléfono":
+                    indiceColumna = 3;
+                    break;
+                case "Direccion":
+                case "Dirección":
+                    indiceColumna = 4;
+                    break;
+            }
+
+            if (indiceColumna == -1) return;
+
+            // Ocultar o mostrar las filas según la coincidencia
+            GridClientes.CurrentCell = null; // Quita la selección actual para evitar errores al ocultar filas
+
+            foreach (DataGridViewRow fila in GridClientes.Rows)
+            {
+                if (fila.IsNewRow) continue;
+
+                string valorCelda = fila.Cells[indiceColumna].Value != null
+                    ? fila.Cells[indiceColumna].Value.ToString().ToUpper()
+                    : "";
+
+                // Si la casilla contiene el texto buscado (o si el buscador está vacío), se muestra la fila
+                if (string.IsNullOrEmpty(textoBusqueda) || valorCelda.Contains(textoBusqueda))
+                {
+                    fila.Visible = true;
+                }
+                else
+                {
+                    fila.Visible = false;
+                }
+            }
+        }
     }
 }

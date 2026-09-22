@@ -76,12 +76,14 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Solo se permiten letras, números y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private bool ValidarCamposVacios()
+        private bool ValidarCamposVacios(out string mensajeError)
         {
             bool esValido = true;
+            mensajeError = "";
 
             // Color normal de los TextBox
             Color colorNormal = Color.FromArgb(70, 75, 85);
+
             // NOMBRE
             if (string.IsNullOrWhiteSpace(textNombre.Text))
             {
@@ -114,6 +116,7 @@ namespace Proyecto_Grupo13.Administrador
             {
                 textEmail.BackColor = colorNormal;
             }
+
             // TELÉFONO
             if (string.IsNullOrWhiteSpace(textTelefono.Text))
             {
@@ -124,6 +127,7 @@ namespace Proyecto_Grupo13.Administrador
             {
                 textTelefono.BackColor = colorNormal;
             }
+
             // DIRECCIÓN
             if (string.IsNullOrWhiteSpace(textDireccion.Text))
             {
@@ -134,6 +138,7 @@ namespace Proyecto_Grupo13.Administrador
             {
                 textDireccion.BackColor = colorNormal;
             }
+
             // ROL
             if (comboBoxRol.SelectedIndex == -1)
             {
@@ -144,6 +149,7 @@ namespace Proyecto_Grupo13.Administrador
             {
                 comboBoxRol.BackColor = colorNormal;
             }
+
             // ESTADO
             if (comboBoxEstado.SelectedIndex == -1)
             {
@@ -155,7 +161,35 @@ namespace Proyecto_Grupo13.Administrador
                 comboBoxEstado.BackColor = colorNormal;
             }
 
-            return esValido;
+            // Si algún campo obligatorio anterior estuvo vacío
+            if (!esValido)
+            {
+                mensajeError = "Faltan completar campos.";
+                return false;
+            }
+
+            // CONTRASEÑA (solo si el campo está visible)
+            if (textContraseña.Visible)
+            {
+                if (string.IsNullOrWhiteSpace(textContraseña.Text))
+                {
+                    textContraseña.BackColor = Color.LightPink;
+                    mensajeError = "Faltan completar campos.";
+                    return false;
+                }
+                else if (textContraseña.Text.Trim().Length < 6)
+                {
+                    textContraseña.BackColor = Color.LightPink;
+                    mensajeError = "La contraseña debe tener un mínimo de 6 caracteres.";
+                    return false;
+                }
+                else
+                {
+                    textContraseña.BackColor = colorNormal;
+                }
+            }
+
+            return true;
         }
 
         //METODO PARA FORMATEAR EL TEXTO: PRIMERA LETRA MAYUSCULA Y EL RESTO MINUSCULA
@@ -183,11 +217,12 @@ namespace Proyecto_Grupo13.Administrador
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Primero validamos los campos
-            if (!ValidarCamposVacios())
+            // Validamos los campos
+            string mensajeError;
+            if (!ValidarCamposVacios(out mensajeError))
             {
                 MessageBox.Show(
-                    "Faltan completar campos.",
+                    mensajeError,
                     "Atención",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -195,11 +230,11 @@ namespace Proyecto_Grupo13.Administrador
 
                 return;
             }
-            if(!ValidarDNIUnico()) //validar que el DNI sea único
+
+            if (!ValidarDNIUnico()) // validar que el DNI sea único
             {
                 return;
             }
-
             // EDITAR USUARIO
 
             if (filaEditar != -1)
@@ -574,7 +609,75 @@ namespace Proyecto_Grupo13.Administrador
 
             comboBoxEstado.SelectedIndex = -1;
         }
-        private void btnBuscar_Click(object sender, EventArgs e) { }
+        //BUSCAR POR
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            //Validar que se haya seleccionado un criterio de búsqueda
+            if (comboBoxBuscar.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Por favor, seleccione un criterio en 'Buscar por'.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
+            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
+
+            //Mapear el nombre seleccionado al índice de la columna en la DataGridView
+            int indiceColumna = -1;
+
+            switch (columnaFiltro)
+            {
+                case "Nombre Completo":
+                    indiceColumna = 0;
+                    break;
+                case "DNI":
+                    indiceColumna = 1;
+                    break;
+                case "Email":
+                    indiceColumna = 2;
+                    break;
+                case "Telefono":
+                case "Teléfono":
+                    indiceColumna = 3;
+                    break;
+                case "Direccion":
+                case "Dirección":
+                    indiceColumna = 4;
+                    break;
+                case "Rol":
+                    indiceColumna = 5;
+                    break;
+            }
+
+            if (indiceColumna == -1) return;
+
+            // Ocultar o mostrar las filas según la coincidencia
+            dataGridView1.CurrentCell = null; // Quita la selección actual para evitar errores al ocultar filas
+
+            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            {
+                if (fila.IsNewRow) continue;
+
+                string valorCelda = fila.Cells[indiceColumna].Value != null
+                    ? fila.Cells[indiceColumna].Value.ToString().ToUpper()
+                    : "";
+
+                // Si la casilla contiene el texto buscado (o si el buscador está vacío), se muestra la fila
+                if (string.IsNullOrEmpty(textoBusqueda) || valorCelda.Contains(textoBusqueda))
+                {
+                    fila.Visible = true;
+                }
+                else
+                {
+                    fila.Visible = false;
+                }
+            }
+        }
         private void textNombre_TextChanged(object sender, EventArgs e) { }
         private void textDireccion_TextChanged(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
