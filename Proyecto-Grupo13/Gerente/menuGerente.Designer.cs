@@ -34,7 +34,6 @@
             this.iconMenuReportes = new FontAwesome.Sharp.IconMenuItem();
             this.reporteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuProdVendidos = new FontAwesome.Sharp.IconMenuItem();
-            this.iconMenuGenerarInfo = new FontAwesome.Sharp.IconMenuItem();
             this.panelContenido = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -46,8 +45,9 @@
             this.menuStripTitulo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTitulo.Location = new System.Drawing.Point(0, 0);
             this.menuStripTitulo.Name = "menuStripTitulo";
+            this.menuStripTitulo.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStripTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStripTitulo.Size = new System.Drawing.Size(1318, 59);
+            this.menuStripTitulo.Size = new System.Drawing.Size(1054, 47);
             this.menuStripTitulo.TabIndex = 8;
             this.menuStripTitulo.Text = "menuStrip2";
             // 
@@ -57,10 +57,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.label1.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label1.Location = new System.Drawing.Point(13, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 31);
+            this.label1.Size = new System.Drawing.Size(122, 24);
             this.label1.TabIndex = 9;
             this.label1.Text = "The B-Side";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -72,9 +71,10 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iconMenuReportes});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 59);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 47);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1318, 102);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1054, 82);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -83,8 +83,7 @@
             this.iconMenuReportes.AutoSize = false;
             this.iconMenuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reporteCompraToolStripMenuItem,
-            this.iconMenuProdVendidos,
-            this.iconMenuGenerarInfo});
+            this.iconMenuProdVendidos});
             this.iconMenuReportes.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.iconMenuReportes.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
@@ -99,7 +98,7 @@
             // reporteCompraToolStripMenuItem
             // 
             this.reporteCompraToolStripMenuItem.Name = "reporteCompraToolStripMenuItem";
-            this.reporteCompraToolStripMenuItem.Size = new System.Drawing.Size(274, 26);
+            this.reporteCompraToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             this.reporteCompraToolStripMenuItem.Text = "Estadísticas de ventas";
             this.reporteCompraToolStripMenuItem.Click += new System.EventHandler(this.reporteCompraToolStripMenuItem_Click);
             // 
@@ -109,40 +108,31 @@
             this.iconMenuProdVendidos.IconColor = System.Drawing.Color.Black;
             this.iconMenuProdVendidos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuProdVendidos.Name = "iconMenuProdVendidos";
-            this.iconMenuProdVendidos.Size = new System.Drawing.Size(274, 26);
+            this.iconMenuProdVendidos.Size = new System.Drawing.Size(226, 26);
             this.iconMenuProdVendidos.Text = "Productos más vendidos";
             this.iconMenuProdVendidos.Click += new System.EventHandler(this.iconMenuProdVendidos_Click);
-            // 
-            // iconMenuGenerarInfo
-            // 
-            this.iconMenuGenerarInfo.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMenuGenerarInfo.IconColor = System.Drawing.Color.Black;
-            this.iconMenuGenerarInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuGenerarInfo.Name = "iconMenuGenerarInfo";
-            this.iconMenuGenerarInfo.Size = new System.Drawing.Size(274, 26);
-            this.iconMenuGenerarInfo.Text = "Generar informes";
             // 
             // panelContenido
             // 
             this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.panelContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenido.Location = new System.Drawing.Point(0, 161);
-            this.panelContenido.Margin = new System.Windows.Forms.Padding(4);
+            this.panelContenido.Location = new System.Drawing.Point(0, 129);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1318, 588);
+            this.panelContenido.Size = new System.Drawing.Size(1054, 470);
             this.panelContenido.TabIndex = 11;
             // 
             // menuGerente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.ClientSize = new System.Drawing.Size(1318, 749);
+            this.ClientSize = new System.Drawing.Size(1054, 599);
             this.Controls.Add(this.panelContenido);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStripTitulo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "menuGerente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "menuGerente";
@@ -162,6 +152,5 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuReportes;
         private System.Windows.Forms.ToolStripMenuItem reporteCompraToolStripMenuItem;
         private FontAwesome.Sharp.IconMenuItem iconMenuProdVendidos;
-        private FontAwesome.Sharp.IconMenuItem iconMenuGenerarInfo;
     }
 }
