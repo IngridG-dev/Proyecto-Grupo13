@@ -145,7 +145,8 @@
             // textBuscar
             // 
             this.textBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBuscar.ForeColor = System.Drawing.Color.White;
             this.textBuscar.Location = new System.Drawing.Point(403, 43);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.textBuscar.Multiline = true;
