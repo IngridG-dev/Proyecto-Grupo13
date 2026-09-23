@@ -54,11 +54,6 @@
             this.labelProducto = new System.Windows.Forms.Label();
             this.labelCodigoProdu = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iconBtnAgregarC = new FontAwesome.Sharp.IconButton();
-            this.textTotalPagar = new System.Windows.Forms.TextBox();
-            this.lTotalPagar = new System.Windows.Forms.Label();
-            this.iconBtnRegistrarC = new FontAwesome.Sharp.IconButton();
-            this.label3 = new System.Windows.Forms.Label();
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +62,12 @@
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.iconBtnAgregarC = new FontAwesome.Sharp.IconButton();
+            this.textTotalPagar = new System.Windows.Forms.TextBox();
+            this.lTotalPagar = new System.Windows.Forms.Label();
+            this.iconBtnRegistrarC = new FontAwesome.Sharp.IconButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.iconBtnActualizarC = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -423,6 +424,55 @@
             this.dataGridView1.TabIndex = 50;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // CodigoProducto
+            // 
+            this.CodigoProducto.HeaderText = "Codigo Producto";
+            this.CodigoProducto.Name = "CodigoProducto";
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.MinimumWidth = 6;
+            this.Producto.Name = "Producto";
+            // 
+            // PrecioCompra
+            // 
+            this.PrecioCompra.HeaderText = "Precio Compra";
+            this.PrecioCompra.MinimumWidth = 6;
+            this.PrecioCompra.Name = "PrecioCompra";
+            // 
+            // PrecioVenta
+            // 
+            this.PrecioVenta.HeaderText = "Precio Venta";
+            this.PrecioVenta.Name = "PrecioVenta";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "Sub Total";
+            this.SubTotal.MinimumWidth = 6;
+            this.SubTotal.Name = "SubTotal";
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.HeaderText = "Editar";
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEditar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.btnEliminar.HeaderText = "Eliminar";
+            this.btnEliminar.MinimumWidth = 6;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Width = 54;
+            // 
             // iconBtnAgregarC
             // 
             this.iconBtnAgregarC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
@@ -493,60 +543,29 @@
             this.label3.Size = new System.Drawing.Size(680, 390);
             this.label3.TabIndex = 55;
             // 
-            // CodigoProducto
+            // iconBtnActualizarC
             // 
-            this.CodigoProducto.HeaderText = "Codigo Producto";
-            this.CodigoProducto.Name = "CodigoProducto";
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.MinimumWidth = 6;
-            this.Producto.Name = "Producto";
-            // 
-            // PrecioCompra
-            // 
-            this.PrecioCompra.HeaderText = "Precio Compra";
-            this.PrecioCompra.MinimumWidth = 6;
-            this.PrecioCompra.Name = "PrecioCompra";
-            // 
-            // PrecioVenta
-            // 
-            this.PrecioVenta.HeaderText = "Precio Venta";
-            this.PrecioVenta.Name = "PrecioVenta";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.MinimumWidth = 6;
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "Sub Total";
-            this.SubTotal.MinimumWidth = 6;
-            this.SubTotal.Name = "SubTotal";
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.HeaderText = "Editar";
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnEditar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.btnEliminar.HeaderText = "Eliminar";
-            this.btnEliminar.MinimumWidth = 6;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Width = 54;
+            this.iconBtnActualizarC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnActualizarC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnActualizarC.IconChar = FontAwesome.Sharp.IconChar.Repeat;
+            this.iconBtnActualizarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.iconBtnActualizarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnActualizarC.Location = new System.Drawing.Point(797, 225);
+            this.iconBtnActualizarC.Margin = new System.Windows.Forms.Padding(2);
+            this.iconBtnActualizarC.Name = "iconBtnActualizarC";
+            this.iconBtnActualizarC.Size = new System.Drawing.Size(75, 62);
+            this.iconBtnActualizarC.TabIndex = 56;
+            this.iconBtnActualizarC.Text = "Actualizar";
+            this.iconBtnActualizarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconBtnActualizarC.UseVisualStyleBackColor = false;
+            this.iconBtnActualizarC.Click += new System.EventHandler(this.iconBtnActualizarC_Click);
             // 
             // usRegistrarCom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnActualizarC);
             this.Controls.Add(this.iconBtnRegistrarC);
             this.Controls.Add(this.textTotalPagar);
             this.Controls.Add(this.lTotalPagar);
@@ -613,5 +632,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewButtonColumn btnEditar;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
+        private FontAwesome.Sharp.IconButton iconBtnActualizarC;
     }
 }
