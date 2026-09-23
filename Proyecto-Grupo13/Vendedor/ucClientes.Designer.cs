@@ -55,6 +55,8 @@
             this.textEmail = new System.Windows.Forms.TextBox();
             this.textTelefono = new System.Windows.Forms.TextBox();
             this.textDireccion = new System.Windows.Forms.TextBox();
+            this.btnActualizar = new FontAwesome.Sharp.IconButton();
+            this.btnCancelar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.GridClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,9 +69,10 @@
             this.btnEditar.ForeColor = System.Drawing.Color.Black;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(186, 349);
+            this.btnEditar.Location = new System.Drawing.Point(310, 384);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(142, 37);
+            this.btnEditar.Size = new System.Drawing.Size(113, 46);
             this.btnEditar.TabIndex = 108;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -82,10 +85,11 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textBuscar.Location = new System.Drawing.Point(598, 67);
+            this.textBuscar.Location = new System.Drawing.Point(748, 84);
+            this.textBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(256, 23);
+            this.textBuscar.Size = new System.Drawing.Size(320, 28);
             this.textBuscar.TabIndex = 107;
             // 
             // comboBoxBuscar
@@ -101,10 +105,10 @@
             "Email",
             "Telefono",
             "Dirección"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(460, 67);
+            this.comboBoxBuscar.Location = new System.Drawing.Point(575, 84);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(134, 23);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(166, 28);
             this.comboBoxBuscar.TabIndex = 99;
             // 
             // btnAgregar
@@ -116,10 +120,10 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(186, 293);
+            this.btnAgregar.Location = new System.Drawing.Point(190, 384);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(141, 37);
+            this.btnAgregar.Size = new System.Drawing.Size(113, 46);
             this.btnAgregar.TabIndex = 97;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -132,9 +136,10 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(861, 67);
+            this.btnBuscar.Location = new System.Drawing.Point(1076, 84);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(56, 24);
+            this.btnBuscar.Size = new System.Drawing.Size(70, 30);
             this.btnBuscar.TabIndex = 96;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -151,11 +156,12 @@
             this.Teléfono,
             this.Direccion});
             this.GridClientes.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.GridClientes.Location = new System.Drawing.Point(380, 101);
+            this.GridClientes.Location = new System.Drawing.Point(475, 126);
+            this.GridClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridClientes.Name = "GridClientes";
             this.GridClientes.RowHeadersWidth = 51;
             this.GridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridClientes.Size = new System.Drawing.Size(589, 341);
+            this.GridClientes.Size = new System.Drawing.Size(736, 380);
             this.GridClientes.TabIndex = 95;
             // 
             // Nombre
@@ -193,10 +199,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label1.Location = new System.Drawing.Point(377, 73);
+            this.label1.Location = new System.Drawing.Point(471, 91);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 15);
+            this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 94;
             this.label1.Text = "Buscar por";
             // 
@@ -205,10 +211,10 @@
             this.labelListaClientes.AutoSize = true;
             this.labelListaClientes.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.labelListaClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelListaClientes.Location = new System.Drawing.Point(595, 40);
+            this.labelListaClientes.Location = new System.Drawing.Point(744, 50);
             this.labelListaClientes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelListaClientes.Name = "labelListaClientes";
-            this.labelListaClientes.Size = new System.Drawing.Size(175, 19);
+            this.labelListaClientes.Size = new System.Drawing.Size(219, 23);
             this.labelListaClientes.TabIndex = 92;
             this.labelListaClientes.Text = "Clientes Registrados";
             // 
@@ -217,10 +223,10 @@
             this.lDatosCliente.AutoSize = true;
             this.lDatosCliente.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDatosCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDatosCliente.Location = new System.Drawing.Point(182, 40);
+            this.lDatosCliente.Location = new System.Drawing.Point(228, 50);
             this.lDatosCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDatosCliente.Name = "lDatosCliente";
-            this.lDatosCliente.Size = new System.Drawing.Size(146, 19);
+            this.lDatosCliente.Size = new System.Drawing.Size(181, 23);
             this.lDatosCliente.TabIndex = 84;
             this.lDatosCliente.Text = "Datos del Cliente";
             this.lDatosCliente.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -230,10 +236,10 @@
             this.lNombre.AutoSize = true;
             this.lNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lNombre.Location = new System.Drawing.Point(149, 82);
+            this.lNombre.Location = new System.Drawing.Point(186, 102);
             this.lNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNombre.Name = "lNombre";
-            this.lNombre.Size = new System.Drawing.Size(60, 30);
+            this.lNombre.Size = new System.Drawing.Size(75, 40);
             this.lNombre.TabIndex = 85;
             this.lNombre.Text = "Nombre\r\nCompleto";
             // 
@@ -242,10 +248,10 @@
             this.lTelefono.AutoSize = true;
             this.lTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lTelefono.Location = new System.Drawing.Point(149, 217);
+            this.lTelefono.Location = new System.Drawing.Point(186, 271);
             this.lTelefono.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTelefono.Name = "lTelefono";
-            this.lTelefono.Size = new System.Drawing.Size(53, 15);
+            this.lTelefono.Size = new System.Drawing.Size(67, 20);
             this.lTelefono.TabIndex = 90;
             this.lTelefono.Text = "Teléfono";
             // 
@@ -254,10 +260,10 @@
             this.lDni.AutoSize = true;
             this.lDni.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDni.Location = new System.Drawing.Point(158, 134);
+            this.lDni.Location = new System.Drawing.Point(198, 168);
             this.lDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(27, 15);
+            this.lDni.Size = new System.Drawing.Size(35, 20);
             this.lDni.TabIndex = 86;
             this.lDni.Text = "DNI";
             // 
@@ -266,10 +272,10 @@
             this.lEmail.AutoSize = true;
             this.lEmail.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lEmail.Location = new System.Drawing.Point(158, 174);
+            this.lEmail.Location = new System.Drawing.Point(198, 218);
             this.lEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEmail.Name = "lEmail";
-            this.lEmail.Size = new System.Drawing.Size(36, 15);
+            this.lEmail.Size = new System.Drawing.Size(46, 20);
             this.lEmail.TabIndex = 87;
             this.lEmail.Text = "Email";
             // 
@@ -278,29 +284,29 @@
             this.lDireccion.AutoSize = true;
             this.lDireccion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDireccion.Location = new System.Drawing.Point(149, 257);
+            this.lDireccion.Location = new System.Drawing.Point(186, 321);
             this.lDireccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDireccion.Name = "lDireccion";
-            this.lDireccion.Size = new System.Drawing.Size(57, 15);
+            this.lDireccion.Size = new System.Drawing.Size(72, 20);
             this.lDireccion.TabIndex = 88;
             this.lDireccion.Text = "Dirección";
             // 
             // labelCliente
             // 
             this.labelCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelCliente.Location = new System.Drawing.Point(134, 34);
+            this.labelCliente.Location = new System.Drawing.Point(168, 42);
             this.labelCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCliente.Name = "labelCliente";
-            this.labelCliente.Size = new System.Drawing.Size(229, 420);
+            this.labelCliente.Size = new System.Drawing.Size(286, 494);
             this.labelCliente.TabIndex = 109;
             // 
             // labelCliente2
             // 
             this.labelCliente2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelCliente2.Location = new System.Drawing.Point(368, 34);
+            this.labelCliente2.Location = new System.Drawing.Point(460, 42);
             this.labelCliente2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCliente2.Name = "labelCliente2";
-            this.labelCliente2.Size = new System.Drawing.Size(612, 420);
+            this.labelCliente2.Size = new System.Drawing.Size(764, 494);
             this.labelCliente2.TabIndex = 110;
             // 
             // textNombre
@@ -309,10 +315,10 @@
             this.textNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textNombre.Location = new System.Drawing.Point(213, 89);
+            this.textNombre.Location = new System.Drawing.Point(266, 111);
             this.textNombre.Margin = new System.Windows.Forms.Padding(2);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(131, 23);
+            this.textNombre.Size = new System.Drawing.Size(163, 27);
             this.textNombre.TabIndex = 111;
             this.textNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNombre_KeyPress);
@@ -323,10 +329,10 @@
             this.textDNI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textDNI.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textDNI.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textDNI.Location = new System.Drawing.Point(213, 126);
+            this.textDNI.Location = new System.Drawing.Point(266, 158);
             this.textDNI.Margin = new System.Windows.Forms.Padding(2);
             this.textDNI.Name = "textDNI";
-            this.textDNI.Size = new System.Drawing.Size(131, 23);
+            this.textDNI.Size = new System.Drawing.Size(163, 27);
             this.textDNI.TabIndex = 112;
             this.textDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDNI_KeyPress);
@@ -337,10 +343,10 @@
             this.textEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textEmail.Location = new System.Drawing.Point(213, 166);
+            this.textEmail.Location = new System.Drawing.Point(266, 208);
             this.textEmail.Margin = new System.Windows.Forms.Padding(2);
             this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(131, 23);
+            this.textEmail.Size = new System.Drawing.Size(163, 27);
             this.textEmail.TabIndex = 113;
             this.textEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textEmail_KeyPress);
@@ -351,10 +357,10 @@
             this.textTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textTelefono.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textTelefono.Location = new System.Drawing.Point(213, 209);
+            this.textTelefono.Location = new System.Drawing.Point(266, 261);
             this.textTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.textTelefono.Name = "textTelefono";
-            this.textTelefono.Size = new System.Drawing.Size(131, 23);
+            this.textTelefono.Size = new System.Drawing.Size(163, 27);
             this.textTelefono.TabIndex = 114;
             this.textTelefono.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textTelefono_KeyPress);
@@ -365,19 +371,61 @@
             this.textDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textDireccion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textDireccion.Location = new System.Drawing.Point(213, 249);
+            this.textDireccion.Location = new System.Drawing.Point(266, 311);
             this.textDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.textDireccion.Name = "textDireccion";
-            this.textDireccion.Size = new System.Drawing.Size(131, 23);
+            this.textDireccion.Size = new System.Drawing.Size(163, 27);
             this.textDireccion.TabIndex = 115;
             this.textDireccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDireccion_KeyPress);
             // 
+            // btnActualizar
+            // 
+            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnActualizar.IconChar = FontAwesome.Sharp.IconChar.Repeat;
+            this.btnActualizar.IconColor = System.Drawing.Color.Green;
+            this.btnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnActualizar.IconSize = 30;
+            this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualizar.Location = new System.Drawing.Point(190, 460);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(113, 46);
+            this.btnActualizar.TabIndex = 116;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Visible = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.btnCancelar.IconColor = System.Drawing.Color.Red;
+            this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCancelar.IconSize = 30;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(310, 460);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(113, 46);
+            this.btnCancelar.TabIndex = 117;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // ucClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.textDireccion);
             this.Controls.Add(this.textTelefono);
             this.Controls.Add(this.textEmail);
@@ -399,8 +447,9 @@
             this.Controls.Add(this.lDireccion);
             this.Controls.Add(this.labelCliente2);
             this.Controls.Add(this.labelCliente);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucClientes";
-            this.Size = new System.Drawing.Size(1114, 546);
+            this.Size = new System.Drawing.Size(1392, 682);
             ((System.ComponentModel.ISupportInitialize)(this.GridClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -435,5 +484,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
+        private FontAwesome.Sharp.IconButton btnActualizar;
+        private FontAwesome.Sharp.IconButton btnCancelar;
     }
 }

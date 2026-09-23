@@ -228,8 +228,12 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxEstado.SelectedIndex = -1;
             textContraseña.Clear(); // limpiar el TextBox de Contraseña
             textContraseña.Visible = false; // Ocultar el TextBox de Contraseña
-            // Cambiar el texto del botón Agregar de nuevo a "Agregar"
-            btnAgregar.Text = "Agregar";
+
+            filaEditar = -1; // Reiniciamos la variable de edición
+
+            // Restauramos los botones a su estado normal
+            iconBtnActualizar.Visible = false;
+            iconBtnCancelar.Visible = false;
         }
 
         // BOTON AGREGAR
@@ -238,197 +242,48 @@ namespace Proyecto_Grupo13.Administrador
         {
             // Validamos los campos
             string mensajeError;
+
             if (!ValidarCamposVacios(out mensajeError))
             {
-                MessageBox.Show(
-                    mensajeError,
-                    "Atención",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show(mensajeError, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!ValidarDNIUnico()) // validar que el DNI sea único
-            {
-                return;
-            }
-            // EDITAR USUARIO
-
-            if (filaEditar != -1)
-            {
-                DialogResult askEdit = MessageBox.Show(
-                    "¿Desea guardar los cambios del usuario?",
-                    "Confirmación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (askEdit != DialogResult.Yes)
-                {
-                    filaEditar = -1;
-                    return;
-                }
-
-
-                Rol rolSeleccionado = (Rol)comboBoxRol.SelectedItem;
-
-
-                Usuario usuario = new Usuario()
-                {
-                    // Recuperamos el ID guardado en Tag
-                    id_usuario = Convert.ToInt32(
-                        dataGridView1.Rows[filaEditar].Tag
-                    ),
-
-                    nombreCompleto =
-                        formatearTexto(textNombre.Text),
-
-                    dni =
-                        Convert.ToInt32(textDNI.Text),
-
-                    email =
-                        textEmail.Text.Trim(),
-
-                    telefono =
-                        textTelefono.Text.Trim(),
-
-                    direccion =
-                        textDireccion.Text.Trim(),
-
-                    contraseña =
-                        textContraseña.Text,
-
-                    estado =
-                        comboBoxEstado.Text == "Activo" ? 1 : 0,
-
-                    rol =
-                        rolSeleccionado
-                };
-
-
-                string mensaje;
-
-                bool respuesta =
-                    objCL_Usuario.EditarUsuario(
-                        usuario,
-                        out mensaje
-                    );
-
-
-                if (respuesta)
-                {
-                    MessageBox.Show(
-                        "Usuario editado exitosamente.",
-                        "Éxito",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-
-                    CargarUsuarios();
-                    LimpiarCampos();
-
-                    filaEditar = -1;
-                }
-                else
-                {
-                    MessageBox.Show(
-                        mensaje != ""
-                            ? mensaje
-                            : "No se pudo editar el usuario.",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                }
-
-                return;
-            }
-
+            if (!ValidarDNIUnico()) return; // validar que el DNI sea único
 
             // REGISTRAR NUEVO USUARIO
+            DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo usuario?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
-            DialogResult ask = MessageBox.Show(
-                "¿Seguro que desea insertar este nuevo usuario?",
-                "Confirmar inserción",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button1
-            );
-
-
-            if (ask != DialogResult.Yes)
-                return;
-
+            if (ask != DialogResult.Yes) return;
 
             Rol rol = (Rol)comboBoxRol.SelectedItem;
 
-
+            // Creamos un nuevo objeto Usuario con los datos del formulario
             Usuario nuevoUsuario = new Usuario()
             {
-                nombreCompleto =
-                    formatearTexto(textNombre.Text),
-
-                dni =
-                    Convert.ToInt32(textDNI.Text),
-
-                email =
-                    textEmail.Text.Trim(),
-
-                telefono =
-                    textTelefono.Text.Trim(),
-
-                direccion =
-                    textDireccion.Text.Trim(),
-
-                contraseña =
-                    textContraseña.Text,
-
-                estado =
-                    comboBoxEstado.Text == "Activo" ? 1 : 0,
-
-                rol =
-                    rol
+                nombreCompleto = formatearTexto(textNombre.Text),
+                dni = Convert.ToInt32(textDNI.Text),
+                email = textEmail.Text.Trim(),
+                telefono = textTelefono.Text.Trim(),
+                direccion = textDireccion.Text.Trim(),
+                contraseña = textContraseña.Text,
+                estado = comboBoxEstado.Text == "Activo" ? 1 : 0,
+                rol = rol
             };
 
-
+            // Llamamos al método de la capa lógica para registrar el usuario
             string Mensaje;
-
-            int idUsuarioGenerado =
-                objCL_Usuario.RegistrarUsuario(
-                    nuevoUsuario,
-                    out Mensaje
-                );
-
+            int idUsuarioGenerado = objCL_Usuario.RegistrarUsuario(nuevoUsuario, out Mensaje);
 
             if (idUsuarioGenerado != 0)
             {
-                MessageBox.Show(
-                    "El usuario " +
-                    nuevoUsuario.nombreCompleto +
-                    " se insertó correctamente.",
-                    "Guardar",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                // Volvemos a consultar la BD
+                MessageBox.Show("El usuario " + nuevoUsuario.nombreCompleto + " se insertó correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
-
-                // Limpiamos los campos
                 LimpiarCampos();
             }
             else
             {
-                MessageBox.Show(
-                    Mensaje != ""
-                        ? Mensaje
-                        : "No se pudo registrar el usuario.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show(Mensaje != "" ? Mensaje : "No se pudo registrar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -553,9 +408,11 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxEstado.Text = fila.Cells[6].Value?.ToString();
             textContraseña.Clear();
 
-            // Cambiamos el texto del botón Agregar a "Actualizar"
-            btnAgregar.Text = "Actualizar";
-            MessageBox.Show("Edite los campos y haga clic en 'ACTUALIZAR' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Cambiamos la visibilidad de los botones
+            iconBtnActualizar.Visible = true;
+            iconBtnCancelar.Visible = true;
+
+            MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //Configuramos el label y el texbox de contraseña
@@ -747,6 +604,60 @@ namespace Proyecto_Grupo13.Administrador
         private void textDNI_Leave(object sender, EventArgs e)
         {
             ValidarDNIUnico();
+        }
+
+        private void iconBtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void iconBtnActualizar_Click(object sender, EventArgs e)
+        {
+            // Validamos los campos
+            string mensajeError;
+            if (!ValidarCamposVacios(out mensajeError))
+            {
+                MessageBox.Show(mensajeError, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidarDNIUnico()) return;
+
+            if (filaEditar != -1)
+            {
+                DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (askEdit != DialogResult.Yes) return;
+
+                Rol rolSeleccionado = (Rol)comboBoxRol.SelectedItem;
+
+                Usuario usuario = new Usuario()
+                {
+                    id_usuario = Convert.ToInt32(dataGridView1.Rows[filaEditar].Tag),
+                    nombreCompleto = formatearTexto(textNombre.Text),
+                    dni = Convert.ToInt32(textDNI.Text),
+                    email = textEmail.Text.Trim(),
+                    telefono = textTelefono.Text.Trim(),
+                    direccion = textDireccion.Text.Trim(),
+                    contraseña = textContraseña.Text,
+                    estado = comboBoxEstado.Text == "Activo" ? 1 : 0,
+                    rol = rolSeleccionado
+                };
+
+                string mensaje;
+                bool respuesta = objCL_Usuario.EditarUsuario(usuario, out mensaje);
+
+                if (respuesta)
+                {
+                    MessageBox.Show("Usuario editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarUsuarios();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje != "" ? mensaje : "No se pudo editar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

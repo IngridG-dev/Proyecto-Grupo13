@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.iconMenuUsuarios = new FontAwesome.Sharp.IconMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuProductos = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuProveedor = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuCompra = new FontAwesome.Sharp.IconMenuItem();
@@ -43,8 +45,6 @@
             this.reporteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelContenido = new System.Windows.Forms.Panel();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +108,20 @@
             this.iconMenuUsuarios.Text = "Usuarios";
             this.iconMenuUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconMenuUsuarios.Click += new System.EventHandler(this.iconMenuUsuarios_Click);
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // iconMenuProductos
             // 
@@ -232,30 +246,16 @@
             this.panelContenido.Location = new System.Drawing.Point(0, 147);
             this.panelContenido.Margin = new System.Windows.Forms.Padding(4);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1318, 602);
+            this.panelContenido.Size = new System.Drawing.Size(1318, 623);
             this.panelContenido.TabIndex = 0;
             this.panelContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenido_Paint);
-            // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
-            // 
-            // clientesToolStripMenuItem
-            // 
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.clientesToolStripMenuItem.Text = "Clientes";
-            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // menuAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(1318, 749);
+            this.ClientSize = new System.Drawing.Size(1318, 770);
             this.Controls.Add(this.panelContenido);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);

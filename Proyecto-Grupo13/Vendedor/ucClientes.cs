@@ -150,20 +150,20 @@ namespace Proyecto_Grupo13.Vendedor
         private void btnAgregar_Click(object sender, EventArgs e)
         {
 
-            // Valida que no haya vacíos
+            // 1.Valida que no haya vacíos
             if (!ValidarCamposVacios())
             {
                 MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Corta la ejecución aquí
+                return;
             }
 
-            // Validar que el DNI no exista en la BD
+            // 2. Validar que el DNI no exista en la BD
             if (!ValidarDNIUnico())
             {
-                return; // El mensaje de error ya lo muestra el método ValidarDNIUnico
+                return;
             }
 
-            // Crea el objeto con la información de las cajas de texto
+            // 3. Crea el objeto con la información de las cajas de texto
             Cliente objCliente = new Cliente()
             {
                 nombreCompleto = formatearTexto(textNombre.Text),
@@ -173,54 +173,22 @@ namespace Proyecto_Grupo13.Vendedor
                 direccion = textDireccion.Text
             };
 
-            // Evalua si se está editando o creando un cliente nuevo
-            if (filaEditar != -1) // MODO EDITAR
-            {
-                // Obtenemos el ID guardado en el Tag
-                objCliente.id_cliente = Convert.ToInt32(GridClientes.Rows[filaEditar].Tag);
+            // 4. Inserción directa (Ya sin el if de filaEditar)
+            DialogResult ask = MessageBox.Show("¿Seguro que desea registrar este nuevo cliente?", "Confirmar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Ejecutamos la consulta en la BD
-                bool resultado = objCL_Cliente.EditarCliente(objCliente);
+            if (ask == DialogResult.Yes)
+            {
+                bool resultado = objCL_Cliente.RegistrarCliente(objCliente);
 
                 if (resultado)
                 {
-                    // Si la BD se actualizó, actualizamos la tablita visual
-                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombreCompleto;
-                    GridClientes.Rows[filaEditar].Cells[1].Value = objCliente.dni;
-                    GridClientes.Rows[filaEditar].Cells[2].Value = objCliente.email;
-                    GridClientes.Rows[filaEditar].Cells[3].Value = objCliente.telefono;
-                    GridClientes.Rows[filaEditar].Cells[4].Value = objCliente.direccion;
-
-                    MessageBox.Show("Cliente editado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cargarClientes();
+                    MessageBox.Show("El cliente " + objCliente.nombreCompleto + " se registró correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarCampos();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo editar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else // MODO AGREGAR NUEVO
-            {
-                DialogResult ask = MessageBox.Show("¿Seguro que desea registrar este nuevo cliente?", "Confirmar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (ask == DialogResult.Yes)
-                {
-                    // Ejecutamos la inserción en la BD
-                    bool resultado = objCL_Cliente.RegistrarCliente(objCliente);
-
-                    if (resultado)
-                    {
-                        // Si se registró exitosamente, recargamos toda la tabla para asegurarnos
-                        // de que obtenemos el ID_CLIENTE autogenerado por SQL Server
-                        cargarClientes();
-
-                        MessageBox.Show("El cliente " + objCliente.nombreCompleto + " se registró correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimpiarCampos();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo registrar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("No se pudo registrar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -254,9 +222,9 @@ namespace Proyecto_Grupo13.Vendedor
             textTelefono.Text = fila.Cells[3].Value?.ToString();
             textDireccion.Text = fila.Cells[4].Value?.ToString();
 
-            btnAgregar.Text = "Actualizar";
+            btnActualizar.Visible = true;
+            btnCancelar.Visible = true;
 
-            MessageBox.Show("Edite los datos en los campos de texto y haga clic en 'ACTUALIZAR' para aplicar los cambios.", "Modo Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //CARGAR CLIENTES DE LA BASE DE DATOS
@@ -344,10 +312,9 @@ namespace Proyecto_Grupo13.Vendedor
 
             filaEditar = -1; // Reiniciamos el estado de edición
 
-            // Cambiamos el texto del botón de nuevo a "Agregar"
-            btnAgregar.Text = "Agregar";
-            // Pone el foco en el campo de nombre para que el usuario pueda empezar a escribir directamente
-            textNombre.Focus();
+            // Restauramos los botones a su estado normal
+            btnActualizar.Visible = false;
+            btnCancelar.Visible = false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -424,6 +391,60 @@ namespace Proyecto_Grupo13.Vendedor
                 else
                 {
                     fila.Visible = false;
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            // 1. Validamos que no haya vacíos igual que al agregar
+            if (!ValidarCamposVacios())
+            {
+                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validar que el DNI no exista (ValidarDNIUnico ya sabe manejar si es el mismo cliente editándose)
+            if (!ValidarDNIUnico())
+            {
+                return;
+            }
+
+            // 3. Creamos el objeto AQUÍ adentro para que este botón lo reconozca
+            Cliente objCliente = new Cliente()
+            {
+                nombreCompleto = formatearTexto(textNombre.Text),
+                dni = Convert.ToInt32(textDNI.Text),
+                email = textEmail.Text,
+                telefono = textTelefono.Text,
+                direccion = textDireccion.Text
+            };
+
+            // 4. Modo Editar
+            if (filaEditar != -1)
+            {
+                objCliente.id_cliente = Convert.ToInt32(GridClientes.Rows[filaEditar].Tag);
+                bool resultado = objCL_Cliente.EditarCliente(objCliente);
+
+                if (resultado)
+                {
+                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombreCompleto;
+                    GridClientes.Rows[filaEditar].Cells[1].Value = objCliente.dni;
+                    GridClientes.Rows[filaEditar].Cells[2].Value = objCliente.email;
+                    GridClientes.Rows[filaEditar].Cells[3].Value = objCliente.telefono;
+                    GridClientes.Rows[filaEditar].Cells[4].Value = objCliente.direccion;
+
+                    MessageBox.Show("Cliente editado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCampos(); // Esto va a ocultar los botones automáticamente
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo editar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
