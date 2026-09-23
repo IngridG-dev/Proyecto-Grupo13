@@ -56,6 +56,8 @@
             this.lEmail = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.iconBtnActualizar = new FontAwesome.Sharp.IconButton();
+            this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,10 +69,9 @@
             this.btnEditar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(250, 464);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditar.Location = new System.Drawing.Point(153, 371);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(120, 54);
+            this.btnEditar.Size = new System.Drawing.Size(86, 43);
             this.btnEditar.TabIndex = 80;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -83,11 +84,10 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textBuscar.Location = new System.Drawing.Point(766, 148);
-            this.textBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBuscar.Location = new System.Drawing.Point(613, 118);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(361, 27);
+            this.textBuscar.Size = new System.Drawing.Size(289, 22);
             this.textBuscar.TabIndex = 79;
             // 
             // comboBoxEstado
@@ -100,10 +100,10 @@
             this.comboBoxEstado.Items.AddRange(new object[] {
             "Activo",
             "Inactivo"});
-            this.comboBoxEstado.Location = new System.Drawing.Point(275, 360);
-            this.comboBoxEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxEstado.Location = new System.Drawing.Point(220, 288);
+            this.comboBoxEstado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxEstado.Name = "comboBoxEstado";
-            this.comboBoxEstado.Size = new System.Drawing.Size(163, 28);
+            this.comboBoxEstado.Size = new System.Drawing.Size(131, 23);
             this.comboBoxEstado.TabIndex = 77;
             // 
             // textTelefono
@@ -112,10 +112,10 @@
             this.textTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textTelefono.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textTelefono.Location = new System.Drawing.Point(275, 313);
-            this.textTelefono.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textTelefono.Location = new System.Drawing.Point(220, 250);
+            this.textTelefono.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textTelefono.Name = "textTelefono";
-            this.textTelefono.Size = new System.Drawing.Size(163, 27);
+            this.textTelefono.Size = new System.Drawing.Size(131, 23);
             this.textTelefono.TabIndex = 75;
             this.textTelefono.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textTelefono_KeyPress);
@@ -126,10 +126,10 @@
             this.textEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textEmail.Location = new System.Drawing.Point(275, 261);
-            this.textEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textEmail.Location = new System.Drawing.Point(220, 209);
+            this.textEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(163, 27);
+            this.textEmail.Size = new System.Drawing.Size(131, 23);
             this.textEmail.TabIndex = 74;
             this.textEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textEmail_KeyPress);
@@ -140,10 +140,10 @@
             this.textDNI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textDNI.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textDNI.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textDNI.Location = new System.Drawing.Point(275, 208);
-            this.textDNI.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textDNI.Location = new System.Drawing.Point(220, 166);
+            this.textDNI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textDNI.Name = "textDNI";
-            this.textDNI.Size = new System.Drawing.Size(163, 27);
+            this.textDNI.Size = new System.Drawing.Size(131, 23);
             this.textDNI.TabIndex = 73;
             this.textDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDNI_KeyPress);
@@ -154,10 +154,10 @@
             this.textRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textRazonSocial.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textRazonSocial.Location = new System.Drawing.Point(275, 163);
-            this.textRazonSocial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textRazonSocial.Location = new System.Drawing.Point(220, 130);
+            this.textRazonSocial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textRazonSocial.Name = "textRazonSocial";
-            this.textRazonSocial.Size = new System.Drawing.Size(163, 27);
+            this.textRazonSocial.Size = new System.Drawing.Size(131, 23);
             this.textRazonSocial.TabIndex = 72;
             this.textRazonSocial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textRazonSocial_KeyPress);
@@ -173,10 +173,10 @@
             "DNI",
             "Razón Social",
             "Email"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(591, 148);
-            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxBuscar.Location = new System.Drawing.Point(473, 118);
+            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(167, 28);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(134, 23);
             this.comboBoxBuscar.TabIndex = 71;
             // 
             // btnEliminar
@@ -187,10 +187,10 @@
             this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(319, 404);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEliminar.Location = new System.Drawing.Point(248, 323);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(120, 54);
+            this.btnEliminar.Size = new System.Drawing.Size(87, 43);
             this.btnEliminar.TabIndex = 70;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -206,10 +206,10 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(176, 404);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregar.Location = new System.Drawing.Point(153, 323);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(120, 54);
+            this.btnAgregar.Size = new System.Drawing.Size(86, 43);
             this.btnAgregar.TabIndex = 69;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -222,10 +222,9 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(1135, 148);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Location = new System.Drawing.Point(908, 118);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(59, 27);
+            this.btnBuscar.Size = new System.Drawing.Size(47, 22);
             this.btnBuscar.TabIndex = 68;
             this.btnBuscar.UseVisualStyleBackColor = false;
             // 
@@ -241,12 +240,11 @@
             this.Teléfono,
             this.Estado});
             this.dataGridProveedor.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.dataGridProveedor.Location = new System.Drawing.Point(484, 189);
-            this.dataGridProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridProveedor.Location = new System.Drawing.Point(387, 151);
             this.dataGridProveedor.Name = "dataGridProveedor";
             this.dataGridProveedor.RowHeadersWidth = 51;
             this.dataGridProveedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridProveedor.Size = new System.Drawing.Size(710, 364);
+            this.dataGridProveedor.Size = new System.Drawing.Size(568, 315);
             this.dataGridProveedor.TabIndex = 67;
             // 
             // RazonSocial
@@ -286,9 +284,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label1.Location = new System.Drawing.Point(496, 151);
+            this.label1.Location = new System.Drawing.Point(397, 121);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 20);
+            this.label1.Size = new System.Drawing.Size(66, 15);
             this.label1.TabIndex = 66;
             this.label1.Text = "Buscar por:";
             // 
@@ -297,9 +296,10 @@
             this.labelListaProveedores.AutoSize = true;
             this.labelListaProveedores.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.labelListaProveedores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelListaProveedores.Location = new System.Drawing.Point(480, 96);
+            this.labelListaProveedores.Location = new System.Drawing.Point(384, 77);
+            this.labelListaProveedores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelListaProveedores.Name = "labelListaProveedores";
-            this.labelListaProveedores.Size = new System.Drawing.Size(223, 23);
+            this.labelListaProveedores.Size = new System.Drawing.Size(176, 19);
             this.labelListaProveedores.TabIndex = 64;
             this.labelListaProveedores.Text = "Lista de Proveedores";
             // 
@@ -308,9 +308,10 @@
             this.lDatosProveedor.AutoSize = true;
             this.lDatosProveedor.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDatosProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDatosProveedor.Location = new System.Drawing.Point(195, 96);
+            this.lDatosProveedor.Location = new System.Drawing.Point(156, 77);
+            this.lDatosProveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDatosProveedor.Name = "lDatosProveedor";
-            this.lDatosProveedor.Size = new System.Drawing.Size(217, 23);
+            this.lDatosProveedor.Size = new System.Drawing.Size(173, 19);
             this.lDatosProveedor.TabIndex = 56;
             this.lDatosProveedor.Text = "Datos del Proveedor";
             this.lDatosProveedor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -320,9 +321,10 @@
             this.lEstado.AutoSize = true;
             this.lEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lEstado.Location = new System.Drawing.Point(195, 370);
+            this.lEstado.Location = new System.Drawing.Point(156, 296);
+            this.lEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEstado.Name = "lEstado";
-            this.lEstado.Size = new System.Drawing.Size(54, 20);
+            this.lEstado.Size = new System.Drawing.Size(42, 15);
             this.lEstado.TabIndex = 63;
             this.lEstado.Text = "Estado";
             // 
@@ -331,9 +333,10 @@
             this.lRazonSocial.AutoSize = true;
             this.lRazonSocial.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lRazonSocial.Location = new System.Drawing.Point(172, 165);
+            this.lRazonSocial.Location = new System.Drawing.Point(138, 132);
+            this.lRazonSocial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lRazonSocial.Name = "lRazonSocial";
-            this.lRazonSocial.Size = new System.Drawing.Size(94, 20);
+            this.lRazonSocial.Size = new System.Drawing.Size(73, 15);
             this.lRazonSocial.TabIndex = 57;
             this.lRazonSocial.Text = "Razón Social";
             // 
@@ -342,9 +345,10 @@
             this.lTelefono.AutoSize = true;
             this.lTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lTelefono.Location = new System.Drawing.Point(188, 323);
+            this.lTelefono.Location = new System.Drawing.Point(150, 258);
+            this.lTelefono.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTelefono.Name = "lTelefono";
-            this.lTelefono.Size = new System.Drawing.Size(67, 20);
+            this.lTelefono.Size = new System.Drawing.Size(53, 15);
             this.lTelefono.TabIndex = 62;
             this.lTelefono.Text = "Teléfono";
             // 
@@ -353,9 +357,10 @@
             this.lDni.AutoSize = true;
             this.lDni.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDni.Location = new System.Drawing.Point(203, 218);
+            this.lDni.Location = new System.Drawing.Point(162, 174);
+            this.lDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(35, 20);
+            this.lDni.Size = new System.Drawing.Size(27, 15);
             this.lDni.TabIndex = 58;
             this.lDni.Text = "DNI";
             // 
@@ -364,33 +369,74 @@
             this.lEmail.AutoSize = true;
             this.lEmail.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lEmail.Location = new System.Drawing.Point(203, 271);
+            this.lEmail.Location = new System.Drawing.Point(162, 217);
+            this.lEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEmail.Name = "lEmail";
-            this.lEmail.Size = new System.Drawing.Size(46, 20);
+            this.lEmail.Size = new System.Drawing.Size(36, 15);
             this.lEmail.TabIndex = 59;
             this.lEmail.Text = "Email";
             // 
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(167, 78);
+            this.label2.Location = new System.Drawing.Point(134, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(286, 493);
+            this.label2.Size = new System.Drawing.Size(229, 420);
             this.label2.TabIndex = 81;
             // 
             // label3
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(459, 78);
+            this.label3.Location = new System.Drawing.Point(367, 62);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(764, 493);
+            this.label3.Size = new System.Drawing.Size(612, 420);
             this.label3.TabIndex = 82;
+            // 
+            // iconBtnActualizar
+            // 
+            this.iconBtnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnActualizar.IconChar = FontAwesome.Sharp.IconChar.Repeat;
+            this.iconBtnActualizar.IconColor = System.Drawing.Color.Green;
+            this.iconBtnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnActualizar.IconSize = 30;
+            this.iconBtnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnActualizar.Location = new System.Drawing.Point(249, 372);
+            this.iconBtnActualizar.Name = "iconBtnActualizar";
+            this.iconBtnActualizar.Size = new System.Drawing.Size(86, 43);
+            this.iconBtnActualizar.TabIndex = 83;
+            this.iconBtnActualizar.Text = "Actualizar";
+            this.iconBtnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconBtnActualizar.UseVisualStyleBackColor = false;
+            this.iconBtnActualizar.Click += new System.EventHandler(this.iconBtnActualizar_Click);
+            // 
+            // iconBtnCancelar
+            // 
+            this.iconBtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.iconBtnCancelar.IconColor = System.Drawing.Color.Red;
+            this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnCancelar.IconSize = 30;
+            this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnCancelar.Location = new System.Drawing.Point(201, 420);
+            this.iconBtnCancelar.Name = "iconBtnCancelar";
+            this.iconBtnCancelar.Size = new System.Drawing.Size(86, 43);
+            this.iconBtnCancelar.TabIndex = 84;
+            this.iconBtnCancelar.Text = "Cancelar";
+            this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconBtnCancelar.UseVisualStyleBackColor = false;
+            this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
             // 
             // ucProveedor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnCancelar);
+            this.Controls.Add(this.iconBtnActualizar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.textBuscar);
             this.Controls.Add(this.comboBoxEstado);
@@ -413,9 +459,8 @@
             this.Controls.Add(this.lEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucProveedor";
-            this.Size = new System.Drawing.Size(1392, 682);
+            this.Size = new System.Drawing.Size(1114, 546);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -451,5 +496,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private FontAwesome.Sharp.IconButton iconBtnActualizar;
+        private FontAwesome.Sharp.IconButton iconBtnCancelar;
     }
 }

@@ -16,6 +16,7 @@ namespace Proyecto_Grupo13.Administrador
         public ucProveedor()
         {
             InitializeComponent();
+            LimpiarFormulario();
         }
         // VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
         private void textRazonSocial_KeyPress(object sender, KeyPressEventArgs e)
@@ -137,66 +138,38 @@ namespace Proyecto_Grupo13.Administrador
             // Primera letra mayúscula, el resto minúscula
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
+        //METODO PARA LIMPIAR EL FORMULARIO Y REINICIAR ESTADO
+        private void LimpiarFormulario()
+        {
+            textRazonSocial.Clear();
+            textDNI.Clear();
+            textEmail.Clear();
+            textTelefono.Clear();
+            comboBoxEstado.SelectedIndex = -1;
 
-        //BOTONES AGREGAR, ELIMINAR, BUSCAR Y EDITAR
+            filaEditar = -1; // Reiniciamos la variable
+
+            // Habilitamos/Deshabilitamos botones para evitar errores
+            btnAgregar.Enabled = true;
+            iconBtnActualizar.Enabled = false;
+            iconBtnCancelar.Enabled = false;
+        }
+
+        //BOTONES AGREGAR, ELIMINAR, EDITAR, ACTUALIZA, CANCELAR
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             // Validamos que no haya campos vacíos antes de insertar en la tabla
-            if (ValidarCamposVacios() == true)
+            if (ValidarCamposVacios())
             {
-                if (filaEditar != -1)
+                DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo proveedor?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (ask == DialogResult.Yes)
                 {
-                    DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del proveedor?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (askEdit == DialogResult.Yes)
-                    {
-                        // Actualizar la fila seleccionada con los nuevos datos
-                        dataGridProveedor.Rows[filaEditar].Cells[0].Value = formatearTexto(textRazonSocial.Text);
-                        dataGridProveedor.Rows[filaEditar].Cells[1].Value = textDNI.Text;
-                        dataGridProveedor.Rows[filaEditar].Cells[2].Value = textEmail.Text;
-                        dataGridProveedor.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
-                        dataGridProveedor.Rows[filaEditar].Cells[4].Value = comboBoxEstado.Text;
-                        // Aquí iría la lógica para actualizar el proveedor en la base de datos o lista (NOTA)
-                        MessageBox.Show("Proveedor editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // Limpiar los campos de texto y restablecer el índice de la fila a editar
-                        textRazonSocial.Clear();
-                        textDNI.Clear();
-                        textEmail.Clear();
-                        textTelefono.Clear();
-                        comboBoxEstado.SelectedIndex = -1;
-                        filaEditar = -1; // Reinicia el índice de la fila a editar
-                    }
-                    else
-                    {
-                        // Si el usuario no desea guardar los cambios, simplemente se limpia el índice de la fila a editar
-                        filaEditar = -1; // Reinicia el índice de la fila a editar
-                    }
-                }
-                else
-                {
-                    // Hacemos una pregunta de confirmación antes de insertar el nuevo proveedor
-                    DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo proveedor?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-
-                    // Si aprieta "Sí", se procede a insertar el nuevo proveedor en la tabla
-                    if (ask == DialogResult.Yes)
-                    {
-                        // Formateamos el texto del nombre
-                        string nombre = formatearTexto(textRazonSocial.Text);
-
-                        // Agregamos los datos a la tabla
-                        dataGridProveedor.Rows.Add(nombre, textDNI.Text, textEmail.Text, textTelefono.Text, comboBoxEstado.Text);
-
-                        MessageBox.Show("El proveedor " + nombre + " se insertó correctamente en la tabla.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Limpiamos los campos
-                        textRazonSocial.Clear();
-                        textDNI.Clear();
-                        textEmail.Clear();
-                        textTelefono.Clear();
-                        comboBoxEstado.SelectedIndex = -1;
-
-                        textRazonSocial.Focus();
-                    }
-                    // Si aprieta "NO" no se hace nada y se cancela la insercion
+                    string nombre = formatearTexto(textRazonSocial.Text);
+                    //agregamos los datos a la tabla
+                    dataGridProveedor.Rows.Add(nombre, textDNI.Text, textEmail.Text, textTelefono.Text, comboBoxEstado.Text);
+                    MessageBox.Show("Proveedor " + nombre + " agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarFormulario();
+                    textRazonSocial.Focus(); // Establece el foco en el TextBox de Razon Social
                 }
             }
             else
@@ -260,8 +233,47 @@ namespace Proyecto_Grupo13.Administrador
             textTelefono.Text = fila.Cells[3].Value?.ToString();
             comboBoxEstado.Text = fila.Cells[4].Value?.ToString();
             
-            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnAgregar.Enabled = false; // Deshabilita el botón Agregar mientras se edita
+            iconBtnActualizar.Enabled = true; // Habilita el botón Actualizar
+            iconBtnCancelar.Enabled = true; // Habilita el botón Cancelar
+        }
 
+        private void iconBtnActualizar_Click(object sender, EventArgs e)
+        {
+            if (filaEditar == -1)
+            {
+                MessageBox.Show("No hay ningún proveedor seleccionado para actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (ValidarCamposVacios())
+            {
+                DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del proveedor?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (askEdit == DialogResult.Yes)
+                {
+                    // Actualizar la fila seleccionada
+                    dataGridProveedor.Rows[filaEditar].Cells[0].Value = formatearTexto(textRazonSocial.Text);
+                    dataGridProveedor.Rows[filaEditar].Cells[1].Value = textDNI.Text;
+                    dataGridProveedor.Rows[filaEditar].Cells[2].Value = textEmail.Text;
+                    dataGridProveedor.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
+                    dataGridProveedor.Rows[filaEditar].Cells[4].Value = comboBoxEstado.Text;
+
+                    MessageBox.Show("Proveedor actualizado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LimpiarFormulario();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void iconBtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
         }
     }
 }
