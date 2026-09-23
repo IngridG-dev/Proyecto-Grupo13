@@ -74,11 +74,13 @@ namespace Proyecto_Grupo13.Administrador
             if (string.IsNullOrWhiteSpace(textNombre.Text))
             {
                 textNombre.BackColor = Color.LightPink;
+                textNombre.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textNombre.BackColor = colorNormal;
+                textNombre.ForeColor = Color.White;
             }
 
             // =========================
@@ -87,11 +89,13 @@ namespace Proyecto_Grupo13.Administrador
             if (string.IsNullOrWhiteSpace(textCodigo.Text))
             {
                 textCodigo.BackColor = Color.LightPink;
+                textCodigo.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textCodigo.BackColor = colorNormal;
+                textCodigo.ForeColor = Color.White;
             }
 
             // =========================
@@ -100,11 +104,13 @@ namespace Proyecto_Grupo13.Administrador
             if (string.IsNullOrWhiteSpace(textDescripcion.Text))
             {
                 textDescripcion.BackColor = Color.LightPink;
+                textDescripcion.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textDescripcion.BackColor = colorNormal;
+                textDescripcion.ForeColor = Color.White;
             }
 
             // =========================
@@ -113,11 +119,13 @@ namespace Proyecto_Grupo13.Administrador
             if (string.IsNullOrWhiteSpace(textStock.Text))
             {
                 textStock.BackColor = Color.LightPink;
+                textStock.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textStock.BackColor = colorNormal;
+                textStock.ForeColor = Color.White;
             }
             // =========================
             // CATEGORIA
@@ -125,11 +133,13 @@ namespace Proyecto_Grupo13.Administrador
             if (comboBoxCategoria.SelectedIndex == -1)
             {
                 comboBoxCategoria.BackColor = Color.LightPink;
+                comboBoxCategoria.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 comboBoxCategoria.BackColor = colorNormal;
+                comboBoxCategoria.ForeColor = Color.White;
             }
             return esValido;
         }

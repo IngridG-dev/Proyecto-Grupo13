@@ -68,53 +68,63 @@ namespace Proyecto_Grupo13.Administrador
             if (string.IsNullOrWhiteSpace(textRazonSocial.Text))
             {
                 textRazonSocial.BackColor = Color.LightPink;
+                textRazonSocial.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textRazonSocial.BackColor = colorNormal;
+                textRazonSocial.ForeColor = Color.White;
             }
 
             // DNI
             if (string.IsNullOrWhiteSpace(textDNI.Text))
             {
                 textDNI.BackColor = Color.LightPink;
+                textDNI.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textDNI.BackColor = colorNormal;
+                textDNI.ForeColor = Color.White;
             }
 
             // EMAIL
             if (string.IsNullOrWhiteSpace(textEmail.Text))
             {
                 textEmail.BackColor = Color.LightPink;
+                textEmail.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textEmail.BackColor = colorNormal;
+                textEmail.ForeColor = Color.White;
             }
             // TELÉFONO
             if (string.IsNullOrWhiteSpace(textTelefono.Text))
             {
                 textTelefono.BackColor = Color.LightPink;
+                textTelefono.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 textTelefono.BackColor = colorNormal;
+                textTelefono.ForeColor = Color.White;
             }
             // ESTADO
             if (comboBoxEstado.SelectedIndex == -1)
             {
                 comboBoxEstado.BackColor = Color.LightPink;
+                comboBoxEstado.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
                 comboBoxEstado.BackColor = colorNormal;
+                comboBoxEstado.ForeColor = Color.White;
             }
 
             return esValido;
