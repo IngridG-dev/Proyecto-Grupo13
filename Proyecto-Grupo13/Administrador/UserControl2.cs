@@ -228,23 +228,14 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxEstado.SelectedIndex = -1;
             textContraseña.Clear(); // limpiar el TextBox de Contraseña
             textContraseña.Visible = false; // Ocultar el TextBox de Contraseña
+            // Cambiar el texto del botón Agregar de nuevo a "Agregar"
+            btnAgregar.Text = "Agregar";
         }
 
         // BOTON AGREGAR
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
-            string dniIngresado = textDNI.Text.Trim();
-
-            // 1. Verificamos si el DNI ya existe en cualquier tabla
-            bool dniDuplicado = new CL_Cliente().ExisteDNIGlobal(dniIngresado);
-
-            if (dniDuplicado)
-            {
-                MessageBox.Show("Error: Este DNI ya se encuentra registrado en el sistema, ya sea como Cliente o como Usuario.", "DNI Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // El 'return' corta la ejecución y evita que se guarde
-            }
             // Validamos los campos
             string mensajeError;
             if (!ValidarCamposVacios(out mensajeError))
@@ -562,7 +553,9 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxEstado.Text = fila.Cells[6].Value?.ToString();
             textContraseña.Clear();
 
-            MessageBox.Show("Edite los campos y haga clic en 'Agregar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Cambiamos el texto del botón Agregar a "Actualizar"
+            btnAgregar.Text = "Actualizar";
+            MessageBox.Show("Edite los campos y haga clic en 'ACTUALIZAR' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //Configuramos el label y el texbox de contraseña

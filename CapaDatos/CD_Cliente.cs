@@ -225,34 +225,5 @@ namespace CapaDatos
 
             return respuesta;
         }
-
-        // VERIFICAR SI EL DNI YA EXISTE EN LA BASE DE DATOS DE CLIENTES O USUARIOS
-        public bool ExisteDNIGlobal(string dniBuscado)
-        {
-            bool existe = false;
-            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
-            {
-                // Esta consulta busca el DNI en ambas tablas al mismo tiempo
-                string query = @"
-            SELECT SUM(Cantidad) FROM (
-                SELECT COUNT(*) as Cantidad FROM CLIENTE WHERE dni = @dni
-                UNION ALL
-                SELECT COUNT(*) as Cantidad FROM USUARIO WHERE dni = @dni
-            ) AS BusquedaGlobal";
-
-                SqlCommand cmd = new SqlCommand(query, oconexion);
-                cmd.Parameters.AddWithValue("@dni", dniBuscado);
-                oconexion.Open();
-
-                // ExecuteScalar devuelve el primer valor de la consulta (la suma total)
-                int totalEncontrado = Convert.ToInt32(cmd.ExecuteScalar());
-
-                if (totalEncontrado > 0)
-                {
-                    existe = true; // El DNI ya está en uso
-                }
-            }
-            return existe;
-        }
     }
 }

@@ -149,16 +149,6 @@ namespace Proyecto_Grupo13.Vendedor
         //CONFIGURACIÓN DEL BOTÓN AGREGAR Y EDITAR CLIENTE
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string dniIngresado = textDNI.Text.Trim();
-
-            // 1. Verificamos si el DNI ya existe en cualquier tabla
-            bool dniDuplicado = new CL_Cliente().ExisteDNIGlobal(dniIngresado);
-
-            if (dniDuplicado)
-            {
-                MessageBox.Show("Error: Este DNI ya se encuentra registrado en el sistema, ya sea como Cliente o como Usuario.", "DNI Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // El 'return' corta la ejecución y evita que se guarde
-            }
 
             // Valida que no haya vacíos
             if (!ValidarCamposVacios())
@@ -264,7 +254,9 @@ namespace Proyecto_Grupo13.Vendedor
             textTelefono.Text = fila.Cells[3].Value?.ToString();
             textDireccion.Text = fila.Cells[4].Value?.ToString();
 
-            MessageBox.Show("Edite los datos en los campos de texto y haga clic en 'Guardar/Agregar' para aplicar los cambios.", "Modo Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnAgregar.Text = "Actualizar";
+
+            MessageBox.Show("Edite los datos en los campos de texto y haga clic en 'ACTUALIZAR' para aplicar los cambios.", "Modo Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //CARGAR CLIENTES DE LA BASE DE DATOS
@@ -351,6 +343,10 @@ namespace Proyecto_Grupo13.Vendedor
             textDireccion.BackColor = colorNormal;
 
             filaEditar = -1; // Reiniciamos el estado de edición
+
+            // Cambiamos el texto del botón de nuevo a "Agregar"
+            btnAgregar.Text = "Agregar";
+            // Pone el foco en el campo de nombre para que el usuario pueda empezar a escribir directamente
             textNombre.Focus();
         }
 

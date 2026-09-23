@@ -43,10 +43,5 @@ namespace CapaLogica
             return objCD_Cliente.EliminarCliente(idCliente);
         }
 
-        // VERIFICAR SI EL DNI YA EXISTE EN LA BASE DE DATOS DE CLIENTES (GLOBAL)
-        public bool ExisteDNIGlobal(string dniBuscado)
-        {
-            return objCD_Cliente.ExisteDNIGlobal(dniBuscado);
-        }
     }
 }
