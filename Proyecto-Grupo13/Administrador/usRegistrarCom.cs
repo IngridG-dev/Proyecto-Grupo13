@@ -19,16 +19,6 @@ namespace Proyecto_Grupo13.Administrador
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void iconBtnCrearVenta_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //VALIDACIONES DE CAMPOS
         private void textPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -124,13 +114,16 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            // Validar que el precio sea correcto
+            // Validar que el precio de compra sea correcto
             if (!decimal.TryParse(textPrecio.Text, out decimal precio))
             {
                 MessageBox.Show("Ingrese un precio válido.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // Capturar el precio de venta (si está vacío o incorrecto, asignará 0)
+            decimal.TryParse(textPrecioV.Text, out decimal precioVenta);
 
             // Obtener cantidad
             int cantidad = (int)numericCantidad.Value;
@@ -142,7 +135,7 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            // Calcular subtotal
+            // Calcular subtotal (asumiendo que se calcula con el precio de compra)
             decimal subTotal = precio * cantidad;
 
             // SI ESTAMOS EDITANDO
@@ -154,24 +147,15 @@ namespace Proyecto_Grupo13.Administrador
                 );
 
                 // Actualizar los valores de la fila
-                dataGridView1.Rows[filaEditando].Cells["CodigoProducto"].Value =
-                    textCodProduct.Text;
-
-                dataGridView1.Rows[filaEditando].Cells["Producto"].Value =
-                    textProducto.Text;
-
-                dataGridView1.Rows[filaEditando].Cells["Precio"].Value =
-                    precio.ToString("0.00");
-
-                dataGridView1.Rows[filaEditando].Cells["Cantidad"].Value =
-                    cantidad;
-
-                dataGridView1.Rows[filaEditando].Cells["SubTotal"].Value =
-                    subTotal.ToString("0.00");
+                dataGridView1.Rows[filaEditando].Cells["CodigoProducto"].Value = textCodProduct.Text;
+                dataGridView1.Rows[filaEditando].Cells["Producto"].Value = textProducto.Text;
+                dataGridView1.Rows[filaEditando].Cells["PrecioCompra"].Value = precio.ToString("0.00");
+                dataGridView1.Rows[filaEditando].Cells["PrecioVenta"].Value = precioVenta.ToString("0.00");
+                dataGridView1.Rows[filaEditando].Cells["Cantidad"].Value = cantidad;
+                dataGridView1.Rows[filaEditando].Cells["SubTotal"].Value = subTotal.ToString("0.00");
 
                 // Actualizar el total general
                 CalcularTotal();
-
                 textTotalPagar.Text = totalAPagar.ToString("0.00");
 
                 // Salir del modo edición
@@ -182,15 +166,18 @@ namespace Proyecto_Grupo13.Administrador
 
                 return;
             }
+
             // SI NO ESTAMOS EDITANDO SE AGREGA PRODUCTO NUEVO
             dataGridView1.Rows.Add(new object[]
             {
-        textCodProduct.Text,
-        textProducto.Text,
-        precio.ToString("0.00"),
-        cantidad,
-        subTotal.ToString("0.00")
+                 textCodProduct.Text,          // Va a la columna "CodigoProducto"
+                 textProducto.Text,            // Va a la columna "Producto"
+                 precio.ToString("0.00"),      // Va a la columna "PrecioCompra"
+                 precioVenta.ToString("0.00"), // Va a la columna "PrecioVenta"
+                 cantidad,                     // Va a la columna "Cantidad"
+                 subTotal.ToString("0.00")     // Va a la columna "SubTotal"
             });
+
 
             // Sumar al total general
             CalcularTotal();
@@ -205,6 +192,7 @@ namespace Proyecto_Grupo13.Administrador
             textCodProduct.Clear();
             textProducto.Clear();
             textPrecio.Clear();
+            textPrecioV.Clear();
             numericCantidad.Value = numericCantidad.Minimum;
         }
         // Calcular el total general de la venta
@@ -255,8 +243,14 @@ namespace Proyecto_Grupo13.Administrador
 
                 // Obtener precio
                 decimal.TryParse(
-                    dataGridView1.Rows[fila].Cells["Precio"].Value?.ToString(),
+                    dataGridView1.Rows[fila].Cells["PrecioCompra"].Value?.ToString(),
                     out decimal precio
+                );
+
+                // precio venta
+                decimal.TryParse(
+                    dataGridView1.Rows[fila].Cells["PrecioVenta"].Value?.ToString(),
+                    out decimal precioVenta
                 );
 
                 // Obtener cantidad
@@ -312,6 +306,40 @@ namespace Proyecto_Grupo13.Administrador
                     CalcularTotal();
                 }
             }
+        }
+
+        private void iconBtnRegistrarC_Click(object sender, EventArgs e)
+        {
+            //Validar que los campos de texto principales (Documento y Razon Social) no estén vacíos
+            if (string.IsNullOrWhiteSpace(textNumDocumento.Text) ||
+                string.IsNullOrWhiteSpace(textRazonSocial.Text))
+            {
+                MessageBox.Show("Debe completar todos los campos antes de registrar una compra.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución del método para que no continúe registrando
+            }
+
+            // Validar que haya al menos un producto en el DataGridView
+            // Se verifica si la tabla está vacía o si solo tiene la fila nueva (vacía) de abajo
+            if (dataGridView1.Rows.Count == 0 || (dataGridView1.Rows.Count == 1 && dataGridView1.Rows[0].IsNewRow))
+            {
+                MessageBox.Show("Debe agregar al menos un producto a la lista antes de registrar la compra.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Se continua con el registro de la compra, ya que todas las validaciones pasaron
+            MessageBox.Show("Compra registrada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Limpiar todo el formulario después de registrar
+            textNumDocumento.Clear();
+            textRazonSocial.Clear();
+            textPrecioV.Clear();
+            textPrecio.Clear();
+            textProducto.Clear();
+            textCodProduct.Clear();
+            numericCantidad.Value = 0;
+            dataGridView1.Rows.Clear();
+            totalAPagar = 0;
+            textTotalPagar.Text = "0.00";
         }
     }
 }

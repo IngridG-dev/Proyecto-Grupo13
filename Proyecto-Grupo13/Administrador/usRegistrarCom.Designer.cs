@@ -59,12 +59,13 @@
             this.lTotalPagar = new System.Windows.Forms.Label();
             this.iconBtnRegistrarC = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,7 +86,6 @@
             this.label1.Size = new System.Drawing.Size(147, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Registar Compra";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox1
             // 
@@ -401,16 +401,18 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idProducto,
+            this.CodigoProducto,
             this.Producto,
-            this.PrecioVenta,
             this.PrecioCompra,
+            this.PrecioVenta,
             this.Cantidad,
             this.SubTotal,
+            this.btnEditar,
             this.btnEliminar});
             this.dataGridView1.Location = new System.Drawing.Point(234, 225);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
@@ -480,7 +482,7 @@
             this.iconBtnRegistrarC.Text = "Registrar";
             this.iconBtnRegistrarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBtnRegistrarC.UseVisualStyleBackColor = false;
-            this.iconBtnRegistrarC.Click += new System.EventHandler(this.iconBtnCrearVenta_Click);
+            this.iconBtnRegistrarC.Click += new System.EventHandler(this.iconBtnRegistrarC_Click);
             // 
             // label3
             // 
@@ -491,12 +493,10 @@
             this.label3.Size = new System.Drawing.Size(680, 390);
             this.label3.TabIndex = 55;
             // 
-            // idProducto
+            // CodigoProducto
             // 
-            this.idProducto.HeaderText = "id_Producto";
-            this.idProducto.MinimumWidth = 6;
-            this.idProducto.Name = "idProducto";
-            this.idProducto.Visible = false;
+            this.CodigoProducto.HeaderText = "Codigo Producto";
+            this.CodigoProducto.Name = "CodigoProducto";
             // 
             // Producto
             // 
@@ -504,18 +504,16 @@
             this.Producto.MinimumWidth = 6;
             this.Producto.Name = "Producto";
             // 
-            // PrecioVenta
-            // 
-            this.PrecioVenta.HeaderText = "Precio Venta";
-            this.PrecioVenta.MinimumWidth = 6;
-            this.PrecioVenta.Name = "PrecioVenta";
-            this.PrecioVenta.Visible = false;
-            // 
             // PrecioCompra
             // 
             this.PrecioCompra.HeaderText = "Precio Compra";
             this.PrecioCompra.MinimumWidth = 6;
             this.PrecioCompra.Name = "PrecioCompra";
+            // 
+            // PrecioVenta
+            // 
+            this.PrecioVenta.HeaderText = "Precio Venta";
+            this.PrecioVenta.Name = "PrecioVenta";
             // 
             // Cantidad
             // 
@@ -529,13 +527,20 @@
             this.SubTotal.MinimumWidth = 6;
             this.SubTotal.Name = "SubTotal";
             // 
+            // btnEditar
+            // 
+            this.btnEditar.HeaderText = "Editar";
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEditar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // btnEliminar
             // 
             this.btnEliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.btnEliminar.HeaderText = "Eliminar";
             this.btnEliminar.MinimumWidth = 6;
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Width = 125;
+            this.btnEliminar.Width = 54;
             // 
             // usRegistrarCom
             // 
@@ -600,12 +605,13 @@
         private System.Windows.Forms.Label lTotalPagar;
         private FontAwesome.Sharp.IconButton iconBtnRegistrarC;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCompra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.DataGridViewButtonColumn btnEditar;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
     }
 }

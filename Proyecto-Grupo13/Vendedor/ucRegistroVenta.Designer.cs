@@ -359,6 +359,7 @@
             this.textNombreComple.Name = "textNombreComple";
             this.textNombreComple.Size = new System.Drawing.Size(108, 18);
             this.textNombreComple.TabIndex = 47;
+            this.textNombreComple.TextChanged += new System.EventHandler(this.textNombreComple_TextChanged);
             // 
             // textNumDocumento
             // 

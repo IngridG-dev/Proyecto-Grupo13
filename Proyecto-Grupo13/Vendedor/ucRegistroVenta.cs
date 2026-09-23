@@ -114,7 +114,7 @@ namespace Proyecto_Grupo13.Vendedor
             // Calcular subtotal
             decimal subTotal = precio * cantidad;
 
-            // SI ESTAMOS EDITANDO
+            // SI ESTÁ EDITANDO
             if (filaEditando != -1)
             {
                 // Obtener el subtotal anterior
@@ -322,6 +322,11 @@ namespace Proyecto_Grupo13.Vendedor
                     textNombreComple.Text = modal.ClienteSeleccionado.nombreCompleto;
                 }
             }
+        }
+
+        private void textNombreComple_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
