@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace Proyecto_Grupo13.Vendedor
@@ -29,17 +31,13 @@ namespace Proyecto_Grupo13.Vendedor
         private void CargarVentasPrueba()
         {
             dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
 
-            dataGridView1.Columns.Add("NroVenta", "N° Venta");
-            dataGridView1.Columns.Add("Fecha", "Fecha");
-            dataGridView1.Columns.Add("Cliente", "Cliente");
-            dataGridView1.Columns.Add("Total", "Total");
-
-            dataGridView1.Rows.Add("0001", "23/09/2026", "María González", "45000");
-            dataGridView1.Rows.Add("0002", "23/09/2026", "Juan Pérez", "32500");
-            dataGridView1.Rows.Add("0003", "22/09/2026", "Sofía Rodríguez", "78000");
-            dataGridView1.Rows.Add("0004", "21/09/2026", "Carlos López", "21500");
+            // Agregamos los datos respetando el orden de tus 6 columnas del diseñador:
+            // N° Venta | Fecha | Cliente | DNI | Total | Ver
+            dataGridView1.Rows.Add("0001", "23/09/2026", "María González", "12345678", "45000", "Ver");
+            dataGridView1.Rows.Add("0002", "23/09/2026", "Juan Pérez", "87654321", "32500", "Ver");
+            dataGridView1.Rows.Add("0003", "22/09/2026", "Sofía Rodríguez", "11223344", "78000", "Ver");
+            dataGridView1.Rows.Add("0004", "21/09/2026", "Carlos López", "44332211", "21500", "Ver");
         }
 
         // ============================================================
@@ -65,18 +63,19 @@ namespace Proyecto_Grupo13.Vendedor
             // Evita error si se hace clic en el encabezado de las columnas
             if (e.RowIndex < 0) return;
 
-            // Obtenemos la fila de la tabla grande
             DataGridViewRow filaSeleccionada = dataGridView1.Rows[e.RowIndex];
 
-            string numeroVenta = filaSeleccionada.Cells["NroVenta"].Value?.ToString() ?? "";
-            string fecha = filaSeleccionada.Cells["Fecha"].Value?.ToString() ?? "";
-            string cliente = filaSeleccionada.Cells["Cliente"].Value?.ToString() ?? "";
-            string total = filaSeleccionada.Cells["Total"].Value?.ToString() ?? "0";
+            // Obtenemos los valores según el orden visual de las columnas (0, 1, 2, 4):
+            string numeroVenta = filaSeleccionada.Cells[0].Value?.ToString() ?? ""; // N° Venta
+            string fecha = filaSeleccionada.Cells[1].Value?.ToString() ?? ""; // Fecha
+            string cliente = filaSeleccionada.Cells[2].Value?.ToString() ?? ""; // Cliente
+            string dni = filaSeleccionada.Cells[3].Value?.ToString() ?? ""; // DNI
+            string total = filaSeleccionada.Cells[4].Value?.ToString() ?? "0"; // Total
 
-            // Mostrar información en los labels del ticket
             lNumeroVenta.Text = "N° Venta: " + numeroVenta;
             lFechaTicket.Text = "Fecha: " + fecha;
             lCliente.Text = "Cliente: " + cliente;
+            lDNI.Text = "DNI: " + dni;
             lTotal.Text = "Total: $" + total;
 
             // Limpiar productos anteriores de la tabla chiquita
@@ -86,28 +85,60 @@ namespace Proyecto_Grupo13.Vendedor
             switch (numeroVenta)
             {
                 case "0001":
-                    dataGridView2.Rows.Add("Remera Oversize", "2", "15000", "30000");
-                    dataGridView2.Rows.Add("Pantalón Cargo", "1", "15000", "15000");
+                    dataGridView2.Rows.Add("Cd Queen", "2", "15000", "30000");
+                    dataGridView2.Rows.Add("Vinilo AC/DC", "1", "15000", "15000");
                     break;
 
                 case "0002":
-                    dataGridView2.Rows.Add("Buzo Básico", "1", "20000", "20000");
-                    dataGridView2.Rows.Add("Gorra Negra", "1", "12500", "12500");
+                    dataGridView2.Rows.Add("Tocadiscos Retro", "1", "20000", "20000");
+                    dataGridView2.Rows.Add("Vinilo Metallica", "1", "12500", "12500");
                     break;
 
                 case "0003":
-                    dataGridView2.Rows.Add("Campera Deportiva", "1", "55000", "55000");
-                    dataGridView2.Rows.Add("Remera Básica", "2", "11500", "23000");
+                    dataGridView2.Rows.Add("Auricular JBL", "1", "55000", "55000");
+                    dataGridView2.Rows.Add("Cd Milo J", "2", "11500", "23000");
                     break;
 
                 case "0004":
-                    dataGridView2.Rows.Add("Jean Clásico", "1", "21500", "21500");
+                    dataGridView2.Rows.Add("Vinilo Rosie", "1", "21500", "21500");
                     break;
             }
 
             // Mostrar comprobante
             panelTicket.Visible = true;
             panelTicket.BringToFront();
+            string detallePago = "";
+
+            switch (numeroVenta)
+            {
+                case "0001": // Efectivo
+                    int pagocon1 = 50000;
+                    int total1 = 45000;
+                    int vuelto1 = pagocon1 - total1;
+
+                    detallePago = "• Método: Efectivo" + Environment.NewLine +
+                                  "• Abonó con: $" + pagocon1 + Environment.NewLine +
+                                  "• Vuelto: $" + vuelto1;
+                    break;
+
+                case "0002": // Crédito
+                    detallePago = "• Método: Tarjeta de Crédito" + Environment.NewLine +
+                                  "• Cuotas: 3 cuotas sin interés";
+                    break;
+
+                case "0003": // Transferencia
+                    detallePago = "• Método: Transferencia Bancaria" + Environment.NewLine +
+                                  "• N° Comprobante: #TR-88231";
+                    break;
+
+                case "0004": // Débito
+                    detallePago = "• Método: Tarjeta de Débito";
+                    break;
+            }
+
+            // Asignar al label del comprobante
+            lDetallePago.Text = "Detalles de Pago:" + Environment.NewLine + detallePago;
         }
     }
+
 }
