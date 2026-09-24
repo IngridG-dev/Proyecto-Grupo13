@@ -47,7 +47,7 @@
             this.labelRegistrarV = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboTipoDocumento = new System.Windows.Forms.ComboBox();
             this.labelFecha = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -72,7 +72,7 @@
             this.iconBtnAgregarV = new FontAwesome.Sharp.IconButton();
             this.btnDescargarTicket = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboFormaPago = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -171,6 +171,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -258,7 +259,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.comboTipoDocumento);
             this.groupBox1.Controls.Add(this.labelFecha);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -284,18 +285,18 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Tipo Documento:";
             // 
-            // comboBox1
+            // comboTipoDocumento
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboTipoDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboTipoDocumento.FormattingEnabled = true;
+            this.comboTipoDocumento.Items.AddRange(new object[] {
             "Boleta",
             "Factura"});
-            this.comboBox1.Location = new System.Drawing.Point(157, 38);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(112, 23);
-            this.comboBox1.TabIndex = 9;
+            this.comboTipoDocumento.Location = new System.Drawing.Point(157, 38);
+            this.comboTipoDocumento.Margin = new System.Windows.Forms.Padding(2);
+            this.comboTipoDocumento.Name = "comboTipoDocumento";
+            this.comboTipoDocumento.Size = new System.Drawing.Size(112, 23);
+            this.comboTipoDocumento.TabIndex = 9;
             // 
             // labelFecha
             // 
@@ -360,6 +361,7 @@
             this.textNombreComple.Size = new System.Drawing.Size(108, 18);
             this.textNombreComple.TabIndex = 47;
             this.textNombreComple.TextChanged += new System.EventHandler(this.textNombreComple_TextChanged);
+            this.textNombreComple.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNombreComple_KeyPress_1);
             // 
             // textNumDocumento
             // 
@@ -371,6 +373,7 @@
             this.textNumDocumento.Name = "textNumDocumento";
             this.textNumDocumento.Size = new System.Drawing.Size(108, 19);
             this.textNumDocumento.TabIndex = 46;
+            this.textNumDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNumDocumento_KeyPress);
             // 
             // labelNombComple
             // 
@@ -443,9 +446,9 @@
             this.textStock.Margin = new System.Windows.Forms.Padding(2);
             this.textStock.Multiline = true;
             this.textStock.Name = "textStock";
-            this.textStock.ReadOnly = true;
             this.textStock.Size = new System.Drawing.Size(80, 18);
             this.textStock.TabIndex = 62;
+            this.textStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textStock_KeyPress);
             // 
             // textPrecio
             // 
@@ -457,6 +460,7 @@
             this.textPrecio.Name = "textPrecio";
             this.textPrecio.Size = new System.Drawing.Size(80, 18);
             this.textPrecio.TabIndex = 61;
+            this.textPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textPrecio_KeyPress_1);
             // 
             // textProducto
             // 
@@ -466,9 +470,9 @@
             this.textProducto.Margin = new System.Windows.Forms.Padding(2);
             this.textProducto.Multiline = true;
             this.textProducto.Name = "textProducto";
-            this.textProducto.ReadOnly = true;
             this.textProducto.Size = new System.Drawing.Size(80, 18);
             this.textProducto.TabIndex = 60;
+            this.textProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textProducto_KeyPress);
             // 
             // textBoxCodProduct
             // 
@@ -480,6 +484,7 @@
             this.textBoxCodProduct.Name = "textBoxCodProduct";
             this.textBoxCodProduct.Size = new System.Drawing.Size(80, 18);
             this.textBoxCodProduct.TabIndex = 59;
+            this.textBoxCodProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCodProduct_KeyPress);
             // 
             // labelCantidad
             // 
@@ -609,27 +614,28 @@
             this.label3.TabIndex = 43;
             this.label3.Text = "Forma de Pago:";
             // 
-            // comboBox2
+            // comboFormaPago
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboFormaPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboFormaPago.FormattingEnabled = true;
+            this.comboFormaPago.Items.AddRange(new object[] {
             "Efectivo",
             "Transferencia",
             "Tarjeta de Debito",
             "Tarjeta de Credito"});
-            this.comboBox2.Location = new System.Drawing.Point(806, 409);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(112, 21);
-            this.comboBox2.TabIndex = 10;
+            this.comboFormaPago.Location = new System.Drawing.Point(806, 409);
+            this.comboFormaPago.Margin = new System.Windows.Forms.Padding(2);
+            this.comboFormaPago.Name = "comboFormaPago";
+            this.comboFormaPago.Size = new System.Drawing.Size(112, 21);
+            this.comboFormaPago.TabIndex = 10;
+            this.comboFormaPago.SelectedIndexChanged += new System.EventHandler(this.comboFormaPago_SelectedIndexChanged);
             // 
             // ucRegistroVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboFormaPago);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDescargarTicket);
             this.Controls.Add(this.groupBox3);
@@ -676,7 +682,7 @@
         private System.Windows.Forms.Label labelRegistrarV;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboTipoDocumento;
         private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -708,6 +714,6 @@
         private FontAwesome.Sharp.IconButton iconBtnAgregarV;
         private FontAwesome.Sharp.IconButton btnDescargarTicket;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboFormaPago;
     }
 }

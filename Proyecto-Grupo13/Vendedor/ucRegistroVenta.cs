@@ -30,16 +30,6 @@ namespace Proyecto_Grupo13.Vendedor
             }
         }
 
-        private void textNombreComple_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Evita que se ingrese un carácter no alfabético
-                // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void textBoxCodProduct_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Validar que solo se ingresen numeros y letras
@@ -60,14 +50,37 @@ namespace Proyecto_Grupo13.Vendedor
                 MessageBox.Show("Solo se permiten letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void textPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        private void textNombreComple_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
-                e.Handled = true; // Evita que se ingrese un carácter no numérico
+                e.Handled = true; // Evita que se ingrese un carácter no alfabético
                 // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten números y el punto decimal.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Solo se permiten letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textPrecio_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+
+                MessageBox.Show(
+                    "Solo se permiten números y el punto decimal.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+
+            // Evitar más de un punto decimal
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+            {
+                e.Handled = true;
             }
         }
 
@@ -175,6 +188,7 @@ namespace Proyecto_Grupo13.Vendedor
             textBoxCodProduct.Clear();
             textProducto.Clear();
             textPrecio.Clear();
+            textStock.Clear();
             numericCantidad.Value = 0;
         }
         // Calcular el total general de la venta
@@ -201,13 +215,142 @@ namespace Proyecto_Grupo13.Vendedor
 
         private void iconBtnCrearVenta_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Venta registrada con éxito.", "Registro de Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // Limpiar el DataGridView y los TextBox
+            // VALIDAR CLIENTE
+            if (string.IsNullOrWhiteSpace(textNumDocumento.Text) ||
+                string.IsNullOrWhiteSpace(textNombreComple.Text))
+            {
+                MessageBox.Show(
+                    "Debe completar todos los datos del cliente antes de registrar la venta.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+            //VALIDAR TIPO DE DOCUMENTO
+            if (comboTipoDocumento.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Debe seleccionar un tipo de documento.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                comboTipoDocumento.Focus();
+                return;
+            }
+
+            // VALIDAR FORMA DE PAGO
+            if (comboFormaPago.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Debe seleccionar una forma de pago.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                comboFormaPago.Focus();
+                return;
+            }
+
+            // VALIDAR PRODUCTOS
+            if (dataGridView1.Rows.Count == 0 ||
+                (dataGridView1.Rows.Count == 1 && dataGridView1.Rows[0].IsNewRow))
+            {
+                MessageBox.Show(
+                    "Debe agregar al menos un producto a la venta.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            // OBTENER FORMA DE PAGO
+            string formaPago = comboFormaPago.Text;
+
+            // SI ES EFECTIVO, VALIDAR "PAGA CON"
+            if (formaPago == "Efectivo")
+            {
+                if (string.IsNullOrWhiteSpace(textPagaCon.Text))
+                {
+                    MessageBox.Show(
+                        "Debe ingresar el monto con el que paga el cliente.",
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    textPagaCon.Focus();
+                    return;
+                }
+                //verificar que el monto ingresado sea un número válido
+                if (!decimal.TryParse(textPagaCon.Text, out decimal pagaCon))
+                {
+                    MessageBox.Show(
+                        "Ingrese un monto válido en 'Paga con'.",
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    textPagaCon.Focus();
+                    return;
+                }
+                //verificar que el monto ingresado sea mayor o igual al total a pagar
+                if (pagaCon < totalAPagar)
+                {
+                    MessageBox.Show(
+                        "El monto ingresado en 'Paga con' es menor al total a pagar.",
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    textPagaCon.Focus();
+                    return;
+                }
+                // Calcular el cambio
+                decimal cambio = pagaCon - totalAPagar;
+                textCambio.Text = cambio.ToString("0.00");
+            }
+            else
+            {
+                // Si NO es efectivo, no necesitamos Paga con ni Cambio
+                textPagaCon.Clear();
+                textCambio.Clear();
+            }
+
+            // REGISTRAR VENTA
+            MessageBox.Show(
+                "Venta registrada con éxito.",
+                "Registro de Venta",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            // LIMPIAR DATOS
             dataGridView1.Rows.Clear();
+
             totalAPagar = 0;
             textTotalPagar.Text = "0.00";
+
             textPagaCon.Clear();
             textCambio.Clear();
+
+            textNumDocumento.Clear();
+            textNombreComple.Clear();
+
+            comboFormaPago.SelectedIndex = -1;
+            comboTipoDocumento.SelectedIndex = -1;
+
+            LimpiarCampos();
+
+            filaEditando = -1;
+            iconBtnAgregarV.Text = "Agregar";
         }
 
         private void buttonBuscar2_Click(object sender, EventArgs e)
@@ -327,6 +470,39 @@ namespace Proyecto_Grupo13.Vendedor
         private void textNombreComple_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboFormaPago.SelectedIndex == -1)
+            {
+                // Si no hay forma de pago seleccionada
+                textPagaCon.Enabled = false;
+                textCambio.Enabled = false;
+
+                textPagaCon.Clear();
+                textCambio.Clear();
+
+                return;
+            }
+
+            // Si selecciona EFECTIVO
+            if (comboFormaPago.Text == "Efectivo")
+            {
+                textPagaCon.Enabled = true;
+                textCambio.Enabled = true;
+
+                textPagaCon.Focus();
+            }
+            else
+            {
+                // Si selecciona TARJETA, TRANSFERENCIA, etc.
+                textPagaCon.Enabled = false;
+                textCambio.Enabled = false;
+
+                textPagaCon.Clear();
+                textCambio.Clear();
+            }
         }
     }
 }
