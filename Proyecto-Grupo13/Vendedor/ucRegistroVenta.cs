@@ -190,6 +190,9 @@ namespace Proyecto_Grupo13.Vendedor
             textPrecio.Clear();
             textStock.Clear();
             numericCantidad.Value = 0;
+
+            iconBtnCancelar.Visible = false;
+            iconBtnAgregarV.Text = "Agregar";
         }
         // Calcular el total general de la venta
         private void CalcularTotal()
@@ -408,6 +411,7 @@ namespace Proyecto_Grupo13.Vendedor
 
                 filaEditando = fila; // Guardar el índice de la fila en edición
                 iconBtnAgregarV.Text = "Actualizar";
+                iconBtnCancelar.Visible = true;
             }
 
             // Botón Eliminar
@@ -503,6 +507,11 @@ namespace Proyecto_Grupo13.Vendedor
                 textPagaCon.Clear();
                 textCambio.Clear();
             }
+        }
+
+        private void iconBtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }
