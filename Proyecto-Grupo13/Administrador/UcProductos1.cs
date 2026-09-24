@@ -151,64 +151,68 @@ namespace Proyecto_Grupo13.Administrador
             // Primera letra mayúscula, el resto minúscula
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
+        //METODO PARA VALIDAR QUE EL CODIGO SEA UNICO EN EL DATAGRIDVIEW
+        private bool ValidarCodigoUnico()
+        {
+            if (string.IsNullOrWhiteSpace(textCodigo.Text))
+                return true;
+
+            string codigoIngresado = textCodigo.Text.Trim();
+
+            foreach (DataGridViewRow fila in dataGridView2.Rows)
+            {
+                if (fila.IsNewRow) continue; // Ignorar la fila vacía del final
+
+                // Si estamos editando, ignoramos la fila actual para que no se detecte a sí misma como duplicada
+                if (filaEditar != -1 && fila.Index == filaEditar) continue;
+
+                // Suponiendo que el Código está en la columna 1 (ajusta el índice si es otra columna)
+                string codigoFila = fila.Cells[1].Value?.ToString();
+
+                if (codigoIngresado.Equals(codigoFila, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Este Código ya está registrado en la lista.", "Código duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    textCodigo.BackColor = Color.LightPink;
+                    textCodigo.Focus();
+
+                    return false;
+                }
+            }
+            textCodigo.BackColor = Color.FromArgb(70, 75, 85);
+            return true;
+        }
 
         //BOTONES PARA AGREGAR, ELIMINAR Y EDITAR PRODUCTOS
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (ValidarCamposVacios() == true)
+            // Validamos campos vacíos
+            if (!ValidarCamposVacios())
             {
-                if (filaEditar != -1)
-                {
-                    DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (askEdit == DialogResult.Yes)
-                    {
-                        // Actualizar la fila seleccionada con los nuevos datos
-                        dataGridView2.Rows[filaEditar].Cells[0].Value = formatearTexto(textNombre.Text);
-                        dataGridView2.Rows[filaEditar].Cells[1].Value = textCodigo.Text;
-                        dataGridView2.Rows[filaEditar].Cells[2].Value = textDescripcion.Text;
-                        dataGridView2.Rows[filaEditar].Cells[3].Value = comboBoxCategoria.Text;
-                        dataGridView2.Rows[filaEditar].Cells[4].Value = textStock.Text;
-                        // Aquí iría la lógica para actualizar el producto en la base de datos o lista (NOTA)
-                        MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // Limpiar los campos de texto y restablecer el índice de la fila a editar
-                        textNombre.Clear();
-                        textCodigo.Clear();
-                        textDescripcion.Clear();
-                        comboBoxCategoria.SelectedIndex = -1; // Limpiar selección del ComboBox
-                        textStock.Clear();
-                        filaEditar = -1; // Reinicia el índice de la fila a editar
-                    }
-                    else
-                    {
-                        // Si el usuario no desea guardar los cambios, simplemente se limpia el índice de la fila a editar
-                        filaEditar = -1; // Reinicia el índice de la fila a editar
-                    }
-                }
-                else
-                {
-                    DialogResult ask = MessageBox.Show("¿Desea agregar el producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (ask == DialogResult.Yes)
-                    {
-                        string nombre = formatearTexto(textNombre.Text);
-
-                        // Agregar el producto a la tabla (DataGridView)
-                        dataGridView2.Rows.Add(nombre, textCodigo.Text, textDescripcion.Text, comboBoxCategoria.Text, textStock.Text);
-
-                        // Aquí iría la lógica para agregar el producto a la base de datos o lista (NOTA)
-                        MessageBox.Show("Producto agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        textNombre.Clear();
-                        textCodigo.Clear();
-                        textDescripcion.Clear();
-                        comboBoxCategoria.SelectedIndex = -1; // Limpiar selección del ComboBox
-                        textStock.Clear();
-                    }
-                }
+                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            // Validamos que el código no exista en el DataGridView
+            if (!ValidarCodigoUnico()) return;
+
+            DialogResult ask = MessageBox.Show("¿Desea agregar este nuevo producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (ask == DialogResult.Yes)
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string nombre = formatearTexto(textNombre.Text);
+
+                // Agregamos la fila (Asegúrate de que el orden coincida con tus columnas)
+                dataGridView2.Rows.Add(
+                    nombre,
+                    textCodigo.Text,
+                    textDescripcion.Text,
+                    comboBoxCategoria.Text,
+                    textStock.Text
+                );
+
+                MessageBox.Show("Producto agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarCampos();
             }
         }
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -241,28 +245,33 @@ namespace Proyecto_Grupo13.Administrador
         {
             if (dataGridView2.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, seleccione un producto para editar.", "Sin selección",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, seleccione un producto para editar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            filaEditar = dataGridView2.SelectedRows[0].Index; //guarda el indice de la fila seleccionada
+
+            filaEditar = dataGridView2.SelectedRows[0].Index;
+
             if (dataGridView2.Rows[filaEditar].IsNewRow)
             {
                 MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                filaEditar = -1; // Reinicia el índice de la fila a editar
+                filaEditar = -1;
                 return;
             }
-            DataGridViewRow fila = dataGridView2.Rows[filaEditar]; // Obtiene la fila seleccionada
 
-            //se pasa los datos de la tabla a los campos de texto para poder editarlos
+            DataGridViewRow fila = dataGridView2.Rows[filaEditar];
+
+            // Pasamos los datos de las celdas a los controles
             textNombre.Text = fila.Cells[0].Value?.ToString();
             textCodigo.Text = fila.Cells[1].Value?.ToString();
             textDescripcion.Text = fila.Cells[2].Value?.ToString();
             comboBoxCategoria.Text = fila.Cells[3].Value?.ToString();
             textStock.Text = fila.Cells[4].Value?.ToString();
 
-            MessageBox.Show("Edite los campos y haga clic en 'Agregar Producto' para guardar los cambios.", "Editar Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Mostramos los botones de actualizar y cancelar
+            iconBtnActualizar.Visible = true;
+            iconBtnCancelar.Visible = true;
 
+            MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -273,6 +282,60 @@ namespace Proyecto_Grupo13.Administrador
         private void labelProductos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void iconBtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void iconBtnActualizar_Click(object sender, EventArgs e)
+        {
+            if (!ValidarCamposVacios())
+            {
+                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validamos que el código no exista (ignorando la fila que estamos editando)
+            if (!ValidarCodigoUnico()) return;
+
+            if (filaEditar != -1)
+            {
+                DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (askEdit == DialogResult.Yes)
+                {
+                    // Actualizamos la fila directamente en el DataGridView
+                    dataGridView2.Rows[filaEditar].Cells[0].Value = formatearTexto(textNombre.Text);
+                    dataGridView2.Rows[filaEditar].Cells[1].Value = textCodigo.Text;
+                    dataGridView2.Rows[filaEditar].Cells[2].Value = textDescripcion.Text;
+                    dataGridView2.Rows[filaEditar].Cells[3].Value = comboBoxCategoria.Text;
+                    dataGridView2.Rows[filaEditar].Cells[4].Value = textStock.Text;
+
+                    MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCampos();
+                }
+            }
+        }
+        private void LimpiarCampos()
+        {
+            textNombre.Clear();
+            textCodigo.Clear();
+            textDescripcion.Clear();
+            textStock.Clear();
+            comboBoxCategoria.SelectedIndex = -1;
+
+            filaEditar = -1; // Reiniciamos la variable de edición
+
+            // Restauramos los botones a su estado normal 
+            iconBtnActualizar.Visible = false;
+            iconBtnCancelar.Visible = false;
+        }
+
+        private void textCodigo_Leave(object sender, EventArgs e)
+        {
+            ValidarCodigoUnico();
         }
     }
 }

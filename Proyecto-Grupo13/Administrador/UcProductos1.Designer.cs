@@ -57,6 +57,8 @@
             this.textBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
+            this.iconBtnActualizar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,7 +178,7 @@
             this.textNombre.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.textNombre.Location = new System.Drawing.Point(237, 122);
-            this.textNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textNombre.Margin = new System.Windows.Forms.Padding(2);
             this.textNombre.Name = "textNombre";
             this.textNombre.Size = new System.Drawing.Size(122, 20);
             this.textNombre.TabIndex = 35;
@@ -189,11 +191,12 @@
             this.textCodigo.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.textCodigo.Location = new System.Drawing.Point(237, 159);
-            this.textCodigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textCodigo.Margin = new System.Windows.Forms.Padding(2);
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(122, 20);
             this.textCodigo.TabIndex = 36;
             this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCodigo_KeyPress);
+            this.textCodigo.Leave += new System.EventHandler(this.textCodigo_Leave);
             // 
             // textDescripcion
             // 
@@ -202,7 +205,7 @@
             this.textDescripcion.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.textDescripcion.Location = new System.Drawing.Point(237, 198);
-            this.textDescripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textDescripcion.Margin = new System.Windows.Forms.Padding(2);
             this.textDescripcion.Name = "textDescripcion";
             this.textDescripcion.Size = new System.Drawing.Size(122, 20);
             this.textDescripcion.TabIndex = 37;
@@ -215,7 +218,7 @@
             this.textStock.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.textStock.Location = new System.Drawing.Point(237, 274);
-            this.textStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textStock.Margin = new System.Windows.Forms.Padding(2);
             this.textStock.Name = "textStock";
             this.textStock.Size = new System.Drawing.Size(122, 20);
             this.textStock.TabIndex = 38;
@@ -233,7 +236,7 @@
             "CD",
             "Reproductores"});
             this.comboBoxCategoria.Location = new System.Drawing.Point(237, 236);
-            this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
             this.comboBoxCategoria.Size = new System.Drawing.Size(122, 23);
             this.comboBoxCategoria.TabIndex = 39;
@@ -244,7 +247,7 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(599, 116);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(51, 19);
             this.btnBuscar.TabIndex = 41;
@@ -263,7 +266,7 @@
             "Nombre",
             "Categoría"});
             this.comboBoxBuscar.Location = new System.Drawing.Point(765, 113);
-            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
             this.comboBoxBuscar.Size = new System.Drawing.Size(119, 23);
             this.comboBoxBuscar.TabIndex = 42;
@@ -280,12 +283,12 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.dataGridView2.Location = new System.Drawing.Point(389, 158);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(589, 280);
+            this.dataGridView2.Size = new System.Drawing.Size(589, 295);
             this.dataGridView2.TabIndex = 43;
             // 
             // dataGridViewTextBoxColumn1
@@ -327,7 +330,7 @@
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.Location = new System.Drawing.Point(153, 325);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(94, 39);
             this.btnAgregar.TabIndex = 44;
@@ -345,7 +348,7 @@
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.Location = new System.Drawing.Point(259, 326);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(99, 38);
             this.btnEliminar.TabIndex = 45;
@@ -362,10 +365,10 @@
             this.btnEditar.ForeColor = System.Drawing.Color.Black;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(210, 368);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEditar.Location = new System.Drawing.Point(153, 368);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(81, 39);
+            this.btnEditar.Size = new System.Drawing.Size(94, 39);
             this.btnEditar.TabIndex = 46;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -390,7 +393,7 @@
             this.label1.Location = new System.Drawing.Point(143, 57);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 395);
+            this.label1.Size = new System.Drawing.Size(229, 407);
             this.label1.TabIndex = 48;
             // 
             // label2
@@ -399,14 +402,56 @@
             this.label2.Location = new System.Drawing.Point(377, 57);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(612, 395);
+            this.label2.Size = new System.Drawing.Size(612, 407);
             this.label2.TabIndex = 49;
+            // 
+            // iconBtnCancelar
+            // 
+            this.iconBtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconBtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.iconBtnCancelar.IconColor = System.Drawing.Color.Red;
+            this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnCancelar.IconSize = 30;
+            this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnCancelar.Location = new System.Drawing.Point(214, 419);
+            this.iconBtnCancelar.Name = "iconBtnCancelar";
+            this.iconBtnCancelar.Size = new System.Drawing.Size(96, 34);
+            this.iconBtnCancelar.TabIndex = 89;
+            this.iconBtnCancelar.Text = "Cancelar";
+            this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconBtnCancelar.UseVisualStyleBackColor = false;
+            this.iconBtnCancelar.Visible = false;
+            this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
+            // 
+            // iconBtnActualizar
+            // 
+            this.iconBtnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnActualizar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconBtnActualizar.IconChar = FontAwesome.Sharp.IconChar.Repeat;
+            this.iconBtnActualizar.IconColor = System.Drawing.Color.Green;
+            this.iconBtnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnActualizar.IconSize = 30;
+            this.iconBtnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnActualizar.Location = new System.Drawing.Point(258, 369);
+            this.iconBtnActualizar.Name = "iconBtnActualizar";
+            this.iconBtnActualizar.Size = new System.Drawing.Size(100, 38);
+            this.iconBtnActualizar.TabIndex = 90;
+            this.iconBtnActualizar.Text = "Actualizar";
+            this.iconBtnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconBtnActualizar.UseVisualStyleBackColor = false;
+            this.iconBtnActualizar.Visible = false;
+            this.iconBtnActualizar.Click += new System.EventHandler(this.iconBtnActualizar_Click);
             // 
             // UcProductos1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnActualizar);
+            this.Controls.Add(this.iconBtnCancelar);
             this.Controls.Add(this.textBuscar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
@@ -468,5 +513,7 @@
         private System.Windows.Forms.TextBox textBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconButton iconBtnCancelar;
+        private FontAwesome.Sharp.IconButton iconBtnActualizar;
     }
 }
