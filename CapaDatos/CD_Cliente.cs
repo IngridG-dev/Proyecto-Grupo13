@@ -20,7 +20,8 @@ namespace CapaDatos
                     string query = @"
                         SELECT 
                             id_cliente,
-                            nombreCompleto,
+                            nombre,
+                            apellido,
                             dni,
                             email,
                             telefono,
@@ -41,7 +42,8 @@ namespace CapaDatos
                             lista.Add(new Cliente
                             {
                                 id_cliente = Convert.ToInt32(reader["id_cliente"]),
-                                nombreCompleto = reader["nombreCompleto"].ToString(),
+                                nombre = reader["nombre"].ToString(),
+                                apellido = reader["apellido"].ToString(),
                                 dni = Convert.ToInt32(reader["dni"]),
                                 email = reader["email"].ToString(),
                                 telefono = reader["telefono"].ToString(),
@@ -103,7 +105,8 @@ namespace CapaDatos
                     string query = @"
                         INSERT INTO CLIENTE
                         (
-                            nombreCompleto,
+                            nombre,
+                            apellido,
                             dni,
                             email,
                             telefono,
@@ -111,7 +114,8 @@ namespace CapaDatos
                         )
                         VALUES
                         (
-                            @nombreCompleto,
+                            @nombre,
+                            @apellido,
                             @dni,
                             @email,
                             @telefono,
@@ -120,7 +124,8 @@ namespace CapaDatos
 
                     SqlCommand comando = new SqlCommand(query, conexion);
 
-                    comando.Parameters.AddWithValue("@nombreCompleto", obj.nombreCompleto);
+                    comando.Parameters.AddWithValue("@nombre", obj.nombre);
+                    comando.Parameters.AddWithValue("@apellido", obj.apellido);
                     comando.Parameters.AddWithValue("@dni", obj.dni);
                     comando.Parameters.AddWithValue("@email", obj.email);
                     comando.Parameters.AddWithValue("@telefono", obj.telefono);
@@ -160,7 +165,8 @@ namespace CapaDatos
                     string query = @"
                         UPDATE CLIENTE
                         SET
-                            nombreCompleto = @nombreCompleto,
+                            nombre = @nombre,
+                            apellido = @apellido,
                             dni = @dni,
                             email = @email,
                             telefono = @telefono,
@@ -170,7 +176,8 @@ namespace CapaDatos
                     SqlCommand comando = new SqlCommand(query, conexion);
 
                     comando.Parameters.AddWithValue("@id_cliente", obj.id_cliente);
-                    comando.Parameters.AddWithValue("@nombreCompleto", obj.nombreCompleto);
+                    comando.Parameters.AddWithValue("@nombre", obj.nombre);
+                    comando.Parameters.AddWithValue("@apellido", obj.apellido);
                     comando.Parameters.AddWithValue("@dni", obj.dni);
                     comando.Parameters.AddWithValue("@email", obj.email);
                     comando.Parameters.AddWithValue("@telefono", obj.telefono);

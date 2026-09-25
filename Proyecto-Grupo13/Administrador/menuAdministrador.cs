@@ -37,14 +37,6 @@ namespace Proyecto_Grupo13.Administrador
 
         private void iconMenuVentas_Click(object sender, EventArgs e){}
 
-        private void verDetalleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ucVerDetalleV verDetalle = new ucVerDetalleV(); // Crea una instancia del UserControl ucVerDetalleV
-            panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
-            verDetalle.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
-            panelContenido.Controls.Add(verDetalle); // Agrega el UserControl al panelContenido
-        }
-
         private void menuAdministrador_Load(object sender, EventArgs e)
         {
 

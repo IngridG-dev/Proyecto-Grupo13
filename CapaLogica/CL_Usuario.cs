@@ -27,8 +27,11 @@ namespace CapaLogica
         {
             Mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(obj.nombreCompleto))
-                Mensaje += "Debe ingresar el nombre completo.\n";
+            if (string.IsNullOrWhiteSpace(obj.nombre))
+                Mensaje += "Debe ingresar el nombre.\n";
+
+            if (string.IsNullOrWhiteSpace(obj.apellido))
+                Mensaje += "Debe ingresar el apellido.\n";
 
             if (obj.dni == 0)
                 Mensaje += "Debe ingresar el DNI.\n";
@@ -66,9 +69,14 @@ namespace CapaLogica
                 Mensaje += "Debe seleccionar un usuario.\n";
             }
 
-            if (string.IsNullOrWhiteSpace(obj.nombreCompleto))
+            if (string.IsNullOrWhiteSpace(obj.nombre))
             {
-                Mensaje += "Debe ingresar el nombre completo.\n";
+                Mensaje += "Debe ingresar el nombre.\n";
+            }
+
+            if (string.IsNullOrWhiteSpace(obj.apellido))
+            {
+                Mensaje += "Debe ingresar el apellido.\n";
             }
 
             if (obj.dni == 0)

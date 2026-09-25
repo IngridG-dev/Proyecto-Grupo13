@@ -98,7 +98,7 @@ namespace Proyecto_Grupo13.Administrador
             // 3. Revisamos cliente por cliente a ver cuál coincide
             foreach (Cliente c in listaCompleta)
             {
-                if (filtro == "Nombre Completo" && c.nombreCompleto.ToUpper().Contains(textoBusqueda))
+                if (filtro == "Nombre Completo" && (c.nombre + " " + c.apellido).ToUpper().Contains(textoBusqueda))
                 {
                     listaFiltrada.Add(c);
                 }

@@ -24,17 +24,23 @@ namespace Proyecto_Grupo13.Vendedor
         }
 
         private void CargarClientes()
-        {
-            // Configurar el DataGridView para no generar columnas automáticamente
-            dgvClientes.AutoGenerateColumns = false;
+        {// Limpiamos cualquier DataSource previo y las filas
+            dgvClientes.DataSource = null;
+            dgvClientes.Rows.Clear();
 
-            // Asociar tus columnas manuales con los nombres exactos de las propiedades de la clase Cliente
-            dgvClientes.Columns[0].DataPropertyName = "dni";
-            dgvClientes.Columns[1].DataPropertyName = "nombreCompleto";
-
-            // Asignar la lista al DataGridView
             List<Cliente> lista = objCL_Cliente.ListarClientes();
-            dgvClientes.DataSource = lista;
+
+            foreach (Cliente cliente in lista)
+            {
+                // Concatenamos el nombre y apellido solo para mostrarlo
+                string nombreMostrar = cliente.nombre + " " + cliente.apellido;
+
+                // Agregamos la fila manualmente (DNI, Nombre Completo)
+                int indice = dgvClientes.Rows.Add(cliente.dni, nombreMostrar);
+
+                // Guardamos el objeto cliente entero en el Tag de la fila
+                dgvClientes.Rows[indice].Tag = cliente;
+            }
         }
         private void dgvClientes_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -42,8 +48,8 @@ namespace Proyecto_Grupo13.Vendedor
             // Validar que se haya hecho clic en una fila válida (no en los encabezados)
             if (e.RowIndex >= 0)
             {
-                // Obtenemos directamente el objeto Cliente enlazado a la fila
-                ClienteSeleccionado = (Cliente)dgvClientes.Rows[e.RowIndex].DataBoundItem;
+                // Extraemos el objeto Cliente directamente desde el Tag de la fila
+                ClienteSeleccionado = (Cliente)dgvClientes.Rows[e.RowIndex].Tag;
 
                 this.DialogResult = DialogResult.OK; // Indica que se seleccionó con éxito
                 this.Close(); // Cierra el formulario

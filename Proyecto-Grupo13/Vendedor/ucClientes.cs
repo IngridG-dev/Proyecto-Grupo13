@@ -1,15 +1,16 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaEntidad;
-using CapaLogica;
 
 namespace Proyecto_Grupo13.Vendedor
 {
@@ -30,6 +31,14 @@ namespace Proyecto_Grupo13.Vendedor
             {
                 e.Handled = true;
                 MessageBox.Show("Solo se permiten letras y espacios en el campo de nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void textApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten letras y espacios en el campo de apellido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void textDNI_KeyPress(object sender, KeyPressEventArgs e)
@@ -85,7 +94,18 @@ namespace Proyecto_Grupo13.Vendedor
                 textNombre.BackColor = colorNormal;
                 textNombre.ForeColor = Color.White;
             }
-
+            // APELLIDO (NUEVO)
+            if (string.IsNullOrWhiteSpace(textApellido.Text))
+            {
+                textApellido.BackColor = Color.LightPink;
+                textApellido.ForeColor = Color.Black;
+                esValido = false;
+            }
+            else
+            {
+                textApellido.BackColor = colorNormal;
+                textApellido.ForeColor = Color.White;
+            }
             // DNI
             if (string.IsNullOrWhiteSpace(textDNI.Text))
             {
@@ -166,7 +186,8 @@ namespace Proyecto_Grupo13.Vendedor
             // 3. Crea el objeto con la información de las cajas de texto
             Cliente objCliente = new Cliente()
             {
-                nombreCompleto = formatearTexto(textNombre.Text),
+                nombre = formatearTexto(textNombre.Text),
+                apellido = formatearTexto(textApellido.Text),
                 dni = Convert.ToInt32(textDNI.Text),
                 email = textEmail.Text,
                 telefono = textTelefono.Text,
@@ -183,7 +204,7 @@ namespace Proyecto_Grupo13.Vendedor
                 if (resultado)
                 {
                     cargarClientes();
-                    MessageBox.Show("El cliente " + objCliente.nombreCompleto + " se registró correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("El cliente " + objCliente.nombre + " " + objCliente.apellido + " se registró correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarCampos();
                 }
                 else
@@ -213,14 +234,16 @@ namespace Proyecto_Grupo13.Vendedor
                 return;
             }
 
-            DataGridViewRow fila = GridClientes.Rows[filaEditar]; // Obtiene la fila seleccionada
+            //Extraemos el objeto Cliente completo del Tag
+            Cliente clienteSeleccionado = (Cliente)GridClientes.Rows[filaEditar].Tag;
 
-            // Pasa los datos de la tabla a los campos de texto para poder editarlos
-            textNombre.Text = fila.Cells[0].Value?.ToString();
-            textDNI.Text = fila.Cells[1].Value?.ToString();
-            textEmail.Text = fila.Cells[2].Value?.ToString();
-            textTelefono.Text = fila.Cells[3].Value?.ToString();
-            textDireccion.Text = fila.Cells[4].Value?.ToString();
+            // Pasamos los datos exactos a los campos
+            textNombre.Text = clienteSeleccionado.nombre;
+            textApellido.Text = clienteSeleccionado.apellido;
+            textDNI.Text = clienteSeleccionado.dni.ToString();
+            textEmail.Text = clienteSeleccionado.email;
+            textTelefono.Text = clienteSeleccionado.telefono;
+            textDireccion.Text = clienteSeleccionado.direccion;
 
             btnActualizar.Visible = true;
             btnCancelar.Visible = true;
@@ -231,21 +254,23 @@ namespace Proyecto_Grupo13.Vendedor
         private void cargarClientes()
         {
             GridClientes.Rows.Clear();
-
             var listaClientes = objCL_Cliente.ListarClientes();
 
             foreach (Cliente cliente in listaClientes)
             {
+                // Concatenamos solo visualmente para la tabla
+                string nombreMostrar = cliente.nombre + " " + cliente.apellido;
+
                 int fila = GridClientes.Rows.Add(
-                    cliente.nombreCompleto,
+                    nombreMostrar,
                     cliente.dni,
                     cliente.email,
                     cliente.telefono,
                     cliente.direccion
                 );
 
-                // Guarda el ID de la BD en el Tag de la fila para futuras referencias (editar, eliminar)
-                GridClientes.Rows[fila].Tag = cliente.id_cliente;
+                // Guardamos el objeto completo en la propiedad Tag de la fila para futuras referencias
+                GridClientes.Rows[fila].Tag = cliente;
             }
         }
 
@@ -263,7 +288,7 @@ namespace Proyecto_Grupo13.Vendedor
             // Si estamos editando, obtenemos el ID del cliente actual
             if (filaEditar != -1)
             {
-                idCliente = Convert.ToInt32(GridClientes.Rows[filaEditar].Tag);
+                idCliente = ((Cliente)GridClientes.Rows[filaEditar].Tag).id_cliente;
             }
 
             bool existe = objCL_Cliente.ExisteDNI(dni, idCliente);
@@ -298,6 +323,7 @@ namespace Proyecto_Grupo13.Vendedor
         private void LimpiarCampos()
         {
             textNombre.Clear();
+            textApellido.Clear();
             textDNI.Clear();
             textEmail.Clear();
             textTelefono.Clear();
@@ -418,7 +444,8 @@ namespace Proyecto_Grupo13.Vendedor
             // 3. Creamos el objeto AQUÍ adentro para que este botón lo reconozca
             Cliente objCliente = new Cliente()
             {
-                nombreCompleto = formatearTexto(textNombre.Text),
+                nombre = formatearTexto(textNombre.Text),
+                apellido = formatearTexto(textApellido.Text),
                 dni = Convert.ToInt32(textDNI.Text),
                 email = textEmail.Text,
                 telefono = textTelefono.Text,
@@ -428,12 +455,12 @@ namespace Proyecto_Grupo13.Vendedor
             // 4. Modo Editar
             if (filaEditar != -1)
             {
-                objCliente.id_cliente = Convert.ToInt32(GridClientes.Rows[filaEditar].Tag);
+                objCliente.id_cliente = ((Cliente)GridClientes.Rows[filaEditar].Tag).id_cliente;
                 bool resultado = objCL_Cliente.EditarCliente(objCliente);
 
                 if (resultado)
                 {
-                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombreCompleto;
+                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombre + " " + objCliente.apellido;
                     GridClientes.Rows[filaEditar].Cells[1].Value = objCliente.dni;
                     GridClientes.Rows[filaEditar].Cells[2].Value = objCliente.email;
                     GridClientes.Rows[filaEditar].Cells[3].Value = objCliente.telefono;
@@ -448,5 +475,7 @@ namespace Proyecto_Grupo13.Vendedor
                 }
             }
         }
+
+        
     }
 }

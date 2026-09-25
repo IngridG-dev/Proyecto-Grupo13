@@ -84,7 +84,6 @@ namespace Proyecto_Grupo13.Administrador
             // Color normal de los TextBox
             Color colorNormal = Color.FromArgb(70, 75, 85);
 
-            // NOMBRE
             if (string.IsNullOrWhiteSpace(textNombre.Text))
             {
                 textNombre.BackColor = Color.LightPink;
@@ -95,6 +94,19 @@ namespace Proyecto_Grupo13.Administrador
             {
                 textNombre.BackColor = colorNormal;
                 textNombre.ForeColor = Color.White;
+            }
+
+            // APELLIDO (NUEVO)
+            if (string.IsNullOrWhiteSpace(textApellido.Text))
+            {
+                textApellido.BackColor = Color.LightPink;
+                textApellido.ForeColor = Color.Black;
+                esValido = false;
+            }
+            else
+            {
+                textApellido.BackColor = colorNormal;
+                textApellido.ForeColor = Color.White;
             }
 
             // DNI
@@ -220,6 +232,7 @@ namespace Proyecto_Grupo13.Administrador
         private void LimpiarCampos()
         {
             textNombre.Clear();
+            textApellido.Clear();
             textDNI.Clear();
             textEmail.Clear();
             textTelefono.Clear();
@@ -261,7 +274,9 @@ namespace Proyecto_Grupo13.Administrador
             // Creamos un nuevo objeto Usuario con los datos del formulario
             Usuario nuevoUsuario = new Usuario()
             {
-                nombreCompleto = formatearTexto(textNombre.Text),
+                // Asignas los campos por separado para que viajen así a tu base de datos
+                nombre = formatearTexto(textNombre.Text.Trim()),
+                apellido = formatearTexto(textApellido.Text.Trim()),
                 dni = Convert.ToInt32(textDNI.Text),
                 email = textEmail.Text.Trim(),
                 telefono = textTelefono.Text.Trim(),
@@ -277,7 +292,7 @@ namespace Proyecto_Grupo13.Administrador
 
             if (idUsuarioGenerado != 0)
             {
-                MessageBox.Show("El usuario " + nuevoUsuario.nombreCompleto + " se insertó correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El usuario " + nuevoUsuario.nombre + " " + nuevoUsuario.apellido + " se insertó correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
                 LimpiarCampos();
             }
@@ -335,8 +350,7 @@ namespace Proyecto_Grupo13.Administrador
 
 
             // Recuperamos el ID real de SQL Server
-            int idUsuario =
-                Convert.ToInt32(fila.Tag);
+            int idUsuario = ((Usuario)fila.Tag).id_usuario;
 
 
             bool respuesta =
@@ -386,16 +400,18 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            DataGridViewRow fila = dataGridView1.Rows[filaEditar];
 
-            textNombre.Text = fila.Cells[0].Value?.ToString();
-            textDNI.Text = fila.Cells[1].Value?.ToString();
-            textEmail.Text = fila.Cells[2].Value?.ToString();
-            textTelefono.Text = fila.Cells[3].Value?.ToString();
-            textDireccion.Text = fila.Cells[4].Value?.ToString();
 
-            // Seleccionar el objeto Rol correcto dentro del ComboBox
-            string descripcionRol = fila.Cells[5].Value?.ToString();
+            // Recuperamos los datos de la fila seleccionada y los mostramos en los campos correspondientes
+            Usuario usuarioSeleccionado = (Usuario)dataGridView1.Rows[filaEditar].Tag;
+            textNombre.Text = usuarioSeleccionado.nombre;
+            textApellido.Text = usuarioSeleccionado.apellido;
+            textDNI.Text = usuarioSeleccionado.dni.ToString();
+            textEmail.Text = usuarioSeleccionado.email;
+            textTelefono.Text = usuarioSeleccionado.telefono;
+            textDireccion.Text = usuarioSeleccionado.direccion;
+
+            string descripcionRol = usuarioSeleccionado.rol.descripcion;
             foreach (Rol item in comboBoxRol.Items)
             {
                 if (item.descripcion == descripcionRol)
@@ -405,7 +421,9 @@ namespace Proyecto_Grupo13.Administrador
                 }
             }
 
-            comboBoxEstado.Text = fila.Cells[6].Value?.ToString();
+            // Cargar el estado evaluando directamente la propiedad del objeto
+            comboBoxEstado.Text = usuarioSeleccionado.estado == 1 ? "Activo" : "Inactivo";
+
             textContraseña.Clear();
 
             // Cambiamos la visibilidad de los botones
@@ -444,8 +462,9 @@ namespace Proyecto_Grupo13.Administrador
 
             foreach (Usuario item in lista)
             {
+                string nombreMostrar = item.nombre + " " + item.apellido;
                 int indice = dataGridView1.Rows.Add(
-                    item.nombreCompleto,
+                    nombreMostrar,
                     item.dni,
                     item.email,
                     item.telefono,
@@ -455,7 +474,7 @@ namespace Proyecto_Grupo13.Administrador
                 );
 
                 // Guardamos el ID de SQL Server en el Tag de la fila
-                dataGridView1.Rows[indice].Tag = item.id_usuario;
+                dataGridView1.Rows[indice].Tag = item;
             }
         }
 
@@ -574,9 +593,7 @@ namespace Proyecto_Grupo13.Administrador
             // Si estamos editando, obtenemos el ID del usuario actual
             if (filaEditar != -1)
             {
-                idUsuario = Convert.ToInt32(
-                    dataGridView1.Rows[filaEditar].Tag
-                );
+                idUsuario = ((Usuario)dataGridView1.Rows[filaEditar].Tag).id_usuario;
             }
 
             bool existe = objCL_Usuario.ExisteDNI(dni, idUsuario);
@@ -633,8 +650,9 @@ namespace Proyecto_Grupo13.Administrador
 
                 Usuario usuario = new Usuario()
                 {
-                    id_usuario = Convert.ToInt32(dataGridView1.Rows[filaEditar].Tag),
-                    nombreCompleto = formatearTexto(textNombre.Text),
+                    id_usuario = ((Usuario)dataGridView1.Rows[filaEditar].Tag).id_usuario,
+                    nombre = formatearTexto(textNombre.Text),
+                    apellido = formatearTexto(textApellido.Text),
                     dni = Convert.ToInt32(textDNI.Text),
                     email = textEmail.Text.Trim(),
                     telefono = textTelefono.Text.Trim(),

@@ -466,7 +466,7 @@ namespace Proyecto_Grupo13.Vendedor
                 {
                     // Completar los campos con los datos retornados
                     textNumDocumento.Text = modal.ClienteSeleccionado.dni.ToString();
-                    textNombreComple.Text = modal.ClienteSeleccionado.nombreCompleto;
+                    textNombreComple.Text = modal.ClienteSeleccionado.nombre + " " + modal.ClienteSeleccionado.apellido;
                 }
             }
         }

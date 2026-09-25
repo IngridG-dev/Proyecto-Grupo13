@@ -23,7 +23,8 @@ namespace CapaDatos
                     string query = @"
                 SELECT 
                     u.id_usuario, 
-                    u.nombreCompleto, 
+                    u.nombre, 
+                    u.apellido, 
                     u.dni, 
                     u.email, 
                     u.telefono, 
@@ -48,7 +49,8 @@ namespace CapaDatos
                             lista.Add(new Usuario()
                             {
                                 id_usuario = Convert.ToInt32(dr["id_usuario"]),
-                                nombreCompleto = dr["nombreCompleto"].ToString(),
+                                nombre = dr["nombre"].ToString(),
+                                apellido = dr["apellido"].ToString(),
                                 dni = Convert.ToInt32(dr["dni"]),
                                 email = dr["email"].ToString(),
                                 telefono = dr["telefono"].ToString(),
@@ -87,7 +89,8 @@ namespace CapaDatos
                     string query = @"
                         SELECT 
                             u.id_usuario,
-                            u.nombreCompleto,
+                            u.nombre,
+                            u.apellido,
                             u.dni,
                             u.email,
                             u.telefono,
@@ -116,7 +119,8 @@ namespace CapaDatos
                             usuario = new Usuario()
                             {
                                 id_usuario = Convert.ToInt32(dr["id_usuario"]),
-                                nombreCompleto = dr["nombreCompleto"].ToString(),
+                                nombre = dr["nombre"].ToString(),
+                                apellido = dr["apellido"].ToString(),
                                 dni = Convert.ToInt32(dr["dni"]),
                                 email = dr["email"].ToString(),
                                 telefono = dr["telefono"].ToString(),
@@ -155,14 +159,15 @@ namespace CapaDatos
                 {
                     // Se incluye fechaCreacion enviando GETDATE() desde SQL
                     string query = @" 
-                INSERT INTO USUARIO (nombreCompleto, dni, email, telefono, direccion, contraseña, estado, id_rol, fechaCreacion)
-                VALUES (@nombreCompleto, @dni, @email, @telefono, @direccion, @contraseña, @estado, @id_rol, GETDATE());
+                INSERT INTO USUARIO (nombre, apellido, dni, email, telefono, direccion, contraseña, estado, id_rol, fechaCreacion)
+                VALUES (@nombre, @apellido, @dni, @email, @telefono, @direccion, @contraseña, @estado, @id_rol, GETDATE());
                 SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
-                    cmd.Parameters.AddWithValue("@nombreCompleto", obj.nombreCompleto);
+                    cmd.Parameters.AddWithValue("@nombre", obj.nombre);
+                    cmd.Parameters.AddWithValue("@apellido", obj.apellido);
                     cmd.Parameters.AddWithValue("@dni", obj.dni);
                     cmd.Parameters.AddWithValue("@email", obj.email);
                     cmd.Parameters.AddWithValue("@telefono", obj.telefono);
@@ -196,7 +201,8 @@ namespace CapaDatos
                     string query = @"
                         UPDATE USUARIO
                         SET
-                            nombreCompleto = @nombreCompleto,
+                            nombre = @nombre,
+                            apellido = @apellido,
                             dni = @dni,
                             email = @email,
                             telefono = @telefono,
@@ -210,7 +216,8 @@ namespace CapaDatos
                     cmd.CommandType = CommandType.Text;
 
                     cmd.Parameters.AddWithValue("@id_usuario", obj.id_usuario);
-                    cmd.Parameters.AddWithValue("@nombreCompleto", obj.nombreCompleto);
+                    cmd.Parameters.AddWithValue("@nombre", obj.nombre);
+                    cmd.Parameters.AddWithValue("@apellido", obj.apellido);
                     cmd.Parameters.AddWithValue("@dni", obj.dni);
                     cmd.Parameters.AddWithValue("@email", obj.email);
                     cmd.Parameters.AddWithValue("@telefono", obj.telefono);
