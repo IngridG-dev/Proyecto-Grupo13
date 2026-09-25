@@ -29,7 +29,8 @@ namespace Proyecto_Grupo13.Administrador
 
             // Le cambiamos el título a las columnas para que se vean bien
             dataGridClientes.Columns["id_cliente"].HeaderText = "ID";
-            dataGridClientes.Columns["nombreCompleto"].HeaderText = "Nombre Completo";
+            dataGridClientes.Columns["nombre"].HeaderText = "Nombre";
+            dataGridClientes.Columns["apellido"].HeaderText = "Apellido";
             dataGridClientes.Columns["dni"].HeaderText = "D.N.I.";
             dataGridClientes.Columns["email"].HeaderText = "Correo Electrónico";
 
@@ -88,7 +89,7 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            string filtro = comboBoxBuscar.Text; // Qué eligió: "nombreCompleto", "dni", etc.
+            string filtro = comboBoxBuscar.Text; // Qué eligió: "nombre", "apellido" "dni".
             string textoBusqueda = textBuscar.Text.Trim().ToUpper(); // Lo que escribió el usuario
 
             // 2. Traemos la lista completa de nuevo usando nuestra Capa Lógica
@@ -98,7 +99,15 @@ namespace Proyecto_Grupo13.Administrador
             // 3. Revisamos cliente por cliente a ver cuál coincide
             foreach (Cliente c in listaCompleta)
             {
-                if (filtro == "Nombre Completo" && (c.nombre + " " + c.apellido).ToUpper().Contains(textoBusqueda))
+                if (filtro == "Nombre" && c.nombre.ToUpper().Contains(textoBusqueda))
+                {
+                    listaFiltrada.Add(c);
+                }
+                else if (filtro == "Apellido" && c.apellido.ToUpper().Contains(textoBusqueda))
+                {
+                    listaFiltrada.Add(c);
+                }
+                else if (filtro == "Nombre Completo" && (c.nombre + " " + c.apellido).ToUpper().Contains(textoBusqueda))
                 {
                     listaFiltrada.Add(c);
                 }

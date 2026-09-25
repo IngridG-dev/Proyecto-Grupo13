@@ -45,20 +45,22 @@
             // lClientes
             // 
             this.lClientes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lClientes.Location = new System.Drawing.Point(153, 45);
+            this.lClientes.Location = new System.Drawing.Point(122, 36);
+            this.lClientes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lClientes.Name = "lClientes";
-            this.lClientes.Size = new System.Drawing.Size(1002, 566);
+            this.lClientes.Size = new System.Drawing.Size(802, 453);
             this.lClientes.TabIndex = 1;
             // 
             // dataGridClientes
             // 
             this.dataGridClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridClientes.Location = new System.Drawing.Point(204, 223);
+            this.dataGridClientes.Location = new System.Drawing.Point(163, 178);
+            this.dataGridClientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridClientes.Name = "dataGridClientes";
             this.dataGridClientes.RowHeadersWidth = 51;
             this.dataGridClientes.RowTemplate.Height = 24;
-            this.dataGridClientes.Size = new System.Drawing.Size(915, 317);
+            this.dataGridClientes.Size = new System.Drawing.Size(732, 254);
             this.dataGridClientes.TabIndex = 2;
             // 
             // label1
@@ -66,9 +68,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(480, 65);
+            this.label1.Location = new System.Drawing.Point(384, 52);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 23);
+            this.label1.Size = new System.Drawing.Size(222, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "CLIENTES REGISTRADOS";
             // 
@@ -80,10 +83,10 @@
             this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(990, 545);
+            this.btnEliminar.Location = new System.Drawing.Point(792, 436);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(129, 54);
+            this.btnEliminar.Size = new System.Drawing.Size(103, 43);
             this.btnEliminar.TabIndex = 45;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -98,11 +101,11 @@
             this.groupBox1.Controls.Add(this.labelBuscarPor);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(204, 107);
+            this.groupBox1.Location = new System.Drawing.Point(163, 86);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(915, 100);
+            this.groupBox1.Size = new System.Drawing.Size(732, 80);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar Cliente";
@@ -116,10 +119,10 @@
             this.iconBuscar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.iconBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBuscar.IconSize = 25;
-            this.iconBuscar.Location = new System.Drawing.Point(626, 40);
+            this.iconBuscar.Location = new System.Drawing.Point(501, 32);
             this.iconBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.iconBuscar.Name = "iconBuscar";
-            this.iconBuscar.Size = new System.Drawing.Size(106, 35);
+            this.iconBuscar.Size = new System.Drawing.Size(85, 28);
             this.iconBuscar.TabIndex = 59;
             this.iconBuscar.Text = "Buscar";
             this.iconBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -134,12 +137,13 @@
             this.comboBoxBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxBuscar.FormattingEnabled = true;
             this.comboBoxBuscar.Items.AddRange(new object[] {
-            "Nombre Completo",
-            "DNI"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(248, 43);
+            "DNI",
+            "Nombre",
+            "Apellido"});
+            this.comboBoxBuscar.Location = new System.Drawing.Point(198, 34);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(148, 28);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(119, 23);
             this.comboBoxBuscar.TabIndex = 50;
             // 
             // textBuscar
@@ -147,11 +151,11 @@
             this.textBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBuscar.ForeColor = System.Drawing.Color.White;
-            this.textBuscar.Location = new System.Drawing.Point(403, 43);
+            this.textBuscar.Location = new System.Drawing.Point(322, 34);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(219, 29);
+            this.textBuscar.Size = new System.Drawing.Size(176, 24);
             this.textBuscar.TabIndex = 49;
             // 
             // labelBuscarPor
@@ -159,16 +163,16 @@
             this.labelBuscarPor.AutoSize = true;
             this.labelBuscarPor.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelBuscarPor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelBuscarPor.Location = new System.Drawing.Point(161, 49);
+            this.labelBuscarPor.Location = new System.Drawing.Point(129, 39);
             this.labelBuscarPor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBuscarPor.Name = "labelBuscarPor";
-            this.labelBuscarPor.Size = new System.Drawing.Size(82, 20);
+            this.labelBuscarPor.Size = new System.Drawing.Size(66, 15);
             this.labelBuscarPor.TabIndex = 47;
             this.labelBuscarPor.Text = "Buscar por:";
             // 
             // verClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.groupBox1);
@@ -176,8 +180,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridClientes);
             this.Controls.Add(this.lClientes);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "verClientes";
-            this.Size = new System.Drawing.Size(1308, 641);
+            this.Size = new System.Drawing.Size(1046, 513);
             this.Load += new System.EventHandler(this.verClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).EndInit();
             this.groupBox1.ResumeLayout(false);
