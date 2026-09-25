@@ -275,6 +275,7 @@ namespace Proyecto_Grupo13.Administrador
             // Mostramos los botones de actualizar y cancelar
             iconBtnActualizar.Visible = true;
             iconBtnCancelar.Visible = true;
+            btnAgregar.Enabled = false;
 
             MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -336,6 +337,7 @@ namespace Proyecto_Grupo13.Administrador
             // Restauramos los botones a su estado normal 
             iconBtnActualizar.Visible = false;
             iconBtnCancelar.Visible = false;
+            btnAgregar.Enabled = true;
         }
 
         private void textCodigo_Leave(object sender, EventArgs e)

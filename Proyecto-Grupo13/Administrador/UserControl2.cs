@@ -247,6 +247,7 @@ namespace Proyecto_Grupo13.Administrador
             // Restauramos los botones a su estado normal
             iconBtnActualizar.Visible = false;
             iconBtnCancelar.Visible = false;
+            btnAgregar.Enabled = true;
         }
 
         // BOTON AGREGAR
@@ -429,6 +430,7 @@ namespace Proyecto_Grupo13.Administrador
             // Cambiamos la visibilidad de los botones
             iconBtnActualizar.Visible = true;
             iconBtnCancelar.Visible = true;
+            btnAgregar.Enabled = false;
 
             MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

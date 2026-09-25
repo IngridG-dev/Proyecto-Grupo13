@@ -212,6 +212,7 @@ namespace Proyecto_Grupo13.Vendedor
                     MessageBox.Show("No se pudo registrar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            
         }
 
      
@@ -342,6 +343,7 @@ namespace Proyecto_Grupo13.Vendedor
             // Restauramos los botones a su estado normal
             btnActualizar.Visible = false;
             btnCancelar.Visible = false;
+            btnAgregar.Enabled = true;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

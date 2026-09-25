@@ -158,7 +158,7 @@ namespace Proyecto_Grupo13.Administrador
             // Cancelar cualquier modo edición previo
             filaEditando = -1;
             iconBtnActualizarC.Enabled = false; // Deshabilitar el botón Actualizar
-            iconBtnAgregarC.Enabled = true; // Habilitar el botón Agregar
+            
 
             CalcularTotal();
             LimpiarCampos();
@@ -171,6 +171,7 @@ namespace Proyecto_Grupo13.Administrador
             textPrecio.Clear();
             textPrecioV.Clear();
             numericCantidad.Value = numericCantidad.Minimum;
+            iconBtnAgregarC.Enabled = true; // Habilitar el botón Agregar
         }
         // Calcular el total general de la venta
         private void CalcularTotal()
@@ -379,7 +380,7 @@ namespace Proyecto_Grupo13.Administrador
 
             // Salir del modo edición y deshabilitar botón Actualizar
             filaEditando = -1;
-            iconBtnActualizarC.Enabled = false;
+            
 
             CalcularTotal();
             LimpiarCampos();
