@@ -20,11 +20,14 @@ namespace Proyecto_Grupo13.Administrador
         //VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
         private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+            // Permite letras, números, espacios, caracteres de control y signos de puntuación/símbolos
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+                !char.IsControl(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                !char.IsPunctuation(e.KeyChar) &&
+                !char.IsSymbol(e.KeyChar))
             {
                 e.Handled = true; // Evita que el carácter se ingrese en el TextBox
-                // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -41,12 +44,14 @@ namespace Proyecto_Grupo13.Administrador
 
         private void textDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Validar que solo se ingresen letras, números y espacios
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+            // Permite letras, números, espacios, caracteres de control y signos de puntuación/símbolos
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+                !char.IsControl(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                !char.IsPunctuation(e.KeyChar) &&
+                !char.IsSymbol(e.KeyChar))
             {
                 e.Handled = true; // Evita que el carácter se ingrese en el TextBox
-                // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten letras, números y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

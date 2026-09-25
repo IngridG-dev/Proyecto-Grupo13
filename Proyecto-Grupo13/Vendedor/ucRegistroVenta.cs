@@ -43,11 +43,14 @@ namespace Proyecto_Grupo13.Vendedor
 
         private void textProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            // Permite letras, números, espacios, caracteres de control y signos de puntuación/símbolos
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+                !char.IsControl(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                !char.IsPunctuation(e.KeyChar) &&
+                !char.IsSymbol(e.KeyChar))
             {
-                e.Handled = true; // Evita que se ingrese un carácter no alfabético
-                // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Handled = true; // Evita que se ingrese un carácter no permitido
             }
         }
         private void textNombreComple_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -93,6 +96,29 @@ namespace Proyecto_Grupo13.Vendedor
                 MessageBox.Show("Solo se permiten números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private void textPagaCon_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+
+                MessageBox.Show(
+                    "Solo se permiten números y el punto decimal.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+
+            // Evitar más de un punto decimal
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+        }
 
         //CONFIGURACION DE BOTONES
         // Evento para agregar un producto al DataGridView
@@ -123,6 +149,21 @@ namespace Proyecto_Grupo13.Vendedor
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            // Validar que el stock sea correcto
+            if (!int.TryParse(textStock.Text, out int stockDisponible))
+            {
+                MessageBox.Show("El valor del stock no es válido o está vacío.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Comparamos la cantidad a vender con el stock disponible
+            if (cantidad > stockDisponible)
+            {
+                MessageBox.Show($"La cantidad a agregar ({cantidad}) no puede ser mayor al stock disponible ({stockDisponible}).",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Calcular subtotal
             decimal subTotal = precio * cantidad;
@@ -150,6 +191,7 @@ namespace Proyecto_Grupo13.Vendedor
 
                 dataGridView1.Rows[filaEditando].Cells["SubTotal"].Value =
                     subTotal.ToString("0.00");
+                dataGridView1.Rows[filaEditando].Cells["Stock"].Value = textStock.Text;
 
                 // Actualizar el total general
                 CalcularTotal();
@@ -166,7 +208,7 @@ namespace Proyecto_Grupo13.Vendedor
             }
 
             // SI NO ESTAMOS EDITANDO SE AGREGA PRODUCTO NUEVO
-            dataGridView1.Rows.Add(new object[]
+            int nuevaFila = dataGridView1.Rows.Add(new object[]
             {
         textBoxCodProduct.Text,
         textProducto.Text,
@@ -174,6 +216,8 @@ namespace Proyecto_Grupo13.Vendedor
         cantidad,
         subTotal.ToString("0.00")
             });
+
+            dataGridView1.Rows[nuevaFila].Cells["Stock"].Value = textStock.Text;
 
             // Sumar al total general
             CalcularTotal();
@@ -189,7 +233,7 @@ namespace Proyecto_Grupo13.Vendedor
             textProducto.Clear();
             textPrecio.Clear();
             textStock.Clear();
-            numericCantidad.Value = 0;
+            numericCantidad.Value = 1;
 
             iconBtnCancelar.Visible = false;
             iconBtnAgregarV.Text = "Agregar";
@@ -405,6 +449,7 @@ namespace Proyecto_Grupo13.Vendedor
                 textBoxCodProduct.Text = codigoProducto;
                 textProducto.Text = producto;
                 textPrecio.Text = precio.ToString("0.00");
+                textStock.Text = dataGridView1.Rows[fila].Cells["Stock"].Value?.ToString() ?? "";
 
                 // Asignar al NumericUpDown (validando que el valor no supere sus límites)
                 numericCantidad.Value = Math.Max(numericCantidad.Minimum, Math.Min(numericCantidad.Maximum, cantidad));

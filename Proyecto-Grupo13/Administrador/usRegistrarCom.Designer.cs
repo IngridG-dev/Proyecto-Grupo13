@@ -68,6 +68,7 @@
             this.iconBtnRegistrarC = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.iconBtnActualizarC = new FontAwesome.Sharp.IconButton();
+            this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -192,6 +193,7 @@
             this.textRazonSocial.Name = "textRazonSocial";
             this.textRazonSocial.Size = new System.Drawing.Size(108, 18);
             this.textRazonSocial.TabIndex = 47;
+            this.textRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textRazonSocial_KeyPress);
             // 
             // textNumDocumento
             // 
@@ -203,6 +205,7 @@
             this.textNumDocumento.Name = "textNumDocumento";
             this.textNumDocumento.Size = new System.Drawing.Size(108, 19);
             this.textNumDocumento.TabIndex = 46;
+            this.textNumDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNumDocumento_KeyPress);
             // 
             // labelNombComple
             // 
@@ -243,11 +246,11 @@
             this.groupBox3.Controls.Add(this.labelCodigoProdu);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(234, 149);
+            this.groupBox3.Location = new System.Drawing.Point(234, 139);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(558, 71);
+            this.groupBox3.Size = new System.Drawing.Size(558, 81);
             this.groupBox3.TabIndex = 49;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información Producto";
@@ -480,12 +483,14 @@
             this.iconBtnAgregarC.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.iconBtnAgregarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.iconBtnAgregarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnAgregarC.Location = new System.Drawing.Point(797, 158);
+            this.iconBtnAgregarC.IconSize = 20;
+            this.iconBtnAgregarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnAgregarC.Location = new System.Drawing.Point(796, 139);
             this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnAgregarC.Name = "iconBtnAgregarC";
-            this.iconBtnAgregarC.Size = new System.Drawing.Size(75, 62);
+            this.iconBtnAgregarC.Size = new System.Drawing.Size(86, 28);
             this.iconBtnAgregarC.TabIndex = 51;
-            this.iconBtnAgregarC.Text = "Agregar";
+            this.iconBtnAgregarC.Text = "    Agregar";
             this.iconBtnAgregarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconBtnAgregarC.UseVisualStyleBackColor = false;
             this.iconBtnAgregarC.Click += new System.EventHandler(this.iconBtnAgregarC_Click);
@@ -550,21 +555,44 @@
             this.iconBtnActualizarC.IconChar = FontAwesome.Sharp.IconChar.Repeat;
             this.iconBtnActualizarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.iconBtnActualizarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnActualizarC.Location = new System.Drawing.Point(797, 225);
+            this.iconBtnActualizarC.IconSize = 20;
+            this.iconBtnActualizarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnActualizarC.Location = new System.Drawing.Point(797, 171);
             this.iconBtnActualizarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnActualizarC.Name = "iconBtnActualizarC";
-            this.iconBtnActualizarC.Size = new System.Drawing.Size(75, 62);
+            this.iconBtnActualizarC.Size = new System.Drawing.Size(86, 27);
             this.iconBtnActualizarC.TabIndex = 56;
             this.iconBtnActualizarC.Text = "Actualizar";
+            this.iconBtnActualizarC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnActualizarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconBtnActualizarC.UseVisualStyleBackColor = false;
             this.iconBtnActualizarC.Click += new System.EventHandler(this.iconBtnActualizarC_Click);
+            // 
+            // iconBtnCancelar
+            // 
+            this.iconBtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnCancelar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconBtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.iconBtnCancelar.IconColor = System.Drawing.Color.Red;
+            this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnCancelar.IconSize = 15;
+            this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnCancelar.Location = new System.Drawing.Point(797, 203);
+            this.iconBtnCancelar.Name = "iconBtnCancelar";
+            this.iconBtnCancelar.Size = new System.Drawing.Size(86, 29);
+            this.iconBtnCancelar.TabIndex = 90;
+            this.iconBtnCancelar.Text = "Cancelar";
+            this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconBtnCancelar.UseVisualStyleBackColor = false;
+            this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
             // 
             // usRegistrarCom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnCancelar);
             this.Controls.Add(this.iconBtnActualizarC);
             this.Controls.Add(this.iconBtnRegistrarC);
             this.Controls.Add(this.textTotalPagar);
@@ -633,5 +661,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn btnEditar;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
         private FontAwesome.Sharp.IconButton iconBtnActualizarC;
+        private FontAwesome.Sharp.IconButton iconBtnCancelar;
     }
 }

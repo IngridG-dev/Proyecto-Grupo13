@@ -105,6 +105,15 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Solo se permiten letras y números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private void textRazonSocial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Evita que se ingrese un carácter no alfabético
+                                  // Mostrar un mensaje de advertencia
+                MessageBox.Show("Solo se permiten letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         private void iconBtnAgregarC_Click(object sender, EventArgs e)
         {
@@ -149,6 +158,7 @@ namespace Proyecto_Grupo13.Administrador
             // Cancelar cualquier modo edición previo
             filaEditando = -1;
             iconBtnActualizarC.Enabled = false; // Deshabilitar el botón Actualizar
+            iconBtnAgregarC.Enabled = true; // Habilitar el botón Agregar
 
             CalcularTotal();
             LimpiarCampos();
@@ -254,6 +264,7 @@ namespace Proyecto_Grupo13.Administrador
                 // Guardar el índice de la fila y HABILITAR el botón Actualizar
                 filaEditando = fila;
                 iconBtnActualizarC.Enabled = true;
+                iconBtnAgregarC.Enabled = false;
             }
 
             // BOTÓN ELIMINAR (Debe ir afuera del bloque de editar)
@@ -372,6 +383,16 @@ namespace Proyecto_Grupo13.Administrador
 
             CalcularTotal();
             LimpiarCampos();
+        }
+
+        private void iconBtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+            filaEditando = -1;
+            iconBtnActualizarC.Enabled = false;
+
+            // Volvemos a habilitar el botón Agregar
+            iconBtnAgregarC.Enabled = true;
         }
     }
 }

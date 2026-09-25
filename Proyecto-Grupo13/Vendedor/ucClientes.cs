@@ -247,6 +247,7 @@ namespace Proyecto_Grupo13.Vendedor
 
             btnActualizar.Visible = true;
             btnCancelar.Visible = true;
+            btnAgregar.Enabled = false; // Deshabilita el botón de agregar mientras se edita
 
         }
 

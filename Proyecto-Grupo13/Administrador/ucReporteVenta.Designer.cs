@@ -44,6 +44,12 @@
             this.labelTotalV = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
+            this.NVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
             this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
             this.panelTicket = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,20 +63,14 @@
             this.labelNVenta = new System.Windows.Forms.Label();
             this.lblTicketUsuario = new System.Windows.Forms.Label();
             this.dgvDetalles = new System.Windows.Forms.DataGridView();
-            this.lblTicketProveedor = new System.Windows.Forms.Label();
-            this.lblTicketNumero = new System.Windows.Forms.Label();
-            this.lblTicketFecha = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.NVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
             this.NombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTicketProveedor = new System.Windows.Forms.Label();
+            this.lblTicketNumero = new System.Windows.Forms.Label();
+            this.lblTicketFecha = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
@@ -202,9 +202,9 @@
             this.labelReporteC.Location = new System.Drawing.Point(2, 9);
             this.labelReporteC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelReporteC.Name = "labelReporteC";
-            this.labelReporteC.Size = new System.Drawing.Size(144, 19);
+            this.labelReporteC.Size = new System.Drawing.Size(126, 19);
             this.labelReporteC.TabIndex = 47;
-            this.labelReporteC.Text = "Reporte Compra";
+            this.labelReporteC.Text = "Reporte Venta";
             // 
             // labelBuscarPor2
             // 
@@ -273,6 +273,43 @@
             this.dgvVentas.RowHeadersWidth = 51;
             this.dgvVentas.Size = new System.Drawing.Size(568, 333);
             this.dgvVentas.TabIndex = 69;
+            // 
+            // NVenta
+            // 
+            this.NVenta.HeaderText = "N° Venta";
+            this.NVenta.MinimumWidth = 6;
+            this.NVenta.Name = "NVenta";
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.MinimumWidth = 6;
+            this.Fecha.Name = "Fecha";
+            // 
+            // Vendedor
+            // 
+            this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.Name = "Vendedor";
+            // 
+            // Cliente
+            // 
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.MinimumWidth = 6;
+            this.Cliente.Name = "Cliente";
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            // 
+            // Ver
+            // 
+            this.Ver.HeaderText = "Ver";
+            this.Ver.MinimumWidth = 6;
+            this.Ver.Name = "Ver";
+            this.Ver.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Ver.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // iconBtnExcel
             // 
@@ -463,6 +500,34 @@
             this.dgvDetalles.Size = new System.Drawing.Size(460, 212);
             this.dgvDetalles.TabIndex = 74;
             // 
+            // NombreProducto
+            // 
+            this.NombreProducto.HeaderText = "Nombre Producto";
+            this.NombreProducto.MinimumWidth = 6;
+            this.NombreProducto.Name = "NombreProducto";
+            this.NombreProducto.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.MinimumWidth = 6;
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // subTotal
+            // 
+            this.subTotal.HeaderText = "SubTotal";
+            this.subTotal.MinimumWidth = 6;
+            this.subTotal.Name = "subTotal";
+            this.subTotal.ReadOnly = true;
+            // 
             // lblTicketProveedor
             // 
             this.lblTicketProveedor.AutoSize = true;
@@ -510,71 +575,6 @@
             this.label1.Size = new System.Drawing.Size(181, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "DETALLE DE VENTA";
-            // 
-            // NVenta
-            // 
-            this.NVenta.HeaderText = "N° Venta";
-            this.NVenta.MinimumWidth = 6;
-            this.NVenta.Name = "NVenta";
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.MinimumWidth = 6;
-            this.Fecha.Name = "Fecha";
-            // 
-            // Vendedor
-            // 
-            this.Vendedor.HeaderText = "Vendedor";
-            this.Vendedor.Name = "Vendedor";
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.MinimumWidth = 6;
-            this.Cliente.Name = "Cliente";
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            // 
-            // Ver
-            // 
-            this.Ver.HeaderText = "Ver";
-            this.Ver.MinimumWidth = 6;
-            this.Ver.Name = "Ver";
-            this.Ver.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Ver.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // NombreProducto
-            // 
-            this.NombreProducto.HeaderText = "Nombre Producto";
-            this.NombreProducto.MinimumWidth = 6;
-            this.NombreProducto.Name = "NombreProducto";
-            this.NombreProducto.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.MinimumWidth = 6;
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.MinimumWidth = 6;
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // subTotal
-            // 
-            this.subTotal.HeaderText = "SubTotal";
-            this.subTotal.MinimumWidth = 6;
-            this.subTotal.Name = "subTotal";
-            this.subTotal.ReadOnly = true;
             // 
             // ucReporteVenta
             // 
