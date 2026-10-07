@@ -16,7 +16,6 @@ namespace CapaLogica
             return objCD_Cliente.ListarClientes();
         }
 
-
         // VERIFICAR DNI
         public bool ExisteDNI(int dni, int id_Cliente = 0)
         {
