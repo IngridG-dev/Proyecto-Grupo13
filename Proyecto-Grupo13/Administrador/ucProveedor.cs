@@ -151,8 +151,8 @@ namespace Proyecto_Grupo13.Administrador
 
             // Habilitamos/Deshabilitamos botones para evitar errores
             btnAgregar.Enabled = true;
-            iconBtnActualizar.Enabled = false;
-            iconBtnCancelar.Enabled = false;
+            iconBtnActualizar.Visible = false;
+            iconBtnCancelar.Visible = false;
         }
 
         //BOTONES AGREGAR, ELIMINAR, EDITAR, ACTUALIZA, CANCELAR
@@ -235,8 +235,8 @@ namespace Proyecto_Grupo13.Administrador
             
             MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnAgregar.Enabled = false; // Deshabilita el botón Agregar mientras se edita
-            iconBtnActualizar.Enabled = true; // Habilita el botón Actualizar
-            iconBtnCancelar.Enabled = true; // Habilita el botón Cancelar
+            iconBtnActualizar.Visible = true; // Habilita el botón Actualizar
+            iconBtnCancelar.Visible = true; // Habilita el botón Cancelar
         }
 
         private void iconBtnActualizar_Click(object sender, EventArgs e)
