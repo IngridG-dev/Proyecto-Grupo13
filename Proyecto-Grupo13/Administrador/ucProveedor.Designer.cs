@@ -41,6 +41,12 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dataGridProveedor = new System.Windows.Forms.DataGridView();
+            this.id_proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.labelListaProveedores = new System.Windows.Forms.Label();
             this.lDatosProveedor = new System.Windows.Forms.Label();
@@ -53,12 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.iconBtnActualizar = new FontAwesome.Sharp.IconButton();
             this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
-            this.id_proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iconLimpiar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,12 +87,13 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textBuscar.Location = new System.Drawing.Point(766, 148);
+            this.textBuscar.Location = new System.Drawing.Point(757, 148);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(361, 27);
+            this.textBuscar.Size = new System.Drawing.Size(215, 27);
             this.textBuscar.TabIndex = 79;
+            this.textBuscar.TextChanged += new System.EventHandler(this.textBuscar_TextChanged);
             // 
             // comboBoxEstado
             // 
@@ -175,8 +177,9 @@
             this.comboBoxBuscar.Items.AddRange(new object[] {
             "DNI",
             "Razón Social",
-            "Email"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(591, 148);
+            "Email",
+            "Telefono"});
+            this.comboBoxBuscar.Location = new System.Drawing.Point(582, 148);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
             this.comboBoxBuscar.Size = new System.Drawing.Size(166, 28);
@@ -225,12 +228,13 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(1135, 148);
+            this.btnBuscar.Location = new System.Drawing.Point(989, 147);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(59, 28);
             this.btnBuscar.TabIndex = 68;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dataGridProveedor
             // 
@@ -254,12 +258,57 @@
             this.dataGridProveedor.Size = new System.Drawing.Size(710, 394);
             this.dataGridProveedor.TabIndex = 67;
             // 
+            // id_proveedor
+            // 
+            this.id_proveedor.HeaderText = "id_proveedor";
+            this.id_proveedor.MinimumWidth = 6;
+            this.id_proveedor.Name = "id_proveedor";
+            this.id_proveedor.ReadOnly = true;
+            this.id_proveedor.Visible = false;
+            // 
+            // RazonSocial
+            // 
+            this.RazonSocial.HeaderText = "Razon Social";
+            this.RazonSocial.MinimumWidth = 6;
+            this.RazonSocial.Name = "RazonSocial";
+            this.RazonSocial.ReadOnly = true;
+            // 
+            // Documento
+            // 
+            this.Documento.HeaderText = "DNI";
+            this.Documento.MinimumWidth = 6;
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Teléfono
+            // 
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.MinimumWidth = 6;
+            this.Teléfono.Name = "Teléfono";
+            this.Teléfono.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label1.Location = new System.Drawing.Point(496, 151);
+            this.label1.Location = new System.Drawing.Point(487, 151);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
@@ -410,56 +459,31 @@
             this.iconBtnCancelar.Visible = false;
             this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
             // 
-            // id_proveedor
+            // iconLimpiar
             // 
-            this.id_proveedor.HeaderText = "id_proveedor";
-            this.id_proveedor.MinimumWidth = 6;
-            this.id_proveedor.Name = "id_proveedor";
-            this.id_proveedor.ReadOnly = true;
-            this.id_proveedor.Visible = false;
-            // 
-            // RazonSocial
-            // 
-            this.RazonSocial.HeaderText = "Razon Social";
-            this.RazonSocial.MinimumWidth = 6;
-            this.RazonSocial.Name = "RazonSocial";
-            this.RazonSocial.ReadOnly = true;
-            // 
-            // Documento
-            // 
-            this.Documento.HeaderText = "DNI";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // Teléfono
-            // 
-            this.Teléfono.HeaderText = "Teléfono";
-            this.Teléfono.MinimumWidth = 6;
-            this.Teléfono.Name = "Teléfono";
-            this.Teléfono.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.iconLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.iconLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconLimpiar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconLimpiar.ForeColor = System.Drawing.Color.White;
+            this.iconLimpiar.IconChar = FontAwesome.Sharp.IconChar.Eraser;
+            this.iconLimpiar.IconColor = System.Drawing.Color.Black;
+            this.iconLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconLimpiar.IconSize = 25;
+            this.iconLimpiar.Location = new System.Drawing.Point(1054, 147);
+            this.iconLimpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.iconLimpiar.Name = "iconLimpiar";
+            this.iconLimpiar.Size = new System.Drawing.Size(59, 28);
+            this.iconLimpiar.TabIndex = 85;
+            this.iconLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconLimpiar.UseVisualStyleBackColor = false;
+            this.iconLimpiar.Click += new System.EventHandler(this.iconLimpiar_Click);
             // 
             // ucProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconLimpiar);
             this.Controls.Add(this.iconBtnCancelar);
             this.Controls.Add(this.iconBtnActualizar);
             this.Controls.Add(this.btnEditar);
@@ -525,5 +549,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private FontAwesome.Sharp.IconButton iconLimpiar;
     }
 }

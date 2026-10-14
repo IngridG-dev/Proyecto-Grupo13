@@ -16,5 +16,10 @@ namespace Proyecto_Grupo13.Administrador
         {
             InitializeComponent();
         }
+
+        private void iconLimpiar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

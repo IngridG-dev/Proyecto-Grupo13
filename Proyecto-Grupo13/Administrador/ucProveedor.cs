@@ -392,5 +392,78 @@ namespace Proyecto_Grupo13.Administrador
         {
 
         }
+
+        private void textBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        // BOTON BUSCAR: FILTRA LA GRILLA SEGUN EL CRITERIO SELECCIONADO Y EL TEXTO INGRESADO
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            // Validamos que se haya seleccionado un criterio de búsqueda
+            if (comboBoxBuscar.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtenemos el criterio de búsqueda y el texto ingresado
+            string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
+            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
+
+            int indiceColumna = -1;
+
+            // Determinamos el índice de la columna según el criterio seleccionado
+            switch (columnaFiltro)
+            {
+                case "Razon Social":
+                case "Razón Social":
+                    indiceColumna = 1;
+                    break;
+                case "Documento":
+                case "DNI":
+                case "CUIT":
+                    indiceColumna = 2;
+                    break;
+                case "Email":
+                    indiceColumna = 3;
+                    break;
+                case "Teléfono":
+                case "Telefono":
+                    indiceColumna = 4;
+                    break;
+            }
+
+            if (indiceColumna == -1) return;
+
+            dataGridProveedor.CurrentCell = null; // Desmarcar cualquier celda seleccionada
+
+            // Recorremos todas las filas del DataGridView y aplicamos el filtro
+            foreach (DataGridViewRow fila in dataGridProveedor.Rows)
+            {
+                if (fila.IsNewRow) continue;
+                string valorCelda = fila.Cells[indiceColumna].Value != null ? fila.Cells[indiceColumna].Value.ToString().ToUpper() : "";
+
+
+                if (string.IsNullOrWhiteSpace(textoBusqueda) || valorCelda.Contains(textoBusqueda))
+                {
+                    fila.Visible = true;
+                }
+                else
+                {
+                    fila.Visible = false;
+                }
+            }
+        }
+
+        private void iconLimpiar_Click(object sender, EventArgs e)
+        {
+            comboBoxBuscar.SelectedIndex = -1;
+            textBuscar.Clear();
+            // Mostramos todas las filas nuevamente
+            dataGridProveedor.CurrentCell = null; // Desmarcar cualquier celda seleccionada
+            CargarProveedores();
+        }
     }
 }
