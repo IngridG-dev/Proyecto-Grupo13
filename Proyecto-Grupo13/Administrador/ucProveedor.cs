@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,17 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Proyecto_Grupo13.Administrador
 {
     public partial class ucProveedor : UserControl
     {
+        private CL_Proveedor objCL_Proveedor = new CL_Proveedor();
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
         public ucProveedor()
         {
             InitializeComponent();
-            LimpiarFormulario();
+            CargarEstados();
+            CargarProveedores();
         }
+
+
         // VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
         private void textRazonSocial_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -59,12 +66,12 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Solo se permiten números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private bool ValidarCamposVacios()
+        private bool ValidarCamposVacios(out string mensajeError)
         {
             bool esValido = true;
-
-            // Color normal de los TextBox
+            mensajeError = "";
             Color colorNormal = Color.FromArgb(70, 75, 85);
+
             // RAZON SOCIAL
             if (string.IsNullOrWhiteSpace(textRazonSocial.Text))
             {
@@ -78,17 +85,17 @@ namespace Proyecto_Grupo13.Administrador
                 textRazonSocial.ForeColor = Color.White;
             }
 
-            // DNI
-            if (string.IsNullOrWhiteSpace(textDNI.Text))
+            // DOCUMENTO
+            if (string.IsNullOrWhiteSpace(textDocumento.Text))
             {
-                textDNI.BackColor = Color.LightPink;
-                textDNI.ForeColor = Color.Black;
+                textDocumento.BackColor = Color.LightPink;
+                textDocumento.ForeColor = Color.Black;
                 esValido = false;
             }
             else
             {
-                textDNI.BackColor = colorNormal;
-                textDNI.ForeColor = Color.White;
+                textDocumento.BackColor = colorNormal;
+                textDocumento.ForeColor = Color.White;
             }
 
             // EMAIL
@@ -131,6 +138,38 @@ namespace Proyecto_Grupo13.Administrador
             return esValido;
         }
 
+
+        // Metodo para cargar la grilla con los datos de la base de datos
+        private void CargarProveedores()
+        {
+            dataGridProveedor.Rows.Clear(); // Limpiamos la grilla antes de cargar
+
+            List<Proveedor> lista = objCL_Proveedor.ListarProveedores();
+
+            foreach (Proveedor item in lista)
+            {
+                // Agregamos la fila a la grilla
+                int indice = dataGridProveedor.Rows.Add(
+                    item.id_proveedor,
+                    item.razonSocial,
+                    item.documento,
+                    item.email,
+                    item.telefono,
+                    item.estado == 1 ? "Activo" : "Inactivo"
+                );
+                // Guardamos el objeto Proveedor en la propiedad Tag de la fila para poder acceder a él más tarde si es necesario
+                dataGridProveedor.Rows[indice].Tag = item;
+            }
+        }
+
+        // Metodo para cargar los estados en el ComboBox
+        private void CargarEstados()
+        {
+            comboBoxEstado.Items.Clear();
+            comboBoxEstado.Items.Add("Activo");
+            comboBoxEstado.Items.Add("Inactivo");
+        }
+
         //METODO PARA FORMATEAR EL TEXTO: PRIMERA LETRA MAYUSCULA Y EL RESTO MINUSCULA
         private string formatearTexto(string texto)
         {
@@ -138,11 +177,12 @@ namespace Proyecto_Grupo13.Administrador
             // Primera letra mayúscula, el resto minúscula
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
+
         //METODO PARA LIMPIAR EL FORMULARIO Y REINICIAR ESTADO
         private void LimpiarFormulario()
         {
             textRazonSocial.Clear();
-            textDNI.Clear();
+            textDocumento.Clear();
             textEmail.Clear();
             textTelefono.Clear();
             comboBoxEstado.SelectedIndex = -1;
@@ -153,28 +193,82 @@ namespace Proyecto_Grupo13.Administrador
             btnAgregar.Enabled = true;
             iconBtnActualizar.Visible = false;
             iconBtnCancelar.Visible = false;
+
+            // Limpiamos los colores de advertencia
+            Color colorNormal = Color.FromArgb(70, 75, 85);
+            textRazonSocial.BackColor = colorNormal;
+            textDocumento.BackColor = colorNormal;
+            textEmail.BackColor = colorNormal;
+            textTelefono.BackColor = colorNormal;
+            comboBoxEstado.BackColor = colorNormal;
+        }
+
+        // VALIDAR DNI ÚNICO
+        private bool ValidarDNIUnico()
+        {
+            if (string.IsNullOrWhiteSpace(textDocumento.Text))
+                return true;
+
+            int idProveedor = 0;
+
+            // Si estamos editando, obtenemos el ID del proveedor actual desde el Tag
+            if (filaEditar != -1)
+            {
+                idProveedor = ((Proveedor)dataGridProveedor.Rows[filaEditar].Tag).id_proveedor;
+            }
+
+            // Llamamos a la validación de la capa lógica (asumiendo que ExisteDocumento recibe string o int según tu BD)
+            bool existe = objCL_Proveedor.ExisteDocumento(Convert.ToInt64(textDocumento.Text.Trim()), idProveedor);
+
+            if (existe)
+            {
+                MessageBox.Show("Este DNI/CUIT ya está registrado.", "Documento duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textDocumento.BackColor = Color.LightPink;
+                textDocumento.Focus();
+                return false;
+            }
+
+            textDocumento.BackColor = Color.FromArgb(70, 75, 85);
+            return true;
         }
 
         //BOTONES AGREGAR, ELIMINAR, EDITAR, ACTUALIZA, CANCELAR
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Validamos que no haya campos vacíos antes de insertar en la tabla
-            if (ValidarCamposVacios())
+            string mensajeError;
+            if (!ValidarCamposVacios(out mensajeError))
             {
-                DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo proveedor?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                if (ask == DialogResult.Yes)
-                {
-                    string nombre = formatearTexto(textRazonSocial.Text);
-                    //agregamos los datos a la tabla
-                    dataGridProveedor.Rows.Add(nombre, textDNI.Text, textEmail.Text, textTelefono.Text, comboBoxEstado.Text);
-                    MessageBox.Show("Proveedor " + nombre + " agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarFormulario();
-                    textRazonSocial.Focus(); // Establece el foco en el TextBox de Razon Social
-                }
+                MessageBox.Show(mensajeError, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidarDNIUnico()) return;
+
+            DialogResult ask = MessageBox.Show("¿Seguro que desea insertar este nuevo proveedor?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+            if (ask != DialogResult.Yes) return;
+
+            Proveedor nuevoProveedor = new Proveedor()
+            {
+                razonSocial = formatearTexto(textRazonSocial.Text.Trim()),
+                documento = Convert.ToInt64(textDocumento.Text.Trim()),
+                email = textEmail.Text.Trim(),
+                telefono = textTelefono.Text.Trim(),
+                estado = comboBoxEstado.Text == "Activo" ? 1 : 0
+            };
+
+            string Mensaje;
+            int idGenerado = objCL_Proveedor.RegistrarProveedor(nuevoProveedor, out Mensaje);
+
+            if (idGenerado != 0)
+            {
+                MessageBox.Show("El proveedor " + nuevoProveedor.razonSocial + " se insertó correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarProveedores();
+                LimpiarFormulario();
             }
             else
             {
-                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Mensaje != "" ? Mensaje : "No se pudo registrar el proveedor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -209,34 +303,38 @@ namespace Proyecto_Grupo13.Administrador
             }
         }
 
+        // BOTON EDITAR: CARGA LOS DATOS DE LA FILA SELECCIONADA EN LOS CAMPOS DE TEXTO PARA PODER EDITARLOS
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (dataGridProveedor.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, seleccione un proveedor para editar.", "Sin selección",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, seleccione un proveedor para editar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            filaEditar = dataGridProveedor.SelectedRows[0].Index; //guarda el indice de la fila seleccionada
+
+            filaEditar = dataGridProveedor.SelectedRows[0].Index;
+
             if (dataGridProveedor.Rows[filaEditar].IsNewRow)
             {
                 MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                filaEditar = -1; // Reinicia el índice de la fila a editar
+                filaEditar = -1;
                 return;
             }
-            DataGridViewRow fila = dataGridProveedor.Rows[filaEditar]; // Obtiene la fila seleccionada
 
-            //se pasa los datos de la tabla a los campos de texto para poder editarlos
-            textRazonSocial.Text = fila.Cells[0].Value?.ToString();
-            textDNI.Text = fila.Cells[1].Value?.ToString();
-            textEmail.Text = fila.Cells[2].Value?.ToString();
-            textTelefono.Text = fila.Cells[3].Value?.ToString();
-            comboBoxEstado.Text = fila.Cells[4].Value?.ToString();
-            
+            // Recuperamos el objeto directamente del Tag
+            Proveedor proveedorSeleccionado = (Proveedor)dataGridProveedor.Rows[filaEditar].Tag;
+
+            textRazonSocial.Text = proveedorSeleccionado.razonSocial;
+            textDocumento.Text = proveedorSeleccionado.documento.ToString();
+            textEmail.Text = proveedorSeleccionado.email;
+            textTelefono.Text = proveedorSeleccionado.telefono;
+            comboBoxEstado.Text = proveedorSeleccionado.estado == 1 ? "Activo" : "Inactivo";
+
+            iconBtnActualizar.Visible = true;
+            iconBtnCancelar.Visible = true;
+            btnAgregar.Enabled = false;
+
             MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            btnAgregar.Enabled = false; // Deshabilita el botón Agregar mientras se edita
-            iconBtnActualizar.Visible = true; // Habilita el botón Actualizar
-            iconBtnCancelar.Visible = true; // Habilita el botón Cancelar
         }
 
         private void iconBtnActualizar_Click(object sender, EventArgs e)
@@ -247,33 +345,52 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            if (ValidarCamposVacios())
+            string mensajeError;
+            if (!ValidarCamposVacios(out mensajeError))
             {
-                DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del proveedor?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MessageBox.Show(mensajeError, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                if (askEdit == DialogResult.Yes)
+            if (!ValidarDNIUnico()) return;
+
+            DialogResult ask = MessageBox.Show("¿Seguro que desea actualizar este proveedor?", "Confirmar actualización", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+            if (ask != DialogResult.Yes)
+            {
+                Proveedor proveedorEditado = new Proveedor()
                 {
-                    // Actualizar la fila seleccionada
-                    dataGridProveedor.Rows[filaEditar].Cells[0].Value = formatearTexto(textRazonSocial.Text);
-                    dataGridProveedor.Rows[filaEditar].Cells[1].Value = textDNI.Text;
-                    dataGridProveedor.Rows[filaEditar].Cells[2].Value = textEmail.Text;
-                    dataGridProveedor.Rows[filaEditar].Cells[3].Value = textTelefono.Text;
-                    dataGridProveedor.Rows[filaEditar].Cells[4].Value = comboBoxEstado.Text;
+                    id_proveedor = ((Proveedor)dataGridProveedor.Rows[filaEditar].Tag).id_proveedor,
+                    razonSocial = formatearTexto(textRazonSocial.Text.Trim()),
+                    documento = Convert.ToInt64(textDocumento.Text.Trim()),
+                    email = textEmail.Text.Trim(),
+                    telefono = textTelefono.Text.Trim(),
+                    estado = comboBoxEstado.Text == "Activo" ? 1 : 0
+                };
 
-                    MessageBox.Show("Proveedor actualizado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bool respuesta = objCL_Proveedor.EditarProveedor(proveedorEditado);
 
+                if (respuesta)
+                {
+                    MessageBox.Show("Proveedor actualizado correctamente.", "Actualización exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarProveedores();
                     LimpiarFormulario();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el proveedor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void iconBtnCancelar_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+        }
+
+        private void lDni_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
