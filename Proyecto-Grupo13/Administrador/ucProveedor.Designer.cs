@@ -41,11 +41,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dataGridProveedor = new System.Windows.Forms.DataGridView();
-            this.RazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.labelListaProveedores = new System.Windows.Forms.Label();
             this.lDatosProveedor = new System.Windows.Forms.Label();
@@ -58,6 +53,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.iconBtnActualizar = new FontAwesome.Sharp.IconButton();
             this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
+            this.id_proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -237,6 +238,7 @@
             this.dataGridProveedor.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_proveedor,
             this.RazonSocial,
             this.Documento,
             this.Email,
@@ -251,43 +253,6 @@
             this.dataGridProveedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridProveedor.Size = new System.Drawing.Size(710, 394);
             this.dataGridProveedor.TabIndex = 67;
-            // 
-            // RazonSocial
-            // 
-            this.RazonSocial.HeaderText = "Razon Social";
-            this.RazonSocial.MinimumWidth = 6;
-            this.RazonSocial.Name = "RazonSocial";
-            this.RazonSocial.ReadOnly = true;
-            // 
-            // Documento
-            // 
-            this.Documento.HeaderText = "DNI";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // Teléfono
-            // 
-            this.Teléfono.HeaderText = "Teléfono";
-            this.Teléfono.MinimumWidth = 6;
-            this.Teléfono.Name = "Teléfono";
-            this.Teléfono.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // label1
             // 
@@ -445,6 +410,51 @@
             this.iconBtnCancelar.Visible = false;
             this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
             // 
+            // id_proveedor
+            // 
+            this.id_proveedor.HeaderText = "id_proveedor";
+            this.id_proveedor.MinimumWidth = 6;
+            this.id_proveedor.Name = "id_proveedor";
+            this.id_proveedor.ReadOnly = true;
+            this.id_proveedor.Visible = false;
+            // 
+            // RazonSocial
+            // 
+            this.RazonSocial.HeaderText = "Razon Social";
+            this.RazonSocial.MinimumWidth = 6;
+            this.RazonSocial.Name = "RazonSocial";
+            this.RazonSocial.ReadOnly = true;
+            // 
+            // Documento
+            // 
+            this.Documento.HeaderText = "DNI";
+            this.Documento.MinimumWidth = 6;
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Teléfono
+            // 
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.MinimumWidth = 6;
+            this.Teléfono.Name = "Teléfono";
+            this.Teléfono.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // ucProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -509,6 +519,7 @@
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconButton iconBtnActualizar;
         private FontAwesome.Sharp.IconButton iconBtnCancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_proveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn RazonSocial;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
