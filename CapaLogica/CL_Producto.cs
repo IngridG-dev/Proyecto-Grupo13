@@ -17,8 +17,7 @@ namespace CapaLogica
         }
 
         // VALIDAR DATOS DEL PRODUCTO
-        private bool ValidarProducto(
-            Producto obj, out string mensaje)
+        private bool ValidarProducto(Producto obj, out string mensaje)
         {
             mensaje = string.Empty;
 
@@ -46,34 +45,15 @@ namespace CapaLogica
                 return false;
             }
 
-            if (obj.stock < 0)
+            if (obj.stockMinimo < 3)
             {
-                mensaje = "El stock no puede ser negativo.";
+                mensaje = "El stock mínimo no puede ser menor a 3.";
                 return false;
             }
 
-            if (obj.stockMinimo < 0)
-            {
-                mensaje = "El stock mínimo no puede ser negativo.";
-                return false;
-            }
-
-            if (obj.precioVenta <= 0)
-            {
-                mensaje = "El precio de venta debe ser mayor que cero.";
-                return false;
-            }
-
-            if (obj.categoria == null ||
-                obj.categoria.id_categoria <= 0)
+            if (obj.categoria == null || obj.categoria.id_categoria <= 0)
             {
                 mensaje = "Debe seleccionar una categoría.";
-                return false;
-            }
-
-            if (obj.estado != 0 && obj.estado != 1)
-            {
-                mensaje = "El estado del producto no es válido.";
                 return false;
             }
 

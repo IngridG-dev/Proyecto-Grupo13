@@ -32,6 +32,7 @@ namespace CapaDatos
                     FROM Producto p
                     INNER JOIN Categoria c
                         ON p.id_categoria = c.id_categoria
+                    WHERE p.estado = 1
                     ORDER BY p.id_producto DESC";
 
                 using (SqlCommand comando =
@@ -115,60 +116,40 @@ namespace CapaDatos
 
             try
             {
-                using (SqlConnection oconexion =
-                    new SqlConnection(Conexion.cadena))
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
                     string query = @"
-                        INSERT INTO Producto
-                        (
-                            codigo,
-                            nombreProducto,
-                            descripcion,
-                            stock,
-                            stockMinimo,
-                            precioVenta,
-                            estado,
-                            id_categoria
-                        )
-                        VALUES
-                        (
-                            @codigo,
-                            @nombreProducto,
-                            @descripcion,
-                            @stock,
-                            @stockMinimo,
-                            @precioVenta,
-                            @estado,
-                            @id_categoria
-                        )";
+                INSERT INTO Producto
+                (
+                    codigo,
+                    nombreProducto,
+                    descripcion,
+                    stock,          -- Stock actual inicia en 0 (aumenta con compras)
+                    stockMinimo,    -- Stock mínimo configurado en el mantenedor
+                    precioVenta,    -- Precio de venta inicia en 0 (se define en compras/ventas)
+                    estado,
+                    id_categoria
+                )
+                VALUES
+                (
+                    @codigo,
+                    @nombreProducto,
+                    @descripcion,
+                    0,              
+                    @stockMinimo,
+                    0,              
+                    @estado,
+                    @id_categoria
+                )";
 
-                    using (SqlCommand comando =
-                        new SqlCommand(query, oconexion))
+                    using (SqlCommand comando = new SqlCommand(query, oconexion))
                     {
-                        comando.Parameters.AddWithValue(
-                            "@codigo", obj.codigo);
-
-                        comando.Parameters.AddWithValue(
-                            "@nombreProducto", obj.nombreProducto);
-
-                        comando.Parameters.AddWithValue(
-                            "@descripcion", obj.descripcion);
-
-                        comando.Parameters.AddWithValue(
-                            "@stock", obj.stock);
-
-                        comando.Parameters.AddWithValue(
-                            "@stockMinimo", obj.stockMinimo);
-
-                        comando.Parameters.AddWithValue(
-                            "@precioVenta", obj.precioVenta);
-
-                        comando.Parameters.AddWithValue(
-                            "@estado", obj.estado == 1);
-
-                        comando.Parameters.AddWithValue(
-                            "@id_categoria",
-                            obj.categoria.id_categoria);
+                        comando.Parameters.AddWithValue("@codigo", obj.codigo);
+                        comando.Parameters.AddWithValue("@nombreProducto", obj.nombreProducto);
+                        comando.Parameters.AddWithValue("@descripcion", obj.descripcion);
+                        comando.Parameters.AddWithValue("@stockMinimo", obj.stockMinimo);
+                        comando.Parameters.AddWithValue("@estado", obj.estado == 1);
+                        comando.Parameters.AddWithValue("@id_categoria", obj.categoria.id_categoria);
 
                         oconexion.Open();
                         return comando.ExecuteNonQuery() > 0;
@@ -182,59 +163,35 @@ namespace CapaDatos
             }
         }
 
-        // EDITAR PRODUCTO
+        // EDITAR PRODUCTO (Solo actualiza datos generales y stock mínimo, sin alterar stock actual ni precio venta por aquí)
         public bool EditarProducto(Producto obj, out string mensaje)
         {
             mensaje = string.Empty;
 
             try
             {
-                using (SqlConnection oconexion =
-                    new SqlConnection(Conexion.cadena))
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
                     string query = @"
-                        UPDATE Producto
-                        SET
-                            codigo = @codigo,
-                            nombreProducto = @nombreProducto,
-                            descripcion = @descripcion,
-                            stock = @stock,
-                            stockMinimo = @stockMinimo,
-                            precioVenta = @precioVenta,
-                            estado = @estado,
-                            id_categoria = @id_categoria
-                        WHERE id_producto = @id_producto";
+                UPDATE Producto
+                SET
+                    codigo = @codigo,
+                    nombreProducto = @nombreProducto,
+                    descripcion = @descripcion,
+                    stockMinimo = @stockMinimo,
+                    estado = @estado,
+                    id_categoria = @id_categoria
+                WHERE id_producto = @id_producto";
 
-                    using (SqlCommand comando =
-                        new SqlCommand(query, oconexion))
+                    using (SqlCommand comando = new SqlCommand(query, oconexion))
                     {
-                        comando.Parameters.AddWithValue(
-                            "@id_producto", obj.id_producto);
-
-                        comando.Parameters.AddWithValue(
-                            "@codigo", obj.codigo);
-
-                        comando.Parameters.AddWithValue(
-                            "@nombreProducto", obj.nombreProducto);
-
-                        comando.Parameters.AddWithValue(
-                            "@descripcion", obj.descripcion);
-
-                        comando.Parameters.AddWithValue(
-                            "@stock", obj.stock);
-
-                        comando.Parameters.AddWithValue(
-                            "@stockMinimo", obj.stockMinimo);
-
-                        comando.Parameters.AddWithValue(
-                            "@precioVenta", obj.precioVenta);
-
-                        comando.Parameters.AddWithValue(
-                            "@estado", obj.estado == 1);
-
-                        comando.Parameters.AddWithValue(
-                            "@id_categoria",
-                            obj.categoria.id_categoria);
+                        comando.Parameters.AddWithValue("@id_producto", obj.id_producto);
+                        comando.Parameters.AddWithValue("@codigo", obj.codigo);
+                        comando.Parameters.AddWithValue("@nombreProducto", obj.nombreProducto);
+                        comando.Parameters.AddWithValue("@descripcion", obj.descripcion);
+                        comando.Parameters.AddWithValue("@stockMinimo", obj.stockMinimo);
+                        comando.Parameters.AddWithValue("@estado", obj.estado == 1);
+                        comando.Parameters.AddWithValue("@id_categoria", obj.categoria.id_categoria);
 
                         oconexion.Open();
                         return comando.ExecuteNonQuery() > 0;
@@ -247,7 +204,6 @@ namespace CapaDatos
                 return false;
             }
         }
-
         // ELIMINAR PRODUCTO (DESACTIVAR)
         public bool EliminarProducto(
             int idProducto, out string mensaje)

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaEntidad;
+using CapaLogica;
 
 namespace Proyecto_Grupo13.Administrador
 {
@@ -16,6 +18,8 @@ namespace Proyecto_Grupo13.Administrador
         public UcProductos1()
         {
             InitializeComponent();
+            CargarProductosGrid();
+            CargarComboBoxCategorias();
         }
         //VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
         private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -191,34 +195,47 @@ namespace Proyecto_Grupo13.Administrador
         //BOTONES PARA AGREGAR, ELIMINAR Y EDITAR PRODUCTOS
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Validamos campos vacíos
             if (!ValidarCamposVacios())
             {
                 MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Validamos que el código no exista en el DataGridView
             if (!ValidarCodigoUnico()) return;
 
             DialogResult ask = MessageBox.Show("¿Desea agregar este nuevo producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (ask == DialogResult.Yes)
             {
-                string nombre = formatearTexto(textNombre.Text);
+                Producto nuevoProducto = new Producto()
+                {
+                    codigo = textCodigo.Text.Trim(),
+                    nombreProducto = formatearTexto(textNombre.Text),
+                    descripcion = textDescripcion.Text.Trim(),
+                    stockMinimo = Convert.ToInt32(textStock.Text), // Stock mínimo desde el TextBox
+                    estado = 1,
+                    categoria = new Categoria
+                    {
+                        id_categoria = Convert.ToInt32(comboBoxCategoria.SelectedValue)
+                    }
+                };
 
-                // Agregamos la fila (Asegúrate de que el orden coincida con tus columnas)
-                dataGridView2.Rows.Add(
-                    nombre,
-                    textCodigo.Text,
-                    textDescripcion.Text,
-                    comboBoxCategoria.Text,
-                    textStock.Text
-                );
+                string mensaje = string.Empty;
+                CL_Producto controlLogica = new CL_Producto();
+                bool resultado = controlLogica.RegistrarProducto(nuevoProducto, out mensaje);
 
-                MessageBox.Show("Producto agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
+                if (resultado)
+                {
+                    MessageBox.Show("Producto registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarProductosGrid();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Error al registrar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -265,24 +282,70 @@ namespace Proyecto_Grupo13.Administrador
 
             DataGridViewRow fila = dataGridView2.Rows[filaEditar];
 
-            // Pasamos los datos de las celdas a los controles
-            textNombre.Text = fila.Cells[0].Value?.ToString();
-            textCodigo.Text = fila.Cells[1].Value?.ToString();
-            textDescripcion.Text = fila.Cells[2].Value?.ToString();
-            comboBoxCategoria.Text = fila.Cells[3].Value?.ToString();
-            textStock.Text = fila.Cells[4].Value?.ToString();
+            textNombre.Text = fila.Cells[1].Value?.ToString();
+            textCodigo.Text = fila.Cells[2].Value?.ToString();
+            textDescripcion.Text = fila.Cells[3].Value?.ToString();
+            comboBoxCategoria.Text = fila.Cells[4].Value?.ToString();
+            textStock.Text = fila.Cells[6].Value?.ToString(); // se cargwa el stock mínimo
 
-            // Mostramos los botones de actualizar y cancelar
             iconBtnActualizar.Visible = true;
             iconBtnCancelar.Visible = true;
             btnAgregar.Enabled = false;
-
             MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            // Validamos que se haya seleccionado un criterio de búsqueda
+            if (comboBoxBuscar.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Obtenemos el criterio de búsqueda y el texto ingresado
+            string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
+            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
+
+            int indiceColumna = -1;
+
+            // Determinamos el índice de la columna según el criterio seleccionado
+            switch (columnaFiltro)
+            {
+                case "Codigo":
+                case "Código":
+                    indiceColumna = 1;
+                    break;
+                case "Nombre":
+                case "N":
+                    indiceColumna = 2;
+                    break;
+                case "Categoria":
+                case "Categoría":
+                    indiceColumna = 3;
+                    break;
+            }
+
+            if (indiceColumna == -1) return;
+
+            dataGridView2.CurrentCell = null; // Desmarcar cualquier celda seleccionada
+
+            // Recorremos todas las filas del DataGridView y aplicamos el filtro
+            foreach (DataGridViewRow fila in dataGridView2.Rows)
+            {
+                if (fila.IsNewRow) continue;
+                string valorCelda = fila.Cells[indiceColumna].Value != null ? fila.Cells[indiceColumna].Value.ToString().ToUpper() : "";
+
+
+                if (string.IsNullOrWhiteSpace(textoBusqueda) || valorCelda.Contains(textoBusqueda))
+                {
+                    fila.Visible = true;
+                }
+                else
+                {
+                    fila.Visible = false;
+                }
+            }
         }
 
         private void labelProductos_Click(object sender, EventArgs e)
@@ -312,15 +375,36 @@ namespace Proyecto_Grupo13.Administrador
 
                 if (askEdit == DialogResult.Yes)
                 {
-                    // Actualizamos la fila directamente en el DataGridView
-                    dataGridView2.Rows[filaEditar].Cells[0].Value = formatearTexto(textNombre.Text);
-                    dataGridView2.Rows[filaEditar].Cells[1].Value = textCodigo.Text;
-                    dataGridView2.Rows[filaEditar].Cells[2].Value = textDescripcion.Text;
-                    dataGridView2.Rows[filaEditar].Cells[3].Value = comboBoxCategoria.Text;
-                    dataGridView2.Rows[filaEditar].Cells[4].Value = textStock.Text;
+                    int idProducto = Convert.ToInt32(dataGridView2.Rows[filaEditar].Cells[0].Value);
 
-                    MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCampos();
+                    Producto productoModificado = new Producto()
+                    {
+                        id_producto = idProducto,
+                        codigo = textCodigo.Text.Trim(),
+                        nombreProducto = formatearTexto(textNombre.Text),
+                        descripcion = textDescripcion.Text.Trim(),
+                        stockMinimo = Convert.ToInt32(textStock.Text),
+                        estado = 1,
+                        categoria = new Categoria
+                        {
+                            id_categoria = Convert.ToInt32(comboBoxCategoria.SelectedValue)
+                        }
+                    };
+
+                    string mensaje = string.Empty;
+                    CL_Producto controlLogica = new CL_Producto();
+                    bool resultado = controlLogica.EditarProducto(productoModificado, out mensaje);
+
+                    if (resultado)
+                    {
+                        MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarProductosGrid();
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -343,6 +427,44 @@ namespace Proyecto_Grupo13.Administrador
         private void textCodigo_Leave(object sender, EventArgs e)
         {
             ValidarCodigoUnico();
+        }
+
+        private void iconLimpiar_Click(object sender, EventArgs e)
+        {
+            comboBoxBuscar.SelectedIndex = -1;
+            textBuscar.Clear(); 
+            dataGridView2.ClearSelection(); // Limpiar la selección del DataGridView
+
+        }
+        private void CargarProductosGrid()
+        {
+            dataGridView2.Rows.Clear();
+            CL_Producto controlLogica = new CL_Producto();
+            List<Producto> lista = controlLogica.Listar();
+
+            foreach (Producto item in lista)
+            {
+                dataGridView2.Rows.Add(
+                    item.id_producto,           // Columna 0 (Oculta)
+                    item.nombreProducto,        // Columna 1 (Nombre)
+                    item.codigo,                // Columna 2 (Código)
+                    item.descripcion,           // Columna 3 (Descripción)
+                    item.categoria.descripcion, // Columna 4 (Categoría)
+                    item.stock,                 // Columna 5 (Stock Actual / Cantidad Total)
+                    item.stockMinimo,           // Columna 6 (Stock Mínimo)
+                    item.precioVenta            // Columna 7 (Precio Venta actual)
+                );
+            }
+        }
+        private void CargarComboBoxCategorias()
+        {
+            CL_Categoria controlCategoria = new CL_Categoria();
+            List<Categoria> listaCategorias = controlCategoria.Listar();
+
+            comboBoxCategoria.DataSource = listaCategorias;
+            comboBoxCategoria.DisplayMember = "descripcion"; // Lo que el usuario ve
+            comboBoxCategoria.ValueMember = "id_categoria";     // El ID oculto por detrás
+            comboBoxCategoria.SelectedIndex = -1;              // Iniciar limpio
         }
     }
 }
