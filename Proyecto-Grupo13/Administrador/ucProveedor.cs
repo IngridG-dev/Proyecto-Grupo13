@@ -274,33 +274,45 @@ namespace Proyecto_Grupo13.Administrador
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dataGridProveedor.SelectedRows.Count > 0)
+            // Validamos que se haya seleccionado una fila en el DataGridView
+            if (dataGridProveedor.SelectedRows.Count == 0)
             {
-                // Preguntamos si esta seguro de eliminar 
-                DialogResult ask = MessageBox.Show("¿Seguro que desea eliminar el registro seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                MessageBox.Show("Por favor, seleccione un proveedor para eliminar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                // Si dice que Si
-                if (ask == DialogResult.Yes)
+            // Obtenemos la fila seleccionada
+            DataGridViewRow fila = dataGridProveedor.SelectedRows[0];
+
+            // Validamos que la fila seleccionada no sea una fila nueva (vacía)
+            if (fila.IsNewRow)
+            {
+                MessageBox.Show("No se puede eliminar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Confirmamos la eliminación con el usuario
+            DialogResult ask = MessageBox.Show("¿Seguro que desea eliminar este proveedor?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+            // Si el usuario confirma la eliminación
+            if (ask == DialogResult.Yes)
+            {
+                int idProveedor = ((Proveedor)fila.Tag).id_proveedor;
+
+                bool respuesta = objCL_Proveedor.EliminarProveedor(idProveedor);
+
+                if (respuesta)
                 {
-                    // Verificamos que no intente borrar la ultima fila en blanco (la que usa el DataGridView para agregar nuevos datos a mano)
-                    if (!dataGridProveedor.SelectedRows[0].IsNewRow)
-                    {
-                        // Borramos la fila usando el indice de la que esta seleccionada
-                        dataGridProveedor.Rows.RemoveAt(dataGridProveedor.SelectedRows[0].Index);
-
-                        MessageBox.Show("El registro se eliminó correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se puede eliminar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Proveedor eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarProveedores();
+                    LimpiarFormulario();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el proveedor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                // Si apreto el boton sin seleccionar nada en la tabla
-                MessageBox.Show("Por favor, seleccione toda la fila que desea eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+
         }
 
         // BOTON EDITAR: CARGA LOS DATOS DE LA FILA SELECCIONADA EN LOS CAMPOS DE TEXTO PARA PODER EDITARLOS
