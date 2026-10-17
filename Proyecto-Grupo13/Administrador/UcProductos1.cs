@@ -466,5 +466,10 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxCategoria.ValueMember = "id_categoria";     // El ID oculto por detrás
             comboBoxCategoria.SelectedIndex = -1;              // Iniciar limpio
         }
+
+        private void UcProductos1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

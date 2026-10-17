@@ -14,6 +14,7 @@ namespace CapaEntidad
         public string fechaRegistro { get; set; }
         public Usuario usuario { get; set; } // Relación con la clase Usuario
         public Proveedor proveedor { get; set; } // Relación con la clase Proveedor
+        public List<DetalleCompra> oListaDetalle { get; set; }
 
     }
 }

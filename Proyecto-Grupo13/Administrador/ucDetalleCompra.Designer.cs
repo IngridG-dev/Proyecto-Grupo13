@@ -239,7 +239,7 @@
             this.groupBox1.Size = new System.Drawing.Size(829, 100);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Información Venta";
+            this.groupBox1.Text = "Información Compra";
             // 
             // textTipoDoc
             // 

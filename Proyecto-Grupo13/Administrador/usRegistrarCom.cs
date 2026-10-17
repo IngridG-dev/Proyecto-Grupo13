@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,14 +45,25 @@ namespace Proyecto_Grupo13.Administrador
             //abrir el formulario de búsqueda de proveedores
             FormProveedor buscarProveedor = new FormProveedor();
 
-            buscarProveedor.ShowDialog();
+            if(buscarProveedor.ShowDialog() == DialogResult.OK)
+            {
+                // Guardamos el ID oculto en el Tag del TextBox para usarlo al registrar la compra
+                textNumDocumento.Tag = buscarProveedor.proveedorSeleccionado.id_proveedor;
+                textNumDocumento.Text = buscarProveedor.proveedorSeleccionado.documento.ToString();
+                textRazonSocial.Text = buscarProveedor.proveedorSeleccionado.razonSocial;
+            }
         }
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
-            //abrir el formulario de búsqueda de productos
             FormBuscarProductos buscarProducto = new FormBuscarProductos();
-            buscarProducto.ShowDialog();
+            if (buscarProducto.ShowDialog() == DialogResult.OK)
+            {
+                // Guardamos el ID oculto en el Tag del TextBox para usarlo al registrar la compra
+                textCodProduct.Tag = buscarProducto.productoSeleccionado.id_producto;
+                textCodProduct.Text = buscarProducto.productoSeleccionado.codigo;
+                textProducto.Text = buscarProducto.productoSeleccionado.nombreProducto;
+            }
         }
 
         private void textCodProduct_KeyPress(object sender, KeyPressEventArgs e) {
@@ -125,14 +138,14 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            if (!decimal.TryParse(textPrecio.Text, out decimal precio))
+            if (!decimal.TryParse(textPrecioCompra.Text, out decimal precio))
             {
                 MessageBox.Show("Ingrese un precio de compra válido.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            decimal.TryParse(textPrecioV.Text, out decimal precioVenta);
+            decimal.TryParse(textPrecioVenta.Text, out decimal precioVenta);
             int cantidad = (int)numericCantidad.Value;
 
             if (cantidad <= 0)
@@ -147,12 +160,13 @@ namespace Proyecto_Grupo13.Administrador
             // SIEMPRE AGREGA UN PRODUCTO NUEVO
             dataGridView1.Rows.Add(new object[]
             {
-        textCodProduct.Text,
-        textProducto.Text,
-        precio.ToString("0.00"),
-        precioVenta.ToString("0.00"),
-        cantidad,
-        subTotal.ToString("0.00")
+                Convert.ToInt32(textCodProduct.Tag), // [Columna Oculta] ID del producto
+                textCodProduct.Text,                 // Código
+                textProducto.Text,                   // Producto
+                precio.ToString("0.00"),             // Precio Compra
+                precioVenta.ToString("0.00"),        // Precio Venta
+                cantidad,                            // Cantidad
+                subTotal.ToString("0.00")            // SubTotal
             });
 
             // Cancelar cualquier modo edición previo
@@ -168,8 +182,8 @@ namespace Proyecto_Grupo13.Administrador
         {
             textCodProduct.Clear();
             textProducto.Clear();
-            textPrecio.Clear();
-            textPrecioV.Clear();
+            textPrecioCompra.Clear();
+            textPrecioVenta.Clear();
             numericCantidad.Value = numericCantidad.Minimum;
             iconBtnAgregarC.Enabled = true; // Habilitar el botón Agregar
         }
@@ -253,8 +267,8 @@ namespace Proyecto_Grupo13.Administrador
                 // Cargar los datos en los controles de la pantalla
                 textCodProduct.Text = codigoProducto;
                 textProducto.Text = producto;
-                textPrecio.Text = precio.ToString("0.00");
-                textPrecioV.Text = precioVenta.ToString("0.00");
+                textPrecioCompra.Text = precio.ToString("0.00");
+                textPrecioVenta.Text = precioVenta.ToString("0.00");
 
                 // Verificar que la cantidad esté dentro de los límites del NumericUpDown
                 numericCantidad.Value = Math.Max(
@@ -290,47 +304,78 @@ namespace Proyecto_Grupo13.Administrador
 
         private void iconBtnRegistrarC_Click(object sender, EventArgs e)
         {
-            // Validar que Tipo de Documento no esté sin seleccionar
+            // Validar Tipo Documento y Proveedor
             if (comboTipoDocumento.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar un tipo de documento (Boleta o Factura).", "Advertencia",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                comboTipoDocumento.Focus();
+                MessageBox.Show("Debe seleccionar un tipo de documento.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Validar datos del Proveedor
-            if (string.IsNullOrWhiteSpace(textNumDocumento.Text) ||
-                string.IsNullOrWhiteSpace(textRazonSocial.Text))
+            if (string.IsNullOrWhiteSpace(textNumDocumento.Text)) // Asume que guardaste el ID del proveedor en textNumDocumento.Tag al buscarlo
             {
-                MessageBox.Show("Debe completar todos los datos del proveedor antes de registrar la compra.", "Advertencia",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un proveedor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Validar que haya al menos un producto en el DataGridView
             if (dataGridView1.Rows.Count == 0 || (dataGridView1.Rows.Count == 1 && dataGridView1.Rows[0].IsNewRow))
             {
-                MessageBox.Show("Debe agregar al menos un producto a la lista antes de registrar la compra.", "Advertencia",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe agregar al menos un producto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Confirmación y registro
-            MessageBox.Show("Compra registrada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // 1. Armar el DataTable con los detalles de la grilla
+            DataTable detalleCompra = new DataTable();
+            detalleCompra.Columns.Add("IdProducto", typeof(int));
+            detalleCompra.Columns.Add("PrecioCompra", typeof(decimal));
+            detalleCompra.Columns.Add("PrecioVenta", typeof(decimal));
+            detalleCompra.Columns.Add("Cantidad", typeof(int));
 
-            // Limpiar proveedor y tipo de documento
-            comboTipoDocumento.SelectedIndex = -1;
-            textNumDocumento.Clear();
-            textRazonSocial.Clear();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    detalleCompra.Rows.Add(
+                        Convert.ToInt32(row.Cells["IdProducto"].Value), // Reemplaza "IdProducto" con el nombre real de tu columna oculta
+                        Convert.ToDecimal(row.Cells["PrecioCompra"].Value),
+                        Convert.ToDecimal(row.Cells["PrecioVenta"].Value),
+                        Convert.ToInt32(row.Cells["Cantidad"].Value)
+                    );
+                }
+            }
 
-            // Limpiar productos y controles llamando a tu método de limpieza
-            LimpiarCampos();
+            int correlativo = new CL_Compra().ObtenerCorrelativo();
+            // 2. Construir el objeto Compra
+            Compra oCompra = new Compra()
+            {
+                // El id_usuario debe venir del usuario logueado en el sistema
+                usuario = new Usuario() { id_usuario = 1 /* Reemplazar con variable global de sesión */ },
 
-            // Limpiar tabla y totales
-            dataGridView1.Rows.Clear();
-            totalAPagar = 0;
-            textTotalPagar.Text = "0.00";
+                // El id_proveedor debió guardarse en el Tag al seleccionar el proveedor en el modal
+                proveedor = new Proveedor() { id_proveedor = Convert.ToInt32(textNumDocumento.Tag) },
+
+                tipoDocumento = comboTipoDocumento.Text,
+                numeroCompra = string.Format("{0:00000}", correlativo), // Formatear con ceros a la izquierda
+            };
+
+            // 3. Enviar a Capa Lógica
+            string mensaje;
+            bool resultado = new CL_Compra().RegistrarCompra(oCompra, detalleCompra, out mensaje);
+
+            if (resultado)
+            {
+                MessageBox.Show("Compra registrada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpiar controles
+                comboTipoDocumento.SelectedIndex = -1;
+                textNumDocumento.Clear();
+                textNumDocumento.Tag = null;
+                textRazonSocial.Clear();
+                dataGridView1.Rows.Clear();
+                CalcularTotal();
+                LimpiarCampos();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void iconBtnActualizarC_Click(object sender, EventArgs e)
@@ -351,14 +396,14 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            if (!decimal.TryParse(textPrecio.Text, out decimal precio))
+            if (!decimal.TryParse(textPrecioCompra.Text, out decimal precio))
             {
                 MessageBox.Show("Ingrese un precio de compra válido.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            decimal.TryParse(textPrecioV.Text, out decimal precioVenta);
+            decimal.TryParse(textPrecioVenta.Text, out decimal precioVenta);
             int cantidad = (int)numericCantidad.Value;
 
             if (cantidad <= 0)
@@ -371,6 +416,7 @@ namespace Proyecto_Grupo13.Administrador
             decimal subTotal = precio * cantidad;
 
             // ACTUALIZAR LA FILA SELECCIONADA
+            dataGridView1.Rows[filaEditando].Cells["IdProducto"].Value = Convert.ToInt32(textCodProduct.Tag); 
             dataGridView1.Rows[filaEditando].Cells["CodigoProducto"].Value = textCodProduct.Text;
             dataGridView1.Rows[filaEditando].Cells["Producto"].Value = textProducto.Text;
             dataGridView1.Rows[filaEditando].Cells["PrecioCompra"].Value = precio.ToString("0.00");
@@ -394,6 +440,38 @@ namespace Proyecto_Grupo13.Administrador
 
             // Volvemos a habilitar el botón Agregar
             iconBtnAgregarC.Enabled = true;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxPorcentaje_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Validamos que haya un precio de compra ingresado y un porcentaje seleccionado
+            if (!string.IsNullOrEmpty(textPrecioCompra.Text) && comboBoxPorcentaje.SelectedItem != null)
+            {
+                try
+                {
+                    // Parseamos los valores
+                    decimal precioCompra = Convert.ToDecimal(textPrecioCompra.Text);
+
+                    // Si tu ComboBox tiene el símbolo "%" (ej. "15%"), lo limpiamos. Si son solo números, omití el Replace.
+                    string porcentajeTexto = comboBoxPorcentaje.SelectedItem.ToString().Replace("%", "");
+                    decimal porcentaje = Convert.ToDecimal(porcentajeTexto);
+
+                    // Calculamos el precio de venta: Precio Compra + (Precio Compra * Porcentaje / 100)
+                    decimal precioVenta = precioCompra + (precioCompra * (porcentaje / 100));
+
+                    // Mostramos el resultado en el TextBox de Precio Venta con dos decimales
+                    textPrecioVenta.Text = precioVenta.ToString("0.00");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Por favor, ingrese un precio de compra válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }
