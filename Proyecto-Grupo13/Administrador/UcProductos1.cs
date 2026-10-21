@@ -20,6 +20,7 @@ namespace Proyecto_Grupo13.Administrador
             InitializeComponent();
             CargarProductosGrid();
             CargarComboBoxCategorias();
+            CargarComboBoxProveedores();
         }
         //VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
         private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -150,6 +151,17 @@ namespace Proyecto_Grupo13.Administrador
                 comboBoxCategoria.BackColor = colorNormal;
                 comboBoxCategoria.ForeColor = Color.White;
             }
+            if (comboBoxProveedor.SelectedIndex == -1)
+            {
+                comboBoxProveedor.BackColor = Color.LightPink;
+                comboBoxProveedor.ForeColor = Color.Black;
+                esValido = false;
+            }
+            else
+            {
+                comboBoxProveedor.BackColor = colorNormal;
+                comboBoxProveedor.ForeColor = Color.White;
+            }
             return esValido;
         }
 
@@ -217,6 +229,10 @@ namespace Proyecto_Grupo13.Administrador
                     categoria = new Categoria
                     {
                         id_categoria = Convert.ToInt32(comboBoxCategoria.SelectedValue)
+                    },
+                    proveedor = new Proveedor
+                    {
+                        id_proveedor = Convert.ToInt32(comboBoxProveedor.SelectedValue)
                     }
                 };
 
@@ -287,6 +303,7 @@ namespace Proyecto_Grupo13.Administrador
             textDescripcion.Text = fila.Cells[3].Value?.ToString();
             comboBoxCategoria.Text = fila.Cells[4].Value?.ToString();
             textStock.Text = fila.Cells[6].Value?.ToString(); // se cargwa el stock mínimo
+            comboBoxProveedor.Text = fila.Cells[8].Value?.ToString();
 
             iconBtnActualizar.Visible = true;
             iconBtnCancelar.Visible = true;
@@ -312,18 +329,9 @@ namespace Proyecto_Grupo13.Administrador
             // Determinamos el índice de la columna según el criterio seleccionado
             switch (columnaFiltro)
             {
-                case "Codigo":
-                case "Código":
-                    indiceColumna = 1;
-                    break;
-                case "Nombre":
-                case "N":
-                    indiceColumna = 2;
-                    break;
-                case "Categoria":
-                case "Categoría":
-                    indiceColumna = 3;
-                    break;
+                case "Codigo": case "Código": indiceColumna = 2; break;
+                case "Nombre": case "N": indiceColumna = 1; break;
+                case "Categoria": case "Categoría": indiceColumna = 4; break;
             }
 
             if (indiceColumna == -1) return;
@@ -388,6 +396,10 @@ namespace Proyecto_Grupo13.Administrador
                         categoria = new Categoria
                         {
                             id_categoria = Convert.ToInt32(comboBoxCategoria.SelectedValue)
+                        },
+                        proveedor = new Proveedor
+                        {
+                            id_proveedor = Convert.ToInt32(comboBoxProveedor.SelectedValue)
                         }
                     };
 
@@ -415,6 +427,7 @@ namespace Proyecto_Grupo13.Administrador
             textDescripcion.Clear();
             textStock.Clear();
             comboBoxCategoria.SelectedIndex = -1;
+            comboBoxProveedor.SelectedIndex = -1;
 
             filaEditar = -1; // Reiniciamos la variable de edición
 
@@ -452,7 +465,8 @@ namespace Proyecto_Grupo13.Administrador
                     item.categoria.descripcion, // Columna 4 (Categoría)
                     item.stock,                 // Columna 5 (Stock Actual / Cantidad Total)
                     item.stockMinimo,           // Columna 6 (Stock Mínimo)
-                    item.precioVenta            // Columna 7 (Precio Venta actual)
+                    item.precioVenta,            // Columna 7 (Precio Venta actual)
+                    item.proveedor              // Columna 8 (Proveedor)
                 );
             }
         }
@@ -466,7 +480,15 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxCategoria.ValueMember = "id_categoria";     // El ID oculto por detrás
             comboBoxCategoria.SelectedIndex = -1;              // Iniciar limpio
         }
+        private void CargarComboBoxProveedores()
+        {
+            List<Proveedor> listaProveedores = new CL_Proveedor().ListarProveedores();
 
+            comboBoxProveedor.DataSource = listaProveedores;
+            comboBoxProveedor.DisplayMember = "razonSocial";
+            comboBoxProveedor.ValueMember = "id_proveedor";
+            comboBoxProveedor.SelectedIndex = -1;
+        }
         private void UcProductos1_Load(object sender, EventArgs e)
         {
 

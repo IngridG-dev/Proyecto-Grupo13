@@ -87,7 +87,7 @@ namespace Proyecto_Grupo13
                 );
                 return;
             }
-
+            SesionActual.usuarioLogueado = usuario; // Guardar el usuario en la sesión actual
             // Ocultar la pantalla de Login ANTES de abrir el menú
             this.Hide();
 
@@ -119,6 +119,7 @@ namespace Proyecto_Grupo13
                 return;
             }
 
+            SesionActual.usuarioLogueado = null; // Limpiar la sesión actual al cerrar el menú
             //Al cerrar el menú (con la 'X' o con un botón "Cerrar Sesión"), el código continúa aquí:
             textNumeroDocum.Clear();
             textContraseña.Clear();

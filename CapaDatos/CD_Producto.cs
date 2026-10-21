@@ -10,66 +10,69 @@ namespace CapaDatos
     public class CD_Producto
     {
         // LISTAR PRODUCTOS
-        public List<Producto> Listar()
+        public List<Producto> Listar(int idProveedor = 0)
         {
             List<Producto> lista = new List<Producto>();
 
-            using (SqlConnection oconexion =
-                new SqlConnection(Conexion.cadena))
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
             {
                 string query = @"
-                    SELECT
-                        p.id_producto,
-                        p.codigo,
-                        p.nombreProducto,
-                        p.descripcion,
-                        p.stock,
-                        p.stockMinimo,
-                        p.estado,
-                        p.precioVenta,
-                        c.id_categoria,
-                        c.descripcion AS categoriaDescripcion
-                    FROM Producto p
-                    INNER JOIN Categoria c
-                        ON p.id_categoria = c.id_categoria
-                    WHERE p.estado = 1
-                    ORDER BY p.id_producto DESC";
+            SELECT
+                p.id_producto,
+                p.codigo,
+                p.nombreProducto,
+                p.descripcion,
+                p.stock,
+                p.stockMinimo,
+                p.estado,
+                p.precioVenta,
+                c.id_categoria,
+                c.descripcion AS categoriaDescripcion,
+                pr.id_proveedor,
+                pr.razonSocial
+            FROM Producto p
+            INNER JOIN Categoria c
+                ON p.id_categoria = c.id_categoria
+            LEFT JOIN Proveedor pr
+                ON p.id_proveedor = pr.id_proveedor
+            WHERE p.estado = 1
+              AND (@idProveedor = 0 OR p.id_proveedor = @idProveedor)
+            ORDER BY p.id_producto DESC;";
 
-                using (SqlCommand comando =
-                    new SqlCommand(query, oconexion))
+                using (SqlCommand comando = new SqlCommand(query, oconexion))
                 {
+                    comando.Parameters.AddWithValue("@idProveedor", idProveedor);
+
                     oconexion.Open();
 
-                    using (SqlDataReader reader =
-                        comando.ExecuteReader())
+                    using (SqlDataReader reader = comando.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             lista.Add(new Producto
                             {
-                                id_producto = Convert.ToInt32(
-                                    reader["id_producto"]),
-
+                                id_producto = Convert.ToInt32(reader["id_producto"]),
                                 codigo = reader["codigo"].ToString(),
                                 nombreProducto = reader["nombreProducto"].ToString(),
                                 descripcion = reader["descripcion"].ToString(),
-
                                 stock = Convert.ToInt32(reader["stock"]),
-                                stockMinimo = Convert.ToInt32(
-                                    reader["stockMinimo"]),
-
+                                stockMinimo = Convert.ToInt32(reader["stockMinimo"]),
                                 estado = Convert.ToInt32(reader["estado"]),
-                                precioVenta = Convert.ToDecimal(
-                                    reader["precioVenta"]),
+                                precioVenta = Convert.ToDecimal(reader["precioVenta"]),
 
                                 categoria = new Categoria
                                 {
-                                    id_categoria = Convert.ToInt32(
-                                        reader["id_categoria"]),
+                                    id_categoria = Convert.ToInt32(reader["id_categoria"]),
+                                    descripcion = reader["categoriaDescripcion"].ToString()
+                                },
 
-                                    descripcion = reader[
-                                        "categoriaDescripcion"].ToString()
-                                }
+                                proveedor = reader["id_proveedor"] != DBNull.Value
+                                    ? new Proveedor
+                                    {
+                                        id_proveedor = Convert.ToInt32(reader["id_proveedor"]),
+                                        razonSocial = reader["razonSocial"].ToString()
+                                    }
+                                    : null
                             });
                         }
                     }
@@ -78,6 +81,7 @@ namespace CapaDatos
 
             return lista;
         }
+
 
         // VERIFICAR SI EL CODIGO YA EXISTE
         public bool ExisteCodigo(
@@ -128,7 +132,8 @@ namespace CapaDatos
                     stockMinimo,    -- Stock mínimo configurado en el mantenedor
                     precioVenta,    -- Precio de venta inicia en 0 (se define en compras/ventas)
                     estado,
-                    id_categoria
+                    id_categoria,
+                    id_proveedor
                 )
                 VALUES
                 (
@@ -137,9 +142,10 @@ namespace CapaDatos
                     @descripcion,
                     0,              
                     @stockMinimo,
-                    0,              
+                    0,                           
                     @estado,
-                    @id_categoria
+                    @id_categoria,
+                    @id_proveedor
                 )";
 
                     using (SqlCommand comando = new SqlCommand(query, oconexion))
@@ -150,6 +156,7 @@ namespace CapaDatos
                         comando.Parameters.AddWithValue("@stockMinimo", obj.stockMinimo);
                         comando.Parameters.AddWithValue("@estado", obj.estado == 1);
                         comando.Parameters.AddWithValue("@id_categoria", obj.categoria.id_categoria);
+                        comando.Parameters.AddWithValue("@id_proveedor", obj.proveedor.id_proveedor);
 
                         oconexion.Open();
                         return comando.ExecuteNonQuery() > 0;

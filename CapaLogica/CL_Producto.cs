@@ -1,5 +1,4 @@
-﻿
-using CapaDatos;
+﻿using CapaDatos;
 using CapaEntidad;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,11 @@ namespace CapaLogica
         {
             return datos.Listar();
         }
-
+        // LISTAR PRODUCTOS POR PROVEEDOR
+        public List<Producto> ListarPorProveedor(int idProveedor)
+        {
+            return datos.Listar(idProveedor);
+        }
         // VALIDAR DATOS DEL PRODUCTO
         private bool ValidarProducto(Producto obj, out string mensaje)
         {
@@ -54,6 +57,17 @@ namespace CapaLogica
             if (obj.categoria == null || obj.categoria.id_categoria <= 0)
             {
                 mensaje = "Debe seleccionar una categoría.";
+                return false;
+            }
+            if (obj.categoria == null || obj.categoria.id_categoria <= 0)
+            {
+                mensaje = "Debe seleccionar una categoría.";
+                return false;
+            }
+
+            if (obj.proveedor == null || obj.proveedor.id_proveedor <= 0)
+            {
+                mensaje = "Debe seleccionar un proveedor.";
                 return false;
             }
 

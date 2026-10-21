@@ -44,11 +44,34 @@ namespace Proyecto_Grupo13.Administrador
         {
             //abrir el formulario de búsqueda de proveedores
             FormProveedor buscarProveedor = new FormProveedor();
-
-            if(buscarProveedor.ShowDialog() == DialogResult.OK)
+            if (buscarProveedor.ShowDialog() == DialogResult.OK)
             {
-                // Guardamos el ID oculto en el Tag del TextBox para usarlo al registrar la compra
-                textNumDocumento.Tag = buscarProveedor.proveedorSeleccionado.id_proveedor;
+                int nuevoId = buscarProveedor.proveedorSeleccionado.id_proveedor;
+                int idActual = textNumDocumento.Tag == null ? 0 : Convert.ToInt32(textNumDocumento.Tag);
+
+                if (idActual != 0 && idActual != nuevoId)
+                {
+                    bool hayProductos = dataGridView1.Rows.Cast<DataGridViewRow>().Any(r => !r.IsNewRow);
+
+                    if (hayProductos)
+                    {
+                        DialogResult r = MessageBox.Show(
+                            "Al cambiar de proveedor se quitarán los productos ya agregados. ¿Continuar?",
+                            "Cambiar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (r == DialogResult.No) return;
+
+                        dataGridView1.Rows.Clear();
+                        CalcularTotal();
+                    }
+
+                    textCodProduct.Clear();
+                    LimpiarCampos();
+                    filaEditando = -1;
+                    iconBtnActualizarC.Enabled = false;
+                }
+
+                textNumDocumento.Tag = nuevoId;
                 textNumDocumento.Text = buscarProveedor.proveedorSeleccionado.documento.ToString();
                 textRazonSocial.Text = buscarProveedor.proveedorSeleccionado.razonSocial;
             }
@@ -56,6 +79,12 @@ namespace Proyecto_Grupo13.Administrador
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
+            if (textNumDocumento.Tag == null || Convert.ToInt32(textNumDocumento.Tag) <= 0)
+            {
+                MessageBox.Show("Primero seleccione un proveedor.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             FormBuscarProductos buscarProducto = new FormBuscarProductos();
             if (buscarProducto.ShowDialog() == DialogResult.OK)
             {
@@ -131,9 +160,9 @@ namespace Proyecto_Grupo13.Administrador
         private void iconBtnAgregarC_Click(object sender, EventArgs e)
         {
             // Validaciones básicas
-            if (string.IsNullOrWhiteSpace(textProducto.Text))
+            if (textCodProduct.Tag == null || Convert.ToInt32(textCodProduct.Tag) <= 0)
             {
-                MessageBox.Show("Complete los campos para registrar un producto.", "Advertencia",
+                MessageBox.Show("Seleccione un producto.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -144,8 +173,12 @@ namespace Proyecto_Grupo13.Administrador
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            decimal.TryParse(textPrecioVenta.Text, out decimal precioVenta);
+            if (!decimal.TryParse(textPrecioVenta.Text, out decimal precioVenta) || precioVenta <= 0)
+            {
+                MessageBox.Show("El precio de venta tiene que ser mayor a 0. Ingrese el precio de venta o elija un porcentaje.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int cantidad = (int)numericCantidad.Value;
 
             if (cantidad <= 0)
@@ -181,6 +214,7 @@ namespace Proyecto_Grupo13.Administrador
         private void LimpiarCampos()
         {
             textCodProduct.Clear();
+            textCodProduct.Tag = null;
             textProducto.Clear();
             textPrecioCompra.Clear();
             textPrecioVenta.Clear();
@@ -236,7 +270,8 @@ namespace Proyecto_Grupo13.Administrador
                 int fila = e.RowIndex;
 
                 // Obtener Código del producto
-                string codigoProducto =
+                textCodProduct.Tag = dataGridView1.Rows[fila].Cells["IdProducto"].Value;
+                textCodProduct.Text =
                     dataGridView1.Rows[fila].Cells["CodigoProducto"].Value?.ToString() ?? "";
 
                 // Obtener nombre del producto
@@ -265,7 +300,6 @@ namespace Proyecto_Grupo13.Administrador
                 }
 
                 // Cargar los datos en los controles de la pantalla
-                textCodProduct.Text = codigoProducto;
                 textProducto.Text = producto;
                 textPrecioCompra.Text = precio.ToString("0.00");
                 textPrecioVenta.Text = precioVenta.ToString("0.00");
@@ -343,17 +377,17 @@ namespace Proyecto_Grupo13.Administrador
 
             int correlativo = new CL_Compra().ObtenerCorrelativo();
             // 2. Construir el objeto Compra
-            Compra oCompra = new Compra()
+                if(SesionActual.usuarioLogueado == null)
             {
-                // El id_usuario debe venir del usuario logueado en el sistema
-                usuario = new Usuario() { id_usuario = 1 /* Reemplazar con variable global de sesión */ },
-
-                // El id_proveedor debió guardarse en el Tag al seleccionar el proveedor en el modal
-                proveedor = new Proveedor() { id_proveedor = Convert.ToInt32(textNumDocumento.Tag) },
-
-                tipoDocumento = comboTipoDocumento.Text,
-                numeroCompra = string.Format("{0:00000}", correlativo), // Formatear con ceros a la izquierda
-            };
+                MessageBox.Show("No hay un usuario logueado. Por favor, inicie sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+                Compra oCompra = new Compra { 
+                    usuario = new Usuario() { id_usuario = SesionActual.usuarioLogueado.id_usuario },
+                    proveedor = new Proveedor() { id_proveedor = Convert.ToInt32(textNumDocumento.Tag) },
+                    tipoDocumento = comboTipoDocumento.Text,
+                    numeroCompra = string.Format("{0:000000}", correlativo), // Formatear con ceros a la izquierda
+                };
 
             // 3. Enviar a Capa Lógica
             string mensaje;
@@ -389,6 +423,11 @@ namespace Proyecto_Grupo13.Administrador
             }
 
             // Validaciones básicas
+            if (textCodProduct.Tag == null || Convert.ToInt32(textCodProduct.Tag) <= 0)
+            {
+                MessageBox.Show("Seleccione un producto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(textProducto.Text))
             {
                 MessageBox.Show("Complete los campos para actualizar el producto.", "Advertencia",
@@ -416,7 +455,7 @@ namespace Proyecto_Grupo13.Administrador
             decimal subTotal = precio * cantidad;
 
             // ACTUALIZAR LA FILA SELECCIONADA
-            dataGridView1.Rows[filaEditando].Cells["IdProducto"].Value = Convert.ToInt32(textCodProduct.Tag); 
+            dataGridView1.Rows[filaEditando].Cells["IdProducto"].Value = Convert.ToInt32(textCodProduct.Tag);
             dataGridView1.Rows[filaEditando].Cells["CodigoProducto"].Value = textCodProduct.Text;
             dataGridView1.Rows[filaEditando].Cells["Producto"].Value = textProducto.Text;
             dataGridView1.Rows[filaEditando].Cells["PrecioCompra"].Value = precio.ToString("0.00");
@@ -426,7 +465,7 @@ namespace Proyecto_Grupo13.Administrador
 
             // Salir del modo edición y deshabilitar botón Actualizar
             filaEditando = -1;
-            
+            iconBtnActualizarC.Enabled = false;
 
             CalcularTotal();
             LimpiarCampos();
