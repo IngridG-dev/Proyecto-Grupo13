@@ -20,6 +20,7 @@ namespace Proyecto_Grupo13.Administrador
         }
 
         public Producto productoSeleccionado { get; set; }
+        public int idProveedorFiltro { get; set; } = 0; // Propiedad para almacenar el ID del proveedor seleccionado
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             if (dgvProductos.SelectedRows.Count > 0)
@@ -57,8 +58,8 @@ namespace Proyecto_Grupo13.Administrador
 
             foreach (Producto item in lista)
             {
-                // Asegúrate de que las columnas coincidan con las de tu diseño
-                dgvProductos.Rows.Add(item.id_producto, item.codigo, item.nombreProducto, item.categoria.descripcion);
+                if (item.proveedor.id_proveedor == idProveedorFiltro) // Filtra por el ID del proveedor
+                    dgvProductos.Rows.Add(item.id_producto, item.codigo, item.nombreProducto, item.categoria.descripcion);
             }
 
             foreach (DataGridViewColumn columna in dgvProductos.Columns)

@@ -368,8 +368,8 @@ namespace Proyecto_Grupo13.Administrador
 
             DialogResult ask = MessageBox.Show("¿Seguro que desea actualizar este proveedor?", "Confirmar actualización", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
-            if (ask != DialogResult.Yes)
-            {
+            if (ask != DialogResult.Yes) return;
+
                 Proveedor proveedorEditado = new Proveedor()
                 {
                     id_proveedor = ((Proveedor)dataGridProveedor.Rows[filaEditar].Tag).id_proveedor,
@@ -393,7 +393,6 @@ namespace Proyecto_Grupo13.Administrador
                     MessageBox.Show("No se pudo actualizar el proveedor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
 
         private void iconBtnCancelar_Click(object sender, EventArgs e)
         {

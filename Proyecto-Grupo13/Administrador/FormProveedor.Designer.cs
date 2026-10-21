@@ -36,12 +36,12 @@
             this.textBuscar = new System.Windows.Forms.TextBox();
             this.labelBuscarPor = new System.Windows.Forms.Label();
             this.dgvProveedores = new System.Windows.Forms.DataGridView();
-            this.btnSeleccionar = new FontAwesome.Sharp.IconButton();
-            this.btnCancelar = new FontAwesome.Sharp.IconButton();
             this.id_proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSeleccionar = new FontAwesome.Sharp.IconButton();
+            this.btnCancelar = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).BeginInit();
             this.SuspendLayout();
@@ -161,10 +161,40 @@
             this.dgvProveedores.Location = new System.Drawing.Point(15, 138);
             this.dgvProveedores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvProveedores.Name = "dgvProveedores";
+            this.dgvProveedores.ReadOnly = true;
             this.dgvProveedores.RowHeadersWidth = 51;
             this.dgvProveedores.RowTemplate.Height = 24;
             this.dgvProveedores.Size = new System.Drawing.Size(819, 305);
             this.dgvProveedores.TabIndex = 50;
+            // 
+            // id_proveedor
+            // 
+            this.id_proveedor.HeaderText = "id_proveedor";
+            this.id_proveedor.MinimumWidth = 6;
+            this.id_proveedor.Name = "id_proveedor";
+            this.id_proveedor.ReadOnly = true;
+            this.id_proveedor.Visible = false;
+            // 
+            // documento
+            // 
+            this.documento.HeaderText = "Documento/CUIT";
+            this.documento.MinimumWidth = 6;
+            this.documento.Name = "documento";
+            this.documento.ReadOnly = true;
+            // 
+            // razonSocial
+            // 
+            this.razonSocial.HeaderText = "Razón Social";
+            this.razonSocial.MinimumWidth = 6;
+            this.razonSocial.Name = "razonSocial";
+            this.razonSocial.ReadOnly = true;
+            // 
+            // email
+            // 
+            this.email.HeaderText = "Email";
+            this.email.MinimumWidth = 6;
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
             // 
             // btnSeleccionar
             // 
@@ -203,31 +233,6 @@
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // id_proveedor
-            // 
-            this.id_proveedor.HeaderText = "id_proveedor";
-            this.id_proveedor.MinimumWidth = 6;
-            this.id_proveedor.Name = "id_proveedor";
-            this.id_proveedor.Visible = false;
-            // 
-            // documento
-            // 
-            this.documento.HeaderText = "Documento/CUIT";
-            this.documento.MinimumWidth = 6;
-            this.documento.Name = "documento";
-            // 
-            // razonSocial
-            // 
-            this.razonSocial.HeaderText = "Razón Social";
-            this.razonSocial.MinimumWidth = 6;
-            this.razonSocial.Name = "razonSocial";
-            // 
-            // email
-            // 
-            this.email.HeaderText = "Email";
-            this.email.MinimumWidth = 6;
-            this.email.Name = "email";
             // 
             // FormProveedor
             // 

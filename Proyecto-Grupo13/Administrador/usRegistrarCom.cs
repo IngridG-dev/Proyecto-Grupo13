@@ -79,13 +79,17 @@ namespace Proyecto_Grupo13.Administrador
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
-            if (textNumDocumento.Tag == null || Convert.ToInt32(textNumDocumento.Tag) <= 0)
+            //Validar que se haya seleccionado un proveedor antes de buscar productos
+            if (textNumDocumento.Tag == null || string.IsNullOrWhiteSpace(textNumDocumento.Text))
             {
                 MessageBox.Show("Primero seleccione un proveedor.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // Abrir el formulario de búsqueda de productos
             FormBuscarProductos buscarProducto = new FormBuscarProductos();
+            buscarProducto.idProveedorFiltro = Convert.ToInt32(textNumDocumento.Tag); // Pasar el ID del proveedor al formulario de búsqueda
             if (buscarProducto.ShowDialog() == DialogResult.OK)
             {
                 // Guardamos el ID oculto en el Tag del TextBox para usarlo al registrar la compra

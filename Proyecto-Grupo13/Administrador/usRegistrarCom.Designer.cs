@@ -44,20 +44,20 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxPorcentaje = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
             this.numericCantidad = new System.Windows.Forms.NumericUpDown();
-            this.iconBtnActualizarC = new FontAwesome.Sharp.IconButton();
             this.textPrecioVenta = new System.Windows.Forms.TextBox();
             this.textPrecioCompra = new System.Windows.Forms.TextBox();
             this.textProducto = new System.Windows.Forms.TextBox();
             this.textCodProduct = new System.Windows.Forms.TextBox();
-            this.iconBtnAgregarC = new FontAwesome.Sharp.IconButton();
             this.labelCantidad = new System.Windows.Forms.Label();
             this.labelStock = new System.Windows.Forms.Label();
             this.labelPrecio = new System.Windows.Forms.Label();
             this.btnBuscarProducto = new System.Windows.Forms.Button();
             this.labelProducto = new System.Windows.Forms.Label();
             this.labelCodigoProdu = new System.Windows.Forms.Label();
+            this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
+            this.iconBtnActualizarC = new FontAwesome.Sharp.IconButton();
+            this.iconBtnAgregarC = new FontAwesome.Sharp.IconButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -296,28 +296,6 @@
             this.label4.TabIndex = 91;
             this.label4.Text = "Porcentaje:";
             // 
-            // iconBtnCancelar
-            // 
-            this.iconBtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconBtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.iconBtnCancelar.ForeColor = System.Drawing.Color.Black;
-            this.iconBtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.iconBtnCancelar.IconColor = System.Drawing.Color.Red;
-            this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnCancelar.IconSize = 25;
-            this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconBtnCancelar.Location = new System.Drawing.Point(1118, 269);
-            this.iconBtnCancelar.Margin = new System.Windows.Forms.Padding(4);
-            this.iconBtnCancelar.Name = "iconBtnCancelar";
-            this.iconBtnCancelar.Size = new System.Drawing.Size(113, 39);
-            this.iconBtnCancelar.TabIndex = 90;
-            this.iconBtnCancelar.Text = "Cancelar";
-            this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBtnCancelar.UseVisualStyleBackColor = false;
-            this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
-            // 
             // numericCantidad
             // 
             this.numericCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
@@ -344,27 +322,6 @@
             0,
             0,
             0});
-            // 
-            // iconBtnActualizarC
-            // 
-            this.iconBtnActualizarC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconBtnActualizarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnActualizarC.ForeColor = System.Drawing.Color.Black;
-            this.iconBtnActualizarC.IconChar = FontAwesome.Sharp.IconChar.Repeat;
-            this.iconBtnActualizarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.iconBtnActualizarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnActualizarC.IconSize = 25;
-            this.iconBtnActualizarC.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconBtnActualizarC.Location = new System.Drawing.Point(1118, 224);
-            this.iconBtnActualizarC.Margin = new System.Windows.Forms.Padding(2);
-            this.iconBtnActualizarC.Name = "iconBtnActualizarC";
-            this.iconBtnActualizarC.Size = new System.Drawing.Size(113, 39);
-            this.iconBtnActualizarC.TabIndex = 56;
-            this.iconBtnActualizarC.Text = "Actualizar";
-            this.iconBtnActualizarC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnActualizarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBtnActualizarC.UseVisualStyleBackColor = false;
-            this.iconBtnActualizarC.Click += new System.EventHandler(this.iconBtnActualizarC_Click);
             // 
             // textPrecioVenta
             // 
@@ -422,26 +379,6 @@
             this.textCodProduct.TabIndex = 59;
             this.textCodProduct.TextChanged += new System.EventHandler(this.textCodProduct_TextChanged);
             this.textCodProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCodProduct_KeyPress);
-            // 
-            // iconBtnAgregarC
-            // 
-            this.iconBtnAgregarC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconBtnAgregarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnAgregarC.ForeColor = System.Drawing.Color.Black;
-            this.iconBtnAgregarC.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.iconBtnAgregarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.iconBtnAgregarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnAgregarC.IconSize = 25;
-            this.iconBtnAgregarC.Location = new System.Drawing.Point(1118, 178);
-            this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2);
-            this.iconBtnAgregarC.Name = "iconBtnAgregarC";
-            this.iconBtnAgregarC.Size = new System.Drawing.Size(113, 39);
-            this.iconBtnAgregarC.TabIndex = 51;
-            this.iconBtnAgregarC.Text = "Agregar";
-            this.iconBtnAgregarC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnAgregarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBtnAgregarC.UseVisualStyleBackColor = false;
-            this.iconBtnAgregarC.Click += new System.EventHandler(this.iconBtnAgregarC_Click);
             // 
             // labelCantidad
             // 
@@ -516,6 +453,71 @@
             this.labelCodigoProdu.Size = new System.Drawing.Size(124, 23);
             this.labelCodigoProdu.TabIndex = 53;
             this.labelCodigoProdu.Text = "Cod. Producto:";
+            // 
+            // iconBtnCancelar
+            // 
+            this.iconBtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconBtnCancelar.ForeColor = System.Drawing.Color.Black;
+            this.iconBtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.iconBtnCancelar.IconColor = System.Drawing.Color.Red;
+            this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnCancelar.IconSize = 25;
+            this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.iconBtnCancelar.Location = new System.Drawing.Point(1118, 269);
+            this.iconBtnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.iconBtnCancelar.Name = "iconBtnCancelar";
+            this.iconBtnCancelar.Size = new System.Drawing.Size(113, 39);
+            this.iconBtnCancelar.TabIndex = 90;
+            this.iconBtnCancelar.Text = "Cancelar";
+            this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconBtnCancelar.UseVisualStyleBackColor = false;
+            this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
+            // 
+            // iconBtnActualizarC
+            // 
+            this.iconBtnActualizarC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnActualizarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnActualizarC.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconBtnActualizarC.ForeColor = System.Drawing.Color.Black;
+            this.iconBtnActualizarC.IconChar = FontAwesome.Sharp.IconChar.Repeat;
+            this.iconBtnActualizarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.iconBtnActualizarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnActualizarC.IconSize = 25;
+            this.iconBtnActualizarC.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.iconBtnActualizarC.Location = new System.Drawing.Point(1118, 224);
+            this.iconBtnActualizarC.Margin = new System.Windows.Forms.Padding(2);
+            this.iconBtnActualizarC.Name = "iconBtnActualizarC";
+            this.iconBtnActualizarC.Size = new System.Drawing.Size(113, 39);
+            this.iconBtnActualizarC.TabIndex = 56;
+            this.iconBtnActualizarC.Text = "Actualizar";
+            this.iconBtnActualizarC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnActualizarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconBtnActualizarC.UseVisualStyleBackColor = false;
+            this.iconBtnActualizarC.Click += new System.EventHandler(this.iconBtnActualizarC_Click);
+            // 
+            // iconBtnAgregarC
+            // 
+            this.iconBtnAgregarC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnAgregarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnAgregarC.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iconBtnAgregarC.ForeColor = System.Drawing.Color.Black;
+            this.iconBtnAgregarC.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.iconBtnAgregarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.iconBtnAgregarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnAgregarC.IconSize = 25;
+            this.iconBtnAgregarC.Location = new System.Drawing.Point(1118, 178);
+            this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2);
+            this.iconBtnAgregarC.Name = "iconBtnAgregarC";
+            this.iconBtnAgregarC.Size = new System.Drawing.Size(113, 39);
+            this.iconBtnAgregarC.TabIndex = 51;
+            this.iconBtnAgregarC.Text = "Agregar";
+            this.iconBtnAgregarC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconBtnAgregarC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconBtnAgregarC.UseVisualStyleBackColor = false;
+            this.iconBtnAgregarC.Click += new System.EventHandler(this.iconBtnAgregarC_Click);
             // 
             // dataGridView1
             // 
@@ -615,7 +617,7 @@
             // 
             this.textTotalPagar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textTotalPagar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textTotalPagar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textTotalPagar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textTotalPagar.ForeColor = System.Drawing.Color.White;
             this.textTotalPagar.Location = new System.Drawing.Point(740, 548);
             this.textTotalPagar.Margin = new System.Windows.Forms.Padding(2);
