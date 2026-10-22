@@ -510,7 +510,7 @@ namespace Proyecto_Grupo13.Administrador
                     // Mostramos el resultado en el TextBox de Precio Venta con dos decimales
                     textPrecioVenta.Text = precioVenta.ToString("0.00");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Por favor, ingrese un precio de compra válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }

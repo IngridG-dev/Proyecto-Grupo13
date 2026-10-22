@@ -33,5 +33,15 @@ namespace CapaLogica
         {
             return objCapaDatos.ObtenerCorrelativo();
         }
+
+        public List<Compra> ReporteComprasFiltro(DateTime desde, DateTime hasta)
+        {
+            return objCapaDatos.ReporteComprasFiltro(desde, hasta);
+        }
+
+        public List<DetalleCompra> ObtenerDetalleCompra(int idCompra)
+        {
+            return objCapaDatos.ObtenerDetalleCompra(idCompra);
+        }
     }
 }

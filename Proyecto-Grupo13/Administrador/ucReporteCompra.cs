@@ -1,8 +1,14 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using ClosedXML.Excel;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,100 +21,241 @@ namespace Proyecto_Grupo13.Administrador
         public ucReporteCompra()
         {
             InitializeComponent();
-            ConfigurarTablas();
-            CargarComprasEstaticas();
         }
-
-        // Método para cargar datos de compras de manera estática
-        private void ConfigurarTablas()
+        private void iconBtnBuscar_Click(object sender, EventArgs e)
         {
-            // Configuración de columnas para la tabla principal (Izquierda)
-            dgvCompras.Columns.Clear();
-            dgvCompras.Columns.Add("Numero", "N° Compra");
-            dgvCompras.Columns.Add("Fecha", "Fecha");
-            dgvCompras.Columns.Add("Proveedor", "Proveedor");
-            dgvCompras.Columns.Add("Total", "Monto Total");
+            DateTime desde = dtpFechaInicio.Value;
+            DateTime hasta = dtpFechaFin.Value;
 
-            // Agregamos el botón "Ver" al final de la fila
-            DataGridViewButtonColumn btnVer = new DataGridViewButtonColumn();
-            btnVer.Name = "btnVer";
-            btnVer.HeaderText = "Ver";
-            btnVer.Text = "Ver Detalle";
-            btnVer.UseColumnTextForButtonValue = true;
-            dgvCompras.Columns.Add(btnVer);
+            List<Compra> lista = new CL_Compra().ReporteComprasFiltro(desde, hasta);
 
-            // Configuración de columnas para la mini-tabla del ticket (Derecha)
-            // Asegurate de tener un DataGridView llamado dgvDetalles en tu panel derecho
-            dgvDetalles.Columns.Clear();
-            dgvDetalles.Columns.Add("Cant", "Cant.");
-            dgvDetalles.Columns.Add("Descripcion", "Descripción");
-            dgvDetalles.Columns.Add("Precio", "Precio Unit.");
-            dgvDetalles.Columns.Add("SubTotal", "SubTotal");
+            dgvCompras.Rows.Clear();
+            dgvDetalle.Rows.Clear();
+            decimal totalPeriodo = 0;
+
+            gbDetalle.Visible = false;
+
+            foreach (Compra c in lista)
+            {
+                // Para calcular el total de esta compra, traemos su detalle "al vuelo"
+                List<DetalleCompra> detalles = new CL_Compra().ObtenerDetalleCompra(c.id_compra);
+                decimal totalEstaCompra = 0;
+
+                foreach (DetalleCompra d in detalles)
+                {
+                    totalEstaCompra += (d.precioCompra * d.cantidad);
+                }
+
+                dgvCompras.Rows.Add(
+                    c.id_compra, // Columna oculta
+                    c.numeroCompra,
+                    Convert.ToDateTime(c.fechaRegistro).ToString("dd/MM/yyyy"),
+                    c.proveedor.razonSocial,
+                    c.usuario.nombre,
+                    totalEstaCompra.ToString("0.00")
+                );
+                totalPeriodo += totalEstaCompra;
+            }
+
+            lblTotalCompras.Text = lista.Count.ToString();
         }
 
-
-        // Método para cargar compras de manera estática
-        private void CargarComprasEstaticas()
+        private void iconBtnLimpiar_Click(object sender, EventArgs e)
         {
-            // Cargamos 3 compras de prueba en la tabla principal
-            dgvCompras.Rows.Add("COMP-0001", "24/09/2026", "ONErpm", "$ 150,000");
-            dgvCompras.Rows.Add("COMP-0002", "20/09/2026", "CD Baby", "$ 45,500");
-            dgvCompras.Rows.Add("COMP-0003", "15/09/2026", "DistroKid", "$ 12,000");
+
+            textBuscar.Clear();
         }
-       
+
+        private void ucReporteCompra_Load(object sender, EventArgs e)
+        {
+            // Cargar opciones del combo de búsqueda
+            cboBuscarPor.Items.Add("Numero de Compra");
+            cboBuscarPor.Items.Add("Proveedor");
+            cboBuscarPor.Items.Add("Administrador");
+            cboBuscarPor.SelectedIndex = 0;
+            gbDetalle.Visible = false;
+        }
+        private void dgvCompras_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                gbDetalle.Visible = true;
+
+                DataGridViewRow fila = dgvCompras.Rows[e.RowIndex];
+                int idCompra = Convert.ToInt32(fila.Cells[0].Value);
+
+                lblNumCompra.Text = fila.Cells[1].Value.ToString();
+                lblFecha.Text = fila.Cells[2].Value.ToString();
+                lblProveedor.Text = fila.Cells[3].Value.ToString();
+                lblAdmin.Text = fila.Cells[4].Value.ToString();
+
+                List<DetalleCompra> detalle = new CL_Compra().ObtenerDetalleCompra(idCompra);
+                dgvDetalle.Rows.Clear();
+                decimal totalDetalle = 0;
+
+                foreach (DetalleCompra item in detalle)
+                {
+                    decimal subTotalCalculado = item.precioCompra * item.cantidad;
+
+                    dgvDetalle.Rows.Add(
+                        item.cantidad,
+                        item.producto.nombreProducto,
+                        item.precioCompra.ToString("0.00"),
+                        subTotalCalculado.ToString("0.00")
+                    );
+                    totalDetalle += subTotalCalculado;
+                }
+                lblTotalDetalle.Text = "$ " + totalDetalle.ToString("0.00");
+            }
+        }
+
+        private void textBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cboBuscarPor.SelectedIndex == -1) return;
+
+            string columnaFiltro = cboBuscarPor.SelectedItem.ToString();
+            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
+            int indiceColumna = -1;
+
+            if (columnaFiltro == "Numero de Compra") indiceColumna = 1;
+            else if (columnaFiltro == "Proveedor") indiceColumna = 3;
+            else if (columnaFiltro == "Administrador") indiceColumna = 4;
+
+            if (indiceColumna == -1) return;
+
+            dgvCompras.CurrentCell = null;
+
+            foreach (DataGridViewRow row in dgvCompras.Rows)
+            {
+                if (row.IsNewRow) continue;
+                string valorCelda = row.Cells[indiceColumna].Value.ToString().ToUpper();
+                row.Visible = valorCelda.Contains(textoBusqueda);
+            }
+            gbDetalle.Visible = false;
+        }
+
+        private void iconBtnExcel_Click(object sender, EventArgs e)
+        {
+            if (dgvDetalle.Rows.Count == 0) return;
+
+            SaveFileDialog savefile = new SaveFileDialog() { FileName = $"DetalleCompra_{lblNumCompra.Text}.xlsx", Filter = "Excel Files | *.xlsx" };
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    var hoja = wb.Worksheets.Add("Detalle Compra");
+                    for (int i = 0; i < dgvDetalle.Columns.Count; i++) hoja.Cell(1, i + 1).Value = dgvDetalle.Columns[i].HeaderText;
+                    for (int i = 0; i < dgvDetalle.Rows.Count; i++)
+                        for (int j = 0; j < dgvDetalle.Columns.Count; j++)
+                            hoja.Cell(i + 2, j + 1).Value = dgvDetalle.Rows[i].Cells[j].Value?.ToString();
+
+                    wb.SaveAs(savefile.FileName);
+                    MessageBox.Show("Excel generado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnDescargarPdf_Click(object sender, EventArgs e)
+        {
+            if (dgvDetalle.Rows.Count == 0) return;
+
+            SaveFileDialog savefile = new SaveFileDialog()
+            {
+                FileName = $"Ticket_Compra_{lblNumCompra.Text}.pdf",
+                Filter = "PDF Files|*.pdf"
+
+            };
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    // Tamaño personalizado simulando ticket de 80mm
+                    iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(226f, 500f);
+                    Document pdfDoc = new Document(pageSize, 10f, 10f, 10f, 10f);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+
+                    // Fuentes monoespaciadas estilo recibo
+                    iTextSharp.text.Font fontTitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 12);
+                    iTextSharp.text.Font fontNormal = FontFactory.GetFont(FontFactory.COURIER, 9);
+                    iTextSharp.text.Font fontNegrita = FontFactory.GetFont(FontFactory.COURIER_BOLD, 9);
+
+                    // 1. CABECERA
+                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph($"Dirección: Junin 1932\nTel. 11223344", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("TICKET DE COMPRA", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+
+                    // 2. TABLA DE PRODUCTOS
+                    PdfPTable tablaItems = new PdfPTable(2);
+                    tablaItems.WidthPercentage = 100;
+                    tablaItems.SetWidths(new float[] { 3f, 1f });
+
+                    // Celdas de cabecera sin bordes
+                    PdfPCell celdaDesc = new PdfPCell(new Phrase("Descripción", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER };
+                    PdfPCell celdaPrecio = new PdfPCell(new Phrase("Precio", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT };
+                    tablaItems.AddCell(celdaDesc);
+                    tablaItems.AddCell(celdaPrecio);
+
+                    // Filas de productos desde la grilla
+                    foreach (DataGridViewRow row in dgvDetalle.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        string nombre = row.Cells[1].Value.ToString();
+                        string subtotal = row.Cells[3].Value.ToString(); // Precio * Cantidad
+
+                        PdfPCell cDesc = new PdfPCell(new Phrase(nombre, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER };
+                        PdfPCell cSub = new PdfPCell(new Phrase(subtotal, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT };
+
+                        tablaItems.AddCell(cDesc);
+                        tablaItems.AddCell(cSub);
+                    }
+                    pdfDoc.Add(tablaItems);
+                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+
+                    // 3. TOTALES
+                    PdfPTable tablaTotales = new PdfPTable(2);
+                    tablaTotales.WidthPercentage = 100;
+                    tablaTotales.SetWidths(new float[] { 2f, 1f });
+
+                    tablaTotales.AddCell(new PdfPCell(new Phrase("Total", fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotalDetalle.Text.Replace("$ ", ""), fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    // Efectivo y Cambio (Valores estáticos para replicar el diseño visual)
+                    tablaTotales.AddCell(new PdfPCell(new Phrase("Efectivo", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotalDetalle.Text.Replace("$ ", ""), fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    tablaTotales.AddCell(new PdfPCell(new Phrase("Vuelto", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaTotales.AddCell(new PdfPCell(new Phrase("0.00", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    pdfDoc.Add(tablaTotales);
+                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+
+                    // 4. DATOS BANCARIOS (Simulados como en el diseño)
+                    PdfPTable tablaBanco = new PdfPTable(2);
+                    tablaBanco.WidthPercentage = 100;
+                    tablaBanco.SetWidths(new float[] { 2f, 1f });
+
+                    tablaBanco.AddCell(new PdfPCell(new Phrase("Tarjeta bancaria", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaBanco.AddCell(new PdfPCell(new Phrase("--- 234", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    tablaBanco.AddCell(new PdfPCell(new Phrase("Cód. Aprobación", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaBanco.AddCell(new PdfPCell(new Phrase("#123456", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    pdfDoc.Add(tablaBanco);
+                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+
+                    // 5. PIE DE PÁGINA
+                    pdfDoc.Add(new Paragraph("¡GRACIAS POR SU COMPRA!", fontNegrita) { Alignment = Element.ALIGN_CENTER });
+
+                    pdfDoc.Close();
+                    MessageBox.Show("Ticket PDF generado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         private void dgvCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Verificamos que se haya hecho clic en una fila válida y específicamente en la columna del botón "Ver"
-            if (e.RowIndex >= 0 && dgvCompras.Columns[e.ColumnIndex].Name == "btnVer")
-            {
-                panelTicket.Visible = true;  // Mostramos el panel derecho con el ticket
-                // Obtenemos el N° de Compra de la fila seleccionada
-                string numeroCompra = dgvCompras.Rows[e.RowIndex].Cells["Numero"].Value.ToString();
-                string proveedor = dgvCompras.Rows[e.RowIndex].Cells["Proveedor"].Value.ToString();
-                string fecha = dgvCompras.Rows[e.RowIndex].Cells["Fecha"].Value.ToString();
-                string total = dgvCompras.Rows[e.RowIndex].Cells["Total"].Value.ToString();
-                string usuario = "Admin123";
-                CargarTicketDerecho(numeroCompra, proveedor, fecha, total, usuario);
-            }
-        }
-
-        private void CargarTicketDerecho(string numeroCompra, string proveedor, string fecha, string total, string usuario)
-        {
-            lblTicketNumero.Text = numeroCompra;
-            lblTicketFecha.Text = fecha;
-            lblTicketProveedor.Text = proveedor;
-            lblTicketUsuario.Text = usuario;
-
-            // Limpiamos los detalles anteriores
-            dgvDetalles.Rows.Clear();
-
-            // Simulamos la carga de productos dependiendo de qué compra se seleccionó
-            if (numeroCompra == "COMP-0001")
-            {
-                dgvDetalles.Rows.Add("10", "Vinilo Taylor Swift", "$ 5,000", "$ 50,000");
-                dgvDetalles.Rows.Add("5", " Vinilo 1989 Taylor Swift", "$ 20,000", "$ 100,000");
-            }
-            else if (numeroCompra == "COMP-0002")
-            {
-                dgvDetalles.Rows.Add("2", "CD Chase Atlantic", "$ 22,750", "$ 45,500");
-            }
-            else if (numeroCompra == "COMP-0003")
-            {
-                dgvDetalles.Rows.Add("20", "CD Arirang BTS", "$ 600", "$ 12,000");
-            }
-        } 
-        
-        private void labelBuscarPor2_Click(object sender, EventArgs e){}
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
-       
-        private void textnumDocume_TextChanged(object sender, EventArgs e) { }
-        
-        private void iconBtnBuscar_Click(object sender, EventArgs e) { }
-        
-        private void iconBtnLimpiar_Click(object sender, EventArgs e) { }
-
-        private void label5_Click(object sender, EventArgs e)
         {
 
         }

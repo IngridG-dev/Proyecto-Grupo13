@@ -103,5 +103,89 @@ namespace CapaDatos
             }
             return id;
         }
+
+        // Trae todas las compras en un rango de fechas (sin importar el usuario)
+        public List<Compra> ReporteComprasFiltro(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Compra> lista = new List<Compra>();
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"
+                        SELECT c.id_compra, c.numeroCompra, c.fechaRegistro, 
+                               p.razonSocial AS Proveedor, u.nombre + ' ' + u.apellido AS Administrador
+                        FROM COMPRA c
+                        INNER JOIN PROVEEDOR p ON c.id_compra = p.id_proveedor
+                        INNER JOIN USUARIO u ON c.id_usuario = u.id_usuario
+                        WHERE CONVERT(date, c.fechaRegistro) BETWEEN @fechaDesde AND @fechaHasta
+                        ORDER BY c.fechaRegistro DESC";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);
+                    cmd.Parameters.AddWithValue("@fechaHasta", fechaHasta.Date);
+
+                    oconexion.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Compra()
+                            {
+                                id_compra = Convert.ToInt32(dr["id_compra"]),
+                                numeroCompra = dr["numeroCompra"].ToString(),
+                                fechaRegistro = dr["fechaRegistro"].ToString(),
+                                proveedor = new Proveedor() { razonSocial = dr["Proveedor"].ToString() },
+                                usuario = new Usuario() { nombre = dr["Administrador"].ToString() }
+                            });
+                        }
+                    }
+                }
+                catch
+                {
+                    lista = new List<Compra>();
+                }
+            }
+            return lista;
+        }
+
+        // 2. Obtener el detalle (los productos) de una compra seleccionada
+        public List<DetalleCompra> ObtenerDetalleCompra(int idCompra)
+        {
+            List<DetalleCompra> lista = new List<DetalleCompra>();
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"
+                        SELECT p.nombreProducto, dc.precioCompra, dc.cantidad
+                        FROM Detalle_Compra dc
+                        INNER JOIN PRODUCTO p ON dc.id_producto = p.id_producto
+                        WHERE dc.id_compra = @idCompra";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@idCompra", idCompra);
+
+                    oconexion.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new DetalleCompra()
+                            {
+                                producto = new Producto() { nombreProducto = dr["nombreProducto"].ToString() },
+                                precioCompra = Convert.ToDecimal(dr["precioCompra"]),
+                                cantidad = Convert.ToInt32(dr["cantidad"])
+                            });
+                        }
+                    }
+                }
+                catch
+                {
+                    lista = new List<DetalleCompra>();
+                }
+            }
+            return lista;
+        }
     }
 }

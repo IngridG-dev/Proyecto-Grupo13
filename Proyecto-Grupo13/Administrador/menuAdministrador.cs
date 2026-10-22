@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +40,24 @@ namespace Proyecto_Grupo13.Administrador
 
         private void menuAdministrador_Load(object sender, EventArgs e)
         {
+            this.SelectNextControl(this.ActiveControl, true, true, true, true); // Selecciona el siguiente control en el formulario
+            if (SesionActual.usuarioLogueado != null)
+            {
+                // Cargar Nombre Completo y Documento
+                textUsuario.Text = $"{SesionActual.usuarioLogueado.nombre} {SesionActual.usuarioLogueado.apellido}";
+                textNumDocu.Text = SesionActual.usuarioLogueado.dni.ToString();
 
+                // 2. Bloquear edición y desactivar la tabulación por teclado
+                textUsuario.ReadOnly = true;
+                textNumDocu.ReadOnly = true;
+                textUsuario.TabStop = false;
+                textNumDocu.TabStop = false;
+
+                // 3. Quitar la selección azul y remover el foco inicial
+                textUsuario.SelectionStart = 0;
+                textUsuario.SelectionLength = 0;
+                this.ActiveControl = null;
+            }
         }
 
         private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,13 +68,7 @@ namespace Proyecto_Grupo13.Administrador
             panelContenido.Controls.Add(registrarCom); // Agrega el UserControl al panelContenido
         }
 
-        private void verDetalleToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ucDetalleCompra detalleCompra = new ucDetalleCompra(); // Crea una instancia del UserControl ucDetalleCompra
-            panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
-            detalleCompra.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
-            panelContenido.Controls.Add(detalleCompra); // Agrega el UserControl al panelContenido
-        }
+      
 
         private void reporteCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -94,6 +106,16 @@ namespace Proyecto_Grupo13.Administrador
             panelContenido.Controls.Clear(); // Limpia los controles existentes en el panelContenido
             clientes.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio del panelContenido
             panelContenido.Controls.Add(clientes); // Agrega el UserControl al panelContenido
+        }
+
+        private void textUsuario_Enter(object sender, EventArgs e)
+        {
+            this.ActiveControl = null; // Remueve el foco del control de texto para evitar que se seleccione al entrar
+        }
+
+        private void textNumDocu_Enter(object sender, EventArgs e)
+        {
+            this.ActiveControl = null; // Remueve el foco del control de texto para evitar que se seleccione al entrar
         }
     }
 }
