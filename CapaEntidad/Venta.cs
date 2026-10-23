@@ -14,6 +14,7 @@ namespace CapaEntidad
         public MetodoPago metodoPago { get; set; } // Relación con la clase MetodoPago
         public string tipoDocumento { get; set; }
         public decimal montoPago { get; set; }
-        public string fechaCreacion { get; set; }
+        public DateTime fechaCreacion { get; set; }
+
     }
 }

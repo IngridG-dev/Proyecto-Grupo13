@@ -92,6 +92,7 @@
     <Compile Include="CL_Proveedor.cs" />
     <Compile Include="CL_Rol.cs" />
     <Compile Include="CL_Usuario.cs" />
+    <Compile Include="CL_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

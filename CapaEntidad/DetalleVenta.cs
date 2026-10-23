@@ -12,5 +12,7 @@ namespace CapaEntidad
         public int cantidad { get; set; }
         public Venta venta { get; set; } // Relación con la clase Venta
         public Producto producto { get; set; } // Relación con la clase Producto
+        public decimal precioUnitario { get; set; }
+        public decimal subtotal { get { return cantidad * precioUnitario; } }
     }
 }

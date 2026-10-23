@@ -33,9 +33,10 @@
             this.numVenta = new System.Windows.Forms.Label();
             this.vendedor = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.iconBuscar = new FontAwesome.Sharp.IconButton();
+            this.btnVerTodas = new FontAwesome.Sharp.IconButton();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.lFechaHasta = new System.Windows.Forms.Label();
             this.labelFechaDesde = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -45,8 +46,8 @@
             this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ver = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textNumVentas = new System.Windows.Forms.TextBox();
+            this.textVendedor = new System.Windows.Forms.TextBox();
             this.panelTicket = new System.Windows.Forms.Panel();
             this.btnDescargarPdf = new FontAwesome.Sharp.IconButton();
             this.lDetallePago = new System.Windows.Forms.Label();
@@ -109,9 +110,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.iconBuscar);
+            this.groupBox1.Controls.Add(this.btnVerTodas);
+            this.groupBox1.Controls.Add(this.dtpHasta);
+            this.groupBox1.Controls.Add(this.dtpDesde);
+            this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.lFechaHasta);
             this.groupBox1.Controls.Add(this.labelFechaDesde);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -125,49 +127,69 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información Venta";
             // 
-            // dateTimePicker2
+            // btnVerTodas
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(340, 36);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(132, 23);
-            this.dateTimePicker2.TabIndex = 45;
+            this.btnVerTodas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnVerTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerTodas.ForeColor = System.Drawing.Color.White;
+            this.btnVerTodas.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnVerTodas.IconColor = System.Drawing.Color.Black;
+            this.btnVerTodas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVerTodas.IconSize = 10;
+            this.btnVerTodas.Location = new System.Drawing.Point(554, 29);
+            this.btnVerTodas.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVerTodas.Name = "btnVerTodas";
+            this.btnVerTodas.Size = new System.Drawing.Size(82, 30);
+            this.btnVerTodas.TabIndex = 46;
+            this.btnVerTodas.Text = "Ver Todo";
+            this.btnVerTodas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVerTodas.UseVisualStyleBackColor = false;
+            this.btnVerTodas.Click += new System.EventHandler(this.btnVerTodas_Click);
             // 
-            // dateTimePicker1
+            // dtpHasta
             // 
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(120, 36);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(132, 23);
-            this.dateTimePicker1.TabIndex = 44;
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(296, 36);
+            this.dtpHasta.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(132, 23);
+            this.dtpHasta.TabIndex = 45;
             // 
-            // iconBuscar
+            // dtpDesde
             // 
-            this.iconBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBuscar.ForeColor = System.Drawing.Color.White;
-            this.iconBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.iconBuscar.IconColor = System.Drawing.Color.Black;
-            this.iconBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBuscar.IconSize = 25;
-            this.iconBuscar.Location = new System.Drawing.Point(522, 27);
-            this.iconBuscar.Margin = new System.Windows.Forms.Padding(2);
-            this.iconBuscar.Name = "iconBuscar";
-            this.iconBuscar.Size = new System.Drawing.Size(82, 30);
-            this.iconBuscar.TabIndex = 43;
-            this.iconBuscar.Text = "Buscar";
-            this.iconBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBuscar.UseVisualStyleBackColor = false;
+            this.dtpDesde.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDesde.Location = new System.Drawing.Point(120, 36);
+            this.dtpDesde.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(132, 23);
+            this.dtpDesde.TabIndex = 44;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscar.IconColor = System.Drawing.Color.Black;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 25;
+            this.btnBuscar.Location = new System.Drawing.Point(461, 29);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(82, 30);
+            this.btnBuscar.TabIndex = 43;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // lFechaHasta
             // 
             this.lFechaHasta.AutoSize = true;
             this.lFechaHasta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lFechaHasta.ForeColor = System.Drawing.Color.White;
-            this.lFechaHasta.Location = new System.Drawing.Point(337, 18);
+            this.lFechaHasta.Location = new System.Drawing.Point(293, 17);
             this.lFechaHasta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFechaHasta.Name = "lFechaHasta";
             this.lFechaHasta.Size = new System.Drawing.Size(74, 15);
@@ -245,21 +267,21 @@
             this.ver.MinimumWidth = 6;
             this.ver.Name = "ver";
             // 
-            // textBox1
+            // textNumVentas
             // 
-            this.textBox1.Location = new System.Drawing.Point(343, 71);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(81, 20);
-            this.textBox1.TabIndex = 52;
+            this.textNumVentas.Location = new System.Drawing.Point(343, 71);
+            this.textNumVentas.Margin = new System.Windows.Forms.Padding(2);
+            this.textNumVentas.Name = "textNumVentas";
+            this.textNumVentas.Size = new System.Drawing.Size(81, 20);
+            this.textNumVentas.TabIndex = 52;
             // 
-            // textBox3
+            // textVendedor
             // 
-            this.textBox3.Location = new System.Drawing.Point(685, 68);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(81, 20);
-            this.textBox3.TabIndex = 54;
+            this.textVendedor.Location = new System.Drawing.Point(685, 68);
+            this.textVendedor.Margin = new System.Windows.Forms.Padding(2);
+            this.textVendedor.Name = "textVendedor";
+            this.textVendedor.Size = new System.Drawing.Size(81, 20);
+            this.textVendedor.TabIndex = 54;
             // 
             // panelTicket
             // 
@@ -439,8 +461,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.panelTicket);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textVendedor);
+            this.Controls.Add(this.textNumVentas);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.vendedor);
@@ -469,7 +491,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lFechaHasta;
         private System.Windows.Forms.Label labelFechaDesde;
-        private FontAwesome.Sharp.IconButton iconBuscar;
+        private FontAwesome.Sharp.IconButton btnBuscar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn numVentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
@@ -477,10 +499,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewButtonColumn ver;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
+        private System.Windows.Forms.TextBox textNumVentas;
+        private System.Windows.Forms.TextBox textVendedor;
         private System.Windows.Forms.Panel panelTicket;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lDNI;
@@ -495,5 +517,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1Sub;
         private System.Windows.Forms.Label lDetallePago;
         private FontAwesome.Sharp.IconButton btnDescargarPdf;
+        private FontAwesome.Sharp.IconButton btnVerTodas;
     }
 }

@@ -67,6 +67,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboFormaPago = new System.Windows.Forms.ComboBox();
             this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -179,6 +180,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdProducto,
             this.codigoProducto,
             this.Producto,
             this.Precio,
@@ -605,6 +607,13 @@
             this.iconBtnCancelar.Visible = false;
             this.iconBtnCancelar.Click += new System.EventHandler(this.iconBtnCancelar_Click);
             // 
+            // IdProducto
+            // 
+            this.IdProducto.HeaderText = "id_Producto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            this.IdProducto.Visible = false;
+            // 
             // codigoProducto
             // 
             this.codigoProducto.HeaderText = "Codigo Producto";
@@ -743,6 +752,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboFormaPago;
         private FontAwesome.Sharp.IconButton iconBtnCancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
