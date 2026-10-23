@@ -56,12 +56,12 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(11, 111);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 137);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(560, 286);
+            this.dataGridView1.Size = new System.Drawing.Size(771, 352);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
@@ -93,17 +93,20 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnCancelar.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
             this.btnCancelar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCancelar.IconSize = 20;
-            this.btnCancelar.Location = new System.Drawing.Point(483, 399);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.IconSize = 25;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(655, 493);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(88, 32);
+            this.btnCancelar.Size = new System.Drawing.Size(130, 39);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -111,17 +114,20 @@
             // btnSeleccionar
             // 
             this.btnSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSeleccionar.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.btnSeleccionar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSeleccionar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSeleccionar.IconSize = 20;
-            this.btnSeleccionar.Location = new System.Drawing.Point(384, 399);
-            this.btnSeleccionar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSeleccionar.IconSize = 25;
+            this.btnSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeleccionar.Location = new System.Drawing.Point(509, 493);
+            this.btnSeleccionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(95, 32);
+            this.btnSeleccionar.Size = new System.Drawing.Size(140, 39);
             this.btnSeleccionar.TabIndex = 10;
             this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSeleccionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSeleccionar.UseVisualStyleBackColor = false;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
@@ -131,10 +137,9 @@
             this.lProductos.AutoSize = true;
             this.lProductos.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.lProductos.ForeColor = System.Drawing.Color.White;
-            this.lProductos.Location = new System.Drawing.Point(234, 24);
-            this.lProductos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lProductos.Location = new System.Drawing.Point(327, 30);
             this.lProductos.Name = "lProductos";
-            this.lProductos.Size = new System.Drawing.Size(115, 19);
+            this.lProductos.Size = new System.Drawing.Size(145, 23);
             this.lProductos.TabIndex = 11;
             this.lProductos.Text = "PRODUCTOS";
             // 
@@ -147,11 +152,11 @@
             this.groupBox1.Controls.Add(this.labelBuscarPor);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(11, 45);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(15, 55);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(560, 62);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(771, 76);
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar Productos";
@@ -165,10 +170,10 @@
             this.iconBtnLimpiar.IconColor = System.Drawing.Color.Black;
             this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnLimpiar.IconSize = 25;
-            this.iconBtnLimpiar.Location = new System.Drawing.Point(486, 26);
-            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.iconBtnLimpiar.Location = new System.Drawing.Point(640, 32);
+            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconBtnLimpiar.Name = "iconBtnLimpiar";
-            this.iconBtnLimpiar.Size = new System.Drawing.Size(70, 25);
+            this.iconBtnLimpiar.Size = new System.Drawing.Size(93, 31);
             this.iconBtnLimpiar.TabIndex = 60;
             this.iconBtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBtnLimpiar.UseVisualStyleBackColor = false;
@@ -183,10 +188,10 @@
             this.iconBuscar.IconColor = System.Drawing.Color.Black;
             this.iconBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBuscar.IconSize = 25;
-            this.iconBuscar.Location = new System.Drawing.Point(406, 26);
-            this.iconBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.iconBuscar.Location = new System.Drawing.Point(541, 32);
+            this.iconBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconBuscar.Name = "iconBuscar";
-            this.iconBuscar.Size = new System.Drawing.Size(70, 25);
+            this.iconBuscar.Size = new System.Drawing.Size(93, 31);
             this.iconBuscar.TabIndex = 59;
             this.iconBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBuscar.UseVisualStyleBackColor = false;
@@ -203,10 +208,10 @@
             "Codigo",
             "Nombre",
             "Categoria"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(74, 26);
-            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxBuscar.Location = new System.Drawing.Point(99, 32);
+            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(126, 25);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(167, 31);
             this.comboBoxBuscar.TabIndex = 50;
             // 
             // textBuscar
@@ -215,11 +220,11 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.textBuscar.ForeColor = System.Drawing.Color.White;
-            this.textBuscar.Location = new System.Drawing.Point(204, 26);
-            this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.textBuscar.Location = new System.Drawing.Point(272, 32);
+            this.textBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(186, 25);
+            this.textBuscar.Size = new System.Drawing.Size(248, 31);
             this.textBuscar.TabIndex = 49;
             this.textBuscar.TextChanged += new System.EventHandler(this.textBuscar_TextChanged);
             // 
@@ -228,25 +233,24 @@
             this.labelBuscarPor.AutoSize = true;
             this.labelBuscarPor.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelBuscarPor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelBuscarPor.Location = new System.Drawing.Point(4, 31);
-            this.labelBuscarPor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelBuscarPor.Location = new System.Drawing.Point(11, 32);
             this.labelBuscarPor.Name = "labelBuscarPor";
-            this.labelBuscarPor.Size = new System.Drawing.Size(66, 15);
+            this.labelBuscarPor.Size = new System.Drawing.Size(82, 20);
             this.labelBuscarPor.TabIndex = 47;
             this.labelBuscarPor.Text = "Buscar por:";
             // 
             // FormBuscarProducto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.ClientSize = new System.Drawing.Size(582, 454);
+            this.ClientSize = new System.Drawing.Size(798, 559);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lProductos);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormBuscarProducto";
             this.Text = "FormBuscarProducto";
             this.Load += new System.EventHandler(this.FormBuscarProducto_Load);

@@ -71,10 +71,10 @@
             // label15
             // 
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label15.Location = new System.Drawing.Point(59, 32);
+            this.label15.Location = new System.Drawing.Point(74, 40);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(1028, 476);
+            this.label15.Size = new System.Drawing.Size(1368, 594);
             this.label15.TabIndex = 45;
             // 
             // label1
@@ -82,29 +82,34 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(500, 41);
+            this.label1.Location = new System.Drawing.Point(675, 51);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 19);
+            this.label1.Size = new System.Drawing.Size(145, 23);
             this.label1.TabIndex = 46;
             this.label1.Text = "MIS VENTAS";
             // 
             // numVenta
             // 
             this.numVenta.AutoSize = true;
+            this.numVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.numVenta.ForeColor = System.Drawing.Color.White;
-            this.numVenta.Location = new System.Drawing.Point(284, 73);
+            this.numVenta.Location = new System.Drawing.Point(173, 94);
+            this.numVenta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numVenta.Name = "numVenta";
-            this.numVenta.Size = new System.Drawing.Size(58, 13);
+            this.numVenta.Size = new System.Drawing.Size(89, 23);
             this.numVenta.TabIndex = 47;
             this.numVenta.Text = "N° Ventas:";
             // 
             // vendedor
             // 
             this.vendedor.AutoSize = true;
+            this.vendedor.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.vendedor.ForeColor = System.Drawing.Color.White;
-            this.vendedor.Location = new System.Drawing.Point(623, 73);
+            this.vendedor.Location = new System.Drawing.Point(590, 96);
+            this.vendedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.vendedor.Name = "vendedor";
-            this.vendedor.Size = new System.Drawing.Size(56, 13);
+            this.vendedor.Size = new System.Drawing.Size(89, 23);
             this.vendedor.TabIndex = 49;
             this.vendedor.Text = "Vendedor:";
             // 
@@ -118,11 +123,11 @@
             this.groupBox1.Controls.Add(this.labelFechaDesde);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(72, 106);
+            this.groupBox1.Location = new System.Drawing.Point(90, 127);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(663, 80);
+            this.groupBox1.Size = new System.Drawing.Size(829, 105);
             this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información Venta";
@@ -131,15 +136,16 @@
             // 
             this.btnVerTodas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnVerTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerTodas.ForeColor = System.Drawing.Color.White;
+            this.btnVerTodas.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnVerTodas.ForeColor = System.Drawing.Color.Black;
             this.btnVerTodas.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnVerTodas.IconColor = System.Drawing.Color.Black;
             this.btnVerTodas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVerTodas.IconSize = 10;
-            this.btnVerTodas.Location = new System.Drawing.Point(554, 29);
+            this.btnVerTodas.Location = new System.Drawing.Point(566, 56);
             this.btnVerTodas.Margin = new System.Windows.Forms.Padding(2);
             this.btnVerTodas.Name = "btnVerTodas";
-            this.btnVerTodas.Size = new System.Drawing.Size(82, 30);
+            this.btnVerTodas.Size = new System.Drawing.Size(104, 32);
             this.btnVerTodas.TabIndex = 46;
             this.btnVerTodas.Text = "Ver Todo";
             this.btnVerTodas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -149,35 +155,36 @@
             // dtpHasta
             // 
             this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHasta.Location = new System.Drawing.Point(296, 36);
+            this.dtpHasta.Location = new System.Drawing.Point(215, 59);
             this.dtpHasta.Margin = new System.Windows.Forms.Padding(2);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(132, 23);
+            this.dtpHasta.Size = new System.Drawing.Size(164, 27);
             this.dtpHasta.TabIndex = 45;
             // 
             // dtpDesde
             // 
             this.dtpDesde.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDesde.Location = new System.Drawing.Point(120, 36);
+            this.dtpDesde.Location = new System.Drawing.Point(22, 59);
             this.dtpDesde.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(132, 23);
+            this.dtpDesde.Size = new System.Drawing.Size(164, 27);
             this.dtpDesde.TabIndex = 44;
             // 
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnBuscar.ForeColor = System.Drawing.Color.Black;
             this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.btnBuscar.IconColor = System.Drawing.Color.Black;
             this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscar.IconSize = 25;
-            this.btnBuscar.Location = new System.Drawing.Point(461, 29);
+            this.btnBuscar.Location = new System.Drawing.Point(446, 56);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(82, 30);
+            this.btnBuscar.Size = new System.Drawing.Size(104, 32);
             this.btnBuscar.TabIndex = 43;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -189,10 +196,10 @@
             this.lFechaHasta.AutoSize = true;
             this.lFechaHasta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lFechaHasta.ForeColor = System.Drawing.Color.White;
-            this.lFechaHasta.Location = new System.Drawing.Point(293, 17);
+            this.lFechaHasta.Location = new System.Drawing.Point(211, 36);
             this.lFechaHasta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFechaHasta.Name = "lFechaHasta";
-            this.lFechaHasta.Size = new System.Drawing.Size(74, 15);
+            this.lFechaHasta.Size = new System.Drawing.Size(92, 20);
             this.lFechaHasta.TabIndex = 24;
             this.lFechaHasta.Text = "Fecha Hasta:";
             // 
@@ -201,10 +208,10 @@
             this.labelFechaDesde.AutoSize = true;
             this.labelFechaDesde.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFechaDesde.ForeColor = System.Drawing.Color.White;
-            this.labelFechaDesde.Location = new System.Drawing.Point(117, 18);
+            this.labelFechaDesde.Location = new System.Drawing.Point(18, 36);
             this.labelFechaDesde.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFechaDesde.Name = "labelFechaDesde";
-            this.labelFechaDesde.Size = new System.Drawing.Size(76, 15);
+            this.labelFechaDesde.Size = new System.Drawing.Size(96, 20);
             this.labelFechaDesde.TabIndex = 23;
             this.labelFechaDesde.Text = "Fecha Desde:";
             // 
@@ -221,13 +228,13 @@
             this.Dni,
             this.total,
             this.ver});
-            this.dataGridView1.Location = new System.Drawing.Point(72, 209);
+            this.dataGridView1.Location = new System.Drawing.Point(90, 261);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(663, 275);
+            this.dataGridView1.Size = new System.Drawing.Size(829, 344);
             this.dataGridView1.TabIndex = 51;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -269,18 +276,20 @@
             // 
             // textNumVentas
             // 
-            this.textNumVentas.Location = new System.Drawing.Point(343, 71);
+            this.textNumVentas.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textNumVentas.Location = new System.Drawing.Point(268, 94);
             this.textNumVentas.Margin = new System.Windows.Forms.Padding(2);
             this.textNumVentas.Name = "textNumVentas";
-            this.textNumVentas.Size = new System.Drawing.Size(81, 20);
+            this.textNumVentas.Size = new System.Drawing.Size(125, 30);
             this.textNumVentas.TabIndex = 52;
             // 
             // textVendedor
             // 
-            this.textVendedor.Location = new System.Drawing.Point(685, 68);
+            this.textVendedor.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textVendedor.Location = new System.Drawing.Point(685, 95);
             this.textVendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textVendedor.Name = "textVendedor";
-            this.textVendedor.Size = new System.Drawing.Size(81, 20);
+            this.textVendedor.Size = new System.Drawing.Size(125, 30);
             this.textVendedor.TabIndex = 54;
             // 
             // panelTicket
@@ -295,52 +304,54 @@
             this.panelTicket.Controls.Add(this.lCliente);
             this.panelTicket.Controls.Add(this.lFechaTicket);
             this.panelTicket.Controls.Add(this.lNumeroVenta);
-            this.panelTicket.Location = new System.Drawing.Point(739, 115);
+            this.panelTicket.Location = new System.Drawing.Point(924, 144);
             this.panelTicket.Margin = new System.Windows.Forms.Padding(2);
             this.panelTicket.Name = "panelTicket";
-            this.panelTicket.Size = new System.Drawing.Size(335, 369);
+            this.panelTicket.Size = new System.Drawing.Size(493, 461);
             this.panelTicket.TabIndex = 55;
             this.panelTicket.Visible = false;
             // 
             // btnDescargarPdf
             // 
             this.btnDescargarPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnDescargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.btnDescargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnDescargarPdf.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
             this.btnDescargarPdf.IconColor = System.Drawing.Color.Brown;
             this.btnDescargarPdf.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDescargarPdf.IconSize = 15;
-            this.btnDescargarPdf.Location = new System.Drawing.Point(130, 343);
+            this.btnDescargarPdf.IconSize = 25;
+            this.btnDescargarPdf.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnDescargarPdf.Location = new System.Drawing.Point(331, 421);
             this.btnDescargarPdf.Margin = new System.Windows.Forms.Padding(2);
             this.btnDescargarPdf.Name = "btnDescargarPdf";
-            this.btnDescargarPdf.Size = new System.Drawing.Size(94, 24);
+            this.btnDescargarPdf.Size = new System.Drawing.Size(160, 35);
             this.btnDescargarPdf.TabIndex = 42;
             this.btnDescargarPdf.Text = "Descargar PDF";
+            this.btnDescargarPdf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDescargarPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDescargarPdf.UseVisualStyleBackColor = false;
             // 
             // lDetallePago
             // 
             this.lDetallePago.AutoSize = true;
-            this.lDetallePago.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lDetallePago.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDetallePago.ForeColor = System.Drawing.Color.White;
-            this.lDetallePago.Location = new System.Drawing.Point(5, 275);
+            this.lDetallePago.Location = new System.Drawing.Point(6, 344);
             this.lDetallePago.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDetallePago.Name = "lDetallePago";
-            this.lDetallePago.Size = new System.Drawing.Size(97, 15);
+            this.lDetallePago.Size = new System.Drawing.Size(127, 20);
             this.lDetallePago.TabIndex = 8;
             this.lDetallePago.Text = "Detalles de Pago:";
             // 
             // lTotal
             // 
             this.lTotal.AutoSize = true;
-            this.lTotal.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTotal.ForeColor = System.Drawing.Color.White;
-            this.lTotal.Location = new System.Drawing.Point(4, 250);
+            this.lTotal.Location = new System.Drawing.Point(5, 312);
             this.lTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTotal.Name = "lTotal";
-            this.lTotal.Size = new System.Drawing.Size(44, 15);
+            this.lTotal.Size = new System.Drawing.Size(54, 20);
             this.lTotal.TabIndex = 7;
             this.lTotal.Text = "TOTAL:";
             // 
@@ -353,14 +364,14 @@
             this.ColumnCant,
             this.ColumnPrecio,
             this.Column1Sub});
-            this.dataGridView2.Location = new System.Drawing.Point(7, 100);
+            this.dataGridView2.Location = new System.Drawing.Point(9, 125);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(326, 135);
+            this.dataGridView2.Size = new System.Drawing.Size(482, 169);
             this.dataGridView2.TabIndex = 6;
             // 
             // ColumnProd
@@ -400,64 +411,64 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(4, 8);
+            this.label7.Location = new System.Drawing.Point(97, 10);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(234, 19);
+            this.label7.Size = new System.Drawing.Size(298, 23);
             this.label7.TabIndex = 5;
             this.label7.Text = "COMPROBANTE DE VENTA";
             // 
             // lDNI
             // 
             this.lDNI.AutoSize = true;
-            this.lDNI.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lDNI.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDNI.ForeColor = System.Drawing.Color.White;
-            this.lDNI.Location = new System.Drawing.Point(173, 66);
+            this.lDNI.Location = new System.Drawing.Point(254, 82);
             this.lDNI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDNI.Name = "lDNI";
-            this.lDNI.Size = new System.Drawing.Size(30, 15);
+            this.lDNI.Size = new System.Drawing.Size(40, 20);
             this.lDNI.TabIndex = 3;
             this.lDNI.Text = "DNI:";
             // 
             // lCliente
             // 
             this.lCliente.AutoSize = true;
-            this.lCliente.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lCliente.ForeColor = System.Drawing.Color.White;
-            this.lCliente.Location = new System.Drawing.Point(4, 66);
+            this.lCliente.Location = new System.Drawing.Point(5, 82);
             this.lCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCliente.Name = "lCliente";
-            this.lCliente.Size = new System.Drawing.Size(47, 15);
+            this.lCliente.Size = new System.Drawing.Size(60, 20);
             this.lCliente.TabIndex = 2;
             this.lCliente.Text = "Cliente:";
             // 
             // lFechaTicket
             // 
             this.lFechaTicket.AutoSize = true;
-            this.lFechaTicket.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lFechaTicket.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lFechaTicket.ForeColor = System.Drawing.Color.White;
-            this.lFechaTicket.Location = new System.Drawing.Point(162, 39);
+            this.lFechaTicket.Location = new System.Drawing.Point(254, 49);
             this.lFechaTicket.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFechaTicket.Name = "lFechaTicket";
-            this.lFechaTicket.Size = new System.Drawing.Size(41, 15);
+            this.lFechaTicket.Size = new System.Drawing.Size(53, 20);
             this.lFechaTicket.TabIndex = 1;
             this.lFechaTicket.Text = "Fecha:";
             // 
             // lNumeroVenta
             // 
             this.lNumeroVenta.AutoSize = true;
-            this.lNumeroVenta.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lNumeroVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lNumeroVenta.ForeColor = System.Drawing.Color.White;
-            this.lNumeroVenta.Location = new System.Drawing.Point(2, 39);
+            this.lNumeroVenta.Location = new System.Drawing.Point(2, 49);
             this.lNumeroVenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNumeroVenta.Name = "lNumeroVenta";
-            this.lNumeroVenta.Size = new System.Drawing.Size(75, 15);
+            this.lNumeroVenta.Size = new System.Drawing.Size(96, 20);
             this.lNumeroVenta.TabIndex = 0;
             this.lNumeroVenta.Text = "N° de Ticket:";
             // 
             // ucDetalleVenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.panelTicket);
@@ -469,8 +480,9 @@
             this.Controls.Add(this.numVenta);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label15);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucDetalleVenta";
-            this.Size = new System.Drawing.Size(1114, 546);
+            this.Size = new System.Drawing.Size(1494, 682);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
