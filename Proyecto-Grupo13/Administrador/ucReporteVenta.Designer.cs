@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaFin = new System.Windows.Forms.Label();
             this.iconBtnLimpiar = new FontAwesome.Sharp.IconButton();
-            this.textnumDocume = new System.Windows.Forms.TextBox();
+            this.textBuscar = new System.Windows.Forms.TextBox();
             this.iconBtnBuscar = new FontAwesome.Sharp.IconButton();
             this.labelFechaInicio = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxBuscar = new System.Windows.Forms.ComboBox();
             this.labelReporteC = new System.Windows.Forms.Label();
             this.labelBuscarPor2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelVentas = new System.Windows.Forms.Panel();
+            this.lMontoTotal = new System.Windows.Forms.Label();
             this.labelTotalV = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
@@ -51,44 +52,46 @@
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
             this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
-            this.panelTicket = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelDNI = new System.Windows.Forms.Label();
+            this.panelDetalle = new System.Windows.Forms.Panel();
+            this.lblDNI = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnDescargarPdf = new FontAwesome.Sharp.IconButton();
-            this.labelMPago = new System.Windows.Forms.Label();
-            this.labelTotal = new System.Windows.Forms.Label();
-            this.labelAdmin = new System.Windows.Forms.Label();
-            this.labelFechaReg = new System.Windows.Forms.Label();
-            this.labelCliente = new System.Windows.Forms.Label();
-            this.labelNVenta = new System.Windows.Forms.Label();
-            this.lblTicketUsuario = new System.Windows.Forms.Label();
-            this.dgvDetalles = new System.Windows.Forms.DataGridView();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+            this.lblVendedor = new System.Windows.Forms.Label();
+            this.dgvDetalle = new System.Windows.Forms.DataGridView();
             this.NombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTicketProveedor = new System.Windows.Forms.Label();
-            this.lblTicketNumero = new System.Windows.Forms.Label();
-            this.lblTicketFecha = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.lblNumVenta = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblMetodoPago = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
-            this.panelTicket.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalles)).BeginInit();
+            this.panelDetalle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.dtpFin);
+            this.panel1.Controls.Add(this.dtpInicio);
             this.panel1.Controls.Add(this.labelFechaFin);
             this.panel1.Controls.Add(this.iconBtnLimpiar);
-            this.panel1.Controls.Add(this.textnumDocume);
+            this.panel1.Controls.Add(this.textBuscar);
             this.panel1.Controls.Add(this.iconBtnBuscar);
             this.panel1.Controls.Add(this.labelFechaInicio);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.comboBoxBuscar);
             this.panel1.Controls.Add(this.labelReporteC);
             this.panel1.Controls.Add(this.labelBuscarPor2);
             this.panel1.Location = new System.Drawing.Point(30, 33);
@@ -96,23 +99,23 @@
             this.panel1.Size = new System.Drawing.Size(747, 92);
             this.panel1.TabIndex = 62;
             // 
-            // dateTimePicker2
+            // dtpFin
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(258, 44);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(112, 20);
-            this.dateTimePicker2.TabIndex = 63;
+            this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFin.Location = new System.Drawing.Point(258, 44);
+            this.dtpFin.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpFin.Name = "dtpFin";
+            this.dtpFin.Size = new System.Drawing.Size(112, 20);
+            this.dtpFin.TabIndex = 63;
             // 
-            // dateTimePicker1
+            // dtpInicio
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(78, 44);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(112, 20);
-            this.dateTimePicker1.TabIndex = 62;
+            this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpInicio.Location = new System.Drawing.Point(78, 44);
+            this.dtpInicio.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpInicio.Name = "dtpInicio";
+            this.dtpInicio.Size = new System.Drawing.Size(112, 20);
+            this.dtpInicio.TabIndex = 62;
             // 
             // labelFechaFin
             // 
@@ -139,17 +142,20 @@
             this.iconBtnLimpiar.Size = new System.Drawing.Size(41, 23);
             this.iconBtnLimpiar.TabIndex = 67;
             this.iconBtnLimpiar.UseVisualStyleBackColor = false;
+            this.iconBtnLimpiar.Click += new System.EventHandler(this.iconBtnLimpiar_Click);
             // 
-            // textnumDocume
+            // textBuscar
             // 
-            this.textnumDocume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.textnumDocume.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textnumDocume.Location = new System.Drawing.Point(489, 41);
-            this.textnumDocume.Margin = new System.Windows.Forms.Padding(2);
-            this.textnumDocume.Multiline = true;
-            this.textnumDocume.Name = "textnumDocume";
-            this.textnumDocume.Size = new System.Drawing.Size(153, 23);
-            this.textnumDocume.TabIndex = 65;
+            this.textBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBuscar.Location = new System.Drawing.Point(489, 41);
+            this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.textBuscar.Multiline = true;
+            this.textBuscar.Name = "textBuscar";
+            this.textBuscar.Size = new System.Drawing.Size(153, 23);
+            this.textBuscar.TabIndex = 65;
+            this.textBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBuscar_KeyDown);
+            this.textBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBuscar_KeyPress);
             // 
             // iconBtnBuscar
             // 
@@ -164,6 +170,7 @@
             this.iconBtnBuscar.Size = new System.Drawing.Size(41, 23);
             this.iconBtnBuscar.TabIndex = 66;
             this.iconBtnBuscar.UseVisualStyleBackColor = false;
+            this.iconBtnBuscar.Click += new System.EventHandler(this.iconBtnBuscar_Click);
             // 
             // labelFechaInicio
             // 
@@ -177,22 +184,23 @@
             this.labelFechaInicio.TabIndex = 48;
             this.labelFechaInicio.Text = "Fecha Inicio:";
             // 
-            // comboBox1
+            // comboBoxBuscar
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.comboBoxBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxBuscar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.comboBoxBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.comboBoxBuscar.FormattingEnabled = true;
+            this.comboBoxBuscar.Items.AddRange(new object[] {
             "Numero Venta",
             "Vendedor",
             "DNI Cliente"});
-            this.comboBox1.Location = new System.Drawing.Point(384, 40);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(101, 23);
-            this.comboBox1.TabIndex = 64;
+            this.comboBoxBuscar.Location = new System.Drawing.Point(384, 40);
+            this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxBuscar.Name = "comboBoxBuscar";
+            this.comboBoxBuscar.Size = new System.Drawing.Size(101, 23);
+            this.comboBoxBuscar.TabIndex = 64;
+            this.comboBoxBuscar.SelectedIndexChanged += new System.EventHandler(this.comboBoxBuscar_SelectedIndexChanged);
             // 
             // labelReporteC
             // 
@@ -218,14 +226,26 @@
             this.labelBuscarPor2.TabIndex = 34;
             this.labelBuscarPor2.Text = "Buscar por:";
             // 
-            // panel3
+            // panelVentas
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            this.panel3.Controls.Add(this.labelTotalV);
-            this.panel3.Location = new System.Drawing.Point(783, 33);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 92);
-            this.panel3.TabIndex = 68;
+            this.panelVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
+            this.panelVentas.Controls.Add(this.lMontoTotal);
+            this.panelVentas.Controls.Add(this.labelTotalV);
+            this.panelVentas.Location = new System.Drawing.Point(783, 33);
+            this.panelVentas.Name = "panelVentas";
+            this.panelVentas.Size = new System.Drawing.Size(200, 92);
+            this.panelVentas.TabIndex = 68;
+            // 
+            // lMontoTotal
+            // 
+            this.lMontoTotal.AutoSize = true;
+            this.lMontoTotal.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lMontoTotal.ForeColor = System.Drawing.Color.White;
+            this.lMontoTotal.Location = new System.Drawing.Point(45, 41);
+            this.lMontoTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lMontoTotal.Name = "lMontoTotal";
+            this.lMontoTotal.Size = new System.Drawing.Size(0, 24);
+            this.lMontoTotal.TabIndex = 84;
             // 
             // labelTotalV
             // 
@@ -252,14 +272,14 @@
             this.dgvVentas.AllowUserToAddRows = false;
             this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVentas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NVenta,
@@ -273,6 +293,7 @@
             this.dgvVentas.RowHeadersWidth = 51;
             this.dgvVentas.Size = new System.Drawing.Size(568, 333);
             this.dgvVentas.TabIndex = 69;
+            this.dgvVentas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVentas_CellClick);
             // 
             // NVenta
             // 
@@ -328,55 +349,56 @@
             this.iconBtnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBtnExcel.UseVisualStyleBackColor = false;
             // 
-            // panelTicket
+            // panelDetalle
             // 
-            this.panelTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.panelTicket.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTicket.Controls.Add(this.label2);
-            this.panelTicket.Controls.Add(this.labelDNI);
-            this.panelTicket.Controls.Add(this.btnDescargarPdf);
-            this.panelTicket.Controls.Add(this.labelMPago);
-            this.panelTicket.Controls.Add(this.labelTotal);
-            this.panelTicket.Controls.Add(this.labelAdmin);
-            this.panelTicket.Controls.Add(this.labelFechaReg);
-            this.panelTicket.Controls.Add(this.labelCliente);
-            this.panelTicket.Controls.Add(this.labelNVenta);
-            this.panelTicket.Controls.Add(this.lblTicketUsuario);
-            this.panelTicket.Controls.Add(this.dgvDetalles);
-            this.panelTicket.Controls.Add(this.lblTicketProveedor);
-            this.panelTicket.Controls.Add(this.lblTicketNumero);
-            this.panelTicket.Controls.Add(this.lblTicketFecha);
-            this.panelTicket.Controls.Add(this.label1);
-            this.panelTicket.Location = new System.Drawing.Point(610, 131);
-            this.panelTicket.Margin = new System.Windows.Forms.Padding(2);
-            this.panelTicket.Name = "panelTicket";
-            this.panelTicket.Size = new System.Drawing.Size(466, 362);
-            this.panelTicket.TabIndex = 76;
-            this.panelTicket.Visible = false;
+            this.panelDetalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.panelDetalle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDetalle.Controls.Add(this.lblMetodoPago);
+            this.panelDetalle.Controls.Add(this.lblTotal);
+            this.panelDetalle.Controls.Add(this.lblDNI);
+            this.panelDetalle.Controls.Add(this.label10);
+            this.panelDetalle.Controls.Add(this.btnDescargarPdf);
+            this.panelDetalle.Controls.Add(this.label11);
+            this.panelDetalle.Controls.Add(this.label2);
+            this.panelDetalle.Controls.Add(this.label8);
+            this.panelDetalle.Controls.Add(this.label7);
+            this.panelDetalle.Controls.Add(this.label9);
+            this.panelDetalle.Controls.Add(this.label);
+            this.panelDetalle.Controls.Add(this.lblVendedor);
+            this.panelDetalle.Controls.Add(this.dgvDetalle);
+            this.panelDetalle.Controls.Add(this.lblCliente);
+            this.panelDetalle.Controls.Add(this.lblNumVenta);
+            this.panelDetalle.Controls.Add(this.lblFecha);
+            this.panelDetalle.Controls.Add(this.label1);
+            this.panelDetalle.Location = new System.Drawing.Point(610, 131);
+            this.panelDetalle.Margin = new System.Windows.Forms.Padding(2);
+            this.panelDetalle.Name = "panelDetalle";
+            this.panelDetalle.Size = new System.Drawing.Size(466, 362);
+            this.panelDetalle.TabIndex = 76;
             // 
-            // label2
+            // lblDNI
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(300, 61);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(12, 15);
-            this.label2.TabIndex = 83;
-            this.label2.Text = "-";
+            this.lblDNI.AutoSize = true;
+            this.lblDNI.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblDNI.ForeColor = System.Drawing.Color.White;
+            this.lblDNI.Location = new System.Drawing.Point(300, 61);
+            this.lblDNI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDNI.Name = "lblDNI";
+            this.lblDNI.Size = new System.Drawing.Size(12, 15);
+            this.lblDNI.TabIndex = 83;
+            this.lblDNI.Text = "-";
             // 
-            // labelDNI
+            // label10
             // 
-            this.labelDNI.AutoSize = true;
-            this.labelDNI.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDNI.ForeColor = System.Drawing.Color.White;
-            this.labelDNI.Location = new System.Drawing.Point(259, 61);
-            this.labelDNI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelDNI.Name = "labelDNI";
-            this.labelDNI.Size = new System.Drawing.Size(32, 15);
-            this.labelDNI.TabIndex = 82;
-            this.labelDNI.Text = "DNI:";
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(259, 61);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 15);
+            this.label10.TabIndex = 82;
+            this.label10.Text = "DNI:";
             // 
             // btnDescargarPdf
             // 
@@ -396,109 +418,109 @@
             this.btnDescargarPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDescargarPdf.UseVisualStyleBackColor = false;
             // 
-            // labelMPago
+            // label11
             // 
-            this.labelMPago.AutoSize = true;
-            this.labelMPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMPago.ForeColor = System.Drawing.Color.White;
-            this.labelMPago.Location = new System.Drawing.Point(14, 338);
-            this.labelMPago.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelMPago.Name = "labelMPago";
-            this.labelMPago.Size = new System.Drawing.Size(84, 15);
-            this.labelMPago.TabIndex = 81;
-            this.labelMPago.Text = "Metodo Pago:";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(14, 338);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(84, 15);
+            this.label11.TabIndex = 81;
+            this.label11.Text = "Metodo Pago:";
             // 
-            // labelTotal
+            // label2
             // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.ForeColor = System.Drawing.Color.White;
-            this.labelTotal.Location = new System.Drawing.Point(14, 315);
-            this.labelTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(37, 15);
-            this.labelTotal.TabIndex = 80;
-            this.labelTotal.Text = "Total:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(14, 315);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.TabIndex = 80;
+            this.label2.Text = "Total:";
             // 
-            // labelAdmin
+            // label8
             // 
-            this.labelAdmin.AutoSize = true;
-            this.labelAdmin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdmin.ForeColor = System.Drawing.Color.White;
-            this.labelAdmin.Location = new System.Drawing.Point(259, 34);
-            this.labelAdmin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelAdmin.Name = "labelAdmin";
-            this.labelAdmin.Size = new System.Drawing.Size(64, 15);
-            this.labelAdmin.TabIndex = 79;
-            this.labelAdmin.Text = "Vendedor:";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(283, 34);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 15);
+            this.label8.TabIndex = 79;
+            this.label8.Text = "Vendedor:";
             // 
-            // labelFechaReg
+            // label7
             // 
-            this.labelFechaReg.AutoSize = true;
-            this.labelFechaReg.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFechaReg.ForeColor = System.Drawing.Color.White;
-            this.labelFechaReg.Location = new System.Drawing.Point(132, 34);
-            this.labelFechaReg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelFechaReg.Name = "labelFechaReg";
-            this.labelFechaReg.Size = new System.Drawing.Size(42, 15);
-            this.labelFechaReg.TabIndex = 78;
-            this.labelFechaReg.Text = "Fecha:";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(124, 34);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 15);
+            this.label7.TabIndex = 78;
+            this.label7.Text = "Fecha:";
             // 
-            // labelCliente
+            // label9
             // 
-            this.labelCliente.AutoSize = true;
-            this.labelCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCliente.ForeColor = System.Drawing.Color.White;
-            this.labelCliente.Location = new System.Drawing.Point(15, 61);
-            this.labelCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelCliente.Name = "labelCliente";
-            this.labelCliente.Size = new System.Drawing.Size(49, 15);
-            this.labelCliente.TabIndex = 77;
-            this.labelCliente.Text = "Cliente:";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(15, 61);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 15);
+            this.label9.TabIndex = 77;
+            this.label9.Text = "Cliente:";
             // 
-            // labelNVenta
+            // label
             // 
-            this.labelNVenta.AutoSize = true;
-            this.labelNVenta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNVenta.ForeColor = System.Drawing.Color.White;
-            this.labelNVenta.Location = new System.Drawing.Point(15, 34);
-            this.labelNVenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelNVenta.Name = "labelNVenta";
-            this.labelNVenta.Size = new System.Drawing.Size(59, 15);
-            this.labelNVenta.TabIndex = 76;
-            this.labelNVenta.Text = "N° Venta:";
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.ForeColor = System.Drawing.Color.White;
+            this.label.Location = new System.Drawing.Point(15, 34);
+            this.label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(59, 15);
+            this.label.TabIndex = 76;
+            this.label.Text = "N° Venta:";
             // 
-            // lblTicketUsuario
+            // lblVendedor
             // 
-            this.lblTicketUsuario.AutoSize = true;
-            this.lblTicketUsuario.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTicketUsuario.ForeColor = System.Drawing.Color.White;
-            this.lblTicketUsuario.Location = new System.Drawing.Point(327, 34);
-            this.lblTicketUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTicketUsuario.Name = "lblTicketUsuario";
-            this.lblTicketUsuario.Size = new System.Drawing.Size(12, 15);
-            this.lblTicketUsuario.TabIndex = 75;
-            this.lblTicketUsuario.Text = "-";
+            this.lblVendedor.AutoSize = true;
+            this.lblVendedor.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblVendedor.ForeColor = System.Drawing.Color.White;
+            this.lblVendedor.Location = new System.Drawing.Point(351, 34);
+            this.lblVendedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVendedor.Name = "lblVendedor";
+            this.lblVendedor.Size = new System.Drawing.Size(12, 15);
+            this.lblVendedor.TabIndex = 75;
+            this.lblVendedor.Text = "-";
             // 
-            // dgvDetalles
+            // dgvDetalle
             // 
-            this.dgvDetalles.AllowUserToAddRows = false;
-            this.dgvDetalles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvDetalles.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.dgvDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDetalle.AllowUserToAddRows = false;
+            this.dgvDetalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDetalle.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NombreProducto,
             this.Cantidad,
             this.Precio,
             this.subTotal});
-            this.dgvDetalles.Location = new System.Drawing.Point(2, 88);
-            this.dgvDetalles.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvDetalles.Name = "dgvDetalles";
-            this.dgvDetalles.ReadOnly = true;
-            this.dgvDetalles.RowHeadersWidth = 51;
-            this.dgvDetalles.RowTemplate.Height = 24;
-            this.dgvDetalles.Size = new System.Drawing.Size(460, 212);
-            this.dgvDetalles.TabIndex = 74;
+            this.dgvDetalle.Location = new System.Drawing.Point(2, 88);
+            this.dgvDetalle.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvDetalle.Name = "dgvDetalle";
+            this.dgvDetalle.ReadOnly = true;
+            this.dgvDetalle.RowHeadersWidth = 51;
+            this.dgvDetalle.RowTemplate.Height = 24;
+            this.dgvDetalle.Size = new System.Drawing.Size(460, 212);
+            this.dgvDetalle.TabIndex = 74;
             // 
             // NombreProducto
             // 
@@ -528,41 +550,41 @@
             this.subTotal.Name = "subTotal";
             this.subTotal.ReadOnly = true;
             // 
-            // lblTicketProveedor
+            // lblCliente
             // 
-            this.lblTicketProveedor.AutoSize = true;
-            this.lblTicketProveedor.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTicketProveedor.ForeColor = System.Drawing.Color.White;
-            this.lblTicketProveedor.Location = new System.Drawing.Point(88, 61);
-            this.lblTicketProveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTicketProveedor.Name = "lblTicketProveedor";
-            this.lblTicketProveedor.Size = new System.Drawing.Size(12, 15);
-            this.lblTicketProveedor.TabIndex = 3;
-            this.lblTicketProveedor.Text = "-";
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblCliente.ForeColor = System.Drawing.Color.White;
+            this.lblCliente.Location = new System.Drawing.Point(88, 61);
+            this.lblCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(12, 15);
+            this.lblCliente.TabIndex = 3;
+            this.lblCliente.Text = "-";
             // 
-            // lblTicketNumero
+            // lblNumVenta
             // 
-            this.lblTicketNumero.AutoSize = true;
-            this.lblTicketNumero.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTicketNumero.ForeColor = System.Drawing.Color.White;
-            this.lblTicketNumero.Location = new System.Drawing.Point(88, 34);
-            this.lblTicketNumero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTicketNumero.Name = "lblTicketNumero";
-            this.lblTicketNumero.Size = new System.Drawing.Size(12, 15);
-            this.lblTicketNumero.TabIndex = 2;
-            this.lblTicketNumero.Text = "-";
+            this.lblNumVenta.AutoSize = true;
+            this.lblNumVenta.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblNumVenta.ForeColor = System.Drawing.Color.White;
+            this.lblNumVenta.Location = new System.Drawing.Point(78, 34);
+            this.lblNumVenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNumVenta.Name = "lblNumVenta";
+            this.lblNumVenta.Size = new System.Drawing.Size(12, 15);
+            this.lblNumVenta.TabIndex = 2;
+            this.lblNumVenta.Text = "-";
             // 
-            // lblTicketFecha
+            // lblFecha
             // 
-            this.lblTicketFecha.AutoSize = true;
-            this.lblTicketFecha.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTicketFecha.ForeColor = System.Drawing.Color.White;
-            this.lblTicketFecha.Location = new System.Drawing.Point(178, 34);
-            this.lblTicketFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTicketFecha.Name = "lblTicketFecha";
-            this.lblTicketFecha.Size = new System.Drawing.Size(12, 15);
-            this.lblTicketFecha.TabIndex = 1;
-            this.lblTicketFecha.Text = "-";
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblFecha.ForeColor = System.Drawing.Color.White;
+            this.lblFecha.Location = new System.Drawing.Point(170, 34);
+            this.lblFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(12, 15);
+            this.lblFecha.TabIndex = 1;
+            this.lblFecha.Text = "-";
             // 
             // label1
             // 
@@ -576,63 +598,87 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DETALLE DE VENTA";
             // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblTotal.ForeColor = System.Drawing.Color.White;
+            this.lblTotal.Location = new System.Drawing.Point(55, 315);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(12, 15);
+            this.lblTotal.TabIndex = 84;
+            this.lblTotal.Text = "-";
+            // 
+            // lblMetodoPago
+            // 
+            this.lblMetodoPago.AutoSize = true;
+            this.lblMetodoPago.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblMetodoPago.ForeColor = System.Drawing.Color.White;
+            this.lblMetodoPago.Location = new System.Drawing.Point(110, 337);
+            this.lblMetodoPago.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMetodoPago.Name = "lblMetodoPago";
+            this.lblMetodoPago.Size = new System.Drawing.Size(12, 15);
+            this.lblMetodoPago.TabIndex = 85;
+            this.lblMetodoPago.Text = "-";
+            // 
             // ucReporteVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.Controls.Add(this.panelTicket);
+            this.Controls.Add(this.panelDetalle);
             this.Controls.Add(this.iconBtnExcel);
             this.Controls.Add(this.dgvVentas);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panelVentas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label16);
             this.Name = "ucReporteVenta";
             this.Size = new System.Drawing.Size(1114, 546);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelVentas.ResumeLayout(false);
+            this.panelVentas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
-            this.panelTicket.ResumeLayout(false);
-            this.panelTicket.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalles)).EndInit();
+            this.panelDetalle.ResumeLayout(false);
+            this.panelDetalle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFin;
+        private System.Windows.Forms.DateTimePicker dtpInicio;
         private System.Windows.Forms.Label labelFechaFin;
         private FontAwesome.Sharp.IconButton iconBtnLimpiar;
-        private System.Windows.Forms.TextBox textnumDocume;
+        private System.Windows.Forms.TextBox textBuscar;
         private FontAwesome.Sharp.IconButton iconBtnBuscar;
         private System.Windows.Forms.Label labelFechaInicio;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxBuscar;
         private System.Windows.Forms.Label labelReporteC;
         private System.Windows.Forms.Label labelBuscarPor2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelVentas;
         private System.Windows.Forms.Label labelTotalV;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DataGridView dgvVentas;
         private FontAwesome.Sharp.IconButton iconBtnExcel;
-        private System.Windows.Forms.Panel panelTicket;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelDNI;
+        private System.Windows.Forms.Panel panelDetalle;
+        private System.Windows.Forms.Label lblDNI;
+        private System.Windows.Forms.Label label10;
         private FontAwesome.Sharp.IconButton btnDescargarPdf;
-        private System.Windows.Forms.Label labelMPago;
-        private System.Windows.Forms.Label labelTotal;
-        private System.Windows.Forms.Label labelAdmin;
-        private System.Windows.Forms.Label labelFechaReg;
-        private System.Windows.Forms.Label labelCliente;
-        private System.Windows.Forms.Label labelNVenta;
-        private System.Windows.Forms.Label lblTicketUsuario;
-        private System.Windows.Forms.DataGridView dgvDetalles;
-        private System.Windows.Forms.Label lblTicketProveedor;
-        private System.Windows.Forms.Label lblTicketNumero;
-        private System.Windows.Forms.Label lblTicketFecha;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label lblVendedor;
+        private System.Windows.Forms.DataGridView dgvDetalle;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Label lblNumVenta;
+        private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn NVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
@@ -644,5 +690,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
+        private System.Windows.Forms.Label lMontoTotal;
+        private System.Windows.Forms.Label lblMetodoPago;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

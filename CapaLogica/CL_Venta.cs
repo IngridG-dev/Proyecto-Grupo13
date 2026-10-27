@@ -64,7 +64,12 @@ namespace CapaLogica
         public List<Venta> ListarVentasPorUsuario(int idUsuario, DateTime? desde, DateTime? hasta)
         {
             if (idUsuario <= 0) return new List<Venta>();
-            return objCapaDatos.ListarVentasPorUsuario(idUsuario, desde, hasta);
+            return objCapaDatos.ListarVentas(idUsuario, desde, hasta); //evita que un vendedor vea las ventas de otro vendedor, solo las suyas
+        }
+
+        public List<Venta> ListarTodasLasVentas(DateTime? desde, DateTime? hasta)
+        {
+            return objCapaDatos.ListarVentas(0, desde, hasta); // O para todos los vendedores 
         }
 
         public List<DetalleVenta> ObtenerDetalleVenta(int idVenta)
