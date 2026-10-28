@@ -40,8 +40,8 @@
             this.labelBuscarPor = new System.Windows.Forms.Label();
             this.cmbBuscarPor = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.dateTimeFin = new System.Windows.Forms.DateTimePicker();
-            this.dateTimeInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaFin = new System.Windows.Forms.Label();
             this.labelFechaInicio = new System.Windows.Forms.Label();
             this.labelProdVendidos = new System.Windows.Forms.Label();
@@ -83,8 +83,8 @@
             this.panel1.Controls.Add(this.labelBuscarPor);
             this.panel1.Controls.Add(this.cmbBuscarPor);
             this.panel1.Controls.Add(this.btnBuscar);
-            this.panel1.Controls.Add(this.dateTimeFin);
-            this.panel1.Controls.Add(this.dateTimeInicio);
+            this.panel1.Controls.Add(this.dtpFin);
+            this.panel1.Controls.Add(this.dtpInicio);
             this.panel1.Controls.Add(this.labelFechaFin);
             this.panel1.Controls.Add(this.labelFechaInicio);
             this.panel1.Controls.Add(this.labelProdVendidos);
@@ -132,23 +132,23 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // dateTimeFin
+            // dtpFin
             // 
-            this.dateTimeFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeFin.Location = new System.Drawing.Point(272, 53);
-            this.dateTimeFin.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimeFin.Name = "dateTimeFin";
-            this.dateTimeFin.Size = new System.Drawing.Size(112, 20);
-            this.dateTimeFin.TabIndex = 63;
+            this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFin.Location = new System.Drawing.Point(272, 53);
+            this.dtpFin.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpFin.Name = "dtpFin";
+            this.dtpFin.Size = new System.Drawing.Size(112, 20);
+            this.dtpFin.TabIndex = 63;
             // 
-            // dateTimeInicio
+            // dtpInicio
             // 
-            this.dateTimeInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeInicio.Location = new System.Drawing.Point(92, 53);
-            this.dateTimeInicio.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimeInicio.Name = "dateTimeInicio";
-            this.dateTimeInicio.Size = new System.Drawing.Size(112, 20);
-            this.dateTimeInicio.TabIndex = 62;
+            this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpInicio.Location = new System.Drawing.Point(92, 53);
+            this.dtpInicio.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpInicio.Name = "dtpInicio";
+            this.dtpInicio.Size = new System.Drawing.Size(112, 20);
+            this.dtpInicio.TabIndex = 62;
             // 
             // labelFechaFin
             // 
@@ -425,8 +425,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DateTimePicker dateTimeFin;
-        private System.Windows.Forms.DateTimePicker dateTimeInicio;
+        private System.Windows.Forms.DateTimePicker dtpFin;
+        private System.Windows.Forms.DateTimePicker dtpInicio;
         private System.Windows.Forms.Label labelFechaFin;
         private System.Windows.Forms.Label labelFechaInicio;
         private System.Windows.Forms.Label labelProdVendidos;
