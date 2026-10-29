@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucEstadisticasV));
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaFin = new System.Windows.Forms.Label();
             this.labelFechaInicio = new System.Windows.Forms.Label();
             this.labelReporteV = new System.Windows.Forms.Label();
@@ -44,14 +43,14 @@
             this.textCantVentas = new System.Windows.Forms.TextBox();
             this.textProductosVendidos = new System.Windows.Forms.TextBox();
             this.textIngresos = new System.Windows.Forms.TextBox();
-            this.dataGridEstadisticaVen = new System.Windows.Forms.DataGridView();
+            this.dgvVentas = new System.Windows.Forms.DataGridView();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalVentas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iconBtnPDF = new FontAwesome.Sharp.IconButton();
-            this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
+            this.btnDescargarPDF = new FontAwesome.Sharp.IconButton();
+            this.btnDescargarExcel = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstadisticaVen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.SuspendLayout();
             // 
             // label16
@@ -67,8 +66,8 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnBuscar);
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.dtpFechaFin);
+            this.panel1.Controls.Add(this.dtpFechaInicio);
             this.panel1.Controls.Add(this.labelFechaFin);
             this.panel1.Controls.Add(this.labelFechaInicio);
             this.panel1.Controls.Add(this.labelReporteV);
@@ -80,37 +79,40 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscar.IconColor = System.Drawing.Color.Black;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 25;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(593, 64);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Location = new System.Drawing.Point(560, 60);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(81, 25);
-            this.btnBuscar.TabIndex = 62;
+            this.btnBuscar.Size = new System.Drawing.Size(87, 31);
+            this.btnBuscar.TabIndex = 64;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
             // 
-            // dateTimePicker2
+            // dtpFechaFin
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(447, 64);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(139, 22);
-            this.dateTimePicker2.TabIndex = 63;
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaFin.Location = new System.Drawing.Point(444, 65);
+            this.dtpFechaFin.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(102, 22);
+            this.dtpFechaFin.TabIndex = 63;
             // 
-            // dateTimePicker1
+            // dtpFechaInicio
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(222, 64);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(139, 22);
-            this.dateTimePicker1.TabIndex = 62;
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(220, 67);
+            this.dtpFechaInicio.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(109, 22);
+            this.dtpFechaInicio.TabIndex = 62;
             // 
             // labelFechaFin
             // 
@@ -146,7 +148,6 @@
             this.labelReporteV.Size = new System.Drawing.Size(312, 23);
             this.labelReporteV.TabIndex = 47;
             this.labelReporteV.Text = "ESTADÍSTICAS DE VENTAS                    ";
-            this.labelReporteV.Click += new System.EventHandler(this.labelReporteV_Click);
             // 
             // label1
             // 
@@ -193,50 +194,56 @@
             // 
             this.textCantVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textCantVentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textCantVentas.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textCantVentas.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textCantVentas.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.textCantVentas.Location = new System.Drawing.Point(300, 209);
             this.textCantVentas.Name = "textCantVentas";
-            this.textCantVentas.Size = new System.Drawing.Size(155, 27);
+            this.textCantVentas.Size = new System.Drawing.Size(155, 30);
             this.textCantVentas.TabIndex = 69;
             this.textCantVentas.Text = "0";
+            this.textCantVentas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textProductosVendidos
             // 
             this.textProductosVendidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textProductosVendidos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textProductosVendidos.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textProductosVendidos.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textProductosVendidos.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.textProductosVendidos.Location = new System.Drawing.Point(619, 209);
             this.textProductosVendidos.Name = "textProductosVendidos";
-            this.textProductosVendidos.Size = new System.Drawing.Size(155, 27);
+            this.textProductosVendidos.Size = new System.Drawing.Size(155, 30);
             this.textProductosVendidos.TabIndex = 70;
             this.textProductosVendidos.Text = "0";
+            this.textProductosVendidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textIngresos
             // 
             this.textIngresos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textIngresos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textIngresos.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textIngresos.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textIngresos.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.textIngresos.Location = new System.Drawing.Point(919, 209);
             this.textIngresos.Name = "textIngresos";
-            this.textIngresos.Size = new System.Drawing.Size(155, 27);
+            this.textIngresos.Size = new System.Drawing.Size(155, 30);
             this.textIngresos.TabIndex = 71;
             this.textIngresos.Text = "0";
+            this.textIngresos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dataGridEstadisticaVen
+            // dgvVentas
             // 
-            this.dataGridEstadisticaVen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridEstadisticaVen.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            this.dataGridEstadisticaVen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEstadisticaVen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVentas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
+            this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Fecha,
             this.CantProductos,
             this.totalVentas});
-            this.dataGridEstadisticaVen.Location = new System.Drawing.Point(289, 277);
-            this.dataGridEstadisticaVen.Name = "dataGridEstadisticaVen";
-            this.dataGridEstadisticaVen.RowHeadersWidth = 51;
-            this.dataGridEstadisticaVen.RowTemplate.Height = 24;
-            this.dataGridEstadisticaVen.Size = new System.Drawing.Size(804, 251);
-            this.dataGridEstadisticaVen.TabIndex = 72;
+            this.dgvVentas.Location = new System.Drawing.Point(289, 277);
+            this.dgvVentas.Name = "dgvVentas";
+            this.dgvVentas.RowHeadersWidth = 51;
+            this.dgvVentas.RowTemplate.Height = 24;
+            this.dgvVentas.Size = new System.Drawing.Size(804, 251);
+            this.dgvVentas.TabIndex = 72;
             // 
             // Fecha
             // 
@@ -256,49 +263,53 @@
             this.totalVentas.MinimumWidth = 6;
             this.totalVentas.Name = "totalVentas";
             // 
-            // iconBtnPDF
+            // btnDescargarPDF
             // 
-            this.iconBtnPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconBtnPDF.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.iconBtnPDF.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
-            this.iconBtnPDF.IconColor = System.Drawing.Color.Brown;
-            this.iconBtnPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnPDF.IconSize = 20;
-            this.iconBtnPDF.Location = new System.Drawing.Point(464, 533);
-            this.iconBtnPDF.Margin = new System.Windows.Forms.Padding(2);
-            this.iconBtnPDF.Name = "iconBtnPDF";
-            this.iconBtnPDF.Size = new System.Drawing.Size(146, 40);
-            this.iconBtnPDF.TabIndex = 73;
-            this.iconBtnPDF.Text = "Descargar PDF";
-            this.iconBtnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBtnPDF.UseVisualStyleBackColor = false;
+            this.btnDescargarPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnDescargarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDescargarPDF.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDescargarPDF.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.btnDescargarPDF.IconColor = System.Drawing.Color.Brown;
+            this.btnDescargarPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDescargarPDF.IconSize = 20;
+            this.btnDescargarPDF.Location = new System.Drawing.Point(464, 533);
+            this.btnDescargarPDF.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDescargarPDF.Name = "btnDescargarPDF";
+            this.btnDescargarPDF.Size = new System.Drawing.Size(146, 40);
+            this.btnDescargarPDF.TabIndex = 73;
+            this.btnDescargarPDF.Text = "Descargar PDF";
+            this.btnDescargarPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDescargarPDF.UseVisualStyleBackColor = false;
+            this.btnDescargarPDF.Click += new System.EventHandler(this.btnDescargarPDF_Click);
             // 
-            // iconBtnExcel
+            // btnDescargarExcel
             // 
-            this.iconBtnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.iconBtnExcel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.iconBtnExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.iconBtnExcel.IconColor = System.Drawing.Color.Green;
-            this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnExcel.IconSize = 20;
-            this.iconBtnExcel.Location = new System.Drawing.Point(765, 533);
-            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4);
-            this.iconBtnExcel.Name = "iconBtnExcel";
-            this.iconBtnExcel.Size = new System.Drawing.Size(146, 40);
-            this.iconBtnExcel.TabIndex = 74;
-            this.iconBtnExcel.Text = "Descargar Excel";
-            this.iconBtnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconBtnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconBtnExcel.UseVisualStyleBackColor = false;
+            this.btnDescargarExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnDescargarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDescargarExcel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDescargarExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.btnDescargarExcel.IconColor = System.Drawing.Color.Green;
+            this.btnDescargarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDescargarExcel.IconSize = 20;
+            this.btnDescargarExcel.Location = new System.Drawing.Point(765, 533);
+            this.btnDescargarExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDescargarExcel.Name = "btnDescargarExcel";
+            this.btnDescargarExcel.Size = new System.Drawing.Size(146, 40);
+            this.btnDescargarExcel.TabIndex = 74;
+            this.btnDescargarExcel.Text = "Descargar Excel";
+            this.btnDescargarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDescargarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDescargarExcel.UseVisualStyleBackColor = false;
+            this.btnDescargarExcel.Click += new System.EventHandler(this.btnDescargarExcel_Click);
             // 
             // ucEstadisticasV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.Controls.Add(this.iconBtnExcel);
-            this.Controls.Add(this.iconBtnPDF);
-            this.Controls.Add(this.dataGridEstadisticaVen);
+            this.Controls.Add(this.btnDescargarExcel);
+            this.Controls.Add(this.btnDescargarPDF);
+            this.Controls.Add(this.dgvVentas);
             this.Controls.Add(this.textIngresos);
             this.Controls.Add(this.textProductosVendidos);
             this.Controls.Add(this.textCantVentas);
@@ -310,9 +321,10 @@
             this.Controls.Add(this.label16);
             this.Name = "ucEstadisticasV";
             this.Size = new System.Drawing.Size(1392, 651);
+            this.Load += new System.EventHandler(this.ucEstadisticasV_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEstadisticaVen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,9 +334,8 @@
 
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
         private System.Windows.Forms.Label labelFechaFin;
         private System.Windows.Forms.Label labelFechaInicio;
         private System.Windows.Forms.Label labelReporteV;
@@ -335,11 +346,12 @@
         private System.Windows.Forms.TextBox textCantVentas;
         private System.Windows.Forms.TextBox textProductosVendidos;
         private System.Windows.Forms.TextBox textIngresos;
-        private System.Windows.Forms.DataGridView dataGridEstadisticaVen;
+        private System.Windows.Forms.DataGridView dgvVentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalVentas;
-        private FontAwesome.Sharp.IconButton iconBtnPDF;
-        private FontAwesome.Sharp.IconButton iconBtnExcel;
+        private FontAwesome.Sharp.IconButton btnDescargarPDF;
+        private FontAwesome.Sharp.IconButton btnDescargarExcel;
+        private FontAwesome.Sharp.IconButton btnBuscar;
     }
 }

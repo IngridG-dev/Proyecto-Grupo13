@@ -72,5 +72,10 @@ namespace CapaLogica
             if (idVenta <= 0) return new List<DetalleVenta>();
             return objCapaDatos.ObtenerDetalleVenta(idVenta);
         }
+
+        public List<Venta> ListarTodasLasVentas(DateTime? desde = null, DateTime? hasta = null)
+        {
+            return objCapaDatos.ListarTodasLasVentas(desde, hasta);
+        }
     }
 }

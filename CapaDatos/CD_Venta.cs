@@ -226,5 +226,46 @@ namespace CapaDatos
             }
             return lista;
         }
+
+        public List<Venta> ListarTodasLasVentas(DateTime? fechaDesde = null, DateTime? fechaHasta = null)
+        {
+            List<Venta> lista = new List<Venta>();
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"
+                        SELECT id_venta, fechaCreacion, montoPago
+                        FROM Venta
+                        WHERE (@fechaDesde IS NULL OR CAST(fechaCreacion AS DATE) >= @fechaDesde)
+                        AND (@fechaHasta IS NULL OR CAST(fechaCreacion AS DATE) <= @fechaHasta)
+                        ORDER BY fechaCreacion DESC";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@fechaDesde", (object)fechaDesde?.Date ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fechaHasta", (object)fechaHasta?.Date ?? DBNull.Value);
+
+                    oconexion.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Venta()
+                            {
+                                id_venta = Convert.ToInt32(dr["id_venta"]),
+                                fechaCreacion = Convert.ToDateTime(dr["fechaCreacion"]),
+                                montoPago = Convert.ToDecimal(dr["montoPago"])
+                                // Propiedades mapeadas temporalmente para la grilla y tarjetas
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    lista = new List<Venta>();
+                }
+            }
+            return lista;
+        }
     }
 }
