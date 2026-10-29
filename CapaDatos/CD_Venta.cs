@@ -116,8 +116,8 @@ namespace CapaDatos
             }
             return respuesta;
         }
-        // Listar ventas por usuario con filtros de fecha
-        public List<Venta> ListarVentasPorUsuario(int idUsuario, DateTime? desde, DateTime? hasta)
+        //listado de ventas con filtros por usuario y rango de fechas
+        public List<Venta> ListarVentas(int idUsuario, DateTime? desde, DateTime? hasta)
         {
             List<Venta> lista = new List<Venta>();
 
@@ -127,12 +127,14 @@ namespace CapaDatos
                 {
                     string query = @"
                 SELECT v.id_venta, v.fechaCreacion, v.tipoDocumento, v.montoPago,
-                       c.id_cliente, c.dni, c.nombre, c.apellido,
+                       u.id_usuario, u.nombre AS nombreVendedor, u.apellido AS apellidoVendedor,
+                       c.id_cliente, c.dni, c.nombre AS nombreCliente, c.apellido AS apellidoCliente,
                        mp.id_metodoPago, mp.descripcion AS metodoPago
                 FROM Venta v
+                INNER JOIN USUARIO u ON v.id_usuario = u.id_usuario
                 INNER JOIN Cliente c ON v.id_cliente = c.id_cliente
                 INNER JOIN Metodo_Pago mp ON v.id_metodoPago = mp.id_metodoPago
-                WHERE v.id_usuario = @id_usuario
+                WHERE (@id_usuario = 0 OR v.id_usuario = @id_usuario)
                   AND (@desde IS NULL OR v.fechaCreacion >= @desde)
                   AND (@hasta IS NULL OR v.fechaCreacion < @hasta)
                 ORDER BY v.fechaCreacion DESC, v.id_venta DESC";
@@ -156,12 +158,18 @@ namespace CapaDatos
                                 fechaCreacion = Convert.ToDateTime(dr["fechaCreacion"]),
                                 tipoDocumento = dr["tipoDocumento"].ToString(),
                                 montoPago = Convert.ToDecimal(dr["montoPago"]),
+                                usuario = new Usuario()
+                                {
+                                    id_usuario = Convert.ToInt32(dr["id_usuario"]),
+                                    nombre = dr["nombreVendedor"].ToString(),
+                                    apellido = dr["apellidoVendedor"].ToString()
+                                },
                                 cliente = new Cliente()
                                 {
                                     id_cliente = Convert.ToInt32(dr["id_cliente"]),
-                                    dni = Convert.ToInt32(dr["dni"]),   // si tu Cliente.dni es string o long, ajustá esta línea
-                                    nombre = dr["nombre"].ToString(),
-                                    apellido = dr["apellido"].ToString()
+                                    dni = Convert.ToInt32(dr["dni"]),
+                                    nombre = dr["nombreCliente"].ToString(),
+                                    apellido = dr["apellidoCliente"].ToString()
                                 },
                                 metodoPago = new MetodoPago()
                                 {
@@ -174,7 +182,7 @@ namespace CapaDatos
                 }
                 catch (Exception)
                 {
-                    lista = new List<Venta>();   // si falla, devuelve lista vacía (como el resto de tus Listar)
+                    lista = new List<Venta>();
                 }
             }
             return lista;

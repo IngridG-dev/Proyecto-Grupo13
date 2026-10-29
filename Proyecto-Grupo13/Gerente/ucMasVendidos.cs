@@ -4,18 +4,35 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using CapaEntidad;
+using CapaLogica;
 
 namespace Proyecto_Grupo13.Gerente
 {
     public partial class ucMasVendidos : UserControl
     {
+        private const int TOP_GRAFICO = 10;   // cantidad de productos que muestra el gráfico
+
+        private readonly CL_Estadistica logica = new CL_Estadistica();
+
+        // Rango de fechas aplicado (null = sin filtro, o sea, todo el historial)
+        private DateTime? filtroDesde = null;
+        private DateTime? filtroHasta = null;
         public ucMasVendidos()
         {
             InitializeComponent();
+
+            // Las fechas solo filtran si el casillero del selector está tildado
+            dtpInicio.ShowCheckBox = true;
+            dtpInicio.Checked = false;
+            dtpFin.ShowCheckBox = true;
+            dtpFin.Checked = false;
+
+            // Configuramos el DataGridView
+            dgvMasVendidos.AllowUserToAddRows = false;
+            dgvMasVendidos.ReadOnly = true;
 
             // Configuramos el ComboBox
             cmbBuscarPor.Items.Clear();
@@ -25,16 +42,26 @@ namespace Proyecto_Grupo13.Gerente
             // Producto seleccionado por defecto
             cmbBuscarPor.SelectedIndex = 0;
 
-            // Configuramos el gráfico principal
+            // Configuramos el gráfico principal y datos iniciales
+            actualizarTodo();
             ConfigChartMasVendidos();
 
-            // Cargamos los datos iniciales
-            MostrarProductos();
+        }
+        // Actualiza todos los datos de la pantalla según el filtro actual
+        private void actualizarTodo()
+        {
+            // Evita consultar la base cuando Visual Studio dibuja el control en el diseñador
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            if (cmbBuscarPor.Text == "Categoría")
+                MostrarCategorias();
+            else
+                MostrarProductos();
+
             MostrarVendedores();
         }
 
         // config del chart principal
-
         private void ConfigChartMasVendidos()
         {
             chartMasVendidos.Series.Clear();
@@ -45,6 +72,7 @@ namespace Proyecto_Grupo13.Gerente
 
             area.AxisX.MajorGrid.Enabled = false;
             area.AxisY.MajorGrid.Enabled = true;
+            area.AxisX.Interval = 1; //muestra el nombre de todas las columnas en el eje X
 
             chartMasVendidos.ChartAreas.Add(area);
         }
@@ -56,57 +84,47 @@ namespace Proyecto_Grupo13.Gerente
             labelVendidos.Text = "PRODUCTO MÁS VENDIDO:";
 
             // indicamos que la lista contiene ItemEstadistica
-            List<ItemEstadistica> productos = new List<ItemEstadistica>
+            List<Estadisticas> productos = logica.productosMasVendidos(filtroDesde, filtroHasta);
             {
-                new ItemEstadistica("CD Taylor Swift", 50, 50000),
-                new ItemEstadistica("Vinilo Queen", 30, 30000),
-                new ItemEstadistica("CD Metallica", 20, 20000),
-                new ItemEstadistica("Tocadiscos", 10, 100000)
-            };
-
-            // buscamos el producto con más unidades vendidas
-            ItemEstadistica destacado =
-                productos.OrderByDescending(p => p.CantidadVendida).First();
-
-            // mostramos el producto destacado
-            textResultadoPrincipal.Text = destacado.Nombre;
-            textResultadoCantidad.Text = destacado.CantidadVendida.ToString();
-
-            // cargamos la grilla y el gráfico
-            CargarGrid(productos, "Producto");
-            CargarGraficoPrincipal(productos, "Producto");
+                mostrarDestacado(productos);
+                //la grilla muestra todos los productos, pero el gráfico solo los primeros
+                CargarGrid(productos, "Producto");
+                CargarGraficoPrincipal(productos.Take(TOP_GRAFICO).ToList(), "Producto");
+            }
         }
 
         // categorias más vendidas
-
         private void MostrarCategorias()
         {
             labelVendidos.Text = "CATEGORÍA MÁS VENDIDA:";
 
             // indicamos que la lista contiene ItemEstadistica
-            List<ItemEstadistica> categorias = new List<ItemEstadistica>
+            List<Estadisticas> categorias = logica.categoriasMasVendidas(filtroDesde, filtroHasta);
             {
-                new ItemEstadistica("CDs", 100, 100000),
-                new ItemEstadistica("Vinilos", 50, 50000),
-                new ItemEstadistica("Reproductores", 20, 200000)
-            };
+                mostrarDestacado(categorias);
+                CargarGrid(categorias, "Categoría");
+                CargarGraficoPrincipal(categorias, "Categoría");
+            }
+        }
+        // muestra el producto/categoría con más unidades vendidas (o "-" si no hay ventas)
+        private void mostrarDestacado(List<Estadisticas> datos)
+        {
+            if (datos.Count == 0)
+            {
+                textResultadoPrincipal.Text = "-";
+                textResultadoCantidad.Text = "0";
+                return;
+            }
 
-            // buscamos la categoría con más unidades vendidas
-            ItemEstadistica destacada =
-                categorias.OrderByDescending(c => c.CantidadVendida).First();
+            Estadisticas destacado = datos.OrderByDescending(d => d.CantidadVendida).First();
 
-            // mostramos la categoría destacada
-            textResultadoPrincipal.Text = destacada.Nombre;
-            textResultadoCantidad.Text = destacada.CantidadVendida.ToString();
-
-            // cargamos la grilla y el gráfico
-            CargarGrid(categorias, "Categoría");
-            CargarGraficoPrincipal(categorias, "Categoría");
+            textResultadoPrincipal.Text = destacado.Nombre;
+            textResultadoCantidad.Text = destacado.CantidadVendida.ToString();
         }
 
         // cargar datos en el dataGridView y cambiar el encabezado de la primera columna según el tipo (Producto o Categoría)
 
-        private void CargarGrid(List<ItemEstadistica> datos, string tipo)
+        private void CargarGrid(List<Estadisticas> datos, string tipo)
         {
             dgvMasVendidos.Rows.Clear();
 
@@ -117,7 +135,7 @@ namespace Proyecto_Grupo13.Gerente
             }
 
             // agregamos los datos
-            foreach (ItemEstadistica dato in datos)
+            foreach (Estadisticas dato in datos)
             {
                 dgvMasVendidos.Rows.Add(
                     dato.Nombre,
@@ -130,7 +148,7 @@ namespace Proyecto_Grupo13.Gerente
         // chart de productos o categorias más vendidos, según el tipo
 
         private void CargarGraficoPrincipal(
-            List<ItemEstadistica> datos,
+            List<Estadisticas> datos,
             string tipo)
         {
             chartMasVendidos.Series.Clear();
@@ -142,16 +160,16 @@ namespace Proyecto_Grupo13.Gerente
             if (tipo == "Categoría")
             {
                 serie.ChartType = SeriesChartType.Pie; //cambia el tipo de gráfico a circular
+                serie.Label = "#VALX: #VAL"; //muestra el nombre y la cantidad en cada porción del gráfico
             }
             else
             {
                 serie.ChartType = SeriesChartType.Column; //cambia el tipo de gráfico a columnas
+                serie.IsValueShownAsLabel = true; //muestra la cantidad en cada columna del gráfico
             }
 
-            serie.IsValueShownAsLabel = true;
-
             // agregamos cada elemento al gráfico
-            foreach (ItemEstadistica dato in datos)
+            foreach (Estadisticas dato in datos)
             {
                 serie.Points.AddXY(
                     dato.Nombre,
@@ -164,55 +182,49 @@ namespace Proyecto_Grupo13.Gerente
             // titulo
             chartMasVendidos.Titles.Clear();
             chartMasVendidos.Titles.Add(
-                tipo.ToUpper() + " MÁS VENDIDOS"
-            );
+                tipo == "Producto"
+                    ? "PRODUCTOS MÁS VENDIDOS (TOP" + TOP_GRAFICO + ")"
+                    : "CATEGORÍAS MÁS VENDIDAS");
         }
 
         // vendedores con más ventas
-
         private void MostrarVendedores()
         {
             // indicamos que la lista contiene VendedorEstadistica
-            List<VendedorEstadistica> vendedores =
-                new List<VendedorEstadistica>
+            List<VendedorEstadistica> vendedores = logica.ventasPorVendedor(filtroDesde, filtroHasta);
             {
-                new VendedorEstadistica("Juan Pérez", 25),
-                new VendedorEstadistica("María López", 18),
-                new VendedorEstadistica("Pedro Gómez", 12),
-                new VendedorEstadistica("Ana Rodríguez", 8),
-                new VendedorEstadistica("Lucas Fernández", 15)
-            };
+                if (vendedores.Count == 0)
+                {
+                    textVendedor.Text = "-";
+                    textVentas.Text = "0";
+                }
+                else
+                {
+                    VendedorEstadistica vendedorDestacado = vendedores.OrderByDescending(v => v.Ventas).First();
 
-            // buscamos el vendedor con más ventas
-            VendedorEstadistica vendedorDestacado =
-                vendedores.OrderByDescending(v => v.Ventas).First();
+                    textVendedor.Text = vendedorDestacado.Nombre;
+                    textVentas.Text = vendedorDestacado.Ventas.ToString();
+                }
 
-            // mostramos el vendedor destacado
-            textVendedor.Text = vendedorDestacado.Nombre;
-            textVentas.Text = vendedorDestacado.Ventas.ToString();
+                chartVendedores.Series.Clear();
 
-            // limpiamos el gráfico
-            chartVendedores.Series.Clear();
+                if (chartVendedores.ChartAreas.Count > 0)
+                    chartVendedores.ChartAreas[0].AxisX.Interval = 1;
 
-            Series serie = new Series("Ventas realizadas");
+                Series serie = new Series("Ventas realizadas");
+                serie.ChartType = SeriesChartType.Column;
+                serie.IsValueShownAsLabel = true;
 
-            serie.ChartType = SeriesChartType.Column;
-            serie.IsValueShownAsLabel = true;
+                foreach (VendedorEstadistica vendedor in vendedores)
+                {
+                    serie.Points.AddXY(vendedor.Nombre, vendedor.Ventas);
+                }
 
-            // agregamos los vendedores al gráfico
-            foreach (VendedorEstadistica vendedor in vendedores)
-            {
-                serie.Points.AddXY(
-                    vendedor.Nombre,
-                    vendedor.Ventas
-                );
+                chartVendedores.Series.Add(serie);
+
+                chartVendedores.Titles.Clear();
+                chartVendedores.Titles.Add("VENTAS POR VENDEDOR");
             }
-
-            chartVendedores.Series.Add(serie);
-
-            // titulo
-            chartVendedores.Titles.Clear();
-            chartVendedores.Titles.Add("VENTAS POR VENDEDOR");
         }
 
         // boton buscar
@@ -231,55 +243,30 @@ namespace Proyecto_Grupo13.Gerente
                 return;
             }
 
-            string opcion = cmbBuscarPor.SelectedItem.ToString();
+            DateTime? desde = dtpInicio.Checked ? dtpInicio.Value.Date : (DateTime?)null;
+            DateTime? hasta = dtpFin.Checked ? dtpFin.Value.Date : (DateTime?)null;
 
-            if (opcion == "Producto")
+            if (desde.HasValue && hasta.HasValue && desde > hasta)
             {
-                MostrarProductos();
+                MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha fin.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else if (opcion == "Categoría")
+            filtroDesde = desde;
+            filtroHasta = hasta;
+            actualizarTodo();
+            if (dgvMasVendidos.Rows.Count == 0)
             {
-                MostrarCategorias();
+                MessageBox.Show("No hay ventas en ese período.", "Sin resultados",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            MostrarVendedores();
+
         }
-
-        // item estadistica para productos y categorias
-
-        public class ItemEstadistica
+        // Al volver a esta pantalla se actualizan los datos, manteniendo el filtro aplicado
+        private void ucMasVendidos_VisibleChanged(object sender, EventArgs e)
         {
-            public string Nombre { get; set; }
-
-            public int CantidadVendida { get; set; }
-
-            public decimal Ingresos { get; set; }
-
-            public ItemEstadistica(
-                string nombre,
-                int cantidadVendida,
-                decimal ingresos)
-            {
-                Nombre = nombre;
-                CantidadVendida = cantidadVendida;
-                Ingresos = ingresos;
-            }
+            if (this.Visible) actualizarTodo();
         }
 
-        // vendedor estadistica para vendedores con más ventas
-
-        public class VendedorEstadistica
-        {
-            public string Nombre { get; set; }
-
-            public int Ventas { get; set; }
-
-            public VendedorEstadistica(
-                string nombre,
-                int ventas)
-            {
-                Nombre = nombre;
-                Ventas = ventas;
-            }
-        }
     }
 }

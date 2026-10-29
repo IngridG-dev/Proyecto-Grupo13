@@ -116,7 +116,7 @@ namespace CapaDatos
                         SELECT c.id_compra, c.numeroCompra, c.fechaRegistro, 
                                p.razonSocial AS Proveedor, u.nombre + ' ' + u.apellido AS Administrador
                         FROM COMPRA c
-                        INNER JOIN PROVEEDOR p ON c.id_compra = p.id_proveedor
+                        INNER JOIN PROVEEDOR p ON c.id_proveedor = p.id_proveedor
                         INNER JOIN USUARIO u ON c.id_usuario = u.id_usuario
                         WHERE CONVERT(date, c.fechaRegistro) BETWEEN @fechaDesde AND @fechaHasta
                         ORDER BY c.fechaRegistro DESC";

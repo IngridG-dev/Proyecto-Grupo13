@@ -18,52 +18,52 @@ namespace Proyecto_Grupo13.Administrador
 {
     public partial class ucReporteCompra : UserControl
     {
+        private DateTime? filtroDesde = null;
+        private DateTime? filtroHasta = null;
         public ucReporteCompra()
         {
             InitializeComponent();
+            dtpFechaInicio.ShowCheckBox = true;
+            dtpFechaInicio.Checked = false;
+            dtpFechaFin.ShowCheckBox = true;
+            dtpFechaFin.Checked = false;
         }
         private void iconBtnBuscar_Click(object sender, EventArgs e)
         {
-            DateTime desde = dtpFechaInicio.Value;
-            DateTime hasta = dtpFechaFin.Value;
-
-            List<Compra> lista = new CL_Compra().ReporteComprasFiltro(desde, hasta);
-
-            dgvCompras.Rows.Clear();
-            dgvDetalle.Rows.Clear();
-            decimal totalPeriodo = 0;
-
-            gbDetalle.Visible = false;
-
-            foreach (Compra c in lista)
+            DateTime? desde = dtpFechaInicio.Checked ? dtpFechaInicio.Value.Date : (DateTime?)null;
+            DateTime? hasta = dtpFechaFin.Checked ? dtpFechaFin.Value.Date : (DateTime?)null;
+            if (desde.HasValue && hasta.HasValue && desde > hasta)
             {
-                // Para calcular el total de esta compra, traemos su detalle "al vuelo"
-                List<DetalleCompra> detalles = new CL_Compra().ObtenerDetalleCompra(c.id_compra);
-                decimal totalEstaCompra = 0;
-
-                foreach (DetalleCompra d in detalles)
-                {
-                    totalEstaCompra += (d.precioCompra * d.cantidad);
-                }
-
-                dgvCompras.Rows.Add(
-                    c.id_compra, // Columna oculta
-                    c.numeroCompra,
-                    Convert.ToDateTime(c.fechaRegistro).ToString("dd/MM/yyyy"),
-                    c.proveedor.razonSocial,
-                    c.usuario.nombre,
-                    totalEstaCompra.ToString("0.00")
-                );
-                totalPeriodo += totalEstaCompra;
+                MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha fin.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            lblTotalCompras.Text = lista.Count.ToString();
+            filtroDesde = desde;
+            filtroHasta = hasta;
+            cargarCompras();
+
+            if (dgvCompras.Rows.Count == 0)
+            {
+                MessageBox.Show("No se encontraron compras en ese rango de fechas.",
+                    "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void iconBtnLimpiar_Click(object sender, EventArgs e)
         {
 
             textBuscar.Clear();
+            dtpFechaInicio.Value = DateTime.Today;
+            dtpFechaInicio.Checked = false;
+            dtpFechaFin.Value = DateTime.Today;
+            dtpFechaFin.Checked = false;
+            cboBuscarPor.SelectedIndex = 0;
+            filtroDesde = null;
+            filtroHasta = null;
+            cargarCompras();
+
         }
 
         private void ucReporteCompra_Load(object sender, EventArgs e)
@@ -74,6 +74,8 @@ namespace Proyecto_Grupo13.Administrador
             cboBuscarPor.Items.Add("Administrador");
             cboBuscarPor.SelectedIndex = 0;
             gbDetalle.Visible = false;
+
+            cargarCompras();
         }
         private void dgvCompras_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -111,27 +113,7 @@ namespace Proyecto_Grupo13.Administrador
 
         private void textBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (cboBuscarPor.SelectedIndex == -1) return;
-
-            string columnaFiltro = cboBuscarPor.SelectedItem.ToString();
-            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
-            int indiceColumna = -1;
-
-            if (columnaFiltro == "Numero de Compra") indiceColumna = 1;
-            else if (columnaFiltro == "Proveedor") indiceColumna = 3;
-            else if (columnaFiltro == "Administrador") indiceColumna = 4;
-
-            if (indiceColumna == -1) return;
-
-            dgvCompras.CurrentCell = null;
-
-            foreach (DataGridViewRow row in dgvCompras.Rows)
-            {
-                if (row.IsNewRow) continue;
-                string valorCelda = row.Cells[indiceColumna].Value.ToString().ToUpper();
-                row.Visible = valorCelda.Contains(textoBusqueda);
-            }
-            gbDetalle.Visible = false;
+            AplicarFiltroTexto();
         }
 
         private void iconBtnExcel_Click(object sender, EventArgs e)
@@ -258,6 +240,89 @@ namespace Proyecto_Grupo13.Administrador
         private void dgvCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        private void cargarCompras()
+        {
+            // Evita consultar la base cuando Visual Studio dibuja el control en el diseñador
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            // Se traen TODAS las compras y las fechas se filtran acá
+            List<Compra> lista = new CL_Compra().ReporteComprasFiltro(new DateTime(2000, 1, 1), new DateTime(2100, 1, 1));
+
+            if (filtroDesde.HasValue)
+                lista = lista.Where(c => Convert.ToDateTime(c.fechaRegistro).Date >= filtroDesde.Value.Date).ToList();
+
+            if (filtroHasta.HasValue)
+                lista = lista.Where(c => Convert.ToDateTime(c.fechaRegistro).Date <= filtroHasta.Value.Date).ToList();
+
+            // Las más nuevas primero
+            lista = lista.OrderByDescending(c => Convert.ToDateTime(c.fechaRegistro))
+                         .ThenByDescending(c => c.id_compra)
+                         .ToList();
+
+            dgvCompras.Rows.Clear();
+            dgvDetalle.Rows.Clear();
+            gbDetalle.Visible = false;
+
+            foreach (Compra c in lista)
+            {
+                // El total de cada compra se calcula con su detalle
+                decimal totalEstaCompra = 0;
+                foreach (DetalleCompra d in new CL_Compra().ObtenerDetalleCompra(c.id_compra))
+                {
+                    totalEstaCompra += d.precioCompra * d.cantidad;
+                }
+
+                dgvCompras.Rows.Add(
+                    c.id_compra,   // Columna oculta
+                    c.numeroCompra,
+                    Convert.ToDateTime(c.fechaRegistro).ToString("dd/MM/yyyy"),
+                    c.proveedor.razonSocial,
+                    c.usuario.nombre,
+                    totalEstaCompra.ToString("0.00"));
+            }
+
+            AplicarFiltroTexto();   // vuelve a aplicar lo escrito en el buscador
+        }
+        private void AplicarFiltroTexto()
+        {
+            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
+            int indiceColumna = -1;
+
+            if (cboBuscarPor.SelectedIndex != -1)
+            {
+                string columnaFiltro = cboBuscarPor.SelectedItem.ToString();
+
+                if (columnaFiltro == "Numero de Compra") indiceColumna = 1;
+                else if (columnaFiltro == "Proveedor") indiceColumna = 3;
+                else if (columnaFiltro == "Administrador") indiceColumna = 4;
+            }
+
+            dgvCompras.CurrentCell = null;
+
+            foreach (DataGridViewRow row in dgvCompras.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                if (indiceColumna == -1 || textoBusqueda == "")
+                {
+                    row.Visible = true;
+                    continue;
+                }
+
+                string valorCelda = row.Cells[indiceColumna].Value?.ToString().ToUpper() ?? "";
+                row.Visible = valorCelda.Contains(textoBusqueda);
+            }
+
+            gbDetalle.Visible = false;
+
+            // "Total de Compras" muestra la cantidad de compras que se están viendo
+            lblTotalCompras.Text = dgvCompras.Rows.Cast<DataGridViewRow>()
+                .Count(r => !r.IsNewRow && r.Visible).ToString();
+        }
+        private void ucReporteCompra_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible) cargarCompras();
         }
     }
 }
