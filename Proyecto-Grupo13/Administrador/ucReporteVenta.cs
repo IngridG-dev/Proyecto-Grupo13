@@ -96,7 +96,7 @@ namespace Proyecto_Grupo13.Administrador
         private void MostrarVentas(List<Venta> ventas)
         {
             dgvVentas.Rows.Clear();
-            decimal totalVentas = 0;
+            //decimal totalVentas = 0;
 
             foreach (Venta v in ventas)
             {
