@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
@@ -53,6 +53,8 @@
             this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
             this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
             this.panelDetalle = new System.Windows.Forms.Panel();
+            this.lblMetodoPago = new System.Windows.Forms.Label();
+            this.lblTotalDetalle = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnDescargarPdf = new FontAwesome.Sharp.IconButton();
@@ -72,8 +74,6 @@
             this.lblNumVenta = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.lblMetodoPago = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
@@ -94,27 +94,28 @@
             this.panel1.Controls.Add(this.comboBoxBuscar);
             this.panel1.Controls.Add(this.labelReporteC);
             this.panel1.Controls.Add(this.labelBuscarPor2);
-            this.panel1.Location = new System.Drawing.Point(30, 33);
+            this.panel1.Location = new System.Drawing.Point(38, 41);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(747, 92);
+            this.panel1.Size = new System.Drawing.Size(933, 114);
             this.panel1.TabIndex = 62;
             // 
             // dtpFin
             // 
             this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFin.Location = new System.Drawing.Point(258, 44);
+            this.dtpFin.Location = new System.Drawing.Point(322, 55);
             this.dtpFin.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFin.Name = "dtpFin";
-            this.dtpFin.Size = new System.Drawing.Size(112, 20);
+            this.dtpFin.Size = new System.Drawing.Size(139, 22);
             this.dtpFin.TabIndex = 63;
             // 
             // dtpInicio
             // 
             this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpInicio.Location = new System.Drawing.Point(78, 44);
+            this.dtpInicio.Location = new System.Drawing.Point(98, 55);
             this.dtpInicio.Margin = new System.Windows.Forms.Padding(2);
             this.dtpInicio.Name = "dtpInicio";
-            this.dtpInicio.Size = new System.Drawing.Size(112, 20);
+            this.dtpInicio.Size = new System.Drawing.Size(139, 22);
             this.dtpInicio.TabIndex = 62;
             // 
             // labelFechaFin
@@ -122,10 +123,10 @@
             this.labelFechaFin.AutoSize = true;
             this.labelFechaFin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFechaFin.ForeColor = System.Drawing.Color.White;
-            this.labelFechaFin.Location = new System.Drawing.Point(196, 44);
+            this.labelFechaFin.Location = new System.Drawing.Point(245, 55);
             this.labelFechaFin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFechaFin.Name = "labelFechaFin";
-            this.labelFechaFin.Size = new System.Drawing.Size(60, 15);
+            this.labelFechaFin.Size = new System.Drawing.Size(73, 20);
             this.labelFechaFin.TabIndex = 49;
             this.labelFechaFin.Text = "Fecha Fin:";
             // 
@@ -137,9 +138,10 @@
             this.iconBtnLimpiar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconBtnLimpiar.IconSize = 16;
-            this.iconBtnLimpiar.Location = new System.Drawing.Point(693, 41);
+            this.iconBtnLimpiar.Location = new System.Drawing.Point(866, 51);
+            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnLimpiar.Name = "iconBtnLimpiar";
-            this.iconBtnLimpiar.Size = new System.Drawing.Size(41, 23);
+            this.iconBtnLimpiar.Size = new System.Drawing.Size(51, 29);
             this.iconBtnLimpiar.TabIndex = 67;
             this.iconBtnLimpiar.UseVisualStyleBackColor = false;
             this.iconBtnLimpiar.Click += new System.EventHandler(this.iconBtnLimpiar_Click);
@@ -148,11 +150,11 @@
             // 
             this.textBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBuscar.Location = new System.Drawing.Point(489, 41);
+            this.textBuscar.Location = new System.Drawing.Point(611, 51);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(153, 23);
+            this.textBuscar.Size = new System.Drawing.Size(191, 29);
             this.textBuscar.TabIndex = 65;
             this.textBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBuscar_KeyDown);
             this.textBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBuscar_KeyPress);
@@ -165,9 +167,10 @@
             this.iconBtnBuscar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.iconBtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconBtnBuscar.IconSize = 16;
-            this.iconBtnBuscar.Location = new System.Drawing.Point(646, 41);
+            this.iconBtnBuscar.Location = new System.Drawing.Point(808, 51);
+            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnBuscar.Name = "iconBtnBuscar";
-            this.iconBtnBuscar.Size = new System.Drawing.Size(41, 23);
+            this.iconBtnBuscar.Size = new System.Drawing.Size(51, 29);
             this.iconBtnBuscar.TabIndex = 66;
             this.iconBtnBuscar.UseVisualStyleBackColor = false;
             this.iconBtnBuscar.Click += new System.EventHandler(this.iconBtnBuscar_Click);
@@ -177,10 +180,10 @@
             this.labelFechaInicio.AutoSize = true;
             this.labelFechaInicio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFechaInicio.ForeColor = System.Drawing.Color.White;
-            this.labelFechaInicio.Location = new System.Drawing.Point(3, 44);
+            this.labelFechaInicio.Location = new System.Drawing.Point(4, 55);
             this.labelFechaInicio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFechaInicio.Name = "labelFechaInicio";
-            this.labelFechaInicio.Size = new System.Drawing.Size(73, 15);
+            this.labelFechaInicio.Size = new System.Drawing.Size(90, 20);
             this.labelFechaInicio.TabIndex = 48;
             this.labelFechaInicio.Text = "Fecha Inicio:";
             // 
@@ -195,10 +198,10 @@
             "Numero Venta",
             "Vendedor",
             "DNI Cliente"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(384, 40);
+            this.comboBoxBuscar.Location = new System.Drawing.Point(480, 50);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(101, 23);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(125, 28);
             this.comboBoxBuscar.TabIndex = 64;
             this.comboBoxBuscar.SelectedIndexChanged += new System.EventHandler(this.comboBoxBuscar_SelectedIndexChanged);
             // 
@@ -207,10 +210,10 @@
             this.labelReporteC.AutoSize = true;
             this.labelReporteC.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.labelReporteC.ForeColor = System.Drawing.Color.White;
-            this.labelReporteC.Location = new System.Drawing.Point(2, 9);
+            this.labelReporteC.Location = new System.Drawing.Point(2, 11);
             this.labelReporteC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelReporteC.Name = "labelReporteC";
-            this.labelReporteC.Size = new System.Drawing.Size(126, 19);
+            this.labelReporteC.Size = new System.Drawing.Size(158, 23);
             this.labelReporteC.TabIndex = 47;
             this.labelReporteC.Text = "Reporte Venta";
             // 
@@ -219,10 +222,10 @@
             this.labelBuscarPor2.AutoSize = true;
             this.labelBuscarPor2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelBuscarPor2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelBuscarPor2.Location = new System.Drawing.Point(381, 23);
+            this.labelBuscarPor2.Location = new System.Drawing.Point(476, 29);
             this.labelBuscarPor2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBuscarPor2.Name = "labelBuscarPor2";
-            this.labelBuscarPor2.Size = new System.Drawing.Size(66, 15);
+            this.labelBuscarPor2.Size = new System.Drawing.Size(82, 20);
             this.labelBuscarPor2.TabIndex = 34;
             this.labelBuscarPor2.Text = "Buscar por:";
             // 
@@ -231,9 +234,10 @@
             this.panelVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.panelVentas.Controls.Add(this.lMontoTotal);
             this.panelVentas.Controls.Add(this.labelTotalV);
-            this.panelVentas.Location = new System.Drawing.Point(783, 33);
+            this.panelVentas.Location = new System.Drawing.Point(979, 41);
+            this.panelVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelVentas.Name = "panelVentas";
-            this.panelVentas.Size = new System.Drawing.Size(200, 92);
+            this.panelVentas.Size = new System.Drawing.Size(250, 115);
             this.panelVentas.TabIndex = 68;
             // 
             // lMontoTotal
@@ -241,10 +245,10 @@
             this.lMontoTotal.AutoSize = true;
             this.lMontoTotal.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lMontoTotal.ForeColor = System.Drawing.Color.White;
-            this.lMontoTotal.Location = new System.Drawing.Point(45, 41);
+            this.lMontoTotal.Location = new System.Drawing.Point(56, 51);
             this.lMontoTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lMontoTotal.Name = "lMontoTotal";
-            this.lMontoTotal.Size = new System.Drawing.Size(0, 24);
+            this.lMontoTotal.Size = new System.Drawing.Size(0, 31);
             this.lMontoTotal.TabIndex = 84;
             // 
             // labelTotalV
@@ -252,19 +256,20 @@
             this.labelTotalV.AutoSize = true;
             this.labelTotalV.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalV.ForeColor = System.Drawing.Color.White;
-            this.labelTotalV.Location = new System.Drawing.Point(46, 10);
+            this.labelTotalV.Location = new System.Drawing.Point(58, 12);
             this.labelTotalV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTotalV.Name = "labelTotalV";
-            this.labelTotalV.Size = new System.Drawing.Size(102, 14);
+            this.labelTotalV.Size = new System.Drawing.Size(128, 17);
             this.labelTotalV.TabIndex = 68;
             this.labelTotalV.Text = "Total de Ventas";
             // 
             // label16
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label16.Location = new System.Drawing.Point(21, 21);
+            this.label16.Location = new System.Drawing.Point(26, 26);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(1072, 504);
+            this.label16.Size = new System.Drawing.Size(1340, 630);
             this.label16.TabIndex = 61;
             // 
             // dgvVentas
@@ -272,14 +277,14 @@
             this.dgvVentas.AllowUserToAddRows = false;
             this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVentas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NVenta,
@@ -288,10 +293,11 @@
             this.Cliente,
             this.Total,
             this.Ver});
-            this.dgvVentas.Location = new System.Drawing.Point(37, 131);
+            this.dgvVentas.Location = new System.Drawing.Point(46, 164);
+            this.dgvVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.RowHeadersWidth = 51;
-            this.dgvVentas.Size = new System.Drawing.Size(568, 333);
+            this.dgvVentas.Size = new System.Drawing.Size(710, 416);
             this.dgvVentas.TabIndex = 69;
             this.dgvVentas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVentas_CellClick);
             // 
@@ -310,6 +316,7 @@
             // Vendedor
             // 
             this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.MinimumWidth = 6;
             this.Vendedor.Name = "Vendedor";
             // 
             // Cliente
@@ -336,25 +343,28 @@
             // 
             this.iconBtnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconBtnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnExcel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.iconBtnExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.iconBtnExcel.IconColor = System.Drawing.Color.Black;
+            this.iconBtnExcel.IconColor = System.Drawing.Color.Green;
             this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnExcel.IconSize = 15;
-            this.iconBtnExcel.Location = new System.Drawing.Point(37, 470);
+            this.iconBtnExcel.IconSize = 25;
+            this.iconBtnExcel.Location = new System.Drawing.Point(47, 584);
+            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnExcel.Name = "iconBtnExcel";
-            this.iconBtnExcel.Size = new System.Drawing.Size(110, 23);
+            this.iconBtnExcel.Size = new System.Drawing.Size(152, 39);
             this.iconBtnExcel.TabIndex = 70;
             this.iconBtnExcel.Text = "Descargar Excel";
             this.iconBtnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBtnExcel.UseVisualStyleBackColor = false;
+            this.iconBtnExcel.Click += new System.EventHandler(this.iconBtnExcel_Click);
             // 
             // panelDetalle
             // 
             this.panelDetalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.panelDetalle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDetalle.Controls.Add(this.lblMetodoPago);
-            this.panelDetalle.Controls.Add(this.lblTotal);
+            this.panelDetalle.Controls.Add(this.lblTotalDetalle);
             this.panelDetalle.Controls.Add(this.lblDNI);
             this.panelDetalle.Controls.Add(this.label10);
             this.panelDetalle.Controls.Add(this.btnDescargarPdf);
@@ -370,21 +380,45 @@
             this.panelDetalle.Controls.Add(this.lblNumVenta);
             this.panelDetalle.Controls.Add(this.lblFecha);
             this.panelDetalle.Controls.Add(this.label1);
-            this.panelDetalle.Location = new System.Drawing.Point(610, 131);
+            this.panelDetalle.Location = new System.Drawing.Point(762, 164);
             this.panelDetalle.Margin = new System.Windows.Forms.Padding(2);
             this.panelDetalle.Name = "panelDetalle";
-            this.panelDetalle.Size = new System.Drawing.Size(466, 362);
+            this.panelDetalle.Size = new System.Drawing.Size(582, 452);
             this.panelDetalle.TabIndex = 76;
+            // 
+            // lblMetodoPago
+            // 
+            this.lblMetodoPago.AutoSize = true;
+            this.lblMetodoPago.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblMetodoPago.ForeColor = System.Drawing.Color.White;
+            this.lblMetodoPago.Location = new System.Drawing.Point(138, 421);
+            this.lblMetodoPago.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMetodoPago.Name = "lblMetodoPago";
+            this.lblMetodoPago.Size = new System.Drawing.Size(15, 20);
+            this.lblMetodoPago.TabIndex = 85;
+            this.lblMetodoPago.Text = "-";
+            // 
+            // lblTotalDetalle
+            // 
+            this.lblTotalDetalle.AutoSize = true;
+            this.lblTotalDetalle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblTotalDetalle.ForeColor = System.Drawing.Color.White;
+            this.lblTotalDetalle.Location = new System.Drawing.Point(69, 394);
+            this.lblTotalDetalle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalDetalle.Name = "lblTotalDetalle";
+            this.lblTotalDetalle.Size = new System.Drawing.Size(15, 20);
+            this.lblTotalDetalle.TabIndex = 84;
+            this.lblTotalDetalle.Text = "-";
             // 
             // lblDNI
             // 
             this.lblDNI.AutoSize = true;
             this.lblDNI.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblDNI.ForeColor = System.Drawing.Color.White;
-            this.lblDNI.Location = new System.Drawing.Point(300, 61);
+            this.lblDNI.Location = new System.Drawing.Point(375, 76);
             this.lblDNI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(12, 15);
+            this.lblDNI.Size = new System.Drawing.Size(15, 20);
             this.lblDNI.TabIndex = 83;
             this.lblDNI.Text = "-";
             // 
@@ -393,10 +427,10 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(259, 61);
+            this.label10.Location = new System.Drawing.Point(324, 76);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 15);
+            this.label10.Size = new System.Drawing.Size(41, 20);
             this.label10.TabIndex = 82;
             this.label10.Text = "DNI:";
             // 
@@ -404,29 +438,30 @@
             // 
             this.btnDescargarPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnDescargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDescargarPdf.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
             this.btnDescargarPdf.IconColor = System.Drawing.Color.Brown;
             this.btnDescargarPdf.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDescargarPdf.IconSize = 15;
-            this.btnDescargarPdf.Location = new System.Drawing.Point(368, 332);
+            this.btnDescargarPdf.IconSize = 25;
+            this.btnDescargarPdf.Location = new System.Drawing.Point(425, 409);
             this.btnDescargarPdf.Margin = new System.Windows.Forms.Padding(2);
             this.btnDescargarPdf.Name = "btnDescargarPdf";
-            this.btnDescargarPdf.Size = new System.Drawing.Size(94, 26);
+            this.btnDescargarPdf.Size = new System.Drawing.Size(152, 39);
             this.btnDescargarPdf.TabIndex = 76;
             this.btnDescargarPdf.Text = "Descargar PDF";
             this.btnDescargarPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDescargarPdf.UseVisualStyleBackColor = false;
+            this.btnDescargarPdf.Click += new System.EventHandler(this.btnDescargarPdf_Click);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(14, 338);
+            this.label11.Location = new System.Drawing.Point(18, 422);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(84, 15);
+            this.label11.Size = new System.Drawing.Size(107, 20);
             this.label11.TabIndex = 81;
             this.label11.Text = "Metodo Pago:";
             // 
@@ -435,10 +470,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(14, 315);
+            this.label2.Location = new System.Drawing.Point(18, 394);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 80;
             this.label2.Text = "Total:";
             // 
@@ -447,10 +482,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(283, 34);
+            this.label8.Location = new System.Drawing.Point(354, 42);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 15);
+            this.label8.Size = new System.Drawing.Size(81, 20);
             this.label8.TabIndex = 79;
             this.label8.Text = "Vendedor:";
             // 
@@ -459,10 +494,10 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(124, 34);
+            this.label7.Location = new System.Drawing.Point(155, 42);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 15);
+            this.label7.Size = new System.Drawing.Size(53, 20);
             this.label7.TabIndex = 78;
             this.label7.Text = "Fecha:";
             // 
@@ -471,10 +506,10 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(15, 61);
+            this.label9.Location = new System.Drawing.Point(19, 76);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 15);
+            this.label9.Size = new System.Drawing.Size(61, 20);
             this.label9.TabIndex = 77;
             this.label9.Text = "Cliente:";
             // 
@@ -483,10 +518,10 @@
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.ForeColor = System.Drawing.Color.White;
-            this.label.Location = new System.Drawing.Point(15, 34);
+            this.label.Location = new System.Drawing.Point(19, 42);
             this.label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(59, 15);
+            this.label.Size = new System.Drawing.Size(75, 20);
             this.label.TabIndex = 76;
             this.label.Text = "N° Venta:";
             // 
@@ -495,10 +530,10 @@
             this.lblVendedor.AutoSize = true;
             this.lblVendedor.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblVendedor.ForeColor = System.Drawing.Color.White;
-            this.lblVendedor.Location = new System.Drawing.Point(351, 34);
+            this.lblVendedor.Location = new System.Drawing.Point(439, 42);
             this.lblVendedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVendedor.Name = "lblVendedor";
-            this.lblVendedor.Size = new System.Drawing.Size(12, 15);
+            this.lblVendedor.Size = new System.Drawing.Size(15, 20);
             this.lblVendedor.TabIndex = 75;
             this.lblVendedor.Text = "-";
             // 
@@ -513,13 +548,13 @@
             this.Cantidad,
             this.Precio,
             this.subTotal});
-            this.dgvDetalle.Location = new System.Drawing.Point(2, 88);
+            this.dgvDetalle.Location = new System.Drawing.Point(2, 110);
             this.dgvDetalle.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDetalle.Name = "dgvDetalle";
             this.dgvDetalle.ReadOnly = true;
             this.dgvDetalle.RowHeadersWidth = 51;
             this.dgvDetalle.RowTemplate.Height = 24;
-            this.dgvDetalle.Size = new System.Drawing.Size(460, 212);
+            this.dgvDetalle.Size = new System.Drawing.Size(575, 265);
             this.dgvDetalle.TabIndex = 74;
             // 
             // NombreProducto
@@ -555,10 +590,10 @@
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblCliente.ForeColor = System.Drawing.Color.White;
-            this.lblCliente.Location = new System.Drawing.Point(88, 61);
+            this.lblCliente.Location = new System.Drawing.Point(110, 76);
             this.lblCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(12, 15);
+            this.lblCliente.Size = new System.Drawing.Size(15, 20);
             this.lblCliente.TabIndex = 3;
             this.lblCliente.Text = "-";
             // 
@@ -567,10 +602,10 @@
             this.lblNumVenta.AutoSize = true;
             this.lblNumVenta.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNumVenta.ForeColor = System.Drawing.Color.White;
-            this.lblNumVenta.Location = new System.Drawing.Point(78, 34);
+            this.lblNumVenta.Location = new System.Drawing.Point(98, 42);
             this.lblNumVenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumVenta.Name = "lblNumVenta";
-            this.lblNumVenta.Size = new System.Drawing.Size(12, 15);
+            this.lblNumVenta.Size = new System.Drawing.Size(15, 20);
             this.lblNumVenta.TabIndex = 2;
             this.lblNumVenta.Text = "-";
             // 
@@ -579,10 +614,10 @@
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblFecha.ForeColor = System.Drawing.Color.White;
-            this.lblFecha.Location = new System.Drawing.Point(170, 34);
+            this.lblFecha.Location = new System.Drawing.Point(212, 42);
             this.lblFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(12, 15);
+            this.lblFecha.Size = new System.Drawing.Size(15, 20);
             this.lblFecha.TabIndex = 1;
             this.lblFecha.Text = "-";
             // 
@@ -591,40 +626,16 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(131, 2);
+            this.label1.Location = new System.Drawing.Point(164, 2);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 19);
+            this.label1.Size = new System.Drawing.Size(229, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "DETALLE DE VENTA";
             // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(55, 315);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(12, 15);
-            this.lblTotal.TabIndex = 84;
-            this.lblTotal.Text = "-";
-            // 
-            // lblMetodoPago
-            // 
-            this.lblMetodoPago.AutoSize = true;
-            this.lblMetodoPago.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblMetodoPago.ForeColor = System.Drawing.Color.White;
-            this.lblMetodoPago.Location = new System.Drawing.Point(110, 337);
-            this.lblMetodoPago.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblMetodoPago.Name = "lblMetodoPago";
-            this.lblMetodoPago.Size = new System.Drawing.Size(12, 15);
-            this.lblMetodoPago.TabIndex = 85;
-            this.lblMetodoPago.Text = "-";
-            // 
             // ucReporteVenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.panelDetalle);
@@ -633,8 +644,9 @@
             this.Controls.Add(this.panelVentas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label16);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucReporteVenta";
-            this.Size = new System.Drawing.Size(1114, 546);
+            this.Size = new System.Drawing.Size(1392, 682);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelVentas.ResumeLayout(false);
@@ -692,6 +704,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
         private System.Windows.Forms.Label lMontoTotal;
         private System.Windows.Forms.Label lblMetodoPago;
-        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblTotalDetalle;
     }
 }
