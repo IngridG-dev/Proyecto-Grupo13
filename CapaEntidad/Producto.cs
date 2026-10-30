@@ -18,6 +18,7 @@ namespace CapaEntidad
         public decimal precioVenta { get; set; }
         public Categoria categoria { get; set; } // Relación con la clase Categoria
         public Proveedor proveedor { get; set; } // Relación con la clase Proveedor
+        public string artista { get; set; }
 
     }
 }

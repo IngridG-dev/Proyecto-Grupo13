@@ -26,6 +26,7 @@ namespace CapaDatos
                 p.stockMinimo,
                 p.estado,
                 p.precioVenta,
+                P.artista,
                 c.id_categoria,
                 c.descripcion AS categoriaDescripcion,
                 pr.id_proveedor,
@@ -55,6 +56,7 @@ namespace CapaDatos
                                 codigo = reader["codigo"].ToString(),
                                 nombreProducto = reader["nombreProducto"].ToString(),
                                 descripcion = reader["descripcion"].ToString(),
+                                artista = reader["artista"] != DBNull.Value ? null : reader["artista"].ToString(),
                                 stock = Convert.ToInt32(reader["stock"]),
                                 stockMinimo = Convert.ToInt32(reader["stockMinimo"]),
                                 estado = Convert.ToInt32(reader["estado"]),
@@ -133,7 +135,8 @@ namespace CapaDatos
                     precioVenta,    -- Precio de venta inicia en 0 (se define en compras/ventas)
                     estado,
                     id_categoria,
-                    id_proveedor
+                    id_proveedor,
+                    artista 
                 )
                 VALUES
                 (
@@ -145,7 +148,8 @@ namespace CapaDatos
                     0,                           
                     @estado,
                     @id_categoria,
-                    @id_proveedor
+                    @id_proveedor,
+                    @artista
                 )";
 
                     using (SqlCommand comando = new SqlCommand(query, oconexion))
@@ -157,6 +161,7 @@ namespace CapaDatos
                         comando.Parameters.AddWithValue("@estado", obj.estado == 1);
                         comando.Parameters.AddWithValue("@id_categoria", obj.categoria.id_categoria);
                         comando.Parameters.AddWithValue("@id_proveedor", obj.proveedor.id_proveedor);
+                        comando.Parameters.AddWithValue("@artista", (object)obj.artista ?? DBNull.Value);
 
                         oconexion.Open();
                         return comando.ExecuteNonQuery() > 0;
@@ -187,7 +192,8 @@ namespace CapaDatos
                     descripcion = @descripcion,
                     stockMinimo = @stockMinimo,
                     estado = @estado,
-                    id_categoria = @id_categoria
+                    id_categoria = @id_categoria,
+                    artista = @artista
                 WHERE id_producto = @id_producto";
 
                     using (SqlCommand comando = new SqlCommand(query, oconexion))
@@ -199,6 +205,7 @@ namespace CapaDatos
                         comando.Parameters.AddWithValue("@stockMinimo", obj.stockMinimo);
                         comando.Parameters.AddWithValue("@estado", obj.estado == 1);
                         comando.Parameters.AddWithValue("@id_categoria", obj.categoria.id_categoria);
+                        comando.Parameters.AddWithValue("@artista", (object)obj.artista ?? DBNull.Value);
 
                         oconexion.Open();
                         return comando.ExecuteNonQuery() > 0;

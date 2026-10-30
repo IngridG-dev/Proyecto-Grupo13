@@ -59,19 +59,40 @@ namespace CapaLogica
                 mensaje = "Debe seleccionar una categoría.";
                 return false;
             }
-            if (obj.categoria == null || obj.categoria.id_categoria <= 0)
-            {
-                mensaje = "Debe seleccionar una categoría.";
-                return false;
-            }
 
             if (obj.proveedor == null || obj.proveedor.id_proveedor <= 0)
             {
                 mensaje = "Debe seleccionar un proveedor.";
                 return false;
             }
+            //cd y vinilo requieren de artista
+            if(requiereArtista(obj.categoria.descripcion))
+            {
+                if (string.IsNullOrWhiteSpace(obj.artista))
+                {
+                    mensaje = "Debe ingresar el artista del album.";
+                    return false;
+                }
+            }
 
             return true;
+        }
+
+        public static bool requiereArtista(string categoria)
+        {
+            return categoria.Equals("CD", StringComparison.OrdinalIgnoreCase) ||
+                   categoria.Equals("Vinilo", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public void normalizarPorducto(Producto obj)
+        {
+            if(requiereArtista(obj.categoria.descripcion))
+            {
+                obj.artista = obj.artista?.Trim();
+            } else
+            {
+                obj.artista = null;
+            }
         }
 
         // REGISTRAR PRODUCTO
@@ -82,6 +103,7 @@ namespace CapaLogica
 
             if (!ValidarProducto(obj, out mensaje))
                 return false;
+            normalizarPorducto(obj);
 
             if (datos.ExisteCodigo(obj.codigo))
             {
@@ -106,6 +128,7 @@ namespace CapaLogica
 
             if (!ValidarProducto(obj, out mensaje))
                 return false;
+            normalizarPorducto(obj);
 
             if (datos.ExisteCodigo(
                 obj.codigo, obj.id_producto))

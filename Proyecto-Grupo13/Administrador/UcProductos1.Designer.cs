@@ -54,6 +54,7 @@
             this.stockActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.iconLimpiar = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxProveedor = new System.Windows.Forms.ComboBox();
-            this.Proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +99,7 @@
             this.lCategoria.AutoSize = true;
             this.lCategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCategoria.Location = new System.Drawing.Point(154, 236);
+            this.lCategoria.Location = new System.Drawing.Point(154, 138);
             this.lCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCategoria.Name = "lCategoria";
             this.lCategoria.Size = new System.Drawing.Size(61, 15);
@@ -111,7 +111,7 @@
             this.lDescripcion.AutoSize = true;
             this.lDescripcion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDescripcion.Location = new System.Drawing.Point(150, 198);
+            this.lDescripcion.Location = new System.Drawing.Point(150, 241);
             this.lDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDescripcion.Name = "lDescripcion";
             this.lDescripcion.Size = new System.Drawing.Size(72, 15);
@@ -123,7 +123,7 @@
             this.lCodigo.AutoSize = true;
             this.lCodigo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCodigo.Location = new System.Drawing.Point(154, 158);
+            this.lCodigo.Location = new System.Drawing.Point(154, 210);
             this.lCodigo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCodigo.Name = "lCodigo";
             this.lCodigo.Size = new System.Drawing.Size(49, 15);
@@ -135,7 +135,7 @@
             this.lNombreP.AutoSize = true;
             this.lNombreP.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lNombreP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lNombreP.Location = new System.Drawing.Point(154, 122);
+            this.lNombreP.Location = new System.Drawing.Point(154, 175);
             this.lNombreP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNombreP.Name = "lNombreP";
             this.lNombreP.Size = new System.Drawing.Size(54, 15);
@@ -184,7 +184,7 @@
             this.textNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textNombre.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textNombre.Location = new System.Drawing.Point(237, 122);
+            this.textNombre.Location = new System.Drawing.Point(237, 172);
             this.textNombre.Margin = new System.Windows.Forms.Padding(2);
             this.textNombre.Name = "textNombre";
             this.textNombre.Size = new System.Drawing.Size(122, 20);
@@ -197,7 +197,7 @@
             this.textCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textCodigo.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textCodigo.Location = new System.Drawing.Point(237, 159);
+            this.textCodigo.Location = new System.Drawing.Point(237, 205);
             this.textCodigo.Margin = new System.Windows.Forms.Padding(2);
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(122, 20);
@@ -211,7 +211,7 @@
             this.textDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textDescripcion.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textDescripcion.Location = new System.Drawing.Point(237, 198);
+            this.textDescripcion.Location = new System.Drawing.Point(237, 238);
             this.textDescripcion.Margin = new System.Windows.Forms.Padding(2);
             this.textDescripcion.Name = "textDescripcion";
             this.textDescripcion.Size = new System.Drawing.Size(122, 20);
@@ -238,7 +238,7 @@
             this.comboBoxCategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.comboBoxCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxCategoria.FormattingEnabled = true;
-            this.comboBoxCategoria.Location = new System.Drawing.Point(237, 236);
+            this.comboBoxCategoria.Location = new System.Drawing.Point(237, 135);
             this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
             this.comboBoxCategoria.Size = new System.Drawing.Size(122, 23);
@@ -347,6 +347,12 @@
             this.precioVenta.HeaderText = "Precio Venta";
             this.precioVenta.MinimumWidth = 6;
             this.precioVenta.Name = "precioVenta";
+            // 
+            // Proveedor
+            // 
+            this.Proveedor.HeaderText = "Proveedor";
+            this.Proveedor.Name = "Proveedor";
+            this.Proveedor.Visible = false;
             // 
             // btnAgregar
             // 
@@ -515,12 +521,6 @@
             this.comboBoxProveedor.Name = "comboBoxProveedor";
             this.comboBoxProveedor.Size = new System.Drawing.Size(122, 23);
             this.comboBoxProveedor.TabIndex = 93;
-            // 
-            // Proveedor
-            // 
-            this.Proveedor.HeaderText = "Proveedor";
-            this.Proveedor.Name = "Proveedor";
-            this.Proveedor.Visible = false;
             // 
             // UcProductos1
             // 
