@@ -229,6 +229,13 @@ namespace Proyecto_Grupo13.Gerente
 
         // boton buscar
 
+      
+        // Al volver a esta pantalla se actualizan los datos, manteniendo el filtro aplicado
+        private void ucMasVendidos_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible) actualizarTodo();
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (cmbBuscarPor.SelectedItem == null)
@@ -260,13 +267,11 @@ namespace Proyecto_Grupo13.Gerente
                 MessageBox.Show("No hay ventas en ese período.", "Sin resultados",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
-        // Al volver a esta pantalla se actualizan los datos, manteniendo el filtro aplicado
-        private void ucMasVendidos_VisibleChanged(object sender, EventArgs e)
+
+        private void dgvMasVendidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.Visible) actualizarTodo();
-        }
 
+        }
     }
 }

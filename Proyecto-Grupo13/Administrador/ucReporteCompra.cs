@@ -118,121 +118,224 @@ namespace Proyecto_Grupo13.Administrador
 
         private void iconBtnExcel_Click(object sender, EventArgs e)
         {
-            if (dgvDetalle.Rows.Count == 0) return;
+            if (dgvCompras.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay compras cargadas para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            SaveFileDialog savefile = new SaveFileDialog() { FileName = $"DetalleCompra_{lblNumCompra.Text}.xlsx", Filter = "Excel Files | *.xlsx" };
+            SaveFileDialog savefile = new SaveFileDialog()
+            {
+                FileName = $"Reporte_Compras_{DateTime.Now:yyyyMMdd_HHmm}.xlsx",
+                Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+            };
 
             if (savefile.ShowDialog() == DialogResult.OK)
             {
-                using (XLWorkbook wb = new XLWorkbook())
+                try
                 {
-                    var hoja = wb.Worksheets.Add("Detalle Compra");
-                    for (int i = 0; i < dgvDetalle.Columns.Count; i++) hoja.Cell(1, i + 1).Value = dgvDetalle.Columns[i].HeaderText;
-                    for (int i = 0; i < dgvDetalle.Rows.Count; i++)
-                        for (int j = 0; j < dgvDetalle.Columns.Count; j++)
-                            hoja.Cell(i + 2, j + 1).Value = dgvDetalle.Rows[i].Cells[j].Value?.ToString();
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var hoja = wb.Worksheets.Add("Reporte de Compras");
 
-                    wb.SaveAs(savefile.FileName);
-                    MessageBox.Show("Excel generado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // --- CABECERA ESTÉTICA ---
+                        hoja.Range("B2:F2").Merge().Value = "THE B-SIDE - REPORTE GENERAL DE COMPRAS";
+                        hoja.Cell("B2").Style.Font.Bold = true;
+                        hoja.Cell("B2").Style.Font.FontSize = 15;
+                        hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1E283C"); // Azul oscuro
+
+                        hoja.Cell("B3").Value = $"Período: {dtpFechaInicio.Value:dd/MM/yyyy} al {dtpFechaFin.Value:dd/MM/yyyy}";
+                        hoja.Cell("B3").Style.Font.Italic = true;
+                        hoja.Cell("B3").Style.Font.FontColor = XLColor.DimGray;
+
+                        hoja.Cell("B4").Value = $"Total de Compras en el período: {lblTotalCompras.Text}";
+                        hoja.Cell("B4").Style.Font.Bold = true;
+
+                        // --- TABLA DE DATOS ---
+                        int filaInicio = 6;
+                        int colInicio = 2; // Empezamos en la columna B por estética
+                        int colIndex = colInicio;
+
+                        // Encabezados (Omitimos columnas ocultas como el ID)
+                        for (int i = 0; i < dgvCompras.Columns.Count; i++)
+                        {
+                            if (dgvCompras.Columns[i].Visible)
+                            {
+                                hoja.Cell(filaInicio, colIndex).Value = dgvCompras.Columns[i].HeaderText;
+                                colIndex++;
+                            }
+                        }
+
+                        // Filas
+                        int filaActual = filaInicio + 1;
+                        foreach (DataGridViewRow row in dgvCompras.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+                            colIndex = colInicio;
+
+                            for (int j = 0; j < dgvCompras.Columns.Count; j++)
+                            {
+                                if (!dgvCompras.Columns[j].Visible) continue;
+
+                                object valor = row.Cells[j].Value;
+                                var celda = hoja.Cell(filaActual, colIndex);
+
+                                if (valor != null)
+                                {
+                                    string nombreColumna = dgvCompras.Columns[j].HeaderText.ToLower();
+
+                                    // Formato moneda para la columna Total
+                                    if (nombreColumna.Contains("total"))
+                                    {
+                                        if (decimal.TryParse(valor.ToString().Replace("$", "").Trim(), out decimal monto))
+                                        {
+                                            celda.Value = monto;
+                                            celda.Style.NumberFormat.Format = "$ #,##0.00";
+                                        }
+                                        else celda.Value = valor.ToString();
+                                    }
+                                    else if (nombreColumna.Contains("fecha"))
+                                    {
+                                        celda.Value = valor.ToString();
+                                        celda.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                                    }
+                                    else
+                                    {
+                                        celda.Value = valor.ToString();
+                                    }
+                                }
+                                colIndex++;
+                            }
+                            filaActual++;
+                        }
+
+                        // --- FORMATO DE TABLA AUTOMÁTICA ---
+                        if (filaActual > filaInicio + 1)
+                        {
+                            var rangoTabla = hoja.Range(filaInicio, colInicio, filaActual - 1, colIndex - 1);
+                            var tablaElegante = rangoTabla.CreateTable();
+                            tablaElegante.Theme = XLTableTheme.TableStyleLight9; // Tema gris/azul limpio[cite: 2, 4]
+                            tablaElegante.ShowAutoFilter = true;
+                        }
+
+                        hoja.Columns().AdjustToContents(); // Auto-ajuste perfecto
+                        wb.SaveAs(savefile.FileName);
+                        MessageBox.Show("Reporte Excel generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al exportar a Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnDescargarPdf_Click(object sender, EventArgs e)
         {
-            if (dgvDetalle.Rows.Count == 0) return;
+            if (dgvDetalle.Rows.Count == 0 || string.IsNullOrEmpty(lblNumCompra.Text))
+            {
+                MessageBox.Show("Seleccione una compra de la grilla principal para exportar su comprobante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             SaveFileDialog savefile = new SaveFileDialog()
             {
-                FileName = $"Ticket_Compra_{lblNumCompra.Text}.pdf",
+                FileName = $"Comprobante_Compra_{lblNumCompra.Text}.pdf",
                 Filter = "PDF Files|*.pdf"
-
             };
 
             if (savefile.ShowDialog() == DialogResult.OK)
             {
                 using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
                 {
-                    // Tamaño personalizado simulando ticket de 80mm
-                    iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(226f, 500f);
-                    Document pdfDoc = new Document(pageSize, 10f, 10f, 10f, 10f);
+                    Document pdfDoc = new Document(PageSize.A4, 40, 40, 40, 40);
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
 
-                    // Fuentes monoespaciadas estilo recibo
-                    iTextSharp.text.Font fontTitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 12);
-                    iTextSharp.text.Font fontNormal = FontFactory.GetFont(FontFactory.COURIER, 9);
-                    iTextSharp.text.Font fontNegrita = FontFactory.GetFont(FontFactory.COURIER_BOLD, 9);
+                    // Definición de fuentes y colores[cite: 4]
+                    iTextSharp.text.Font fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, new BaseColor(30, 40, 60));
+                    iTextSharp.text.Font fontSubtitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.DARK_GRAY);
+                    iTextSharp.text.Font fontCabecera = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.BLACK);
+                    iTextSharp.text.Font fontNormal = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
 
-                    // 1. CABECERA
-                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph($"Dirección: Junin 1932\nTel. 11223344", fontNormal) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("TICKET DE COMPRA", fontNormal) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    // --- 1. CABECERA ---
+                    PdfPTable headerTable = new PdfPTable(2) { WidthPercentage = 100 };
+                    headerTable.SetWidths(new float[] { 1f, 1f });
 
-                    // 2. TABLA DE PRODUCTOS
-                    PdfPTable tablaItems = new PdfPTable(2);
-                    tablaItems.WidthPercentage = 100;
-                    tablaItems.SetWidths(new float[] { 3f, 1f });
+                    PdfPCell celdaLogo = new PdfPCell(new Phrase("THE B-SIDE", fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER };
+                    PdfPCell celdaTitulo = new PdfPCell(new Phrase("COMPROBANTE DE COMPRA", fontSubtitulo))
+                    {
+                        Border = iTextSharp.text.Rectangle.NO_BORDER,
+                        HorizontalAlignment = Element.ALIGN_RIGHT
+                    };
 
-                    // Celdas de cabecera sin bordes
-                    PdfPCell celdaDesc = new PdfPCell(new Phrase("Descripción", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER };
-                    PdfPCell celdaPrecio = new PdfPCell(new Phrase("Precio", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT };
-                    tablaItems.AddCell(celdaDesc);
-                    tablaItems.AddCell(celdaPrecio);
+                    headerTable.AddCell(celdaLogo);
+                    headerTable.AddCell(celdaTitulo);
+                    pdfDoc.Add(headerTable);
+                    pdfDoc.Add(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.LIGHT_GRAY, Element.ALIGN_CENTER, -1)));
+                    pdfDoc.Add(new Paragraph(" "));
 
-                    // Filas de productos desde la grilla
+                    // --- 2. INFORMACIÓN DE LA COMPRA ---
+                    PdfPTable infoTable = new PdfPTable(2) { WidthPercentage = 100 };
+                    infoTable.AddCell(new PdfPCell(new Phrase($"N° Compra: {lblNumCompra.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    infoTable.AddCell(new PdfPCell(new Phrase($"Fecha: {lblFecha.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    infoTable.AddCell(new PdfPCell(new Phrase($"Proveedor: {lblProveedor.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    infoTable.AddCell(new PdfPCell(new Phrase($"Administrador: {lblAdmin.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    pdfDoc.Add(infoTable);
+                    pdfDoc.Add(new Paragraph(" "));
+                    pdfDoc.Add(new Paragraph(" "));
+
+                    // --- 3. TABLA DE PRODUCTOS ---
+                    PdfPTable tableDetalle = new PdfPTable(dgvDetalle.Columns.Count) { WidthPercentage = 100 };
+                    tableDetalle.SetWidths(new float[] { 1f, 3f, 1.5f, 1.5f }); // Proporciones de las columnas (Cant, Nombre, Precio, SubTotal)
+
+                    // Encabezados grises[cite: 4]
+                    foreach (DataGridViewColumn col in dgvDetalle.Columns)
+                    {
+                        PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText, fontCabecera))
+                        {
+                            BackgroundColor = new BaseColor(240, 240, 240),
+                            BorderColor = BaseColor.LIGHT_GRAY,
+                            Padding = 8,
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        };
+                        tableDetalle.AddCell(pCell);
+                    }
+
+                    // Filas
                     foreach (DataGridViewRow row in dgvDetalle.Rows)
                     {
                         if (row.IsNewRow) continue;
-                        string nombre = row.Cells[1].Value.ToString();
-                        string subtotal = row.Cells[3].Value.ToString(); // Precio * Cantidad
-
-                        PdfPCell cDesc = new PdfPCell(new Phrase(nombre, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER };
-                        PdfPCell cSub = new PdfPCell(new Phrase(subtotal, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT };
-
-                        tablaItems.AddCell(cDesc);
-                        tablaItems.AddCell(cSub);
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            PdfPCell pCell = new PdfPCell(new Phrase(cell.Value?.ToString(), fontNormal))
+                            {
+                                BorderColor = BaseColor.LIGHT_GRAY,
+                                Padding = 6,
+                                HorizontalAlignment = (cell.ColumnIndex == 1) ? Element.ALIGN_LEFT : Element.ALIGN_CENTER
+                            };
+                            tableDetalle.AddCell(pCell);
+                        }
                     }
-                    pdfDoc.Add(tablaItems);
-                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(tableDetalle);
+                    pdfDoc.Add(new Paragraph(" "));
 
-                    // 3. TOTALES
-                    PdfPTable tablaTotales = new PdfPTable(2);
-                    tablaTotales.WidthPercentage = 100;
-                    tablaTotales.SetWidths(new float[] { 2f, 1f });
-
-                    tablaTotales.AddCell(new PdfPCell(new Phrase("Total", fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotalDetalle.Text.Replace("$ ", ""), fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
-
-                    // Efectivo y Cambio (Valores estáticos para replicar el diseño visual)
-                    tablaTotales.AddCell(new PdfPCell(new Phrase("Efectivo", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotalDetalle.Text.Replace("$ ", ""), fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
-                    tablaTotales.AddCell(new PdfPCell(new Phrase("Vuelto", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    tablaTotales.AddCell(new PdfPCell(new Phrase("0.00", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
-
-                    pdfDoc.Add(tablaTotales);
-                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
-
-                    // 4. DATOS BANCARIOS (Simulados como en el diseño)
-                    PdfPTable tablaBanco = new PdfPTable(2);
-                    tablaBanco.WidthPercentage = 100;
-                    tablaBanco.SetWidths(new float[] { 2f, 1f });
-
-                    tablaBanco.AddCell(new PdfPCell(new Phrase("Tarjeta bancaria", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    tablaBanco.AddCell(new PdfPCell(new Phrase("--- 234", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
-                    tablaBanco.AddCell(new PdfPCell(new Phrase("Cód. Aprobación", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    tablaBanco.AddCell(new PdfPCell(new Phrase("#123456", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
-
-                    pdfDoc.Add(tablaBanco);
-                    pdfDoc.Add(new Paragraph("********************************", fontNormal) { Alignment = Element.ALIGN_CENTER });
-
-                    // 5. PIE DE PÁGINA
-                    pdfDoc.Add(new Paragraph("¡GRACIAS POR SU COMPRA!", fontNegrita) { Alignment = Element.ALIGN_CENTER });
+                    // --- 4. TOTAL FINAL ---
+                    PdfPTable totalTable = new PdfPTable(1) { WidthPercentage = 100 };
+                    PdfPCell celdaTotal = new PdfPCell(new Phrase($"TOTAL: {lblTotalDetalle.Text}", fontTitulo))
+                    {
+                        Border = iTextSharp.text.Rectangle.NO_BORDER,
+                        HorizontalAlignment = Element.ALIGN_RIGHT,
+                        PaddingTop = 10
+                    };
+                    totalTable.AddCell(celdaTotal);
+                    pdfDoc.Add(totalTable);
 
                     pdfDoc.Close();
-                    MessageBox.Show("Ticket PDF generado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    stream.Close();
+
+                    MessageBox.Show("Comprobante PDF generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
