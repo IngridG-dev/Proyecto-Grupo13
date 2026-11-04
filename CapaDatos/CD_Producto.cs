@@ -56,7 +56,7 @@ namespace CapaDatos
                                 codigo = reader["codigo"].ToString(),
                                 nombreProducto = reader["nombreProducto"].ToString(),
                                 descripcion = reader["descripcion"].ToString(),
-                                artista = reader["artista"] != DBNull.Value ? null : reader["artista"].ToString(),
+                                artista = reader["artista"] != DBNull.Value ? reader["artista"].ToString() : null,
                                 stock = Convert.ToInt32(reader["stock"]),
                                 stockMinimo = Convert.ToInt32(reader["stockMinimo"]),
                                 estado = Convert.ToInt32(reader["estado"]),
