@@ -80,8 +80,10 @@ namespace CapaLogica
 
         public static bool requiereArtista(string categoria)
         {
-            return categoria.Equals("CD", StringComparison.OrdinalIgnoreCase) ||
-                   categoria.Equals("Vinilo", StringComparison.OrdinalIgnoreCase);
+            if (string.IsNullOrWhiteSpace(categoria)) return false;
+
+            string c = categoria.ToUpper();
+            return c.Contains("CD") || c.Contains("VINILO");
         }
 
         public void normalizarPorducto(Producto obj)

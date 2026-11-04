@@ -246,6 +246,7 @@
             this.comboBoxCategoria.Name = "comboBoxCategoria";
             this.comboBoxCategoria.Size = new System.Drawing.Size(122, 23);
             this.comboBoxCategoria.TabIndex = 39;
+            this.comboBoxCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategoria_SelectedIndexChanged_1);
             // 
             // btnBuscar
             // 
@@ -539,9 +540,9 @@
             this.label4.Location = new System.Drawing.Point(154, 180);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 15);
+            this.label4.Size = new System.Drawing.Size(44, 15);
             this.label4.TabIndex = 94;
-            this.label4.Text = "Arista:";
+            this.label4.Text = "Artista:";
             // 
             // textArtista
             // 

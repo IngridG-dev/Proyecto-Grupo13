@@ -21,6 +21,11 @@ namespace Proyecto_Grupo13.Administrador
         public UcProductos1()
         {
             InitializeComponent();
+
+            // Nos aseguramos de que el combo de categoría avise cuando cambia (una sola vez)
+            comboBoxCategoria.SelectedIndexChanged -= comboBoxCategoria_SelectedIndexChanged;
+            comboBoxCategoria.SelectedIndexChanged += comboBoxCategoria_SelectedIndexChanged;
+
             ConfigurarGrill();
             CargarProductosGrid();
             CargarComboBoxCategorias();
@@ -28,6 +33,7 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxBuscar.Items.Clear(); // Limpiar los ítems existentes
             comboBoxBuscar.Items.AddRange(new object[] { "Nombre", "Código", "Categoría", "Artista" }); // Criterios de búsqueda
             ActualizarCamposMusicales(); // Actualizar campos musicales al iniciar
+
         }
 
         // Configuración inicial del DataGridView
@@ -499,8 +505,9 @@ namespace Proyecto_Grupo13.Administrador
 
         private void ActualizarCamposMusicales()
         {
-            bool habilitar = comboBoxCategoria.SelectedIndex != -1 &&
-                             CL_Producto.requiereArtista(comboBoxCategoria.Text);
+            Categoria categoria = comboBoxCategoria.SelectedItem as Categoria;
+            bool habilitar = categoria != null &&
+                             CL_Producto.requiereArtista(categoria.descripcion);
 
             textArtista.Enabled = habilitar;
 
@@ -516,5 +523,10 @@ namespace Proyecto_Grupo13.Administrador
         private void labelProductos_Click(object sender, EventArgs e) { }
 
         private void UcProductos1_Load(object sender, EventArgs e) { }
+
+        private void comboBoxCategoria_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
