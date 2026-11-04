@@ -1,28 +1,93 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaEntidad;
-using CapaLogica;
 
 namespace Proyecto_Grupo13.Administrador
 {
     public partial class UcProductos1 : UserControl
     {
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
+        private readonly Color colorNormal = Color.FromArgb(70, 75, 85); // Color normal de los TextBox
+
         public UcProductos1()
         {
             InitializeComponent();
+            ConfigurarGrill();
             CargarProductosGrid();
             CargarComboBoxCategorias();
             CargarComboBoxProveedores();
+            comboBoxBuscar.Items.Clear(); // Limpiar los ítems existentes
+            comboBoxBuscar.Items.AddRange(new object[] { "Nombre", "Código", "Categoría", "Artista" }); // Criterios de búsqueda
+            ActualizarCamposMusicales(); // Actualizar campos musicales al iniciar
         }
-        //VALIDACIONES DE LOS TEXTBOX PARA QUE SOLO SE INGRESEN LETRAS O NUMEROS SEGUN CORRESPONDA
+
+        // Configuración inicial del DataGridView
+        private void ConfigurarGrill()
+        {
+            dataGridView2.AutoGenerateColumns = false; // Evitar que se generen columnas automáticamente
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; // Ajustar el tamaño de las columnas al contenido
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Selección de fila completa
+            dataGridView2.MultiSelect = false; // No permitir selección múltiple
+            dataGridView2.AllowUserToAddRows = false; // No permitir agregar filas manualmente
+            dataGridView2.AllowUserToDeleteRows = false; // No permitir eliminar filas manualmente
+            dataGridView2.ReadOnly = true; // Hacer el DataGridView de solo lectura
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Id", HeaderText = "ID", DataPropertyName = "id_producto", Visible = false });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Artista", HeaderText = "Artista", DataPropertyName = "artista" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nombre", HeaderText = "Nombre / Album", DataPropertyName = "nombreProducto" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Codigo", HeaderText = "Código", DataPropertyName = "codigo" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Descripcion", HeaderText = "Descripción", DataPropertyName = "descripcion" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Categoria", HeaderText = "Categoría", DataPropertyName = "categoria.descripcion" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "StockActual", HeaderText = "Stock Actual", DataPropertyName = "stock" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "StockMinimo", HeaderText = "Stock Mínimo", DataPropertyName = "stockMinimo" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrecioVenta", HeaderText = "Precio Venta", DataPropertyName = "precioVenta" });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Proveedor", HeaderText = "Proveedor", DataPropertyName = "proveedor.nombre" });
+        }
+
+        private void CargarProductosGrid()
+        {
+            dataGridView2.Rows.Clear();
+            List<Producto> lista = new CL_Producto().Listar();
+
+            foreach (Producto item in lista)
+            {
+                int n = dataGridView2.Rows.Add(
+                    item.id_producto,
+                    item.artista, // en reproductores queda en blanco, en CDs y vinilos se muestra
+                    item.nombreProducto,
+                    item.codigo,
+                    item.descripcion,
+                    item.categoria.descripcion,
+                    item.stock,
+                    item.stockMinimo,
+                    item.precioVenta.ToString("0.00"),
+                    item.proveedor?.razonSocial ?? "");
+
+                dataGridView2.Rows[n].Tag = item; // Guardamos el producto completo en la fila
+
+                // Stock en el mínimo o por debajo: hay que reponer
+                if (item.stock <= item.stockMinimo)
+                {
+                    DataGridViewCell celda = dataGridView2.Rows[n].Cells["StockActual"];
+                    celda.Style.BackColor = Color.LightPink;
+                    celda.Style.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        // ============================================================
+        // VALIDACIONES DE LOS TEXTBOX
+        // ============================================================
         private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permite letras, números, espacios, caracteres de control y signos de puntuación/símbolos
@@ -32,147 +97,93 @@ namespace Proyecto_Grupo13.Administrador
                 !char.IsPunctuation(e.KeyChar) &&
                 !char.IsSymbol(e.KeyChar))
             {
-                e.Handled = true; // Evita que el carácter se ingrese en el TextBox
+                e.Handled = true;
             }
         }
 
-        private void textCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        private void textArtista_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Validar que solo se ingresen numeros y letras
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true; // Evita que el carácter se ingrese en el TextBox
-                // Mostrar un mensaje de advertencia
-                MessageBox.Show("Solo se permiten letras y números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void textDescripcion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permite letras, números, espacios, caracteres de control y signos de puntuación/símbolos
             if (!char.IsLetterOrDigit(e.KeyChar) &&
                 !char.IsControl(e.KeyChar) &&
                 !char.IsWhiteSpace(e.KeyChar) &&
                 !char.IsPunctuation(e.KeyChar) &&
                 !char.IsSymbol(e.KeyChar))
             {
-                e.Handled = true; // Evita que el carácter se ingrese en el TextBox
+                e.Handled = true;
+            }
+        }
+
+        private void textCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números y letras
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten letras y números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+                !char.IsControl(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                !char.IsPunctuation(e.KeyChar) &&
+                !char.IsSymbol(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
 
         private void textStock_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Validar que solo se ingresen números
+            // Solo números
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
-                e.Handled = true; // Evita que el carácter se ingrese en el TextBox
-                // Mostrar un mensaje de advertencia
+                e.Handled = true;
                 MessageBox.Show("Solo se permiten números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        // ============================================================
+        // VALIDAR CAMPOS
+        // ============================================================
+        // Pinta el campo de rosa si no es válido y devuelve si lo es
+        private bool MarcarCampo(Control campo, bool esValido)
+        {
+            campo.BackColor = esValido ? colorNormal : Color.LightPink;
+            campo.ForeColor = esValido ? Color.White : Color.Black;
+            return esValido;
         }
 
         private bool ValidarCamposVacios()
         {
             bool esValido = true;
 
-            // Color normal de los TextBox
-            Color colorNormal = Color.FromArgb(70, 75, 85);
+            esValido &= MarcarCampo(textNombre, !string.IsNullOrWhiteSpace(textNombre.Text));
+            esValido &= MarcarCampo(textCodigo, !string.IsNullOrWhiteSpace(textCodigo.Text));
+            esValido &= MarcarCampo(textDescripcion, !string.IsNullOrWhiteSpace(textDescripcion.Text));
+            esValido &= MarcarCampo(textStock, !string.IsNullOrWhiteSpace(textStock.Text));
+            esValido &= MarcarCampo(comboBoxCategoria, comboBoxCategoria.SelectedIndex != -1);
+            esValido &= MarcarCampo(comboBoxProveedor, comboBoxProveedor.SelectedIndex != -1);
 
-            // =========================
-            // NOMBRE
-            // =========================
-            if (string.IsNullOrWhiteSpace(textNombre.Text))
+            // El artista solo es obligatorio si es CD o vinilo
+            if (textArtista.Enabled)
             {
-                textNombre.BackColor = Color.LightPink;
-                textNombre.ForeColor = Color.Black;
-                esValido = false;
-            }
-            else
-            {
-                textNombre.BackColor = colorNormal;
-                textNombre.ForeColor = Color.White;
+                esValido &= MarcarCampo(textArtista, !string.IsNullOrWhiteSpace(textArtista.Text));
             }
 
-            // =========================
-            // CODIGO
-            // =========================
-            if (string.IsNullOrWhiteSpace(textCodigo.Text))
-            {
-                textCodigo.BackColor = Color.LightPink;
-                textCodigo.ForeColor = Color.Black;
-                esValido = false;
-            }
-            else
-            {
-                textCodigo.BackColor = colorNormal;
-                textCodigo.ForeColor = Color.White;
-            }
-
-            // =========================
-            // DESCRIPCION
-            // =========================
-            if (string.IsNullOrWhiteSpace(textDescripcion.Text))
-            {
-                textDescripcion.BackColor = Color.LightPink;
-                textDescripcion.ForeColor = Color.Black;
-                esValido = false;
-            }
-            else
-            {
-                textDescripcion.BackColor = colorNormal;
-                textDescripcion.ForeColor = Color.White;
-            }
-
-            // =========================
-            // STOCK
-            // =========================
-            if (string.IsNullOrWhiteSpace(textStock.Text))
-            {
-                textStock.BackColor = Color.LightPink;
-                textStock.ForeColor = Color.Black;
-                esValido = false;
-            }
-            else
-            {
-                textStock.BackColor = colorNormal;
-                textStock.ForeColor = Color.White;
-            }
-            // =========================
-            // CATEGORIA
-            // =========================
-            if (comboBoxCategoria.SelectedIndex == -1)
-            {
-                comboBoxCategoria.BackColor = Color.LightPink;
-                comboBoxCategoria.ForeColor = Color.Black;
-                esValido = false;
-            }
-            else
-            {
-                comboBoxCategoria.BackColor = colorNormal;
-                comboBoxCategoria.ForeColor = Color.White;
-            }
-            if (comboBoxProveedor.SelectedIndex == -1)
-            {
-                comboBoxProveedor.BackColor = Color.LightPink;
-                comboBoxProveedor.ForeColor = Color.Black;
-                esValido = false;
-            }
-            else
-            {
-                comboBoxProveedor.BackColor = colorNormal;
-                comboBoxProveedor.ForeColor = Color.White;
-            }
             return esValido;
         }
 
-        //METODO PARA FORMATEAR EL TEXTO: PRIMERA LETRA MAYUSCULA Y EL RESTO MINUSCULA
+        // Primera letra mayúscula y el resto minúscula
         private string formatearTexto(string texto)
         {
             if (string.IsNullOrWhiteSpace(texto)) return "";
-            // Primera letra mayúscula, el resto minúscula
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
-        //METODO PARA VALIDAR QUE EL CODIGO SEA UNICO EN EL DATAGRIDVIEW
+
+        // Valida que el código no esté repetido en la grilla
         private bool ValidarCodigoUnico()
         {
             if (string.IsNullOrWhiteSpace(textCodigo.Text))
@@ -182,13 +193,12 @@ namespace Proyecto_Grupo13.Administrador
 
             foreach (DataGridViewRow fila in dataGridView2.Rows)
             {
-                if (fila.IsNewRow) continue; // Ignorar la fila vacía del final
+                if (fila.IsNewRow) continue;
 
-                // Si estamos editando, ignoramos la fila actual para que no se detecte a sí misma como duplicada
+                // Si estamos editando, ignoramos la fila actual para que no se detecte a sí misma
                 if (filaEditar != -1 && fila.Index == filaEditar) continue;
 
-                // Suponiendo que el Código está en la columna 1 (ajusta el índice si es otra columna)
-                string codigoFila = fila.Cells[1].Value?.ToString();
+                string codigoFila = fila.Cells["Codigo"].Value?.ToString();
 
                 if (codigoIngresado.Equals(codigoFila, StringComparison.OrdinalIgnoreCase))
                 {
@@ -196,15 +206,45 @@ namespace Proyecto_Grupo13.Administrador
 
                     textCodigo.BackColor = Color.LightPink;
                     textCodigo.Focus();
-
                     return false;
                 }
             }
-            textCodigo.BackColor = Color.FromArgb(70, 75, 85);
+
+            textCodigo.BackColor = colorNormal;
             return true;
         }
 
-        //BOTONES PARA AGREGAR, ELIMINAR Y EDITAR PRODUCTOS
+        private void textCodigo_Leave(object sender, EventArgs e)
+        {
+            ValidarCodigoUnico();
+        }
+
+        // Arma el producto con lo que hay en pantalla
+        private Producto ConstruirProducto(int idProducto)
+        {
+            bool esMusica = textArtista.Enabled;   // CD o vinilo
+
+            return new Producto()
+            {
+                id_producto = idProducto,
+                codigo = textCodigo.Text.Trim(),
+
+                // En CDs y vinilos el nombre es el álbum: se deja como se escribe ("Led Zeppelin IV")
+                nombreProducto = esMusica ? textNombre.Text.Trim() : formatearTexto(textNombre.Text),
+                descripcion = textDescripcion.Text.Trim(),
+                stockMinimo = Convert.ToInt32(textStock.Text),
+                estado = 1,
+                categoria = (Categoria)comboBoxCategoria.SelectedItem,
+                proveedor = (Proveedor)comboBoxProveedor.SelectedItem,
+
+                // El artista se guarda como se escribe ("AC/DC")
+                artista = esMusica ? textArtista.Text.Trim() : null
+            };
+        }
+
+        // ============================================================
+        // BOTONES: AGREGAR, ELIMINAR, EDITAR, ACTUALIZAR, CANCELAR
+        // ============================================================
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (!ValidarCamposVacios())
@@ -216,66 +256,46 @@ namespace Proyecto_Grupo13.Administrador
             if (!ValidarCodigoUnico()) return;
 
             DialogResult ask = MessageBox.Show("¿Desea agregar este nuevo producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (ask != DialogResult.Yes) return;
 
-            if (ask == DialogResult.Yes)
+            string mensaje;
+            bool resultado = new CL_Producto().RegistrarProducto(ConstruirProducto(0), out mensaje);
+
+            if (resultado)
             {
-                Producto nuevoProducto = new Producto()
-                {
-                    codigo = textCodigo.Text.Trim(),
-                    nombreProducto = formatearTexto(textNombre.Text),
-                    descripcion = textDescripcion.Text.Trim(),
-                    stockMinimo = Convert.ToInt32(textStock.Text), // Stock mínimo desde el TextBox
-                    estado = 1,
-                    categoria = new Categoria
-                    {
-                        id_categoria = Convert.ToInt32(comboBoxCategoria.SelectedValue)
-                    },
-                    proveedor = new Proveedor
-                    {
-                        id_proveedor = Convert.ToInt32(comboBoxProveedor.SelectedValue)
-                    }
-                };
-
-                string mensaje = string.Empty;
-                CL_Producto controlLogica = new CL_Producto();
-                bool resultado = controlLogica.RegistrarProducto(nuevoProducto, out mensaje);
-
-                if (resultado)
-                {
-                    MessageBox.Show("Producto registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarProductosGrid();
-                    LimpiarCampos();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje, "Error al registrar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        
-        }
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView2.SelectedRows.Count > 0)
-            {
-                DialogResult ask = MessageBox.Show("¿Desea eliminar el producto seleccionado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (ask == DialogResult.Yes)
-                {
-                    if (!dataGridView2.SelectedRows[0].IsNewRow)
-                    {
-                        // Eliminar la fila seleccionada del DataGridView
-                        dataGridView2.Rows.RemoveAt(dataGridView2.SelectedRows[0].Index);
-                        // Aquí iría la lógica para eliminar el producto de la base de datos o lista (NOTA)
-                        MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se puede eliminar una fila en blanco.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                MessageBox.Show("Producto registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarProductosGrid();
+                LimpiarCampos();
             }
             else
             {
+                MessageBox.Show(mensaje, "Error al registrar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
                 MessageBox.Show("Por favor, seleccione un producto para eliminar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult ask = MessageBox.Show("¿Desea eliminar el producto seleccionado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (ask != DialogResult.Yes) return;
+
+            int idProducto = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["Id"].Value);
+
+            string mensaje;
+            if (new CL_Producto().Desactivar(idProducto, out mensaje))
+            {
+                MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarProductosGrid();
+                LimpiarCampos();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -287,23 +307,31 @@ namespace Proyecto_Grupo13.Administrador
                 return;
             }
 
-            filaEditar = dataGridView2.SelectedRows[0].Index;
+            DataGridViewRow fila = dataGridView2.SelectedRows[0];
+            Producto p = fila.Tag as Producto;
 
-            if (dataGridView2.Rows[filaEditar].IsNewRow)
+            if (p == null)
             {
                 MessageBox.Show("No se puede editar una fila vacía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                filaEditar = -1;
                 return;
             }
 
-            DataGridViewRow fila = dataGridView2.Rows[filaEditar];
+            filaEditar = fila.Index;
 
-            textNombre.Text = fila.Cells[1].Value?.ToString();
-            textCodigo.Text = fila.Cells[2].Value?.ToString();
-            textDescripcion.Text = fila.Cells[3].Value?.ToString();
-            comboBoxCategoria.Text = fila.Cells[4].Value?.ToString();
-            textStock.Text = fila.Cells[6].Value?.ToString(); // se cargwa el stock mínimo
-            comboBoxProveedor.Text = fila.Cells[8].Value?.ToString();
+            textNombre.Text = p.nombreProducto;
+            textCodigo.Text = p.codigo;
+            textDescripcion.Text = p.descripcion;
+            textStock.Text = p.stockMinimo.ToString();
+
+            // Al elegir la categoría se habilita o deshabilita el artista
+            comboBoxCategoria.SelectedValue = p.categoria.id_categoria;
+
+            if (p.proveedor != null)
+                comboBoxProveedor.SelectedValue = p.proveedor.id_proveedor;
+            else
+                comboBoxProveedor.SelectedIndex = -1;
+
+            textArtista.Text = p.artista ?? "";
 
             iconBtnActualizar.Visible = true;
             iconBtnCancelar.Visible = true;
@@ -311,63 +339,10 @@ namespace Proyecto_Grupo13.Administrador
             MessageBox.Show("Edite los campos y haga clic en 'Actualizar' para guardar los cambios.", "Editar Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            // Validamos que se haya seleccionado un criterio de búsqueda
-            if (comboBoxBuscar.SelectedIndex == -1)
-            {
-                MessageBox.Show("Por favor, seleccione un criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Obtenemos el criterio de búsqueda y el texto ingresado
-            string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
-            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
-
-            int indiceColumna = -1;
-
-            // Determinamos el índice de la columna según el criterio seleccionado
-            switch (columnaFiltro)
-            {
-                case "Codigo": case "Código": indiceColumna = 2; break;
-                case "Nombre": case "N": indiceColumna = 1; break;
-                case "Categoria": case "Categoría": indiceColumna = 4; break;
-            }
-
-            if (indiceColumna == -1) return;
-
-            dataGridView2.CurrentCell = null; // Desmarcar cualquier celda seleccionada
-
-            // Recorremos todas las filas del DataGridView y aplicamos el filtro
-            foreach (DataGridViewRow fila in dataGridView2.Rows)
-            {
-                if (fila.IsNewRow) continue;
-                string valorCelda = fila.Cells[indiceColumna].Value != null ? fila.Cells[indiceColumna].Value.ToString().ToUpper() : "";
-
-
-                if (string.IsNullOrWhiteSpace(textoBusqueda) || valorCelda.Contains(textoBusqueda))
-                {
-                    fila.Visible = true;
-                }
-                else
-                {
-                    fila.Visible = false;
-                }
-            }
-        }
-
-        private void labelProductos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void iconBtnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
         private void iconBtnActualizar_Click(object sender, EventArgs e)
         {
+            if (filaEditar == -1) return;
+
             if (!ValidarCamposVacios())
             {
                 MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -377,109 +352,136 @@ namespace Proyecto_Grupo13.Administrador
             // Validamos que el código no exista (ignorando la fila que estamos editando)
             if (!ValidarCodigoUnico()) return;
 
-            if (filaEditar != -1)
+            DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (askEdit != DialogResult.Yes) return;
+
+            int idProducto = Convert.ToInt32(dataGridView2.Rows[filaEditar].Cells["Id"].Value);
+
+            string mensaje;
+            bool resultado = new CL_Producto().EditarProducto(ConstruirProducto(idProducto), out mensaje);
+
+            if (resultado)
             {
-                DialogResult askEdit = MessageBox.Show("¿Desea guardar los cambios del producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (askEdit == DialogResult.Yes)
-                {
-                    int idProducto = Convert.ToInt32(dataGridView2.Rows[filaEditar].Cells[0].Value);
-
-                    Producto productoModificado = new Producto()
-                    {
-                        id_producto = idProducto,
-                        codigo = textCodigo.Text.Trim(),
-                        nombreProducto = formatearTexto(textNombre.Text),
-                        descripcion = textDescripcion.Text.Trim(),
-                        stockMinimo = Convert.ToInt32(textStock.Text),
-                        estado = 1,
-                        categoria = new Categoria
-                        {
-                            id_categoria = Convert.ToInt32(comboBoxCategoria.SelectedValue)
-                        },
-                        proveedor = new Proveedor
-                        {
-                            id_proveedor = Convert.ToInt32(comboBoxProveedor.SelectedValue)
-                        }
-                    };
-
-                    string mensaje = string.Empty;
-                    CL_Producto controlLogica = new CL_Producto();
-                    bool resultado = controlLogica.EditarProducto(productoModificado, out mensaje);
-
-                    if (resultado)
-                    {
-                        MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarProductosGrid();
-                        LimpiarCampos();
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarProductosGrid();
+                LimpiarCampos();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void iconBtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
         private void LimpiarCampos()
         {
             textNombre.Clear();
             textCodigo.Clear();
             textDescripcion.Clear();
             textStock.Clear();
-            comboBoxCategoria.SelectedIndex = -1;
+            textArtista.Clear();
+            comboBoxCategoria.SelectedIndex = -1;   // también deshabilita el artista y vuelve la etiqueta a "Nombre:"
             comboBoxProveedor.SelectedIndex = -1;
+
+            // Se sacan los colores rosa de una validación anterior
+            foreach (Control campo in new Control[] { textNombre, textCodigo, textDescripcion, textStock,
+                                                      textArtista, comboBoxCategoria, comboBoxProveedor })
+            {
+                campo.BackColor = colorNormal;
+                campo.ForeColor = Color.White;
+            }
 
             filaEditar = -1; // Reiniciamos la variable de edición
 
-            // Restauramos los botones a su estado normal 
             iconBtnActualizar.Visible = false;
             iconBtnCancelar.Visible = false;
             btnAgregar.Enabled = true;
         }
 
-        private void textCodigo_Leave(object sender, EventArgs e)
+        // ============================================================
+        // BÚSQUEDA
+        // ============================================================
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            ValidarCodigoUnico();
+            if (comboBoxBuscar.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            FiltrarGrilla();
         }
 
+        // Borrador: limpia la búsqueda y vuelve a mostrar TODOS los productos
         private void iconLimpiar_Click(object sender, EventArgs e)
         {
             comboBoxBuscar.SelectedIndex = -1;
-            textBuscar.Clear(); 
-            dataGridView2.ClearSelection(); // Limpiar la selección del DataGridView
-
+            textBuscar.Clear();
+            FiltrarGrilla();
+            dataGridView2.ClearSelection();
         }
-        private void CargarProductosGrid()
-        {
-            dataGridView2.Rows.Clear();
-            CL_Producto controlLogica = new CL_Producto();
-            List<Producto> lista = controlLogica.Listar();
 
-            foreach (Producto item in lista)
+        private void FiltrarGrilla()
+        {
+            string columna = null;
+
+            switch (comboBoxBuscar.Text)
             {
-                dataGridView2.Rows.Add(
-                    item.id_producto,           // Columna 0 (Oculta)
-                    item.nombreProducto,        // Columna 1 (Nombre)
-                    item.codigo,                // Columna 2 (Código)
-                    item.descripcion,           // Columna 3 (Descripción)
-                    item.categoria.descripcion, // Columna 4 (Categoría)
-                    item.stock,                 // Columna 5 (Stock Actual / Cantidad Total)
-                    item.stockMinimo,           // Columna 6 (Stock Mínimo)
-                    item.precioVenta,            // Columna 7 (Precio Venta actual)
-                    item.proveedor              // Columna 8 (Proveedor)
-                );
+                case "Nombre": columna = "Nombre"; break;
+                case "Código": case "Codigo": columna = "Codigo"; break;
+                case "Categoría": case "Categoria": columna = "Categoria"; break;
+                case "Artista": columna = "Artista"; break;
+            }
+
+            string texto = Normalizar(textBuscar.Text.Trim());
+
+            dataGridView2.CurrentCell = null;   // necesario para poder ocultar filas
+
+            foreach (DataGridViewRow fila in dataGridView2.Rows)
+            {
+                if (fila.IsNewRow) continue;
+
+                if (columna == null || texto == "")
+                {
+                    fila.Visible = true;
+                    continue;
+                }
+
+                fila.Visible = Normalizar(fila.Cells[columna].Value?.ToString()).Contains(texto);
             }
         }
+
+        // Pasa a mayúsculas y le saca las tildes: "Beyoncé" -> "BEYONCE"
+        private static string Normalizar(string texto)
+        {
+            if (string.IsNullOrEmpty(texto)) return "";
+
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in texto.Normalize(NormalizationForm.FormD))
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            }
+            return sb.ToString().ToUpperInvariant();
+        }
+
+        // ============================================================
+        // COMBOS Y CATEGORÍA (CD/VINILO LLEVAN ARTISTA; REPRODUCTOR NO)
+        // ============================================================
         private void CargarComboBoxCategorias()
         {
-            CL_Categoria controlCategoria = new CL_Categoria();
-            List<Categoria> listaCategorias = controlCategoria.Listar();
+            List<Categoria> listaCategorias = new CL_Categoria().Listar();
 
             comboBoxCategoria.DataSource = listaCategorias;
             comboBoxCategoria.DisplayMember = "descripcion"; // Lo que el usuario ve
-            comboBoxCategoria.ValueMember = "id_categoria";     // El ID oculto por detrás
-            comboBoxCategoria.SelectedIndex = -1;              // Iniciar limpio
+            comboBoxCategoria.ValueMember = "id_categoria";  // El ID oculto por detrás
+            comboBoxCategoria.SelectedIndex = -1;            // Iniciar limpio
         }
+
         private void CargarComboBoxProveedores()
         {
             List<Proveedor> listaProveedores = new CL_Proveedor().ListarProveedores();
@@ -489,9 +491,30 @@ namespace Proyecto_Grupo13.Administrador
             comboBoxProveedor.ValueMember = "id_proveedor";
             comboBoxProveedor.SelectedIndex = -1;
         }
-        private void UcProductos1_Load(object sender, EventArgs e)
-        {
 
+        private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarCamposMusicales();
         }
+
+        private void ActualizarCamposMusicales()
+        {
+            bool habilitar = comboBoxCategoria.SelectedIndex != -1 &&
+                             CL_Producto.requiereArtista(comboBoxCategoria.Text);
+
+            textArtista.Enabled = habilitar;
+
+            // En CDs y vinilos el "Nombre" es el álbum; en reproductores, la marca y el modelo
+            lNombreP.Text = habilitar ? "Álbum:" : "Nombre:";
+
+            if (!habilitar)
+            {
+                textArtista.Clear();
+            }
+        }
+
+        private void labelProductos_Click(object sender, EventArgs e) { }
+
+        private void UcProductos1_Load(object sender, EventArgs e) { }
     }
 }

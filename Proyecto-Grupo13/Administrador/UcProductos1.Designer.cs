@@ -47,6 +47,7 @@
             this.comboBoxBuscar = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.id_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.artista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +67,8 @@
             this.iconLimpiar = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxProveedor = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textArtista = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +102,7 @@
             this.lCategoria.AutoSize = true;
             this.lCategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCategoria.Location = new System.Drawing.Point(154, 138);
+            this.lCategoria.Location = new System.Drawing.Point(150, 122);
             this.lCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCategoria.Name = "lCategoria";
             this.lCategoria.Size = new System.Drawing.Size(61, 15);
@@ -135,7 +138,7 @@
             this.lNombreP.AutoSize = true;
             this.lNombreP.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lNombreP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lNombreP.Location = new System.Drawing.Point(154, 175);
+            this.lNombreP.Location = new System.Drawing.Point(133, 150);
             this.lNombreP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNombreP.Name = "lNombreP";
             this.lNombreP.Size = new System.Drawing.Size(54, 15);
@@ -184,7 +187,7 @@
             this.textNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textNombre.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textNombre.Location = new System.Drawing.Point(237, 172);
+            this.textNombre.Location = new System.Drawing.Point(237, 147);
             this.textNombre.Margin = new System.Windows.Forms.Padding(2);
             this.textNombre.Name = "textNombre";
             this.textNombre.Size = new System.Drawing.Size(122, 20);
@@ -238,7 +241,7 @@
             this.comboBoxCategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.comboBoxCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxCategoria.FormattingEnabled = true;
-            this.comboBoxCategoria.Location = new System.Drawing.Point(237, 135);
+            this.comboBoxCategoria.Location = new System.Drawing.Point(237, 114);
             this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
             this.comboBoxCategoria.Size = new System.Drawing.Size(122, 23);
@@ -282,6 +285,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_producto,
+            this.artista,
             this.nombreProducto,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
@@ -306,9 +310,14 @@
             this.id_producto.Name = "id_producto";
             this.id_producto.Visible = false;
             // 
+            // artista
+            // 
+            this.artista.HeaderText = "Artista";
+            this.artista.Name = "artista";
+            // 
             // nombreProducto
             // 
-            this.nombreProducto.HeaderText = "Nombre";
+            this.nombreProducto.HeaderText = "Nombre / Album";
             this.nombreProducto.MinimumWidth = 6;
             this.nombreProducto.Name = "nombreProducto";
             // 
@@ -362,7 +371,7 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(153, 358);
+            this.btnAgregar.Location = new System.Drawing.Point(153, 359);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(94, 39);
@@ -380,7 +389,7 @@
             this.btnEliminar.ForeColor = System.Drawing.Color.Black;
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(259, 357);
+            this.btnEliminar.Location = new System.Drawing.Point(259, 358);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(99, 38);
@@ -423,10 +432,10 @@
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(143, 57);
+            this.label1.Location = new System.Drawing.Point(128, 57);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 407);
+            this.label1.Size = new System.Drawing.Size(244, 407);
             this.label1.TabIndex = 48;
             // 
             // label2
@@ -522,20 +531,47 @@
             this.comboBoxProveedor.Size = new System.Drawing.Size(122, 23);
             this.comboBoxProveedor.TabIndex = 93;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.label4.Location = new System.Drawing.Point(154, 180);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 15);
+            this.label4.TabIndex = 94;
+            this.label4.Text = "Arista:";
+            // 
+            // textArtista
+            // 
+            this.textArtista.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textArtista.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textArtista.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textArtista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.textArtista.Location = new System.Drawing.Point(237, 175);
+            this.textArtista.Margin = new System.Windows.Forms.Padding(2);
+            this.textArtista.Name = "textArtista";
+            this.textArtista.Size = new System.Drawing.Size(122, 20);
+            this.textArtista.TabIndex = 95;
+            this.textArtista.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textArtista_KeyPress);
+            // 
             // UcProductos1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnActualizar);
+            this.Controls.Add(this.iconBtnCancelar);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.textArtista);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxProveedor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.iconLimpiar);
-            this.Controls.Add(this.iconBtnActualizar);
-            this.Controls.Add(this.iconBtnCancelar);
             this.Controls.Add(this.textBuscar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.comboBoxBuscar);
             this.Controls.Add(this.btnBuscar);
@@ -553,8 +589,8 @@
             this.Controls.Add(this.lDescripcion);
             this.Controls.Add(this.lCodigo);
             this.Controls.Add(this.lNombreP);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Name = "UcProductos1";
             this.Size = new System.Drawing.Size(1114, 546);
             this.Load += new System.EventHandler(this.UcProductos1_Load);
@@ -591,7 +627,13 @@
         private FontAwesome.Sharp.IconButton iconBtnCancelar;
         private FontAwesome.Sharp.IconButton iconBtnActualizar;
         private FontAwesome.Sharp.IconButton iconLimpiar;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxProveedor;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textArtista;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn artista;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -599,9 +641,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stockActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioVenta;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Proveedor;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxProveedor;
     }
 }
