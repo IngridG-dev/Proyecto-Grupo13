@@ -68,13 +68,13 @@
             this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.btnEditar.ForeColor = System.Drawing.Color.Black;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(250, 463);
+            this.btnEditar.Location = new System.Drawing.Point(445, 611);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(108, 54);
+            this.btnEditar.Size = new System.Drawing.Size(141, 54);
             this.btnEditar.TabIndex = 80;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -87,11 +87,11 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textBuscar.Location = new System.Drawing.Point(757, 148);
+            this.textBuscar.Location = new System.Drawing.Point(974, 148);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(215, 27);
+            this.textBuscar.Size = new System.Drawing.Size(332, 27);
             this.textBuscar.TabIndex = 79;
             this.textBuscar.TextChanged += new System.EventHandler(this.textBuscar_TextChanged);
             // 
@@ -105,7 +105,7 @@
             this.comboBoxEstado.Items.AddRange(new object[] {
             "Activo",
             "Inactivo"});
-            this.comboBoxEstado.Location = new System.Drawing.Point(275, 360);
+            this.comboBoxEstado.Location = new System.Drawing.Point(492, 447);
             this.comboBoxEstado.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxEstado.Name = "comboBoxEstado";
             this.comboBoxEstado.Size = new System.Drawing.Size(163, 28);
@@ -117,7 +117,7 @@
             this.textTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textTelefono.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textTelefono.Location = new System.Drawing.Point(275, 312);
+            this.textTelefono.Location = new System.Drawing.Point(492, 371);
             this.textTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.textTelefono.Name = "textTelefono";
             this.textTelefono.Size = new System.Drawing.Size(163, 27);
@@ -131,7 +131,7 @@
             this.textEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textEmail.Location = new System.Drawing.Point(275, 261);
+            this.textEmail.Location = new System.Drawing.Point(492, 293);
             this.textEmail.Margin = new System.Windows.Forms.Padding(2);
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(163, 27);
@@ -145,7 +145,7 @@
             this.textDocumento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textDocumento.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textDocumento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textDocumento.Location = new System.Drawing.Point(275, 208);
+            this.textDocumento.Location = new System.Drawing.Point(492, 226);
             this.textDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.textDocumento.Name = "textDocumento";
             this.textDocumento.Size = new System.Drawing.Size(163, 27);
@@ -159,7 +159,7 @@
             this.textRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textRazonSocial.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textRazonSocial.Location = new System.Drawing.Point(275, 162);
+            this.textRazonSocial.Location = new System.Drawing.Point(492, 162);
             this.textRazonSocial.Margin = new System.Windows.Forms.Padding(2);
             this.textRazonSocial.Name = "textRazonSocial";
             this.textRazonSocial.Size = new System.Drawing.Size(163, 27);
@@ -179,7 +179,7 @@
             "Razón Social",
             "Email",
             "Telefono"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(582, 148);
+            this.comboBoxBuscar.Location = new System.Drawing.Point(799, 148);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
             this.comboBoxBuscar.Size = new System.Drawing.Size(166, 28);
@@ -189,14 +189,14 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnEliminar.ForeColor = System.Drawing.Color.Black;
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(329, 404);
+            this.btnEliminar.Location = new System.Drawing.Point(520, 534);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(109, 54);
+            this.btnEliminar.Size = new System.Drawing.Size(141, 54);
             this.btnEliminar.TabIndex = 70;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -209,13 +209,13 @@
             this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.btnAgregar.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(191, 404);
+            this.btnAgregar.Location = new System.Drawing.Point(375, 534);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(108, 54);
+            this.btnAgregar.Size = new System.Drawing.Size(141, 54);
             this.btnAgregar.TabIndex = 69;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -228,16 +228,17 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(989, 147);
+            this.btnBuscar.Location = new System.Drawing.Point(1314, 148);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(59, 28);
+            this.btnBuscar.Size = new System.Drawing.Size(83, 28);
             this.btnBuscar.TabIndex = 68;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dataGridProveedor
             // 
+            this.dataGridProveedor.AllowUserToAddRows = false;
             this.dataGridProveedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridProveedor.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dataGridProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -249,13 +250,13 @@
             this.Teléfono,
             this.Estado});
             this.dataGridProveedor.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.dataGridProveedor.Location = new System.Drawing.Point(484, 189);
+            this.dataGridProveedor.Location = new System.Drawing.Point(701, 189);
             this.dataGridProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridProveedor.Name = "dataGridProveedor";
             this.dataGridProveedor.ReadOnly = true;
             this.dataGridProveedor.RowHeadersWidth = 51;
             this.dataGridProveedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridProveedor.Size = new System.Drawing.Size(710, 394);
+            this.dataGridProveedor.Size = new System.Drawing.Size(798, 476);
             this.dataGridProveedor.TabIndex = 67;
             // 
             // id_proveedor
@@ -308,7 +309,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label1.Location = new System.Drawing.Point(487, 151);
+            this.label1.Location = new System.Drawing.Point(704, 151);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
@@ -320,7 +321,7 @@
             this.labelListaProveedores.AutoSize = true;
             this.labelListaProveedores.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.labelListaProveedores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelListaProveedores.Location = new System.Drawing.Point(480, 96);
+            this.labelListaProveedores.Location = new System.Drawing.Point(697, 96);
             this.labelListaProveedores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelListaProveedores.Name = "labelListaProveedores";
             this.labelListaProveedores.Size = new System.Drawing.Size(223, 23);
@@ -332,7 +333,7 @@
             this.lDatosProveedor.AutoSize = true;
             this.lDatosProveedor.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lDatosProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDatosProveedor.Location = new System.Drawing.Point(195, 96);
+            this.lDatosProveedor.Location = new System.Drawing.Point(412, 96);
             this.lDatosProveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDatosProveedor.Name = "lDatosProveedor";
             this.lDatosProveedor.Size = new System.Drawing.Size(217, 23);
@@ -343,48 +344,48 @@
             // lEstado
             // 
             this.lEstado.AutoSize = true;
-            this.lEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lEstado.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lEstado.Location = new System.Drawing.Point(201, 363);
+            this.lEstado.Location = new System.Drawing.Point(412, 447);
             this.lEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEstado.Name = "lEstado";
-            this.lEstado.Size = new System.Drawing.Size(54, 20);
+            this.lEstado.Size = new System.Drawing.Size(61, 23);
             this.lEstado.TabIndex = 63;
             this.lEstado.Text = "Estado";
             // 
             // lRazonSocial
             // 
             this.lRazonSocial.AutoSize = true;
-            this.lRazonSocial.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lRazonSocial.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lRazonSocial.Location = new System.Drawing.Point(172, 165);
+            this.lRazonSocial.Location = new System.Drawing.Point(382, 162);
             this.lRazonSocial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lRazonSocial.Name = "lRazonSocial";
-            this.lRazonSocial.Size = new System.Drawing.Size(94, 20);
+            this.lRazonSocial.Size = new System.Drawing.Size(106, 23);
             this.lRazonSocial.TabIndex = 57;
             this.lRazonSocial.Text = "Razón Social";
             // 
             // lTelefono
             // 
             this.lTelefono.AutoSize = true;
-            this.lTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTelefono.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lTelefono.Location = new System.Drawing.Point(195, 314);
+            this.lTelefono.Location = new System.Drawing.Point(412, 371);
             this.lTelefono.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTelefono.Name = "lTelefono";
-            this.lTelefono.Size = new System.Drawing.Size(67, 20);
+            this.lTelefono.Size = new System.Drawing.Size(74, 23);
             this.lTelefono.TabIndex = 62;
             this.lTelefono.Text = "Teléfono";
             // 
             // lDni
             // 
             this.lDni.AutoSize = true;
-            this.lDni.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lDni.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lDni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDni.Location = new System.Drawing.Point(179, 210);
+            this.lDni.Location = new System.Drawing.Point(388, 226);
             this.lDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(87, 20);
+            this.lDni.Size = new System.Drawing.Size(100, 23);
             this.lDni.TabIndex = 58;
             this.lDni.Text = "Documento";
             this.lDni.Click += new System.EventHandler(this.lDni_Click);
@@ -392,46 +393,47 @@
             // lEmail
             // 
             this.lEmail.AutoSize = true;
-            this.lEmail.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lEmail.Location = new System.Drawing.Point(209, 261);
+            this.lEmail.Location = new System.Drawing.Point(422, 293);
             this.lEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lEmail.Name = "lEmail";
-            this.lEmail.Size = new System.Drawing.Size(46, 20);
+            this.lEmail.Size = new System.Drawing.Size(51, 23);
             this.lEmail.TabIndex = 59;
             this.lEmail.Text = "Email";
             // 
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(168, 78);
+            this.label2.Location = new System.Drawing.Point(363, 78);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(286, 524);
+            this.label2.Size = new System.Drawing.Size(308, 629);
             this.label2.TabIndex = 81;
             // 
             // label3
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(459, 78);
+            this.label3.Location = new System.Drawing.Point(676, 78);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(764, 524);
+            this.label3.Size = new System.Drawing.Size(884, 629);
             this.label3.TabIndex = 82;
             // 
             // iconBtnActualizar
             // 
             this.iconBtnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconBtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnActualizar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.iconBtnActualizar.IconChar = FontAwesome.Sharp.IconChar.Repeat;
             this.iconBtnActualizar.IconColor = System.Drawing.Color.Green;
             this.iconBtnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnActualizar.IconSize = 30;
             this.iconBtnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnActualizar.Location = new System.Drawing.Point(329, 405);
+            this.iconBtnActualizar.Location = new System.Drawing.Point(520, 534);
             this.iconBtnActualizar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnActualizar.Name = "iconBtnActualizar";
-            this.iconBtnActualizar.Size = new System.Drawing.Size(108, 54);
+            this.iconBtnActualizar.Size = new System.Drawing.Size(141, 54);
             this.iconBtnActualizar.TabIndex = 83;
             this.iconBtnActualizar.Text = "Actualizar";
             this.iconBtnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -443,15 +445,16 @@
             // 
             this.iconBtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconBtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnCancelar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.iconBtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
             this.iconBtnCancelar.IconColor = System.Drawing.Color.Red;
             this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnCancelar.IconSize = 30;
             this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnCancelar.Location = new System.Drawing.Point(192, 404);
+            this.iconBtnCancelar.Location = new System.Drawing.Point(375, 534);
             this.iconBtnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnCancelar.Name = "iconBtnCancelar";
-            this.iconBtnCancelar.Size = new System.Drawing.Size(108, 54);
+            this.iconBtnCancelar.Size = new System.Drawing.Size(141, 54);
             this.iconBtnCancelar.TabIndex = 84;
             this.iconBtnCancelar.Text = "Cancelar";
             this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -469,10 +472,10 @@
             this.iconLimpiar.IconColor = System.Drawing.Color.Black;
             this.iconLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconLimpiar.IconSize = 25;
-            this.iconLimpiar.Location = new System.Drawing.Point(1054, 147);
+            this.iconLimpiar.Location = new System.Drawing.Point(1403, 147);
             this.iconLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.iconLimpiar.Name = "iconLimpiar";
-            this.iconLimpiar.Size = new System.Drawing.Size(59, 28);
+            this.iconLimpiar.Size = new System.Drawing.Size(82, 28);
             this.iconLimpiar.TabIndex = 85;
             this.iconLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconLimpiar.UseVisualStyleBackColor = false;
@@ -510,7 +513,7 @@
             this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucProveedor";
-            this.Size = new System.Drawing.Size(1392, 682);
+            this.Size = new System.Drawing.Size(1825, 787);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

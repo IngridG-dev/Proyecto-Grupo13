@@ -56,7 +56,7 @@
             // label16
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label16.Location = new System.Drawing.Point(279, 22);
+            this.label16.Location = new System.Drawing.Point(513, 36);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(834, 578);
@@ -71,7 +71,7 @@
             this.panel1.Controls.Add(this.labelFechaFin);
             this.panel1.Controls.Add(this.labelFechaInicio);
             this.panel1.Controls.Add(this.labelReporteV);
-            this.panel1.Location = new System.Drawing.Point(289, 33);
+            this.panel1.Location = new System.Drawing.Point(523, 47);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(804, 113);
@@ -152,7 +152,7 @@
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(289, 161);
+            this.label1.Location = new System.Drawing.Point(523, 175);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(804, 97);
             this.label1.TabIndex = 66;
@@ -161,7 +161,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(296, 173);
+            this.label2.Location = new System.Drawing.Point(530, 187);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 23);
@@ -172,7 +172,7 @@
             // 
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(615, 173);
+            this.label3.Location = new System.Drawing.Point(849, 187);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(173, 23);
@@ -183,7 +183,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(949, 173);
+            this.label4.Location = new System.Drawing.Point(1183, 187);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 23);
@@ -196,7 +196,7 @@
             this.textCantVentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textCantVentas.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textCantVentas.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.textCantVentas.Location = new System.Drawing.Point(300, 209);
+            this.textCantVentas.Location = new System.Drawing.Point(534, 223);
             this.textCantVentas.Name = "textCantVentas";
             this.textCantVentas.Size = new System.Drawing.Size(155, 30);
             this.textCantVentas.TabIndex = 69;
@@ -209,7 +209,7 @@
             this.textProductosVendidos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textProductosVendidos.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textProductosVendidos.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.textProductosVendidos.Location = new System.Drawing.Point(619, 209);
+            this.textProductosVendidos.Location = new System.Drawing.Point(853, 223);
             this.textProductosVendidos.Name = "textProductosVendidos";
             this.textProductosVendidos.Size = new System.Drawing.Size(155, 30);
             this.textProductosVendidos.TabIndex = 70;
@@ -222,7 +222,7 @@
             this.textIngresos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textIngresos.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textIngresos.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.textIngresos.Location = new System.Drawing.Point(919, 209);
+            this.textIngresos.Location = new System.Drawing.Point(1153, 223);
             this.textIngresos.Name = "textIngresos";
             this.textIngresos.Size = new System.Drawing.Size(155, 30);
             this.textIngresos.TabIndex = 71;
@@ -231,6 +231,7 @@
             // 
             // dgvVentas
             // 
+            this.dgvVentas.AllowUserToAddRows = false;
             this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVentas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -238,7 +239,7 @@
             this.Fecha,
             this.CantProductos,
             this.totalVentas});
-            this.dgvVentas.Location = new System.Drawing.Point(289, 277);
+            this.dgvVentas.Location = new System.Drawing.Point(523, 291);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.RowHeadersWidth = 51;
             this.dgvVentas.RowTemplate.Height = 24;
@@ -272,7 +273,7 @@
             this.btnDescargarPDF.IconColor = System.Drawing.Color.Brown;
             this.btnDescargarPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDescargarPDF.IconSize = 20;
-            this.btnDescargarPDF.Location = new System.Drawing.Point(464, 533);
+            this.btnDescargarPDF.Location = new System.Drawing.Point(698, 547);
             this.btnDescargarPDF.Margin = new System.Windows.Forms.Padding(2);
             this.btnDescargarPDF.Name = "btnDescargarPDF";
             this.btnDescargarPDF.Size = new System.Drawing.Size(146, 40);
@@ -291,7 +292,7 @@
             this.btnDescargarExcel.IconColor = System.Drawing.Color.Green;
             this.btnDescargarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDescargarExcel.IconSize = 20;
-            this.btnDescargarExcel.Location = new System.Drawing.Point(765, 533);
+            this.btnDescargarExcel.Location = new System.Drawing.Point(999, 547);
             this.btnDescargarExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnDescargarExcel.Name = "btnDescargarExcel";
             this.btnDescargarExcel.Size = new System.Drawing.Size(146, 40);
@@ -320,7 +321,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label16);
             this.Name = "ucEstadisticasV";
-            this.Size = new System.Drawing.Size(1392, 651);
+            this.Size = new System.Drawing.Size(1861, 651);
             this.Load += new System.EventHandler(this.ucEstadisticasV_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

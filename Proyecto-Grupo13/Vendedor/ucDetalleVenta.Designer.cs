@@ -39,7 +39,7 @@
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.lFechaHasta = new System.Windows.Forms.Label();
             this.labelFechaDesde = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvVentas = new System.Windows.Forms.DataGridView();
             this.numVentas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +62,9 @@
             this.lCliente = new System.Windows.Forms.Label();
             this.lFechaTicket = new System.Windows.Forms.Label();
             this.lNumeroVenta = new System.Windows.Forms.Label();
+            this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.panelTicket.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -71,10 +72,10 @@
             // label15
             // 
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label15.Location = new System.Drawing.Point(74, 40);
+            this.label15.Location = new System.Drawing.Point(248, 40);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(1368, 594);
+            this.label15.Size = new System.Drawing.Size(1368, 651);
             this.label15.TabIndex = 45;
             // 
             // label1
@@ -82,7 +83,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(675, 51);
+            this.label1.Location = new System.Drawing.Point(849, 51);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 23);
@@ -94,7 +95,7 @@
             this.numVenta.AutoSize = true;
             this.numVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.numVenta.ForeColor = System.Drawing.Color.White;
-            this.numVenta.Location = new System.Drawing.Point(173, 94);
+            this.numVenta.Location = new System.Drawing.Point(347, 94);
             this.numVenta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numVenta.Name = "numVenta";
             this.numVenta.Size = new System.Drawing.Size(89, 23);
@@ -106,7 +107,7 @@
             this.vendedor.AutoSize = true;
             this.vendedor.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.vendedor.ForeColor = System.Drawing.Color.White;
-            this.vendedor.Location = new System.Drawing.Point(590, 96);
+            this.vendedor.Location = new System.Drawing.Point(764, 96);
             this.vendedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.vendedor.Name = "vendedor";
             this.vendedor.Size = new System.Drawing.Size(89, 23);
@@ -123,7 +124,7 @@
             this.groupBox1.Controls.Add(this.labelFechaDesde);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(90, 127);
+            this.groupBox1.Location = new System.Drawing.Point(264, 127);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -215,28 +216,28 @@
             this.labelFechaDesde.TabIndex = 23;
             this.labelFechaDesde.Text = "Fecha Desde:";
             // 
-            // dataGridView1
+            // dgvVentas
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            this.dataGridView1.ColumnHeadersHeight = 29;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvVentas.AllowUserToAddRows = false;
+            this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVentas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
+            this.dgvVentas.ColumnHeadersHeight = 29;
+            this.dgvVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numVentas,
             this.fecha,
             this.Cliente,
             this.Dni,
             this.total,
             this.ver});
-            this.dataGridView1.Location = new System.Drawing.Point(90, 261);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(829, 344);
-            this.dataGridView1.TabIndex = 51;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvVentas.Location = new System.Drawing.Point(264, 261);
+            this.dgvVentas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvVentas.Name = "dgvVentas";
+            this.dgvVentas.RowHeadersWidth = 51;
+            this.dgvVentas.RowTemplate.Height = 24;
+            this.dgvVentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvVentas.Size = new System.Drawing.Size(829, 344);
+            this.dgvVentas.TabIndex = 51;
+            this.dgvVentas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // numVentas
             // 
@@ -277,7 +278,7 @@
             // textNumVentas
             // 
             this.textNumVentas.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.textNumVentas.Location = new System.Drawing.Point(268, 94);
+            this.textNumVentas.Location = new System.Drawing.Point(442, 94);
             this.textNumVentas.Margin = new System.Windows.Forms.Padding(2);
             this.textNumVentas.Name = "textNumVentas";
             this.textNumVentas.Size = new System.Drawing.Size(125, 30);
@@ -286,7 +287,7 @@
             // textVendedor
             // 
             this.textVendedor.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.textVendedor.Location = new System.Drawing.Point(685, 95);
+            this.textVendedor.Location = new System.Drawing.Point(859, 95);
             this.textVendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textVendedor.Name = "textVendedor";
             this.textVendedor.Size = new System.Drawing.Size(125, 30);
@@ -304,18 +305,19 @@
             this.panelTicket.Controls.Add(this.lCliente);
             this.panelTicket.Controls.Add(this.lFechaTicket);
             this.panelTicket.Controls.Add(this.lNumeroVenta);
-            this.panelTicket.Location = new System.Drawing.Point(924, 144);
+            this.panelTicket.Location = new System.Drawing.Point(1098, 144);
             this.panelTicket.Margin = new System.Windows.Forms.Padding(2);
             this.panelTicket.Name = "panelTicket";
             this.panelTicket.Size = new System.Drawing.Size(493, 461);
             this.panelTicket.TabIndex = 55;
             this.panelTicket.Visible = false;
+            this.panelTicket.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTicket_Paint);
             // 
             // btnDescargarPdf
             // 
             this.btnDescargarPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.btnDescargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnDescargarPdf.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
             this.btnDescargarPdf.IconColor = System.Drawing.Color.Brown;
             this.btnDescargarPdf.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -330,6 +332,7 @@
             this.btnDescargarPdf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDescargarPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDescargarPdf.UseVisualStyleBackColor = false;
+            this.btnDescargarPdf.Click += new System.EventHandler(this.btnDescargarPdf_Click);
             // 
             // lDetallePago
             // 
@@ -357,6 +360,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -466,26 +470,47 @@
             this.lNumeroVenta.TabIndex = 0;
             this.lNumeroVenta.Text = "N° de Ticket:";
             // 
+            // iconBtnExcel
+            // 
+            this.iconBtnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnExcel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconBtnExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.iconBtnExcel.IconColor = System.Drawing.Color.Green;
+            this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnExcel.IconSize = 25;
+            this.iconBtnExcel.Location = new System.Drawing.Point(269, 620);
+            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.iconBtnExcel.Name = "iconBtnExcel";
+            this.iconBtnExcel.Size = new System.Drawing.Size(167, 39);
+            this.iconBtnExcel.TabIndex = 69;
+            this.iconBtnExcel.Text = "Descargar Excel";
+            this.iconBtnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconBtnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconBtnExcel.UseVisualStyleBackColor = false;
+            this.iconBtnExcel.Click += new System.EventHandler(this.iconBtnExcel_Click);
+            // 
             // ucDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnExcel);
             this.Controls.Add(this.panelTicket);
             this.Controls.Add(this.textVendedor);
             this.Controls.Add(this.textNumVentas);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvVentas);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.vendedor);
             this.Controls.Add(this.numVenta);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label15);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucDetalleVenta";
-            this.Size = new System.Drawing.Size(1494, 682);
+            this.Size = new System.Drawing.Size(1864, 747);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             this.panelTicket.ResumeLayout(false);
             this.panelTicket.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -504,7 +529,7 @@
         private System.Windows.Forms.Label lFechaHasta;
         private System.Windows.Forms.Label labelFechaDesde;
         private FontAwesome.Sharp.IconButton btnBuscar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvVentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn numVentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
@@ -530,5 +555,6 @@
         private System.Windows.Forms.Label lDetallePago;
         private FontAwesome.Sharp.IconButton btnDescargarPdf;
         private FontAwesome.Sharp.IconButton btnVerTodas;
+        private FontAwesome.Sharp.IconButton iconBtnExcel;
     }
 }

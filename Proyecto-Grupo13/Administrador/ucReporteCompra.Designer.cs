@@ -43,12 +43,17 @@
             this.labelBuscarPor2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvCompras = new System.Windows.Forms.DataGridView();
+            this.id_Compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Proveedor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Admin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iconBtnExcel = new FontAwesome.Sharp.IconButton();
             this.gbDetalle = new System.Windows.Forms.Panel();
             this.lblTotalDetalle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tipodoc = new System.Windows.Forms.Label();
             this.labelTipoDoc = new System.Windows.Forms.Label();
-            this.btnDescargarPdf = new FontAwesome.Sharp.IconButton();
             this.labelTotal = new System.Windows.Forms.Label();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.labelFechaReg = new System.Windows.Forms.Label();
@@ -64,15 +69,10 @@
             this.lblNumCompra = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnDescargarPdf = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTotalCompras = new System.Windows.Forms.Label();
             this.labelTotalC = new System.Windows.Forms.Label();
-            this.id_Compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Proveedor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Admin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).BeginInit();
@@ -84,7 +84,7 @@
             // label16
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label16.Location = new System.Drawing.Point(34, 24);
+            this.label16.Location = new System.Drawing.Point(197, 24);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(1437, 709);
@@ -103,7 +103,7 @@
             this.panel1.Controls.Add(this.cboBuscarPor);
             this.panel1.Controls.Add(this.labelReporteC);
             this.panel1.Controls.Add(this.labelBuscarPor2);
-            this.panel1.Location = new System.Drawing.Point(48, 45);
+            this.panel1.Location = new System.Drawing.Point(211, 45);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1100, 114);
@@ -240,7 +240,7 @@
             this.panel2.Controls.Add(this.iconBtnExcel);
             this.panel2.Controls.Add(this.gbDetalle);
             this.panel2.Controls.Add(this.btnDescargarPdf);
-            this.panel2.Location = new System.Drawing.Point(48, 192);
+            this.panel2.Location = new System.Drawing.Point(211, 192);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1403, 517);
@@ -277,6 +277,49 @@
             this.dgvCompras.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompras_CellClick);
             this.dgvCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompras_CellContentClick);
             // 
+            // id_Compra
+            // 
+            this.id_Compra.HeaderText = "idCompra";
+            this.id_Compra.MinimumWidth = 6;
+            this.id_Compra.Name = "id_Compra";
+            this.id_Compra.ReadOnly = true;
+            this.id_Compra.Visible = false;
+            // 
+            // NCompra
+            // 
+            this.NCompra.HeaderText = "N° Compra";
+            this.NCompra.MinimumWidth = 6;
+            this.NCompra.Name = "NCompra";
+            this.NCompra.ReadOnly = true;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.MinimumWidth = 6;
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            // 
+            // Proveedor1
+            // 
+            this.Proveedor1.HeaderText = "Proveedor";
+            this.Proveedor1.MinimumWidth = 6;
+            this.Proveedor1.Name = "Proveedor1";
+            this.Proveedor1.ReadOnly = true;
+            // 
+            // Admin
+            // 
+            this.Admin.HeaderText = "Administrador";
+            this.Admin.MinimumWidth = 6;
+            this.Admin.Name = "Admin";
+            this.Admin.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
             // iconBtnExcel
             // 
             this.iconBtnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
@@ -302,7 +345,7 @@
             this.gbDetalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.gbDetalle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gbDetalle.Controls.Add(this.lblTotalDetalle);
-            this.gbDetalle.Controls.Add(this.label2);
+            this.gbDetalle.Controls.Add(this.tipodoc);
             this.gbDetalle.Controls.Add(this.labelTipoDoc);
             this.gbDetalle.Controls.Add(this.labelTotal);
             this.gbDetalle.Controls.Add(this.labelAdmin);
@@ -334,17 +377,18 @@
             this.lblTotalDetalle.TabIndex = 70;
             this.lblTotalDetalle.Text = "-";
             // 
-            // label2
+            // tipodoc
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(488, 42);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 20);
-            this.label2.TabIndex = 83;
-            this.label2.Text = "-";
+            this.tipodoc.AutoSize = true;
+            this.tipodoc.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tipodoc.ForeColor = System.Drawing.Color.White;
+            this.tipodoc.Location = new System.Drawing.Point(488, 42);
+            this.tipodoc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.tipodoc.Name = "tipodoc";
+            this.tipodoc.Size = new System.Drawing.Size(15, 20);
+            this.tipodoc.TabIndex = 83;
+            this.tipodoc.Text = "-";
+            this.tipodoc.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelTipoDoc
             // 
@@ -357,25 +401,6 @@
             this.labelTipoDoc.Size = new System.Drawing.Size(130, 20);
             this.labelTipoDoc.TabIndex = 82;
             this.labelTipoDoc.Text = "Tipo Documento:";
-            // 
-            // btnDescargarPdf
-            // 
-            this.btnDescargarPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnDescargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarPdf.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
-            this.btnDescargarPdf.IconColor = System.Drawing.Color.Brown;
-            this.btnDescargarPdf.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDescargarPdf.IconSize = 25;
-            this.btnDescargarPdf.Location = new System.Drawing.Point(196, 459);
-            this.btnDescargarPdf.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDescargarPdf.Name = "btnDescargarPdf";
-            this.btnDescargarPdf.Size = new System.Drawing.Size(167, 39);
-            this.btnDescargarPdf.TabIndex = 76;
-            this.btnDescargarPdf.Text = "Descargar PDF";
-            this.btnDescargarPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDescargarPdf.UseVisualStyleBackColor = false;
-            this.btnDescargarPdf.Click += new System.EventHandler(this.btnDescargarPdf_Click);
             // 
             // labelTotal
             // 
@@ -394,7 +419,7 @@
             this.labelAdmin.AutoSize = true;
             this.labelAdmin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdmin.ForeColor = System.Drawing.Color.White;
-            this.labelAdmin.Location = new System.Drawing.Point(195, 76);
+            this.labelAdmin.Location = new System.Drawing.Point(332, 76);
             this.labelAdmin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAdmin.Name = "labelAdmin";
             this.labelAdmin.Size = new System.Drawing.Size(116, 20);
@@ -442,7 +467,7 @@
             this.lblAdmin.AutoSize = true;
             this.lblAdmin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblAdmin.ForeColor = System.Drawing.Color.White;
-            this.lblAdmin.Location = new System.Drawing.Point(311, 76);
+            this.lblAdmin.Location = new System.Drawing.Point(448, 76);
             this.lblAdmin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAdmin.Name = "lblAdmin";
             this.lblAdmin.Size = new System.Drawing.Size(15, 20);
@@ -545,12 +570,31 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DETALLE DE COMPRA";
             // 
+            // btnDescargarPdf
+            // 
+            this.btnDescargarPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.btnDescargarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDescargarPdf.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescargarPdf.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.btnDescargarPdf.IconColor = System.Drawing.Color.Brown;
+            this.btnDescargarPdf.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDescargarPdf.IconSize = 25;
+            this.btnDescargarPdf.Location = new System.Drawing.Point(196, 459);
+            this.btnDescargarPdf.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDescargarPdf.Name = "btnDescargarPdf";
+            this.btnDescargarPdf.Size = new System.Drawing.Size(167, 39);
+            this.btnDescargarPdf.TabIndex = 76;
+            this.btnDescargarPdf.Text = "Descargar PDF";
+            this.btnDescargarPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDescargarPdf.UseVisualStyleBackColor = false;
+            this.btnDescargarPdf.Click += new System.EventHandler(this.btnDescargarPdf_Click);
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.panel3.Controls.Add(this.lblTotalCompras);
             this.panel3.Controls.Add(this.labelTotalC);
-            this.panel3.Location = new System.Drawing.Point(1173, 45);
+            this.panel3.Location = new System.Drawing.Point(1336, 45);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(250, 115);
@@ -580,49 +624,6 @@
             this.labelTotalC.TabIndex = 68;
             this.labelTotalC.Text = "Total de Compras";
             // 
-            // id_Compra
-            // 
-            this.id_Compra.HeaderText = "idCompra";
-            this.id_Compra.MinimumWidth = 6;
-            this.id_Compra.Name = "id_Compra";
-            this.id_Compra.ReadOnly = true;
-            this.id_Compra.Visible = false;
-            // 
-            // NCompra
-            // 
-            this.NCompra.HeaderText = "N° Compra";
-            this.NCompra.MinimumWidth = 6;
-            this.NCompra.Name = "NCompra";
-            this.NCompra.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.MinimumWidth = 6;
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            // 
-            // Proveedor1
-            // 
-            this.Proveedor1.HeaderText = "Proveedor";
-            this.Proveedor1.MinimumWidth = 6;
-            this.Proveedor1.Name = "Proveedor1";
-            this.Proveedor1.ReadOnly = true;
-            // 
-            // Admin
-            // 
-            this.Admin.HeaderText = "Administrador";
-            this.Admin.MinimumWidth = 6;
-            this.Admin.Name = "Admin";
-            this.Admin.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
             // ucReporteCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -634,7 +635,7 @@
             this.Controls.Add(this.label16);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucReporteCompra";
-            this.Size = new System.Drawing.Size(1475, 733);
+            this.Size = new System.Drawing.Size(1830, 780);
             this.Load += new System.EventHandler(this.ucReporteCompra_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -686,7 +687,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labelTotalC;
         private System.Windows.Forms.Label labelTipoDoc;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label tipodoc;
         private System.Windows.Forms.Label lblTotalCompras;
         private System.Windows.Forms.Label lblTotalDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_Compra;

@@ -1,5 +1,6 @@
 ﻿using Proyecto_Grupo13.Administrador;
 using System;
+using CapaEntidad;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,7 +26,23 @@ namespace Proyecto_Grupo13.Vendedor
 
         private void menuVendedor_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
+            this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            if(SesionActual.usuarioLogueado != null)
+            {
+                // Cargar Nombre Completo y Documento
+                textUsuario.Text = $"{SesionActual.usuarioLogueado.nombre} {SesionActual.usuarioLogueado.apellido}";
+                textNumDocu.Text = SesionActual.usuarioLogueado.dni.ToString();
+                // 2. Bloquear edición y desactivar la tabulación por teclado
+                textUsuario.ReadOnly = true;
+                textNumDocu.ReadOnly = true;
+                textUsuario.TabStop = false;
+                textNumDocu.TabStop = false;
+                // 3. Quitar la selección azul y remover el foco inicial
+                textUsuario.SelectionStart = 0;
+                textUsuario.SelectionLength = 0;
+                this.ActiveControl = null;
+            }
         }
 
         private void iconToolStripButton1_Click(object sender, EventArgs e)
@@ -63,6 +80,21 @@ namespace Proyecto_Grupo13.Vendedor
             panelContenidoV.Controls.Clear(); // Limpia cualquier control existente en el panel
             productos.Dock = DockStyle.Fill; // Ajusta el UserControl para que ocupe todo el espacio disponible
             panelContenidoV.Controls.Add(productos); // Agrega el UserControl al panel
+        }
+
+        private void textUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textUsuario_Enter(object sender, EventArgs e)
+        {
+            this.ActiveControl = null; // Remueve el foco del TextBox para que no se pueda editar
+        }
+
+        private void textNumDocu_Enter(object sender, EventArgs e)
+        {
+            this.ActiveControl = null; // Remueve el foco del TextBox para que no se pueda editar
         }
     }
 }

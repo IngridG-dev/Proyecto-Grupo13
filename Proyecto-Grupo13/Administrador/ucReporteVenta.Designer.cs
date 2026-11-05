@@ -94,10 +94,10 @@
             this.panel1.Controls.Add(this.comboBoxBuscar);
             this.panel1.Controls.Add(this.labelReporteC);
             this.panel1.Controls.Add(this.labelBuscarPor2);
-            this.panel1.Location = new System.Drawing.Point(38, 41);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(258, 41);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(933, 114);
+            this.panel1.Size = new System.Drawing.Size(1035, 114);
             this.panel1.TabIndex = 62;
             // 
             // dtpFin
@@ -135,13 +135,13 @@
             this.iconBtnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconBtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.iconBtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Eraser;
-            this.iconBtnLimpiar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.iconBtnLimpiar.IconColor = System.Drawing.Color.Black;
             this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconBtnLimpiar.IconSize = 16;
-            this.iconBtnLimpiar.Location = new System.Drawing.Point(866, 51);
-            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconBtnLimpiar.IconSize = 25;
+            this.iconBtnLimpiar.Location = new System.Drawing.Point(917, 51);
+            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnLimpiar.Name = "iconBtnLimpiar";
-            this.iconBtnLimpiar.Size = new System.Drawing.Size(51, 29);
+            this.iconBtnLimpiar.Size = new System.Drawing.Size(101, 29);
             this.iconBtnLimpiar.TabIndex = 67;
             this.iconBtnLimpiar.UseVisualStyleBackColor = false;
             this.iconBtnLimpiar.Click += new System.EventHandler(this.iconBtnLimpiar_Click);
@@ -164,13 +164,13 @@
             this.iconBtnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.iconBtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.iconBtnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.iconBtnBuscar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.iconBtnBuscar.IconColor = System.Drawing.Color.Black;
             this.iconBtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconBtnBuscar.IconSize = 16;
+            this.iconBtnBuscar.IconSize = 25;
             this.iconBtnBuscar.Location = new System.Drawing.Point(808, 51);
-            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnBuscar.Name = "iconBtnBuscar";
-            this.iconBtnBuscar.Size = new System.Drawing.Size(51, 29);
+            this.iconBtnBuscar.Size = new System.Drawing.Size(101, 29);
             this.iconBtnBuscar.TabIndex = 66;
             this.iconBtnBuscar.UseVisualStyleBackColor = false;
             this.iconBtnBuscar.Click += new System.EventHandler(this.iconBtnBuscar_Click);
@@ -234,8 +234,8 @@
             this.panelVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.panelVentas.Controls.Add(this.lMontoTotal);
             this.panelVentas.Controls.Add(this.labelTotalV);
-            this.panelVentas.Location = new System.Drawing.Point(979, 41);
-            this.panelVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelVentas.Location = new System.Drawing.Point(1310, 40);
+            this.panelVentas.Margin = new System.Windows.Forms.Padding(4);
             this.panelVentas.Name = "panelVentas";
             this.panelVentas.Size = new System.Drawing.Size(250, 115);
             this.panelVentas.TabIndex = 68;
@@ -266,7 +266,7 @@
             // label16
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label16.Location = new System.Drawing.Point(26, 26);
+            this.label16.Location = new System.Drawing.Point(246, 26);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(1340, 630);
@@ -293,8 +293,8 @@
             this.Cliente,
             this.Total,
             this.Ver});
-            this.dgvVentas.Location = new System.Drawing.Point(46, 164);
-            this.dgvVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvVentas.Location = new System.Drawing.Point(266, 164);
+            this.dgvVentas.Margin = new System.Windows.Forms.Padding(4);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.RowHeadersWidth = 51;
             this.dgvVentas.Size = new System.Drawing.Size(710, 416);
@@ -348,8 +348,8 @@
             this.iconBtnExcel.IconColor = System.Drawing.Color.Green;
             this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnExcel.IconSize = 25;
-            this.iconBtnExcel.Location = new System.Drawing.Point(47, 584);
-            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconBtnExcel.Location = new System.Drawing.Point(267, 584);
+            this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnExcel.Name = "iconBtnExcel";
             this.iconBtnExcel.Size = new System.Drawing.Size(152, 39);
             this.iconBtnExcel.TabIndex = 70;
@@ -380,7 +380,7 @@
             this.panelDetalle.Controls.Add(this.lblNumVenta);
             this.panelDetalle.Controls.Add(this.lblFecha);
             this.panelDetalle.Controls.Add(this.label1);
-            this.panelDetalle.Location = new System.Drawing.Point(762, 164);
+            this.panelDetalle.Location = new System.Drawing.Point(982, 164);
             this.panelDetalle.Margin = new System.Windows.Forms.Padding(2);
             this.panelDetalle.Name = "panelDetalle";
             this.panelDetalle.Size = new System.Drawing.Size(582, 452);
@@ -644,9 +644,9 @@
             this.Controls.Add(this.panelVentas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label16);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucReporteVenta";
-            this.Size = new System.Drawing.Size(1392, 682);
+            this.Size = new System.Drawing.Size(1832, 682);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelVentas.ResumeLayout(false);

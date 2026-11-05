@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.labelBuscarPor = new System.Windows.Forms.Label();
             this.cmbBuscarPor = new System.Windows.Forms.ComboBox();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
@@ -60,7 +61,6 @@
             this.textVendedor = new System.Windows.Forms.TextBox();
             this.chartMasVendidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartVendedores = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMasVendidos)).BeginInit();
@@ -71,7 +71,7 @@
             // label16
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label16.Location = new System.Drawing.Point(4, 8);
+            this.label16.Location = new System.Drawing.Point(256, 40);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(1344, 570);
@@ -88,11 +88,30 @@
             this.panel1.Controls.Add(this.labelFechaFin);
             this.panel1.Controls.Add(this.labelFechaInicio);
             this.panel1.Controls.Add(this.labelProdVendidos);
-            this.panel1.Location = new System.Drawing.Point(16, 19);
+            this.panel1.Location = new System.Drawing.Point(268, 51);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(920, 113);
             this.panel1.TabIndex = 66;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscar.IconColor = System.Drawing.Color.Black;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 25;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.Location = new System.Drawing.Point(689, 62);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(87, 31);
+            this.btnBuscar.TabIndex = 67;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // labelBuscarPor
             // 
@@ -178,7 +197,7 @@
             this.panel2.Controls.Add(this.textResultadoPrincipal);
             this.panel2.Controls.Add(this.lUniVend);
             this.panel2.Controls.Add(this.labelVendidos);
-            this.panel2.Location = new System.Drawing.Point(16, 139);
+            this.panel2.Location = new System.Drawing.Point(268, 171);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(920, 100);
@@ -234,6 +253,7 @@
             // 
             // dgvMasVendidos
             // 
+            this.dgvMasVendidos.AllowUserToAddRows = false;
             this.dgvMasVendidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMasVendidos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dgvMasVendidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -241,7 +261,7 @@
             this.MasVendidos,
             this.CantVendida,
             this.ingresos});
-            this.dgvMasVendidos.Location = new System.Drawing.Point(16, 244);
+            this.dgvMasVendidos.Location = new System.Drawing.Point(268, 276);
             this.dgvMasVendidos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvMasVendidos.Name = "dgvMasVendidos";
             this.dgvMasVendidos.RowHeadersWidth = 51;
@@ -276,7 +296,7 @@
             this.iconBtnExcel.IconColor = System.Drawing.Color.Green;
             this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnExcel.IconSize = 20;
-            this.iconBtnExcel.Location = new System.Drawing.Point(281, 518);
+            this.iconBtnExcel.Location = new System.Drawing.Point(533, 550);
             this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnExcel.Name = "iconBtnExcel";
             this.iconBtnExcel.Size = new System.Drawing.Size(146, 40);
@@ -294,7 +314,7 @@
             this.iconBtnPDF.IconColor = System.Drawing.Color.Brown;
             this.iconBtnPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnPDF.IconSize = 20;
-            this.iconBtnPDF.Location = new System.Drawing.Point(39, 518);
+            this.iconBtnPDF.Location = new System.Drawing.Point(291, 550);
             this.iconBtnPDF.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnPDF.Name = "iconBtnPDF";
             this.iconBtnPDF.Size = new System.Drawing.Size(146, 40);
@@ -307,7 +327,7 @@
             // 
             this.labelVendedor.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVendedor.ForeColor = System.Drawing.Color.White;
-            this.labelVendedor.Location = new System.Drawing.Point(1016, 36);
+            this.labelVendedor.Location = new System.Drawing.Point(1268, 68);
             this.labelVendedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelVendedor.Name = "labelVendedor";
             this.labelVendedor.Size = new System.Drawing.Size(192, 22);
@@ -318,7 +338,7 @@
             // 
             this.labelCantVentas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCantVentas.ForeColor = System.Drawing.Color.White;
-            this.labelCantVentas.Location = new System.Drawing.Point(1016, 139);
+            this.labelCantVentas.Location = new System.Drawing.Point(1268, 171);
             this.labelCantVentas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCantVentas.Name = "labelCantVentas";
             this.labelCantVentas.Size = new System.Drawing.Size(192, 22);
@@ -331,7 +351,7 @@
             this.textVentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textVentas.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textVentas.ForeColor = System.Drawing.Color.White;
-            this.textVentas.Location = new System.Drawing.Point(1020, 182);
+            this.textVentas.Location = new System.Drawing.Point(1272, 214);
             this.textVentas.Margin = new System.Windows.Forms.Padding(2);
             this.textVentas.Name = "textVentas";
             this.textVentas.Size = new System.Drawing.Size(188, 30);
@@ -343,7 +363,7 @@
             this.textVendedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textVendedor.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textVendedor.ForeColor = System.Drawing.Color.White;
-            this.textVendedor.Location = new System.Drawing.Point(1020, 82);
+            this.textVendedor.Location = new System.Drawing.Point(1272, 114);
             this.textVendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textVendedor.Name = "textVendedor";
             this.textVendedor.Size = new System.Drawing.Size(188, 30);
@@ -351,56 +371,37 @@
             // 
             // chartMasVendidos
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chartMasVendidos.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chartMasVendidos.Legends.Add(legend7);
-            this.chartMasVendidos.Location = new System.Drawing.Point(506, 244);
+            chartArea1.Name = "ChartArea1";
+            this.chartMasVendidos.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartMasVendidos.Legends.Add(legend1);
+            this.chartMasVendidos.Location = new System.Drawing.Point(758, 276);
             this.chartMasVendidos.Margin = new System.Windows.Forms.Padding(4);
             this.chartMasVendidos.Name = "chartMasVendidos";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chartMasVendidos.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartMasVendidos.Series.Add(series1);
             this.chartMasVendidos.Size = new System.Drawing.Size(430, 314);
             this.chartMasVendidos.TabIndex = 77;
             this.chartMasVendidos.Text = "chart1";
             // 
             // chartVendedores
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chartVendedores.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chartVendedores.Legends.Add(legend8);
-            this.chartVendedores.Location = new System.Drawing.Point(944, 244);
+            chartArea2.Name = "ChartArea1";
+            this.chartVendedores.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartVendedores.Legends.Add(legend2);
+            this.chartVendedores.Location = new System.Drawing.Point(1196, 276);
             this.chartVendedores.Margin = new System.Windows.Forms.Padding(4);
             this.chartVendedores.Name = "chartVendedores";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chartVendedores.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartVendedores.Series.Add(series2);
             this.chartVendedores.Size = new System.Drawing.Size(391, 314);
             this.chartVendedores.TabIndex = 78;
             this.chartVendedores.Text = "chart1";
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnBuscar.IconColor = System.Drawing.Color.Black;
-            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscar.IconSize = 25;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(689, 62);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(87, 31);
-            this.btnBuscar.TabIndex = 67;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // ucMasVendidos
             // 
@@ -421,7 +422,7 @@
             this.Controls.Add(this.label16);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucMasVendidos";
-            this.Size = new System.Drawing.Size(1392, 651);
+            this.Size = new System.Drawing.Size(1857, 651);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

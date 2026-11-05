@@ -84,14 +84,19 @@ namespace Proyecto_Grupo13.Administrador
                 gbDetalle.Visible = true;
 
                 DataGridViewRow fila = dgvCompras.Rows[e.RowIndex];
-                int idCompra = Convert.ToInt32(fila.Cells[0].Value);
 
-                lblNumCompra.Text = fila.Cells[1].Value.ToString();
-                lblFecha.Text = fila.Cells[2].Value.ToString();
-                lblProveedor.Text = fila.Cells[3].Value.ToString();
-                lblAdmin.Text = fila.Cells[4].Value.ToString();
+                // RECUPERAMOS EL OBJETO COMPRA DESDE EL TAG
+                Compra oCompra = (Compra)fila.Tag;
 
-                List<DetalleCompra> detalle = new CL_Compra().ObtenerDetalleCompra(idCompra);
+                lblNumCompra.Text = oCompra.numeroCompra;
+                lblFecha.Text = Convert.ToDateTime(oCompra.fechaRegistro).ToString("dd/MM/yyyy");
+                lblProveedor.Text = oCompra.proveedor.razonSocial;
+                lblAdmin.Text = oCompra.usuario.nombre;
+
+                // ASIGNAMOS EL TIPO DE DOCUMENTO AL LABEL CORRESPONDIENTE DE TU DISEÑO:
+                tipodoc.Text = oCompra.tipoDocumento; // (Asegúrate de colocar el Name de tu Label)
+
+                List<DetalleCompra> detalle = new CL_Compra().ObtenerDetalleCompra(oCompra.id_compra);
                 dgvDetalle.Rows.Clear();
                 decimal totalDetalle = 0;
 
@@ -279,6 +284,7 @@ namespace Proyecto_Grupo13.Administrador
                     PdfPTable infoTable = new PdfPTable(2) { WidthPercentage = 100 };
                     infoTable.AddCell(new PdfPCell(new Phrase($"N° Compra: {lblNumCompra.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
                     infoTable.AddCell(new PdfPCell(new Phrase($"Fecha: {lblFecha.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    infoTable.AddCell(new PdfPCell(new Phrase($"Tipo de Documento: {tipodoc.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
                     infoTable.AddCell(new PdfPCell(new Phrase($"Proveedor: {lblProveedor.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
                     infoTable.AddCell(new PdfPCell(new Phrase($"Administrador: {lblAdmin.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
 
@@ -346,10 +352,8 @@ namespace Proyecto_Grupo13.Administrador
         }
         private void cargarCompras()
         {
-            // Evita consultar la base cuando Visual Studio dibuja el control en el diseñador
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
 
-            // Se traen TODAS las compras y las fechas se filtran acá
             List<Compra> lista = new CL_Compra().ReporteComprasFiltro(new DateTime(2000, 1, 1), new DateTime(2100, 1, 1));
 
             if (filtroDesde.HasValue)
@@ -358,7 +362,6 @@ namespace Proyecto_Grupo13.Administrador
             if (filtroHasta.HasValue)
                 lista = lista.Where(c => Convert.ToDateTime(c.fechaRegistro).Date <= filtroHasta.Value.Date).ToList();
 
-            // Las más nuevas primero
             lista = lista.OrderByDescending(c => Convert.ToDateTime(c.fechaRegistro))
                          .ThenByDescending(c => c.id_compra)
                          .ToList();
@@ -369,23 +372,26 @@ namespace Proyecto_Grupo13.Administrador
 
             foreach (Compra c in lista)
             {
-                // El total de cada compra se calcula con su detalle
                 decimal totalEstaCompra = 0;
                 foreach (DetalleCompra d in new CL_Compra().ObtenerDetalleCompra(c.id_compra))
                 {
                     totalEstaCompra += d.precioCompra * d.cantidad;
                 }
 
-                dgvCompras.Rows.Add(
-                    c.id_compra,   // Columna oculta
+                // Agregamos la fila
+                int rowIndex = dgvCompras.Rows.Add(
+                    c.id_compra,
                     c.numeroCompra,
                     Convert.ToDateTime(c.fechaRegistro).ToString("dd/MM/yyyy"),
                     c.proveedor.razonSocial,
                     c.usuario.nombre,
                     totalEstaCompra.ToString("0.00"));
+
+                
+                dgvCompras.Rows[rowIndex].Tag = c;
             }
 
-            AplicarFiltroTexto();   // vuelve a aplicar lo escrito en el buscador
+            AplicarFiltroTexto(); 
         }
         private void AplicarFiltroTexto()
         {
@@ -426,6 +432,11 @@ namespace Proyecto_Grupo13.Administrador
         private void ucReporteCompra_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible) cargarCompras();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

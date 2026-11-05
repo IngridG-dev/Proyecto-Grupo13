@@ -72,6 +72,8 @@
             this.lTotalPagar = new System.Windows.Forms.Label();
             this.iconBtnRegistrarC = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.textNumeroCompra = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,7 +87,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(223, 31);
+            this.label1.Location = new System.Drawing.Point(821, 31);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(182, 23);
@@ -94,17 +96,19 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textNumeroCompra);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.comboTipoDocumento);
             this.groupBox1.Controls.Add(this.labelFecha);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(172, 72);
+            this.groupBox1.Location = new System.Drawing.Point(377, 72);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(460, 88);
+            this.groupBox1.Size = new System.Drawing.Size(564, 88);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información Compra";
@@ -114,7 +118,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(237, 23);
+            this.label2.Location = new System.Drawing.Point(196, 25);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 20);
@@ -130,7 +134,7 @@
             this.comboTipoDocumento.Items.AddRange(new object[] {
             "Boleta",
             "Factura"});
-            this.comboTipoDocumento.Location = new System.Drawing.Point(241, 46);
+            this.comboTipoDocumento.Location = new System.Drawing.Point(200, 48);
             this.comboTipoDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.comboTipoDocumento.Name = "comboTipoDocumento";
             this.comboTipoDocumento.Size = new System.Drawing.Size(139, 31);
@@ -141,7 +145,7 @@
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFecha.ForeColor = System.Drawing.Color.White;
-            this.labelFecha.Location = new System.Drawing.Point(51, 23);
+            this.labelFecha.Location = new System.Drawing.Point(10, 25);
             this.labelFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFecha.Name = "labelFecha";
             this.labelFecha.Size = new System.Drawing.Size(50, 20);
@@ -151,7 +155,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(55, 46);
+            this.dateTimePicker1.Location = new System.Drawing.Point(14, 48);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(139, 27);
@@ -166,11 +170,11 @@
             this.groupBox2.Controls.Add(this.labelNumDocumento);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(683, 72);
+            this.groupBox2.Location = new System.Drawing.Point(965, 72);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(431, 88);
+            this.groupBox2.Size = new System.Drawing.Size(409, 88);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Proveedor";
@@ -259,7 +263,7 @@
             this.groupBox3.Controls.Add(this.labelCodigoProdu);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(172, 164);
+            this.groupBox3.Location = new System.Drawing.Point(377, 164);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -465,7 +469,7 @@
             this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnCancelar.IconSize = 25;
             this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconBtnCancelar.Location = new System.Drawing.Point(1118, 269);
+            this.iconBtnCancelar.Location = new System.Drawing.Point(1323, 269);
             this.iconBtnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.iconBtnCancelar.Name = "iconBtnCancelar";
             this.iconBtnCancelar.Size = new System.Drawing.Size(113, 39);
@@ -487,7 +491,7 @@
             this.iconBtnActualizarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnActualizarC.IconSize = 25;
             this.iconBtnActualizarC.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconBtnActualizarC.Location = new System.Drawing.Point(1118, 224);
+            this.iconBtnActualizarC.Location = new System.Drawing.Point(1323, 224);
             this.iconBtnActualizarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnActualizarC.Name = "iconBtnActualizarC";
             this.iconBtnActualizarC.Size = new System.Drawing.Size(113, 39);
@@ -508,7 +512,7 @@
             this.iconBtnAgregarC.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.iconBtnAgregarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnAgregarC.IconSize = 25;
-            this.iconBtnAgregarC.Location = new System.Drawing.Point(1118, 178);
+            this.iconBtnAgregarC.Location = new System.Drawing.Point(1323, 178);
             this.iconBtnAgregarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnAgregarC.Name = "iconBtnAgregarC";
             this.iconBtnAgregarC.Size = new System.Drawing.Size(113, 39);
@@ -535,7 +539,7 @@
             this.SubTotal,
             this.btnEditar,
             this.btnEliminar});
-            this.dataGridView1.Location = new System.Drawing.Point(172, 328);
+            this.dataGridView1.Location = new System.Drawing.Point(377, 328);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -619,7 +623,7 @@
             this.textTotalPagar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textTotalPagar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textTotalPagar.ForeColor = System.Drawing.Color.White;
-            this.textTotalPagar.Location = new System.Drawing.Point(740, 548);
+            this.textTotalPagar.Location = new System.Drawing.Point(945, 548);
             this.textTotalPagar.Margin = new System.Windows.Forms.Padding(2);
             this.textTotalPagar.Multiline = true;
             this.textTotalPagar.Name = "textTotalPagar";
@@ -633,7 +637,7 @@
             this.lTotalPagar.AutoSize = true;
             this.lTotalPagar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lTotalPagar.ForeColor = System.Drawing.Color.White;
-            this.lTotalPagar.Location = new System.Drawing.Point(624, 548);
+            this.lTotalPagar.Location = new System.Drawing.Point(829, 548);
             this.lTotalPagar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lTotalPagar.Name = "lTotalPagar";
             this.lTotalPagar.Size = new System.Drawing.Size(112, 23);
@@ -649,7 +653,7 @@
             this.iconBtnRegistrarC.IconColor = System.Drawing.Color.Brown;
             this.iconBtnRegistrarC.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnRegistrarC.IconSize = 20;
-            this.iconBtnRegistrarC.Location = new System.Drawing.Point(683, 580);
+            this.iconBtnRegistrarC.Location = new System.Drawing.Point(888, 580);
             this.iconBtnRegistrarC.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnRegistrarC.Name = "iconBtnRegistrarC";
             this.iconBtnRegistrarC.Size = new System.Drawing.Size(113, 39);
@@ -663,11 +667,36 @@
             // label3
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(158, 18);
+            this.label3.Location = new System.Drawing.Point(363, 18);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1099, 608);
+            this.label3.Size = new System.Drawing.Size(1099, 619);
             this.label3.TabIndex = 55;
+            // 
+            // textNumeroCompra
+            // 
+            this.textNumeroCompra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.textNumeroCompra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textNumeroCompra.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.textNumeroCompra.ForeColor = System.Drawing.Color.White;
+            this.textNumeroCompra.Location = new System.Drawing.Point(378, 51);
+            this.textNumeroCompra.Margin = new System.Windows.Forms.Padding(2);
+            this.textNumeroCompra.Multiline = true;
+            this.textNumeroCompra.Name = "textNumeroCompra";
+            this.textNumeroCompra.Size = new System.Drawing.Size(150, 24);
+            this.textNumeroCompra.TabIndex = 50;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(374, 25);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(144, 20);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Número de Compra:";
             // 
             // usRegistrarCom
             // 
@@ -688,7 +717,8 @@
             this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "usRegistrarCom";
-            this.Size = new System.Drawing.Size(1392, 649);
+            this.Size = new System.Drawing.Size(1824, 682);
+            this.Load += new System.EventHandler(this.usRegistrarCom_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -747,5 +777,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn btnEditar;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
         private System.Windows.Forms.ComboBox comboBoxPorcentaje;
+        private System.Windows.Forms.TextBox textNumeroCompra;
+        private System.Windows.Forms.Label label5;
     }
 }

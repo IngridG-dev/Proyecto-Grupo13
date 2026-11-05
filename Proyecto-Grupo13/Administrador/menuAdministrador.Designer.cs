@@ -57,7 +57,7 @@
             this.menuStripTitulo.Location = new System.Drawing.Point(0, 0);
             this.menuStripTitulo.Name = "menuStripTitulo";
             this.menuStripTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStripTitulo.Size = new System.Drawing.Size(1318, 59);
+            this.menuStripTitulo.Size = new System.Drawing.Size(1791, 59);
             this.menuStripTitulo.TabIndex = 7;
             this.menuStripTitulo.Text = "menuStrip2";
             // 
@@ -87,7 +87,7 @@
             this.iconMenuReportes});
             this.menuStrip1.Location = new System.Drawing.Point(0, 59);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1318, 88);
+            this.menuStrip1.Size = new System.Drawing.Size(1791, 88);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -112,14 +112,14 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -172,7 +172,7 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
             // 
@@ -214,31 +214,31 @@
             this.panelContenido.Location = new System.Drawing.Point(0, 147);
             this.panelContenido.Margin = new System.Windows.Forms.Padding(4);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1318, 602);
+            this.panelContenido.Size = new System.Drawing.Size(1791, 602);
             this.panelContenido.TabIndex = 0;
             this.panelContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenido_Paint);
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            this.lblUsuario.Font = new System.Drawing.Font("Cooper Black", 9F);
+            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.lblUsuario.Font = new System.Drawing.Font("Cooper Black", 10F);
             this.lblUsuario.ForeColor = System.Drawing.Color.White;
-            this.lblUsuario.Location = new System.Drawing.Point(1006, 71);
+            this.lblUsuario.Location = new System.Drawing.Point(1253, 18);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(73, 17);
+            this.lblUsuario.Size = new System.Drawing.Size(83, 20);
             this.lblUsuario.TabIndex = 10;
             this.lblUsuario.Text = "Usuario:";
             // 
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = true;
-            this.lblDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
-            this.lblDocumento.Font = new System.Drawing.Font("Cooper Black", 9F);
+            this.lblDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.lblDocumento.Font = new System.Drawing.Font("Cooper Black", 10F);
             this.lblDocumento.ForeColor = System.Drawing.Color.White;
-            this.lblDocumento.Location = new System.Drawing.Point(1006, 109);
+            this.lblDocumento.Location = new System.Drawing.Point(1495, 18);
             this.lblDocumento.Name = "lblDocumento";
-            this.lblDocumento.Size = new System.Drawing.Size(122, 17);
+            this.lblDocumento.Size = new System.Drawing.Size(138, 20);
             this.lblDocumento.TabIndex = 11;
             this.lblDocumento.Text = "N° Documento:";
             // 
@@ -246,26 +246,27 @@
             // 
             this.textUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.textUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textUsuario.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textUsuario.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.textUsuario.ForeColor = System.Drawing.Color.White;
-            this.textUsuario.Location = new System.Drawing.Point(1134, 69);
+            this.textUsuario.Location = new System.Drawing.Point(1341, 12);
             this.textUsuario.Name = "textUsuario";
             this.textUsuario.ReadOnly = true;
-            this.textUsuario.Size = new System.Drawing.Size(147, 30);
+            this.textUsuario.Size = new System.Drawing.Size(147, 34);
             this.textUsuario.TabIndex = 12;
             this.textUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textUsuario.TextChanged += new System.EventHandler(this.textUsuario_TextChanged);
             this.textUsuario.Enter += new System.EventHandler(this.textUsuario_Enter);
             // 
             // textNumDocu
             // 
             this.textNumDocu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.textNumDocu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textNumDocu.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.textNumDocu.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.textNumDocu.ForeColor = System.Drawing.Color.White;
-            this.textNumDocu.Location = new System.Drawing.Point(1134, 109);
+            this.textNumDocu.Location = new System.Drawing.Point(1632, 12);
             this.textNumDocu.Name = "textNumDocu";
             this.textNumDocu.ReadOnly = true;
-            this.textNumDocu.Size = new System.Drawing.Size(147, 30);
+            this.textNumDocu.Size = new System.Drawing.Size(147, 34);
             this.textNumDocu.TabIndex = 13;
             this.textNumDocu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textNumDocu.Enter += new System.EventHandler(this.textNumDocu_Enter);
@@ -275,7 +276,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(1318, 749);
+            this.ClientSize = new System.Drawing.Size(1791, 749);
             this.Controls.Add(this.textNumDocu);
             this.Controls.Add(this.textUsuario);
             this.Controls.Add(this.lblDocumento);

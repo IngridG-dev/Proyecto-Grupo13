@@ -40,6 +40,7 @@ namespace Proyecto_Grupo13.Administrador
 
         private void menuAdministrador_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             this.SelectNextControl(this.ActiveControl, true, true, true, true); // Selecciona el siguiente control en el formulario
             if (SesionActual.usuarioLogueado != null)
             {
@@ -116,6 +117,11 @@ namespace Proyecto_Grupo13.Administrador
         private void textNumDocu_Enter(object sender, EventArgs e)
         {
             this.ActiveControl = null; // Remueve el foco del control de texto para evitar que se seleccione al entrar
+        }
+
+        private void textUsuario_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

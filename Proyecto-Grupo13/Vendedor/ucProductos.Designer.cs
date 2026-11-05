@@ -50,7 +50,7 @@
             // label15
             // 
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label15.Location = new System.Drawing.Point(226, 44);
+            this.label15.Location = new System.Drawing.Point(462, 44);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(941, 594);
@@ -61,7 +61,7 @@
             this.labelProductos.AutoSize = true;
             this.labelProductos.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.labelProductos.ForeColor = System.Drawing.Color.White;
-            this.labelProductos.Location = new System.Drawing.Point(639, 64);
+            this.labelProductos.Location = new System.Drawing.Point(875, 64);
             this.labelProductos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProductos.Name = "labelProductos";
             this.labelProductos.Size = new System.Drawing.Size(116, 23);
@@ -89,7 +89,7 @@
             this.groupBox1.Controls.Add(this.labelBuscarPor);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(254, 101);
+            this.groupBox1.Location = new System.Drawing.Point(490, 101);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -167,6 +167,7 @@
             // 
             // dgvProductos
             // 
+            this.dgvProductos.AllowUserToAddRows = false;
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(27)))), ((int)(((byte)(105)))));
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -177,7 +178,7 @@
             this.Descripcion,
             this.Precio,
             this.Stock});
-            this.dgvProductos.Location = new System.Drawing.Point(254, 225);
+            this.dgvProductos.Location = new System.Drawing.Point(490, 225);
             this.dgvProductos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
@@ -237,9 +238,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelProductos);
             this.Controls.Add(this.label15);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucProductos";
-            this.Size = new System.Drawing.Size(1392, 682);
+            this.Size = new System.Drawing.Size(1864, 682);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();

@@ -358,10 +358,16 @@ namespace Proyecto_Grupo13.Administrador
                 MessageBox.Show("Debe agregar al menos un producto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (string.IsNullOrWhiteSpace(textNumeroCompra.Text))
+            {
+                MessageBox.Show("Debe ingresar el número de compra/comprobante entregado por el proveedor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // 1. Armar el DataTable con los detalles de la grilla
             DataTable detalleCompra = new DataTable();
             detalleCompra.Columns.Add("IdProducto", typeof(int));
+            detalleCompra.Columns.Add("NombreProducto", typeof(string));
             detalleCompra.Columns.Add("PrecioCompra", typeof(decimal));
             detalleCompra.Columns.Add("PrecioVenta", typeof(decimal));
             detalleCompra.Columns.Add("Cantidad", typeof(int));
@@ -372,6 +378,7 @@ namespace Proyecto_Grupo13.Administrador
                 {
                     detalleCompra.Rows.Add(
                         Convert.ToInt32(row.Cells["IdProducto"].Value), // Reemplaza "IdProducto" con el nombre real de tu columna oculta
+                        row.Cells["Producto"].Value.ToString(),
                         Convert.ToDecimal(row.Cells["PrecioCompra"].Value),
                         Convert.ToDecimal(row.Cells["PrecioVenta"].Value),
                         Convert.ToInt32(row.Cells["Cantidad"].Value)
@@ -379,7 +386,7 @@ namespace Proyecto_Grupo13.Administrador
                 }
             }
 
-            int correlativo = new CL_Compra().ObtenerCorrelativo();
+            
             // 2. Construir el objeto Compra
                 if(SesionActual.usuarioLogueado == null)
             {
@@ -390,7 +397,7 @@ namespace Proyecto_Grupo13.Administrador
                     usuario = new Usuario() { id_usuario = SesionActual.usuarioLogueado.id_usuario },
                     proveedor = new Proveedor() { id_proveedor = Convert.ToInt32(textNumDocumento.Tag) },
                     tipoDocumento = comboTipoDocumento.Text,
-                    numeroCompra = string.Format("{0:000000}", correlativo), // Formatear con ceros a la izquierda
+                    numeroCompra = textNumeroCompra.Text.Trim(), // Formatear con ceros a la izquierda
                 };
 
             // 3. Enviar a Capa Lógica
@@ -399,7 +406,19 @@ namespace Proyecto_Grupo13.Administrador
 
             if (resultado)
             {
-                MessageBox.Show("Compra registrada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                FormTicketCompra ticket = new FormTicketCompra();
+
+                // Le pasamos los datos al ticket
+                ticket.DatosCompra = oCompra;
+
+                // Le pasamos la razón social porque no está dentro del objeto Compra original directamente
+                ticket.DatosCompra.proveedor.razonSocial = textRazonSocial.Text;
+
+                ticket.DetalleProductos = detalleCompra;
+                ticket.TotalPagado = totalAPagar; // Asumiendo que tu variable global totalAPagar tiene el total
+
+                // Mostramos el ticket como un modal
+                ticket.ShowDialog();
 
                 // Limpiar controles
                 comboTipoDocumento.SelectedIndex = -1;
@@ -515,6 +534,11 @@ namespace Proyecto_Grupo13.Administrador
                     MessageBox.Show("Por favor, ingrese un precio de compra válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        private void usRegistrarCom_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -112,14 +112,15 @@ namespace CapaDatos
             {
                 try
                 {
+                    // 1. Incluimos c.tipoDocumento en el SELECT
                     string query = @"
-                        SELECT c.id_compra, c.numeroCompra, c.fechaRegistro, 
-                               p.razonSocial AS Proveedor, u.nombre + ' ' + u.apellido AS Administrador
-                        FROM COMPRA c
-                        INNER JOIN PROVEEDOR p ON c.id_proveedor = p.id_proveedor
-                        INNER JOIN USUARIO u ON c.id_usuario = u.id_usuario
-                        WHERE CONVERT(date, c.fechaRegistro) BETWEEN @fechaDesde AND @fechaHasta
-                        ORDER BY c.fechaRegistro DESC";
+                SELECT c.id_compra, c.numeroCompra, c.tipoDocumento, c.fechaRegistro, 
+                       p.razonSocial AS Proveedor, u.nombre + ' ' + u.apellido AS Administrador
+                FROM COMPRA c
+                INNER JOIN PROVEEDOR p ON c.id_proveedor = p.id_proveedor
+                INNER JOIN USUARIO u ON c.id_usuario = u.id_usuario
+                WHERE CONVERT(date, c.fechaRegistro) BETWEEN @fechaDesde AND @fechaHasta
+                ORDER BY c.fechaRegistro DESC";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.Parameters.AddWithValue("@fechaDesde", fechaDesde.Date);
@@ -134,6 +135,7 @@ namespace CapaDatos
                             {
                                 id_compra = Convert.ToInt32(dr["id_compra"]),
                                 numeroCompra = dr["numeroCompra"].ToString(),
+                                tipoDocumento = dr["tipoDocumento"].ToString(), 
                                 fechaRegistro = dr["fechaRegistro"].ToString(),
                                 proveedor = new Proveedor() { razonSocial = dr["Proveedor"].ToString() },
                                 usuario = new Usuario() { nombre = dr["Administrador"].ToString() }
