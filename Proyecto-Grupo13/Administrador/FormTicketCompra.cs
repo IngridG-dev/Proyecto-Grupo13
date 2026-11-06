@@ -28,7 +28,15 @@ namespace Proyecto_Grupo13.Administrador
             lblNumCompra.Text = "Número de compra: " + DatosCompra.numeroCompra;
 
             // Administrador (Usuario logueado)
-            lblAdmin.Text = "Nombre Administrador: " + (DatosCompra.usuario != null ? DatosCompra.usuario.nombre : "Admin");
+            // Validamos que haya una sesión activa y mostramos nombre + apellido
+            if (CapaEntidad.SesionActual.usuarioLogueado != null)
+            {
+                lblAdmin.Text = "Nombre Administrador: " + CapaEntidad.SesionActual.usuarioLogueado.nombre + " " + CapaEntidad.SesionActual.usuarioLogueado.apellido;
+            }
+            else
+            {
+                lblAdmin.Text = "Nombre Administrador: Admin"; // Valor de contingencia
+            }
 
             // Proveedor
             lblProveedor.Text = "Proveedor: " + (DatosCompra.proveedor != null ? DatosCompra.proveedor.razonSocial : "No especificado");
@@ -53,7 +61,7 @@ namespace Proyecto_Grupo13.Administrador
             {
                 dgvTicket.Columns.Add("Cant", "N.");
                 dgvTicket.Columns.Add("Articulo", "Artículos");
-                dgvTicket.Columns.Add("Precio", "PrecIO.");
+                dgvTicket.Columns.Add("Precio", "Precio.");
                 dgvTicket.Columns.Add("Total", "Total");
 
                 // Ajustar anchos relativos
