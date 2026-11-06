@@ -64,6 +64,15 @@ namespace CapaLogica
         {
             Mensaje = string.Empty;
 
+            // IMPEDIR QUE EL USUARIO LOGUEADO SE DÉ DE BAJA A SÍ MISMO
+            if (SesionActual.usuarioLogueado != null &&
+                obj.id_usuario == SesionActual.usuarioLogueado.id_usuario &&
+                obj.estado == 0)
+            {
+                Mensaje = "No puede dar de baja su propio usuario mientras tenga su sesión activa.";
+                return false;
+            }
+
             if (obj.id_usuario == 0)
             {
                 Mensaje += "Debe seleccionar un usuario.\n";
@@ -113,14 +122,30 @@ namespace CapaLogica
         }
 
         // ELIMINAR USUARIO
-        public bool EliminarUsuario(int idUsuario)
+        public bool EliminarUsuario(int idUsuario, out string Mensaje)
         {
-            if (idUsuario == 0)
+            Mensaje = string.Empty;
+
+            // IMPEDIR ELIMINAR AL USUARIO QUE TIENE LA SESIÓN INICIADA
+            if (SesionActual.usuarioLogueado != null &&
+                SesionActual.usuarioLogueado.id_usuario == idUsuario)
             {
+                Mensaje = "No puede eliminar su propio usuario mientras tenga una sesión activa.";
                 return false;
             }
 
-            return objCD_Usuario.EliminarUsuario(idUsuario);
+            if (idUsuario == 0)
+            {
+                Mensaje = "Debe seleccionar un usuario.";
+                return false;
+            }
+
+            bool resultado = objCD_Usuario.EliminarUsuario(idUsuario);
+
+            if (!resultado)
+                Mensaje = "No se pudo eliminar el usuario.";
+
+            return resultado;
         }
     }
 }

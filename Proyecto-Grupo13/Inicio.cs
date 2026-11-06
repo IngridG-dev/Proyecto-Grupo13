@@ -63,6 +63,10 @@ namespace Proyecto_Grupo13
 
             //Buscar usuario
             Usuario usuario = objCL_Usuario.Login(dni, contraseña);
+            if (usuario != null)
+            {
+                SesionActual.usuarioLogueado = usuario; // Guardar el usuario en la sesión actual
+            }
 
             // Si no existe o la contraseña/DNI son incorrectos
             if (usuario == null)
@@ -87,7 +91,6 @@ namespace Proyecto_Grupo13
                 );
                 return;
             }
-            SesionActual.usuarioLogueado = usuario; // Guardar el usuario en la sesión actual
             // Ocultar la pantalla de Login ANTES de abrir el menú
             this.Hide();
 

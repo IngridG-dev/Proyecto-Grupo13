@@ -103,7 +103,8 @@ namespace CapaDatos
                         FROM USUARIO u
                         INNER JOIN ROL r ON u.id_rol = r.id_rol 
                         WHERE u.dni = @dni
-                        AND u.contraseña = @contraseña";
+                        AND u.contraseña = @contraseña
+                        AND u.estado = 1";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
 

@@ -353,10 +353,8 @@ namespace Proyecto_Grupo13.Administrador
             // Recuperamos el ID real de SQL Server
             int idUsuario = ((Usuario)fila.Tag).id_usuario;
 
-
-            bool respuesta =
-                objCL_Usuario.EliminarUsuario(idUsuario);
-
+            string mensaje;
+            bool respuesta = objCL_Usuario.EliminarUsuario(idUsuario, out mensaje);
 
             if (respuesta)
             {
@@ -375,10 +373,10 @@ namespace Proyecto_Grupo13.Administrador
             else
             {
                 MessageBox.Show(
-                    "No se pudo eliminar el usuario.",
-                    "Error",
+                    mensaje,
+                    "No se pudo eliminar",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
+                    MessageBoxIcon.Warning
                 );
             }
         }
