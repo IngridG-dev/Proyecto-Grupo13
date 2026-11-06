@@ -28,4 +28,18 @@ namespace CapaEntidad
             Ventas = ventas;
         }
     }
+    public class Periodo
+    {
+        public string Etiqueta { get; set; }
+        public int CantidadVentas { get; set; }
+        public decimal Ingresos { get; set; }
+        public DateTime fechaInicio { get; set; }
+        public Periodo (string etiqueta, DateTime fechaInicio, int cantidadVentas, decimal ingresos)
+        {
+            Etiqueta = etiqueta;
+            this.fechaInicio = fechaInicio;
+            CantidadVentas = cantidadVentas;
+            Ingresos = ingresos;
+        }
+    }
 }

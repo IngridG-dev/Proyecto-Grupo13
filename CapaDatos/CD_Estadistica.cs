@@ -46,6 +46,23 @@ namespace CapaDatos
             return listar(query, desde, hasta);
         }
 
+        public List<Estadisticas> ventasPorMetodoPago(DateTime? desde, DateTime? hasta)
+        {
+            string query = @"
+        SELECT mp.descripcion AS nombre,
+               COUNT(v.id_venta) AS cantidadVendida,
+               ISNULL(SUM(v.montoPago), 0) AS ingresos
+        FROM VENTA v
+        INNER JOIN Metodo_Pago mp
+            ON v.id_metodoPago = mp.id_metodoPago
+        WHERE (@desde IS NULL OR v.fechaCreacion >= @desde)
+          AND (@hasta IS NULL OR v.fechaCreacion < @hasta)
+        GROUP BY mp.id_metodoPago, mp.descripcion
+        ORDER BY cantidadVendida DESC";
+
+            return listar(query, desde, hasta);
+        }
+
         public List<VendedorEstadistica> ventasPorVendedor(DateTime? desde, DateTime? hasta)
         {
             List<VendedorEstadistica> lista = new List<VendedorEstadistica>();

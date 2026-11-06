@@ -20,6 +20,8 @@ namespace Proyecto_Grupo13.Gerente
         // Rango de fechas aplicado (null = sin filtro, o sea, todo el historial)
         private DateTime? filtroDesde = null;
         private DateTime? filtroHasta = null;
+        private DateTime? evolucionDesde = null;
+        private DateTime? evolucionHasta = null;
         public ucMasVendidos()
         {
             InitializeComponent();
@@ -30,28 +32,35 @@ namespace Proyecto_Grupo13.Gerente
             dtpFin.ShowCheckBox = true;
             dtpFin.Checked = false;
 
-            // Configuramos el DataGridView
-            dgvMasVendidos.AllowUserToAddRows = false;
-            dgvMasVendidos.ReadOnly = true;
-
-            // Configuramos el ComboBox
+            // Configuramos el ComboBox de productos y categorias
             cmbBuscarPor.Items.Clear();
             cmbBuscarPor.Items.Add("Producto");
             cmbBuscarPor.Items.Add("Categoría");
-
-            // Producto seleccionado por defecto
-            cmbBuscarPor.SelectedIndex = 0;
+            cmbBuscarPor.SelectedIndex = 0; // Producto seleccionado por defecto
+            //config de meses para la evolucion
+            cmbMes.Items.Clear();
+            cmbMes.Items.AddRange(new object[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Dicembre"});
+            cmbMes.SelectedIndex = DateTime.Now.Month - 1;
+            //config comboBox de años
+            cmbAño.Items.Clear();
+            for (int año = DateTime.Now.Year - 5; año <= DateTime.Now.Year +1; año++)
+            {
+                cmbAño.Items.Add(año);
+            }
+            cmbAño.SelectedItem = DateTime.Now.Year;
 
             // Configuramos el gráfico principal y datos iniciales
-            actualizarTodo();
             ConfigChartMasVendidos();
+            actualizarTodo();
+            mostrarEvolucion();
 
         }
         // Actualiza todos los datos de la pantalla según el filtro actual
         private void actualizarTodo()
         {
             // Evita consultar la base cuando Visual Studio dibuja el control en el diseñador
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) 
+                return;
 
             if (cmbBuscarPor.Text == "Categoría")
                 MostrarCategorias();
@@ -59,6 +68,7 @@ namespace Proyecto_Grupo13.Gerente
                 MostrarProductos();
 
             MostrarVendedores();
+            mostrarMetodoPago();
         }
 
         // config del chart principal
@@ -90,6 +100,7 @@ namespace Proyecto_Grupo13.Gerente
                 //la grilla muestra todos los productos, pero el gráfico solo los primeros
                 CargarGrid(productos, "Producto");
                 CargarGraficoPrincipal(productos.Take(TOP_GRAFICO).ToList(), "Producto");
+                CargarGraficoIngresos(productos.OrderByDescending(p => p.Ingresos).Take(TOP_GRAFICO).ToList(), "Producto");
             }
         }
 
@@ -104,6 +115,7 @@ namespace Proyecto_Grupo13.Gerente
                 mostrarDestacado(categorias);
                 CargarGrid(categorias, "Categoría");
                 CargarGraficoPrincipal(categorias, "Categoría");
+                CargarGraficoIngresos(categorias, "Categoría");
             }
         }
         // muestra el producto/categoría con más unidades vendidas (o "-" si no hay ventas)
@@ -259,8 +271,10 @@ namespace Proyecto_Grupo13.Gerente
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            
             filtroDesde = desde;
             filtroHasta = hasta;
+            
             actualizarTodo();
             if (dgvMasVendidos.Rows.Count == 0)
             {
@@ -272,6 +286,238 @@ namespace Proyecto_Grupo13.Gerente
         private void dgvMasVendidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        // gráfico de INGRESOS: columnas para productos, circular para categorías
+        private void CargarGraficoIngresos(List<Estadisticas> datos, string tipo)
+        {
+            chartIngresos.Series.Clear();
+
+            Series serie = new Series("Ingresos");
+
+            if (tipo == "Categoría")
+            {
+                serie.ChartType = SeriesChartType.Pie;
+                serie.Label = "#VALX: #VAL{C0}";
+            }
+            else
+            {
+                serie.ChartType = SeriesChartType.Column;
+                serie.IsValueShownAsLabel = true;
+                serie.LabelFormat = "C0";
+            }
+
+            foreach (Estadisticas dato in datos)
+            {
+                serie.Points.AddXY(dato.Nombre, dato.Ingresos);
+            }
+
+            chartIngresos.Series.Add(serie);
+
+            chartIngresos.Titles.Clear();
+            chartIngresos.Titles.Add(
+                tipo == "Producto"
+                    ? "INGRESOS POR PRODUCTO (TOP " + TOP_GRAFICO + ")"
+                    : "INGRESOS POR CATEGORÍA");
+        }
+        //evolucion de ventas por periodo (mes, año)
+        //las columnas son los ingresos y la linea son la cantidad de ventas
+
+        private void mostrarEvolucion()
+        {
+            if (!evolucionDesde.HasValue || !evolucionHasta.HasValue)
+                return;
+
+            List<Periodo> periodos = logica.ventasPorPeriodo(
+                evolucionDesde,
+                evolucionHasta,
+                "Día"
+            );
+
+            chartEvolucion.Series.Clear();
+            chartEvolucion.ChartAreas.Clear();
+            chartEvolucion.Legends.Clear();
+            chartEvolucion.Titles.Clear();
+
+            if (periodos.Count == 0)
+            {
+                chartEvolucion.Titles.Add("SIN VENTAS EN EL PERÍODO");
+                return;
+            }
+
+            // CONFIGURACIÓN DEL ÁREA DEL GRÁFICO
+            ChartArea area = new ChartArea("AreaEvolucion");
+
+            area.BackColor = Color.White;
+
+            // EJE X: FECHAS
+            area.AxisX.MajorGrid.Enabled = false;
+            area.AxisX.Interval = 2;
+            area.AxisX.LabelStyle.Angle = -45;
+            area.AxisX.LabelStyle.Font = new Font("Segoe UI", 8);
+            area.AxisX.LabelStyle.ForeColor = Color.DimGray;
+            area.AxisX.LineColor = Color.LightGray;
+            area.AxisX.IsLabelAutoFit = true;
+
+            // EJE Y: INGRESOS
+            area.AxisY.MajorGrid.Enabled = true;
+            area.AxisY.MajorGrid.LineColor = Color.Gainsboro;
+            area.AxisY.Title = "Ingresos ($)";
+            area.AxisY.LabelStyle.Format = "C0";
+            area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8);
+            area.AxisY.LabelStyle.ForeColor = Color.DimGray;
+            area.AxisY.Minimum = 0;
+
+            // EJE Y SECUNDARIO: CANTIDAD DE VENTAS
+            double maxVentas = periodos.Max(p => p.CantidadVentas);
+
+            area.AxisY2.Enabled = AxisEnabled.True;
+            area.AxisY2.Minimum = 0;
+            area.AxisY2.Maximum = Math.Max(1, Math.Ceiling(maxVentas * 1.15));
+            area.AxisY2.Interval = Math.Max(1, Math.Ceiling(area.AxisY2.Maximum / 5));
+
+            area.AxisY2.Title = "Cantidad de ventas";
+            area.AxisY2.MajorGrid.Enabled = false;
+            area.AxisY2.LabelStyle.Font = new Font("Segoe UI", 8);
+            area.AxisY2.LabelStyle.ForeColor = Color.DimGray;
+
+            chartEvolucion.ChartAreas.Add(area);
+
+            // LEYENDA
+            Legend leyenda = new Legend("Leyenda")
+            {
+                Docking = Docking.Bottom,
+                Font = new Font("Segoe UI", 8),
+                BackColor = Color.White
+            };
+
+            chartEvolucion.Legends.Add(leyenda);
+
+            // SERIE DE INGRESOS (BARRAS)
+            Series ingresos = new Series("Ingresos")
+            {
+                ChartArea = "AreaEvolucion",
+                Legend = "Leyenda",
+                ChartType = SeriesChartType.Column,
+                Color = Color.MediumPurple,
+                IsValueShownAsLabel = true,
+                Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                LabelForeColor = Color.DimGray
+            };
+
+            // SERIE DE CANTIDAD DE VENTAS (LÍNEA)
+            Series ventas = new Series("Cantidad de ventas")
+            {
+                ChartArea = "AreaEvolucion",
+                Legend = "Leyenda",
+                ChartType = SeriesChartType.Line,
+                YAxisType = AxisType.Secondary,
+                BorderWidth = 3,
+                MarkerStyle = MarkerStyle.Circle,
+                MarkerSize = 7,
+                Color = Color.OrangeRed,
+                IsValueShownAsLabel = true,
+                Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                LabelForeColor = Color.OrangeRed
+            };
+
+            // CARGAR LOS DATOS
+            foreach (Periodo p in periodos)
+            {
+                // INGRESOS
+                DataPoint puntoIngreso = new DataPoint();
+                puntoIngreso.SetValueXY(p.Etiqueta, p.Ingresos);
+
+                // No mostrar etiquetas cuando el ingreso es cero
+                puntoIngreso.Label = p.Ingresos > 0 ? p.Ingresos.ToString("C0") : "";
+                ingresos.Points.Add(puntoIngreso);
+
+                // CANTIDAD DE VENTAS
+                DataPoint puntoVenta = new DataPoint();
+                puntoVenta.SetValueXY(p.Etiqueta, p.CantidadVentas);
+
+                // No mostrar etiquetas cuando no hubo ventas
+                puntoVenta.Label = p.CantidadVentas > 0 ? p.CantidadVentas.ToString() : "";
+                ventas.Points.Add(puntoVenta);
+            }
+
+            chartEvolucion.Series.Add(ingresos);
+            chartEvolucion.Series.Add(ventas);
+
+            // TÍTULO
+            Title titulo = new Title("EVOLUCIÓN DE VENTAS - " + cmbMes.Text.ToUpper() + " " + cmbAño.Text);
+
+            titulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            titulo.ForeColor = Color.FromArgb(70, 70, 70);
+
+            chartEvolucion.Titles.Add(titulo);
+
+            chartEvolucion.BackColor = Color.White;
+        }
+
+
+        private void mostrarMetodoPago()
+        {
+            List<Estadisticas> metodos = logica.ventasPorMetodoPago(filtroDesde, filtroHasta);
+
+            chartMetodoPago.Series.Clear();
+            chartMetodoPago.Legends.Clear();
+            chartMetodoPago.Titles.Clear();
+
+            chartMetodoPago.Legends.Add(new Legend("Default"));
+
+            // FUENTE DE LA REFERENCIA LATERAL
+            chartMetodoPago.Legends["Default"].Font = new Font("Segoe UI", 8);
+
+            if (metodos.Count == 0)
+            {
+                chartMetodoPago.Titles.Add("SIN VENTAS REGISTRADAS");
+                return;
+            }
+
+            Series serie = new Series("Métodos de pago");
+
+            serie.ChartType = SeriesChartType.Pie;
+
+            // TEXTO DENTRO DEL CÍRCULO
+            serie.Label = "#VALX: #PERCENT{P1}";
+            serie.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            serie.LabelForeColor = Color.White;
+
+            serie["PieLabelStyle"] = "Inside";
+
+            serie.Legend = "Default";
+
+            foreach (Estadisticas metodo in metodos)
+            {
+                serie.Points.AddXY(metodo.Nombre, metodo.CantidadVendida);
+            }
+
+            chartMetodoPago.Series.Add(serie);
+
+            Title titulo = new Title("VENTAS POR MÉTODO DE PAGO");
+            titulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            titulo.ForeColor = Color.FromArgb(70, 70, 70);
+
+            chartMetodoPago.Titles.Add(titulo);
+        }
+
+
+        private void iconBtnFiltro_Click(object sender, EventArgs e)
+        {
+            if (cmbMes.SelectedIndex == -1 || cmbAño.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione un mes y un año.");
+                return;
+            }
+
+            int mes = cmbMes.SelectedIndex + 1;
+            int año = Convert.ToInt32(cmbAño.SelectedItem);
+
+            evolucionDesde = new DateTime(año, mes, 1);
+
+            evolucionHasta = evolucionDesde.Value.AddMonths(1).AddDays(-1);
+
+            mostrarEvolucion();
         }
     }
 }
