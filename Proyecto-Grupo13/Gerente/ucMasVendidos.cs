@@ -322,6 +322,7 @@ namespace Proyecto_Grupo13.Gerente
         //evolucion de ventas por periodo (mes, año)
         //las columnas son los ingresos y la linea son la cantidad de ventas
 
+        // EVOLUCIÓN DE VENTAS POR MES Y AÑO (SOLO LÍNEA)
         private void mostrarEvolucion()
         {
             if (!evolucionDesde.HasValue || !evolucionHasta.HasValue)
@@ -344,12 +345,12 @@ namespace Proyecto_Grupo13.Gerente
                 return;
             }
 
-            // CONFIGURACIÓN DEL ÁREA DEL GRÁFICO
+            // CONFIGURACIÓN DEL ÁREA
             ChartArea area = new ChartArea("AreaEvolucion");
 
             area.BackColor = Color.White;
 
-            // EJE X: FECHAS
+            // EJE X: DÍAS
             area.AxisX.MajorGrid.Enabled = false;
             area.AxisX.Interval = 2;
             area.AxisX.LabelStyle.Angle = -45;
@@ -365,92 +366,51 @@ namespace Proyecto_Grupo13.Gerente
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8);
             area.AxisY.LabelStyle.ForeColor = Color.DimGray;
+            area.AxisY.LineColor = Color.LightGray;
             area.AxisY.Minimum = 0;
-
-            // EJE Y SECUNDARIO: CANTIDAD DE VENTAS
-            double maxVentas = periodos.Max(p => p.CantidadVentas);
-
-            area.AxisY2.Enabled = AxisEnabled.True;
-            area.AxisY2.Minimum = 0;
-            area.AxisY2.Maximum = Math.Max(1, Math.Ceiling(maxVentas * 1.15));
-            area.AxisY2.Interval = Math.Max(1, Math.Ceiling(area.AxisY2.Maximum / 5));
-
-            area.AxisY2.Title = "Cantidad de ventas";
-            area.AxisY2.MajorGrid.Enabled = false;
-            area.AxisY2.LabelStyle.Font = new Font("Segoe UI", 8);
-            area.AxisY2.LabelStyle.ForeColor = Color.DimGray;
 
             chartEvolucion.ChartAreas.Add(area);
 
-            // LEYENDA
-            Legend leyenda = new Legend("Leyenda")
-            {
-                Docking = Docking.Bottom,
-                Font = new Font("Segoe UI", 8),
-                BackColor = Color.White
-            };
+            // SERIE: LÍNEA DE INGRESOS
+            Series ingresos = new Series("Ingresos");
 
-            chartEvolucion.Legends.Add(leyenda);
+            ingresos.ChartArea = "AreaEvolucion";
+            ingresos.ChartType = SeriesChartType.Line;
 
-            // SERIE DE INGRESOS (BARRAS)
-            Series ingresos = new Series("Ingresos")
-            {
-                ChartArea = "AreaEvolucion",
-                Legend = "Leyenda",
-                ChartType = SeriesChartType.Column,
-                Color = Color.MediumPurple,
-                IsValueShownAsLabel = true,
-                Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                LabelForeColor = Color.DimGray
-            };
+            // APARIENCIA DE LA LÍNEA
+            ingresos.Color = Color.MediumPurple;
+            ingresos.BorderWidth = 3;
 
-            // SERIE DE CANTIDAD DE VENTAS (LÍNEA)
-            Series ventas = new Series("Cantidad de ventas")
-            {
-                ChartArea = "AreaEvolucion",
-                Legend = "Leyenda",
-                ChartType = SeriesChartType.Line,
-                YAxisType = AxisType.Secondary,
-                BorderWidth = 3,
-                MarkerStyle = MarkerStyle.Circle,
-                MarkerSize = 7,
-                Color = Color.OrangeRed,
-                IsValueShownAsLabel = true,
-                Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                LabelForeColor = Color.OrangeRed
-            };
+            // PUNTOS DE LA LÍNEA
+            ingresos.MarkerStyle = MarkerStyle.Circle;
+            ingresos.MarkerSize = 7;
+            ingresos.MarkerColor = Color.MediumPurple;
+            ingresos.MarkerBorderColor = Color.White;
+            ingresos.MarkerBorderWidth = 2;
+
+            // EVITAR ETIQUETAS QUE SOBRECARGUEN EL GRÁFICO
+            ingresos.IsValueShownAsLabel = false;
 
             // CARGAR LOS DATOS
             foreach (Periodo p in periodos)
             {
-                // INGRESOS
-                DataPoint puntoIngreso = new DataPoint();
-                puntoIngreso.SetValueXY(p.Etiqueta, p.Ingresos);
-
-                // No mostrar etiquetas cuando el ingreso es cero
-                puntoIngreso.Label = p.Ingresos > 0 ? p.Ingresos.ToString("C0") : "";
-                ingresos.Points.Add(puntoIngreso);
-
-                // CANTIDAD DE VENTAS
-                DataPoint puntoVenta = new DataPoint();
-                puntoVenta.SetValueXY(p.Etiqueta, p.CantidadVentas);
-
-                // No mostrar etiquetas cuando no hubo ventas
-                puntoVenta.Label = p.CantidadVentas > 0 ? p.CantidadVentas.ToString() : "";
-                ventas.Points.Add(puntoVenta);
+                ingresos.Points.AddXY(p.Etiqueta, p.Ingresos);
             }
 
             chartEvolucion.Series.Add(ingresos);
-            chartEvolucion.Series.Add(ventas);
 
             // TÍTULO
-            Title titulo = new Title("EVOLUCIÓN DE VENTAS - " + cmbMes.Text.ToUpper() + " " + cmbAño.Text);
+            Title titulo = new Title(
+                "EVOLUCIÓN DE INGRESOS - " +
+                cmbMes.Text.ToUpper() + " " + cmbAño.Text
+            );
 
             titulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             titulo.ForeColor = Color.FromArgb(70, 70, 70);
 
             chartEvolucion.Titles.Add(titulo);
 
+            // FONDO
             chartEvolucion.BackColor = Color.White;
         }
 
