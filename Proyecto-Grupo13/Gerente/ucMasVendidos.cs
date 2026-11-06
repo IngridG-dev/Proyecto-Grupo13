@@ -1,14 +1,18 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using CapaEntidad;
-using CapaLogica;
-using System.Globalization;
+using ClosedXML;
+
 
 namespace Proyecto_Grupo13.Gerente
 {
@@ -482,6 +486,138 @@ namespace Proyecto_Grupo13.Gerente
         }
 
         private void ucMasVendidos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconBtnExcel_Click(object sender, EventArgs e)
+        {
+            if (dgvMasVendidos.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            SaveFileDialog guardar = new SaveFileDialog();
+
+            guardar.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+            guardar.FileName = "ReporteMasVendidos_" + DateTime.Now.ToString("yyyyMMdd");
+
+            if (guardar.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                using (XLWorkbook libro = new XLWorkbook())
+                {
+                    var hoja = libro.Worksheets.Add("Más vendidos");
+
+                    int cantidadColumnas = dgvMasVendidos.Columns.Count;
+
+                    // TÍTULO
+                    hoja.Cell(1, 1).Value = "REPORTE DE " + cmbBuscarPor.Text.ToUpper() + " MÁS VENDIDOS";
+                    hoja.Range(1, 1, 1, cantidadColumnas).Merge();
+
+                    hoja.Range(1, 1, 1, cantidadColumnas).Style.Font.Bold = true;
+                    hoja.Range(1, 1, 1, cantidadColumnas).Style.Font.FontSize = 16;
+                    hoja.Range(1, 1, 1, cantidadColumnas).Style.Font.FontColor = XLColor.White;
+                    hoja.Range(1, 1, 1, cantidadColumnas).Style.Fill.BackgroundColor = XLColor.MediumPurple;
+                    hoja.Range(1, 1, 1, cantidadColumnas).Style.Alignment.Horizontal =
+                        XLAlignmentHorizontalValues.Center;
+
+                    // PERÍODO DEL INFORME
+                    hoja.Cell(2, 1).Value = "Período: " + ObtenerPeriodoReporte();
+                    hoja.Range(2, 1, 2, cantidadColumnas).Merge();
+
+                    hoja.Cell(2, 1).Style.Font.Italic = true;
+
+                    // ENCABEZADOS
+                    for (int columna = 0; columna < cantidadColumnas; columna++)
+                    {
+                        hoja.Cell(4, columna + 1).Value =
+                            dgvMasVendidos.Columns[columna].HeaderText;
+                    }
+
+                    hoja.Range(4, 1, 4, cantidadColumnas).Style.Font.Bold = true;
+                    hoja.Range(4, 1, 4, cantidadColumnas).Style.Font.FontColor = XLColor.White;
+                    hoja.Range(4, 1, 4, cantidadColumnas).Style.Fill.BackgroundColor = XLColor.DarkSlateBlue;
+                    hoja.Range(4, 1, 4, cantidadColumnas).Style.Alignment.Horizontal =
+                        XLAlignmentHorizontalValues.Center;
+
+                    // DATOS
+                    int filaExcel = 5;
+
+                    foreach (DataGridViewRow fila in dgvMasVendidos.Rows)
+                    {
+                        if (fila.IsNewRow)
+                            continue;
+
+                        for (int columna = 0; columna < cantidadColumnas; columna++)
+                        {
+                            hoja.Cell(filaExcel, columna + 1).Value =
+                                fila.Cells[columna].Value?.ToString() ?? "";
+                        }
+
+                        filaExcel++;
+                    }
+
+                    // FORMATO GENERAL
+                    hoja.Columns().AdjustToContents();
+                    hoja.SheetView.FreezeRows(4);
+
+                    if (filaExcel > 5)
+                    {
+                        hoja.Range(4, 1, filaExcel - 1, cantidadColumnas)
+                            .Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+
+                        hoja.Range(4, 1, filaExcel - 1, cantidadColumnas)
+                            .Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
+                        hoja.Range(5, 1, filaExcel - 1, cantidadColumnas)
+                            .Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        hoja.Range(5, 1, filaExcel - 1, cantidadColumnas)
+                            .Style.Fill.BackgroundColor = XLColor.WhiteSmoke;
+                    }
+
+                    libro.SaveAs(guardar.FileName);
+                }
+
+                MessageBox.Show("El informe Excel se descargó correctamente.",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = guardar.FileName,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el Excel: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private string ObtenerPeriodoReporte()
+        {
+            if (filtroDesde.HasValue && filtroHasta.HasValue)
+            {
+                return filtroDesde.Value.ToString("dd/MM/yyyy") +
+                       " al " +
+                       filtroHasta.Value.ToString("dd/MM/yyyy");
+            }
+
+            if (filtroDesde.HasValue)
+                return "Desde " + filtroDesde.Value.ToString("dd/MM/yyyy");
+
+            if (filtroHasta.HasValue)
+                return "Hasta " + filtroHasta.Value.ToString("dd/MM/yyyy");
+
+            return "Todo el historial";
+        }
+
+        private void iconBtnPDF_Click(object sender, EventArgs e)
         {
 
         }
