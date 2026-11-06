@@ -223,6 +223,7 @@ namespace Proyecto_Grupo13.Administrador
             textPrecioCompra.Clear();
             textPrecioVenta.Clear();
             numericCantidad.Value = numericCantidad.Minimum;
+            numericPorcentaje.Value = 0;
             iconBtnAgregarC.Enabled = true; // Habilitar el botón Agregar
         }
         // Calcular el total general de la venta
@@ -509,36 +510,35 @@ namespace Proyecto_Grupo13.Administrador
 
         }
 
-        private void comboBoxPorcentaje_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Validamos que haya un precio de compra ingresado y un porcentaje seleccionado
-            if (!string.IsNullOrEmpty(textPrecioCompra.Text) && comboBoxPorcentaje.SelectedItem != null)
-            {
-                try
-                {
-                    // Parseamos los valores
-                    decimal precioCompra = Convert.ToDecimal(textPrecioCompra.Text);
-
-                    // Si tu ComboBox tiene el símbolo "%" (ej. "15%"), lo limpiamos. Si son solo números, omití el Replace.
-                    string porcentajeTexto = comboBoxPorcentaje.SelectedItem.ToString().Replace("%", "");
-                    decimal porcentaje = Convert.ToDecimal(porcentajeTexto);
-
-                    // Calculamos el precio de venta: Precio Compra + (Precio Compra * Porcentaje / 100)
-                    decimal precioVenta = precioCompra + (precioCompra * (porcentaje / 100));
-
-                    // Mostramos el resultado en el TextBox de Precio Venta con dos decimales
-                    textPrecioVenta.Text = precioVenta.ToString("0.00");
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Por favor, ingrese un precio de compra válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-
         private void usRegistrarCom_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CalcularPrecioVenta()
+        {
+            if (decimal.TryParse(textPrecioCompra.Text, out decimal precioCompra))
+            {
+                decimal porcentaje = numericPorcentaje.Value;
+
+                decimal precioVenta = precioCompra + (precioCompra * porcentaje / 100);
+
+                textPrecioVenta.Text = precioVenta.ToString("0.00");
+            }
+            else
+            {
+                textPrecioVenta.Clear();
+            }
+        }
+        private void numericPorcentaje_ValueChanged(object sender, EventArgs e)
+        {
+
+                CalcularPrecioVenta();
+        }
+
+        private void textPrecioCompra_TextChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioVenta(); // Recalcular el precio de venta cada vez que cambie el precio de compra
         }
     }
 }
