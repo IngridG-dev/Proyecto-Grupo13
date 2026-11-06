@@ -324,6 +324,7 @@ namespace Proyecto_Grupo13.Vendedor
             // ARMAR EL DETALLE DESDE LA GRILLA
             DataTable detalleVenta = new DataTable();
             detalleVenta.Columns.Add("IdProducto", typeof(int));
+            detalleVenta.Columns.Add("CodigoProducto", typeof(string));
             detalleVenta.Columns.Add("Producto", typeof(string));
             detalleVenta.Columns.Add("PrecioVenta", typeof(decimal));
             detalleVenta.Columns.Add("Cantidad", typeof(int));
@@ -334,6 +335,7 @@ namespace Proyecto_Grupo13.Vendedor
 
                 detalleVenta.Rows.Add(
                     Convert.ToInt32(row.Cells["IdProducto"].Value),
+                    row.Cells["CodigoProducto"].Value.ToString(),
                     row.Cells["Producto"].Value.ToString(),
                     Convert.ToDecimal(row.Cells["Precio"].Value),
                     Convert.ToInt32(row.Cells["Cantidad"].Value));
@@ -348,7 +350,8 @@ namespace Proyecto_Grupo13.Vendedor
             };
 
             string mensaje;
-            bool resultado = new CL_Venta().RegistrarVenta(oVenta, detalleVenta, out mensaje);
+            int idVenta;
+            bool resultado = new CL_Venta().RegistrarVenta(oVenta, detalleVenta, out idVenta, out mensaje);
 
             if (!resultado)
             {
@@ -356,7 +359,44 @@ namespace Proyecto_Grupo13.Vendedor
                 return;
             }
 
-            MessageBox.Show("Venta registrada con éxito.", "Registro de Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // DATOS DEL PAGO PARA EL TICKET
+            decimal pagaConTicket = totalAPagar;
+            decimal cambioTicket = 0;
+
+            if (comboFormaPago.Text.Equals("Efectivo", StringComparison.OrdinalIgnoreCase))
+            {
+                decimal.TryParse(textPagaCon.Text, out pagaConTicket);
+                cambioTicket = pagaConTicket - totalAPagar;
+            }
+
+            // DATOS DEL VENDEDOR
+            string nombreVendedor =
+                SesionActual.usuarioLogueado.nombre + " " +
+                SesionActual.usuarioLogueado.apellido;
+
+            // ABRIR EL TICKET AUTOMÁTICAMENTE
+            using (FormTicket ticket = new FormTicket(
+                idVenta,
+                oVenta.fechaCreacion,
+                textNombreComple.Text,
+                textNumDocumento.Text,
+                nombreVendedor,
+                oVenta.tipoDocumento,
+                comboFormaPago.Text,
+                detalleVenta.Copy(),
+                totalAPagar,
+                pagaConTicket,
+                cambioTicket))
+            {
+                ticket.ShowDialog();
+            }
+
+            MessageBox.Show(
+                "La venta se registró correctamente.",
+                "Registro de venta",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
 
             // LIMPIAR PANTALLA
             dataGridView1.Rows.Clear();

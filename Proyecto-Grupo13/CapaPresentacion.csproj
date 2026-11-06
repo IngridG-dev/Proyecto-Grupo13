@@ -204,6 +204,12 @@
     <Compile Include="Vendedor\FormBuscarProducto.Designer.cs">
       <DependentUpon>FormBuscarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vendedor\FormTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendedor\FormTicket.Designer.cs">
+      <DependentUpon>FormTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vendedor\menuVendedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\FormBuscarProducto.resx">
       <DependentUpon>FormBuscarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vendedor\FormTicket.resx">
+      <DependentUpon>FormTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedor\menuVendedor.resx">
       <DependentUpon>menuVendedor.cs</DependentUpon>

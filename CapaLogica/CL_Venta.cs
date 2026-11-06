@@ -17,8 +17,9 @@ namespace CapaLogica
             return objCapaDatos.ListarMetodosPago();
         }
 
-        public bool RegistrarVenta(Venta obj, DataTable detalle, out string mensaje)
+        public bool RegistrarVenta(Venta obj, DataTable detalle, out int idVenta, out string mensaje)
         {
+            idVenta = 0;
             mensaje = string.Empty;
 
             if (obj == null || obj.usuario == null || obj.usuario.id_usuario <= 0)
@@ -59,7 +60,7 @@ namespace CapaLogica
             obj.montoPago = detalle.Rows.Cast<DataRow>()
                 .Sum(f => Convert.ToDecimal(f["PrecioVenta"]) * Convert.ToInt32(f["Cantidad"]));
 
-            return objCapaDatos.RegistrarVenta(obj, detalle, out mensaje);
+            return objCapaDatos.RegistrarVenta(obj, detalle, out idVenta, out mensaje);
         }
         public List<Venta> ListarVentasPorUsuario(int idUsuario, DateTime? desde, DateTime? hasta)
         {

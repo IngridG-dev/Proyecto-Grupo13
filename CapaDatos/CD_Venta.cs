@@ -40,9 +40,10 @@ namespace CapaDatos
             return lista;
         }
 
-        public bool RegistrarVenta(Venta obj, DataTable detalle, out string mensaje)
+        public bool RegistrarVenta(Venta obj, DataTable detalle, out int idVenta,out string mensaje)
         {
             bool respuesta = false;
+            idVenta = 0;
             mensaje = string.Empty;
 
             using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
@@ -56,21 +57,34 @@ namespace CapaDatos
                         {
                             // 1. Cabecera de la venta
                             string queryVenta = @"
-                                INSERT INTO Venta (id_usuario, id_cliente, tipoDocumento, montoPago, fechaCreacion, id_metodoPago)
-                                VALUES (@id_usuario, @id_cliente, @tipoDocumento, @montoPago, GETDATE(), @id_metodoPago);
-                                SELECT SCOPE_IDENTITY();";
+                            INSERT INTO Venta
+                            (id_usuario, id_cliente, tipoDocumento, montoPago, fechaCreacion, id_metodoPago)
+                            OUTPUT INSERTED.id_venta, INSERTED.fechaCreacion
+                            VALUES (@id_usuario, @id_cliente, @tipoDocumento, @montoPago, GETDATE(), @id_metodoPago);";
 
                             SqlCommand cmdVenta = new SqlCommand(queryVenta, conexion, transaccion);
+
                             cmdVenta.Parameters.AddWithValue("@id_usuario", obj.usuario.id_usuario);
                             cmdVenta.Parameters.AddWithValue("@id_cliente", obj.cliente.id_cliente);
                             cmdVenta.Parameters.AddWithValue("@tipoDocumento", obj.tipoDocumento);
                             cmdVenta.Parameters.AddWithValue("@montoPago", obj.montoPago);
                             cmdVenta.Parameters.AddWithValue("@id_metodoPago", obj.metodoPago.id_metodoPago);
 
-                            int idVenta = Convert.ToInt32(cmdVenta.ExecuteScalar());
+                            using (SqlDataReader dr = cmdVenta.ExecuteReader())
+                            {
+                                if (dr.Read())
+                                {
+                                    idVenta = Convert.ToInt32(dr["id_venta"]);
+                                    obj.fechaCreacion = Convert.ToDateTime(dr["fechaCreacion"]);
+                                }
+                                else
+                                {
+                                    throw new Exception("No se pudo obtener el número de la venta.");
+                                }
+                            }
 
-                            // 2. Por cada producto: descontar stock (solo si alcanza) y guardar el detalle
-                            foreach (DataRow row in detalle.Rows)
+                                // 2. Por cada producto: descontar stock (solo si alcanza) y guardar el detalle
+                                foreach (DataRow row in detalle.Rows)
                             {
                                 string queryStock = @"
                                     UPDATE Producto
