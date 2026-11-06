@@ -1,6 +1,10 @@
 ﻿using CapaEntidad;
 using CapaLogica;
+using ClosedXML;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Presentation;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,10 +12,13 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using ClosedXML;
+
+using pdfFont = iTextSharp.text.Font;
+using pdfColor = iTextSharp.text.BaseColor;
 
 
 namespace Proyecto_Grupo13.Gerente
@@ -359,7 +366,7 @@ namespace Proyecto_Grupo13.Gerente
             area.AxisX.MajorGrid.Enabled = false;
             area.AxisX.Interval = 2;
             area.AxisX.LabelStyle.Angle = -45;
-            area.AxisX.LabelStyle.Font = new Font("Segoe UI", 8);
+            area.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 8);
             area.AxisX.LabelStyle.ForeColor = Color.DimGray;
             area.AxisX.LineColor = Color.LightGray;
             area.AxisX.IsLabelAutoFit = true;
@@ -369,7 +376,7 @@ namespace Proyecto_Grupo13.Gerente
             area.AxisY.MajorGrid.LineColor = Color.Gainsboro;
             area.AxisY.Title = "Ingresos($) ";
             area.AxisY.LabelStyle.Format = "C0";
-            area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8);
+            area.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 8);
             area.AxisY.LabelStyle.ForeColor = Color.DimGray;
             area.AxisY.LineColor = Color.LightGray;
             area.AxisY.Minimum = 0;
@@ -410,7 +417,7 @@ namespace Proyecto_Grupo13.Gerente
                 cmbMes.Text.ToUpper() + " " + cmbAño.Text
             );
 
-            titulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            titulo.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
             titulo.ForeColor = Color.FromArgb(70, 70, 70);
 
             chartEvolucion.Titles.Add(titulo);
@@ -431,7 +438,7 @@ namespace Proyecto_Grupo13.Gerente
             chartMetodoPago.Legends.Add(new Legend("Default"));
 
             // FUENTE DE LA REFERENCIA LATERAL
-            chartMetodoPago.Legends["Default"].Font = new Font("Segoe UI", 8);
+            chartMetodoPago.Legends["Default"].Font = new System.Drawing.Font("Segoe UI", 8);
 
             if (metodos.Count == 0)
             {
@@ -445,7 +452,7 @@ namespace Proyecto_Grupo13.Gerente
 
             // TEXTO DENTRO DEL CÍRCULO
             serie.Label = "#VALX: #PERCENT{P1}";
-            serie.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            serie.Font = new System.Drawing.Font("Segoe UI", 7, FontStyle.Regular);
             serie.LabelForeColor = Color.White;
 
             serie["PieLabelStyle"] = "Inside";
@@ -460,7 +467,7 @@ namespace Proyecto_Grupo13.Gerente
             chartMetodoPago.Series.Add(serie);
 
             Title titulo = new Title("VENTAS POR MÉTODO DE PAGO");
-            titulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            titulo.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
             titulo.ForeColor = Color.FromArgb(70, 70, 70);
 
             chartMetodoPago.Titles.Add(titulo);
@@ -619,7 +626,149 @@ namespace Proyecto_Grupo13.Gerente
 
         private void iconBtnPDF_Click(object sender, EventArgs e)
         {
+            if (dgvMasVendidos.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            SaveFileDialog guardar = new SaveFileDialog();
+
+            guardar.Filter = "Archivo PDF (*.pdf)|*.pdf";
+            guardar.FileName = "ReporteMasVendidos_" + DateTime.Now.ToString("yyyyMMdd");
+
+            if (guardar.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                using (FileStream stream = new FileStream(
+                    guardar.FileName, FileMode.Create))
+                {
+                    Document documento = new Document(
+                        PageSize.A4, 35, 35, 40, 40);
+
+                    PdfWriter.GetInstance(documento, stream);
+
+                    documento.Open();
+
+                    // FUENTES
+                    pdfFont fuenteTitulo = FontFactory.GetFont(
+                        FontFactory.HELVETICA_BOLD, 16, pdfColor.WHITE);
+
+                    pdfFont fuenteSubtitulo = FontFactory.GetFont(
+                        FontFactory.HELVETICA, 10, pdfColor.DARK_GRAY);
+
+                    pdfFont fuenteEncabezado = FontFactory.GetFont(
+                        FontFactory.HELVETICA_BOLD, 10, pdfColor.WHITE);
+
+                    pdfFont fuenteDatos = FontFactory.GetFont(
+                        FontFactory.HELVETICA, 9, pdfColor.BLACK);
+
+                    // TÍTULO
+                    PdfPTable tablaTitulo = new PdfPTable(1);
+                    tablaTitulo.WidthPercentage = 100;
+
+                    PdfPCell celdaTitulo = new PdfPCell(
+                        new Phrase(
+                            "REPORTE DE " + cmbBuscarPor.Text.ToUpper() + " MÁS VENDIDOS",
+                            fuenteTitulo
+                        )
+                    );
+
+                    celdaTitulo.BackgroundColor = new pdfColor(102, 76, 153);
+                    celdaTitulo.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celdaTitulo.Padding = 12;
+                    celdaTitulo.Border = PdfPCell.NO_BORDER;
+
+                    tablaTitulo.AddCell(celdaTitulo);
+
+                    documento.Add(tablaTitulo);
+
+                    // PERÍODO
+                    Paragraph periodo = new Paragraph(
+                        "Período: " + ObtenerPeriodoReporte(),
+                        fuenteSubtitulo);
+
+                    periodo.SpacingBefore = 10;
+                    periodo.SpacingAfter = 15;
+
+                    documento.Add(periodo);
+
+                    // TABLA DE DATOS
+                    int cantidadColumnas = dgvMasVendidos.Columns.Count;
+
+                    PdfPTable tabla = new PdfPTable(cantidadColumnas);
+                    tabla.WidthPercentage = 100;
+                    tabla.HeaderRows = 1;
+
+                    // ENCABEZADOS
+                    foreach (DataGridViewColumn columna in dgvMasVendidos.Columns)
+                    {
+                        PdfPCell celda = new PdfPCell(
+                            new Phrase(columna.HeaderText, fuenteEncabezado)
+                        );
+
+                        celda.BackgroundColor = new pdfColor(72, 61, 139);
+                        celda.HorizontalAlignment = Element.ALIGN_CENTER;
+                        celda.Padding = 8;
+
+                        tabla.AddCell(celda);
+                    }
+
+                    // FILAS
+                    foreach (DataGridViewRow fila in dgvMasVendidos.Rows)
+                    {
+                        if (fila.IsNewRow)
+                            continue;
+
+                        foreach (DataGridViewCell celdaOriginal in fila.Cells)
+                        {
+                            PdfPCell celda = new PdfPCell(
+                                new Phrase(
+                                    celdaOriginal.Value?.ToString() ?? "",
+                                    fuenteDatos
+                                )
+                            );
+
+                            celda.HorizontalAlignment = Element.ALIGN_CENTER;
+                            celda.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            celda.Padding = 7;
+
+                            tabla.AddCell(celda);
+                        }
+                    }
+
+                    documento.Add(tabla);
+
+                    // PIE DEL INFORME
+                    Paragraph pie = new Paragraph(
+                        "\nFecha de generación: " +
+                        DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+                        fuenteSubtitulo);
+
+                    pie.Alignment = Element.ALIGN_RIGHT;
+                    documento.Add(pie);
+
+                    documento.Close();
+                }
+
+                MessageBox.Show("El informe PDF se descargó correctamente.",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = guardar.FileName,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
     }
 }
