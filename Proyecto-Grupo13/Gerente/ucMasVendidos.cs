@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using CapaEntidad;
 using CapaLogica;
+using System.Globalization;
 
 namespace Proyecto_Grupo13.Gerente
 {
@@ -152,7 +153,7 @@ namespace Proyecto_Grupo13.Gerente
                 dgvMasVendidos.Rows.Add(
                     dato.Nombre,
                     dato.CantidadVendida,
-                    dato.Ingresos.ToString("C")
+                    dato.Ingresos.ToString("C2", new CultureInfo("es-AR"))
                 );
             }
         }
@@ -478,6 +479,11 @@ namespace Proyecto_Grupo13.Gerente
             evolucionHasta = evolucionDesde.Value.AddMonths(1).AddDays(-1);
 
             mostrarEvolucion();
+        }
+
+        private void ucMasVendidos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
