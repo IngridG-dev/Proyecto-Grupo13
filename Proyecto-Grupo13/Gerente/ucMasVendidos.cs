@@ -362,7 +362,7 @@ namespace Proyecto_Grupo13.Gerente
             // EJE Y: INGRESOS
             area.AxisY.MajorGrid.Enabled = true;
             area.AxisY.MajorGrid.LineColor = Color.Gainsboro;
-            area.AxisY.Title = "Ingresos ($)";
+            area.AxisY.Title = "Ingresos($) ";
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8);
             area.AxisY.LabelStyle.ForeColor = Color.DimGray;

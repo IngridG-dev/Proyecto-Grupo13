@@ -72,7 +72,6 @@
             this.labelCodigoProdu = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.iconBtnAgregarV = new FontAwesome.Sharp.IconButton();
-            this.btnDescargarTicket = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.comboFormaPago = new System.Windows.Forms.ComboBox();
             this.iconBtnCancelar = new FontAwesome.Sharp.IconButton();
@@ -637,24 +636,6 @@
             this.iconBtnAgregarV.UseVisualStyleBackColor = false;
             this.iconBtnAgregarV.Click += new System.EventHandler(this.iconBtnAgregarV_Click);
             // 
-            // btnDescargarTicket
-            // 
-            this.btnDescargarTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnDescargarTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDescargarTicket.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarTicket.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
-            this.btnDescargarTicket.IconColor = System.Drawing.Color.Brown;
-            this.btnDescargarTicket.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDescargarTicket.IconSize = 20;
-            this.btnDescargarTicket.Location = new System.Drawing.Point(621, 452);
-            this.btnDescargarTicket.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDescargarTicket.Name = "btnDescargarTicket";
-            this.btnDescargarTicket.Size = new System.Drawing.Size(136, 38);
-            this.btnDescargarTicket.TabIndex = 42;
-            this.btnDescargarTicket.Text = "Imprimir Ticket";
-            this.btnDescargarTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDescargarTicket.UseVisualStyleBackColor = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -714,7 +695,6 @@
             this.Controls.Add(this.iconBtnCancelar);
             this.Controls.Add(this.comboFormaPago);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnDescargarTicket);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -782,7 +762,6 @@
         private System.Windows.Forms.Label labelCodigoProdu;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton iconBtnAgregarV;
-        private FontAwesome.Sharp.IconButton btnDescargarTicket;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboFormaPago;
         private FontAwesome.Sharp.IconButton iconBtnCancelar;
