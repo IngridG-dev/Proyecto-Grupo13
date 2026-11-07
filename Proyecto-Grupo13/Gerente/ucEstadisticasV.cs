@@ -41,8 +41,13 @@ namespace Proyecto_Grupo13.Gerente
             int totalProductosVendidos = 0;
             decimal totalIngresos = 0;
 
+            Dictionary<string, int> productosPorFecha = new Dictionary<string, int>();
+            Dictionary<string, decimal> ingresosPorFecha = new Dictionary<string, decimal>();
+
             foreach (Venta v in listaVentas)
             {
+                // Formateamos la fecha para usarla como clave en los diccionarios
+                string fecha = v.fechaCreacion.ToString("dd/MM/yyyy");
                 // 1. Calculamos la cantidad de productos sumando los detalles de esta venta específica
                 int cantidadProductosFila = 0;
                 List<DetalleVenta> detalles = logicaVenta.ObtenerDetalleVenta(v.id_venta); // Usamos tu método existente
@@ -53,16 +58,32 @@ namespace Proyecto_Grupo13.Gerente
                     cantidadProductosFila += dv.cantidad;
                 }
 
-                // 2. Agregamos la fila a la grilla principal usando las propiedades correctas de tu Entidad
-                dgvVentas.Rows.Add(
-                    v.fechaCreacion.ToString("dd/MM/yyyy"),
-                    cantidadProductosFila,
-                    v.montoPago.ToString("0.00")
-                );
+                // 2. Agregamos la fila a la grilla
+                if (!productosPorFecha.ContainsKey(fecha))
+                {
+                    productosPorFecha[fecha] = 0;
+                    ingresosPorFecha[fecha] = 0;
+                }
+
+                productosPorFecha[fecha] += cantidadProductosFila;
+                ingresosPorFecha[fecha] += v.montoPago;
 
                 // 3. Acumulamos para los cuadros superiores
                 totalProductosVendidos += cantidadProductosFila;
                 totalIngresos += v.montoPago;
+            }
+            // 3. Llenamos la grilla iterando sobre las fechas agrupadas
+            foreach (var item in productosPorFecha)
+            {
+                string fechaAgrupada = item.Key;
+                int productosDia = item.Value;
+                decimal ingresosDia = ingresosPorFecha[fechaAgrupada];
+
+                dgvVentas.Rows.Add(
+                    fechaAgrupada,
+                    productosDia,
+                    ingresosDia.ToString("0.00")
+                );
             }
 
             // Actualizamos los campos indicadores

@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.labelBuscarPor = new System.Windows.Forms.Label();
@@ -207,10 +207,10 @@
             this.panel2.Controls.Add(this.textResultadoPrincipal);
             this.panel2.Controls.Add(this.lUniVend);
             this.panel2.Controls.Add(this.labelVendidos);
-            this.panel2.Location = new System.Drawing.Point(1330, 4);
+            this.panel2.Location = new System.Drawing.Point(1433, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(430, 261);
+            this.panel2.Size = new System.Drawing.Size(437, 261);
             this.panel2.TabIndex = 67;
             // 
             // textResultadoCantidad
@@ -289,7 +289,7 @@
             this.iconBtnExcel.IconColor = System.Drawing.Color.Green;
             this.iconBtnExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnExcel.IconSize = 20;
-            this.iconBtnExcel.Location = new System.Drawing.Point(1614, 694);
+            this.iconBtnExcel.Location = new System.Drawing.Point(1704, 775);
             this.iconBtnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnExcel.Name = "iconBtnExcel";
             this.iconBtnExcel.Size = new System.Drawing.Size(146, 40);
@@ -308,7 +308,7 @@
             this.iconBtnPDF.IconColor = System.Drawing.Color.Brown;
             this.iconBtnPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnPDF.IconSize = 20;
-            this.iconBtnPDF.Location = new System.Drawing.Point(1462, 694);
+            this.iconBtnPDF.Location = new System.Drawing.Point(1552, 775);
             this.iconBtnPDF.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnPDF.Name = "iconBtnPDF";
             this.iconBtnPDF.Size = new System.Drawing.Size(146, 40);
@@ -366,72 +366,73 @@
             // 
             // chartMasVendidos
             // 
-            chartArea11.Name = "ChartArea1";
-            this.chartMasVendidos.ChartAreas.Add(chartArea11);
-            legend11.Name = "Legend1";
-            this.chartMasVendidos.Legends.Add(legend11);
-            this.chartMasVendidos.Location = new System.Drawing.Point(821, 48);
+            chartArea1.Name = "ChartArea1";
+            this.chartMasVendidos.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartMasVendidos.Legends.Add(legend1);
+            this.chartMasVendidos.Location = new System.Drawing.Point(831, 47);
             this.chartMasVendidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartMasVendidos.Name = "chartMasVendidos";
             this.chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series11.ChartArea = "ChartArea1";
-            series11.Legend = "Legend1";
-            series11.Name = "Series1";
-            this.chartMasVendidos.Series.Add(series11);
-            this.chartMasVendidos.Size = new System.Drawing.Size(490, 341);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartMasVendidos.Series.Add(series1);
+            this.chartMasVendidos.Size = new System.Drawing.Size(564, 341);
             this.chartMasVendidos.TabIndex = 77;
             this.chartMasVendidos.Text = "chart1";
             // 
             // chartVendedores
             // 
-            chartArea12.Name = "ChartArea1";
-            this.chartVendedores.ChartAreas.Add(chartArea12);
-            legend12.Name = "Legend1";
-            this.chartVendedores.Legends.Add(legend12);
+            chartArea2.Name = "ChartArea1";
+            this.chartVendedores.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartVendedores.Legends.Add(legend2);
             this.chartVendedores.Location = new System.Drawing.Point(4, 231);
             this.chartVendedores.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartVendedores.Name = "chartVendedores";
             this.chartVendedores.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "Series1";
-            this.chartVendedores.Series.Add(series12);
-            this.chartVendedores.Size = new System.Drawing.Size(544, 195);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartVendedores.Series.Add(series2);
+            this.chartVendedores.Size = new System.Drawing.Size(544, 244);
             this.chartVendedores.TabIndex = 78;
             this.chartVendedores.Text = "chart1";
             // 
             // chartIngresos
             // 
-            chartArea13.Name = "ChartArea1";
-            this.chartIngresos.ChartAreas.Add(chartArea13);
-            legend13.Name = "Legend1";
-            this.chartIngresos.Legends.Add(legend13);
-            this.chartIngresos.Location = new System.Drawing.Point(821, 448);
+            chartArea3.Name = "ChartArea1";
+            this.chartIngresos.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartIngresos.Legends.Add(legend3);
+            this.chartIngresos.Location = new System.Drawing.Point(831, 425);
             this.chartIngresos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartIngresos.Name = "chartIngresos";
             this.chartIngresos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
-            series13.Name = "Series1";
-            this.chartIngresos.Series.Add(series13);
-            this.chartIngresos.Size = new System.Drawing.Size(490, 314);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartIngresos.Series.Add(series3);
+            this.chartIngresos.Size = new System.Drawing.Size(564, 391);
             this.chartIngresos.TabIndex = 79;
             this.chartIngresos.Text = "chart1";
+            this.chartIngresos.Click += new System.EventHandler(this.chartIngresos_Click);
             // 
             // chartEvolucion
             // 
-            chartArea14.Name = "ChartArea1";
-            this.chartEvolucion.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.chartEvolucion.Legends.Add(legend14);
-            this.chartEvolucion.Location = new System.Drawing.Point(4, 479);
+            chartArea4.Name = "ChartArea1";
+            this.chartEvolucion.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartEvolucion.Legends.Add(legend4);
+            this.chartEvolucion.Location = new System.Drawing.Point(14, 533);
             this.chartEvolucion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartEvolucion.Name = "chartEvolucion";
             this.chartEvolucion.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            this.chartEvolucion.Series.Add(series14);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartEvolucion.Series.Add(series4);
             this.chartEvolucion.Size = new System.Drawing.Size(810, 282);
             this.chartEvolucion.TabIndex = 80;
             this.chartEvolucion.Text = "chart2";
@@ -440,7 +441,7 @@
             // 
             this.cmbMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMes.FormattingEnabled = true;
-            this.cmbMes.Location = new System.Drawing.Point(26, 445);
+            this.cmbMes.Location = new System.Drawing.Point(23, 499);
             this.cmbMes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(150, 24);
@@ -448,19 +449,19 @@
             // 
             // chartMetodoPago
             // 
-            chartArea15.Name = "ChartArea1";
-            this.chartMetodoPago.ChartAreas.Add(chartArea15);
-            legend15.Name = "Legend1";
-            this.chartMetodoPago.Legends.Add(legend15);
-            this.chartMetodoPago.Location = new System.Drawing.Point(1330, 271);
+            chartArea5.Name = "ChartArea1";
+            this.chartMetodoPago.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chartMetodoPago.Legends.Add(legend5);
+            this.chartMetodoPago.Location = new System.Drawing.Point(1433, 271);
             this.chartMetodoPago.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartMetodoPago.Name = "chartMetodoPago";
             this.chartMetodoPago.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series15.ChartArea = "ChartArea1";
-            series15.Legend = "Legend1";
-            series15.Name = "Series1";
-            this.chartMetodoPago.Series.Add(series15);
-            this.chartMetodoPago.Size = new System.Drawing.Size(430, 265);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartMetodoPago.Series.Add(series5);
+            this.chartMetodoPago.Size = new System.Drawing.Size(437, 265);
             this.chartMetodoPago.TabIndex = 82;
             this.chartMetodoPago.Text = "chart1";
             // 
@@ -468,7 +469,7 @@
             // 
             this.cmbAño.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAño.FormattingEnabled = true;
-            this.cmbAño.Location = new System.Drawing.Point(185, 445);
+            this.cmbAño.Location = new System.Drawing.Point(182, 499);
             this.cmbAño.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbAño.Name = "cmbAño";
             this.cmbAño.Size = new System.Drawing.Size(150, 24);
@@ -482,7 +483,7 @@
             this.iconBtnFiltro.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconBtnFiltro.IconColor = System.Drawing.Color.Black;
             this.iconBtnFiltro.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnFiltro.Location = new System.Drawing.Point(344, 442);
+            this.iconBtnFiltro.Location = new System.Drawing.Point(341, 496);
             this.iconBtnFiltro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnFiltro.Name = "iconBtnFiltro";
             this.iconBtnFiltro.Size = new System.Drawing.Size(94, 29);
@@ -507,9 +508,9 @@
             // 
             // ingresos
             // 
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ingresos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.ingresos.DefaultCellStyle = dataGridViewCellStyle1;
             this.ingresos.HeaderText = "Ingresos";
             this.ingresos.MinimumWidth = 6;
             this.ingresos.Name = "ingresos";
@@ -539,7 +540,7 @@
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucMasVendidos";
-            this.Size = new System.Drawing.Size(1858, 790);
+            this.Size = new System.Drawing.Size(1912, 820);
             this.Load += new System.EventHandler(this.ucMasVendidos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

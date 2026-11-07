@@ -315,7 +315,7 @@ namespace Proyecto_Grupo13.Gerente
             {
                 serie.ChartType = SeriesChartType.Column;
                 serie.IsValueShownAsLabel = true;
-                serie.LabelFormat = "C0";
+                serie.LabelFormat = "$ #,##0.00";
             }
 
             foreach (Estadisticas dato in datos)
@@ -770,5 +770,9 @@ namespace Proyecto_Grupo13.Gerente
             }
         }
 
+        private void chartIngresos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
