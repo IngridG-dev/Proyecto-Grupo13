@@ -26,7 +26,7 @@ namespace Proyecto_Grupo13.Vendedor
             comboBoxBuscar.Items.Clear();
             comboBoxBuscar.Items.AddRange(new object[]
             {
-                "Todos los campos", "Código", "Producto", "Categoría", "Descripción"
+                "Todos los campos", "Código", "Producto/Album", "Categoría", "Descripción", "Artista"
             });
             comboBoxBuscar.SelectedIndex = 0;
 
@@ -56,7 +56,8 @@ namespace Proyecto_Grupo13.Vendedor
                     p.categoria?.descripcion,
                     p.descripcion,
                     p.precioVenta.ToString("0.00"),
-                    p.stock);
+                    p.stock,
+                    p.artista);
             }
         }
 
@@ -78,7 +79,7 @@ namespace Proyecto_Grupo13.Vendedor
                     case "Código":
                         campo = p.codigo;
                         break;
-                    case "Producto":
+                    case "Producto/Album":
                         campo = p.nombreProducto;
                         break;
                     case "Categoría":
@@ -86,6 +87,9 @@ namespace Proyecto_Grupo13.Vendedor
                         break;
                     case "Descripción":
                         campo = p.descripcion;
+                        break;
+                    case "Artista":
+                        campo = p.artista;
                         break;
                     default: // Todos los campos: las palabras pueden estar en campos distintos
                         campo = p.codigo + " " + p.nombreProducto + " " +

@@ -25,7 +25,7 @@ namespace Proyecto_Grupo13.Vendedor
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             comboBoxBuscar.Items.Clear();
-            comboBoxBuscar.Items.AddRange(new object[] { "Nombre", "Descripción", "Categoría" });
+            comboBoxBuscar.Items.AddRange(new object[] {"Codigo", "Producto / Album", "Descripción", "Categoría", "Artista" });
             comboBoxBuscar.SelectedIndex = 0;
 
             todosLosProductos = new CL_Producto().Listar();   // todos los productos de la base de datos
@@ -62,7 +62,8 @@ namespace Proyecto_Grupo13.Vendedor
                     item.codigo,
                     item.nombreProducto,
                     item.precioVenta.ToString("0.00"),
-                    item.stock);
+                    item.stock,
+                    item.artista);
 
                 dataGridView1.Rows[n].Tag = item;   // guardamos el producto completo en la fila
             }
@@ -77,12 +78,18 @@ namespace Proyecto_Grupo13.Vendedor
             {
                 switch (comboBoxBuscar.Text)
                 {
+                    case "Código":
+                        filtrados = todosLosProductos.Where(p => (p.codigo ?? "").ToUpper().Contains(texto));
+                        break;
                     case "Descripción":
                         filtrados = todosLosProductos.Where(p => (p.descripcion ?? "").ToUpper().Contains(texto));
                         break;
                     case "Categoría":
                         filtrados = todosLosProductos.Where(p => p.categoria != null &&
                                                                  (p.categoria.descripcion ?? "").ToUpper().Contains(texto));
+                        break;
+                    case "Artista":
+                        filtrados = todosLosProductos.Where(p => (p.artista ?? "").ToUpper().Contains(texto));
                         break;
                     default: // Nombre
                         filtrados = todosLosProductos.Where(p => (p.nombreProducto ?? "").ToUpper().Contains(texto));

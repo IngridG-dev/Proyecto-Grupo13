@@ -43,6 +43,7 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colArtista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
@@ -50,10 +51,10 @@
             // label15
             // 
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label15.Location = new System.Drawing.Point(462, 44);
+            this.label15.Location = new System.Drawing.Point(370, 35);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(941, 594);
+            this.label15.Size = new System.Drawing.Size(753, 476);
             this.label15.TabIndex = 45;
             // 
             // labelProductos
@@ -61,10 +62,10 @@
             this.labelProductos.AutoSize = true;
             this.labelProductos.Font = new System.Drawing.Font("Cooper Black", 12F);
             this.labelProductos.ForeColor = System.Drawing.Color.White;
-            this.labelProductos.Location = new System.Drawing.Point(875, 64);
+            this.labelProductos.Location = new System.Drawing.Point(700, 51);
             this.labelProductos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProductos.Name = "labelProductos";
-            this.labelProductos.Size = new System.Drawing.Size(116, 23);
+            this.labelProductos.Size = new System.Drawing.Size(93, 19);
             this.labelProductos.TabIndex = 46;
             this.labelProductos.Text = "Productos";
             // 
@@ -73,10 +74,10 @@
             this.labelBuscarPor.AutoSize = true;
             this.labelBuscarPor.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelBuscarPor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelBuscarPor.Location = new System.Drawing.Point(133, 50);
+            this.labelBuscarPor.Location = new System.Drawing.Point(106, 40);
             this.labelBuscarPor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBuscarPor.Name = "labelBuscarPor";
-            this.labelBuscarPor.Size = new System.Drawing.Size(82, 20);
+            this.labelBuscarPor.Size = new System.Drawing.Size(66, 15);
             this.labelBuscarPor.TabIndex = 47;
             this.labelBuscarPor.Text = "Buscar por:";
             // 
@@ -89,11 +90,11 @@
             this.groupBox1.Controls.Add(this.labelBuscarPor);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(490, 101);
+            this.groupBox1.Location = new System.Drawing.Point(392, 81);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(892, 100);
+            this.groupBox1.Size = new System.Drawing.Size(714, 80);
             this.groupBox1.TabIndex = 48;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar Productos";
@@ -107,10 +108,10 @@
             this.iconBuscar.IconColor = System.Drawing.Color.Black;
             this.iconBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBuscar.IconSize = 25;
-            this.iconBuscar.Location = new System.Drawing.Point(618, 47);
+            this.iconBuscar.Location = new System.Drawing.Point(494, 38);
             this.iconBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.iconBuscar.Name = "iconBuscar";
-            this.iconBuscar.Size = new System.Drawing.Size(88, 32);
+            this.iconBuscar.Size = new System.Drawing.Size(70, 26);
             this.iconBuscar.TabIndex = 62;
             this.iconBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBuscar.UseVisualStyleBackColor = false;
@@ -125,10 +126,10 @@
             this.iconBtnLimpiar.IconColor = System.Drawing.Color.Black;
             this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnLimpiar.IconSize = 25;
-            this.iconBtnLimpiar.Location = new System.Drawing.Point(710, 47);
+            this.iconBtnLimpiar.Location = new System.Drawing.Point(568, 38);
             this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.iconBtnLimpiar.Name = "iconBtnLimpiar";
-            this.iconBtnLimpiar.Size = new System.Drawing.Size(88, 31);
+            this.iconBtnLimpiar.Size = new System.Drawing.Size(70, 25);
             this.iconBtnLimpiar.TabIndex = 61;
             this.iconBtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconBtnLimpiar.UseVisualStyleBackColor = false;
@@ -144,11 +145,12 @@
             this.comboBoxBuscar.Items.AddRange(new object[] {
             "Codigo Producto",
             "Nombre Producto",
-            "Categoría"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(219, 47);
+            "Categoría",
+            "Artista"});
+            this.comboBoxBuscar.Location = new System.Drawing.Point(175, 38);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(148, 28);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(119, 23);
             this.comboBoxBuscar.TabIndex = 50;
             // 
             // textBuscar
@@ -157,11 +159,11 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.textBuscar.ForeColor = System.Drawing.Color.White;
-            this.textBuscar.Location = new System.Drawing.Point(373, 47);
+            this.textBuscar.Location = new System.Drawing.Point(298, 38);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(240, 29);
+            this.textBuscar.Size = new System.Drawing.Size(192, 23);
             this.textBuscar.TabIndex = 49;
             this.textBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBuscar_KeyDown);
             // 
@@ -177,14 +179,15 @@
             this.Categoria,
             this.Descripcion,
             this.Precio,
-            this.Stock});
-            this.dgvProductos.Location = new System.Drawing.Point(490, 225);
+            this.Stock,
+            this.colArtista});
+            this.dgvProductos.Location = new System.Drawing.Point(392, 180);
             this.dgvProductos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowHeadersWidth = 51;
             this.dgvProductos.RowTemplate.Height = 24;
-            this.dgvProductos.Size = new System.Drawing.Size(892, 378);
+            this.dgvProductos.Size = new System.Drawing.Size(714, 302);
             this.dgvProductos.TabIndex = 52;
             // 
             // Codigo
@@ -229,18 +232,23 @@
             this.Stock.Name = "Stock";
             this.Stock.ReadOnly = true;
             // 
+            // colArtista
+            // 
+            this.colArtista.HeaderText = "Artista";
+            this.colArtista.Name = "colArtista";
+            this.colArtista.ReadOnly = true;
+            // 
             // ucProductos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelProductos);
             this.Controls.Add(this.label15);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucProductos";
-            this.Size = new System.Drawing.Size(1864, 682);
+            this.Size = new System.Drawing.Size(1491, 546);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
@@ -258,13 +266,14 @@
         private System.Windows.Forms.TextBox textBuscar;
         private System.Windows.Forms.ComboBox comboBoxBuscar;
         private System.Windows.Forms.DataGridView dgvProductos;
+        private FontAwesome.Sharp.IconButton iconBtnLimpiar;
+        private FontAwesome.Sharp.IconButton iconBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
-        private FontAwesome.Sharp.IconButton iconBtnLimpiar;
-        private FontAwesome.Sharp.IconButton iconBuscar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colArtista;
     }
 }
