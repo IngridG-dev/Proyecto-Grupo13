@@ -506,10 +506,12 @@ namespace Proyecto_Grupo13.Administrador
         private void ActualizarCamposMusicales()
         {
             Categoria categoria = comboBoxCategoria.SelectedItem as Categoria;
-            bool habilitar = categoria != null &&
-                             CL_Producto.requiereArtista(categoria.descripcion);
+            bool habilitar = categoria != null && CL_Producto.requiereArtista(categoria.descripcion);
 
             textArtista.Enabled = habilitar;
+            textArtista.Visible = habilitar;
+            labelArtista.Visible = habilitar;
+
 
             // En CDs y vinilos el "Nombre" es el álbum; en reproductores, la marca y el modelo
             lNombreP.Text = habilitar ? "Álbum:" : "Nombre:";

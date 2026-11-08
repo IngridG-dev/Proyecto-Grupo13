@@ -130,340 +130,106 @@ namespace Proyecto_Grupo13.Vendedor
 
         private void iconBtnTicket_Click(object sender, EventArgs e)
         {
-            SaveFileDialog savefile = new SaveFileDialog()
+            // Validar que haya productos en el detalle cargado
+            if (dgvProductosTicket.Rows.Count == 0)
             {
-                FileName = $"Ticket_Venta_{_idVenta}.pdf",
-                Filter = "Archivos PDF (*.pdf)|*.pdf",
-                Title = "Guardar ticket de venta"
-            };
-
-            if (savefile.ShowDialog() != DialogResult.OK)
-            {
+                MessageBox.Show("Seleccione una venta para exportar su detalle a PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
+            // Diálogo para guardar el archivo
+            SaveFileDialog savefile = new SaveFileDialog()
             {
-                using (FileStream stream = new FileStream(
-                    savefile.FileName,
-                    FileMode.Create))
+                FileName = $"Ticket_Venta_{lblNumeroVenta.Text.Replace("N° Venta:", "").Trim()}_{DateTime.Now:yyyyMMdd}.pdf",
+                Filter = "PDF Files|*.pdf"
+            };
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
                 {
-                    Document pdfDoc = new Document(
-                        PageSize.A4, 40, 40, 40, 40);
-
-                    PdfWriter.GetInstance(pdfDoc, stream);
-
+                    // Tamaño formato Ticket Térmico 80mm (226pt de ancho)[cite: 4]
+                    iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(226f, 600f);
+                    Document pdfDoc = new Document(pageSize, 10f, 10f, 10f, 10f);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
 
-                    // ==================================
-                    // FUENTES
-                    // ==================================
+                    // Fuentes Courier estilo recibo
+                    iTextSharp.text.Font fontTitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 12, BaseColor.BLACK);
+                    iTextSharp.text.Font fontSubtitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 9, BaseColor.BLACK);
+                    iTextSharp.text.Font fontNormal = FontFactory.GetFont(FontFactory.COURIER, 8, BaseColor.BLACK);
+                    iTextSharp.text.Font fontNegrita = FontFactory.GetFont(FontFactory.COURIER_BOLD, 6, BaseColor.BLACK);
 
-                    PdfFont fontTitulo = FontFactory.GetFont(
-                        FontFactory.HELVETICA_BOLD,
-                        20,
-                        new BaseColor(30, 40, 60));
+                    // 1. CABECERA CON MARCA
+                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("TICKET DE VENTA", fontSubtitulo) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
-                    PdfFont fontSubtitulo = FontFactory.GetFont(
-                        FontFactory.HELVETICA_BOLD,
-                        13,
-                        BaseColor.DARK_GRAY);
-
-                    PdfFont fontCabecera = FontFactory.GetFont(
-                        FontFactory.HELVETICA_BOLD,
-                        10,
-                        BaseColor.BLACK);
-
-                    PdfFont fontNormal = FontFactory.GetFont(
-                        FontFactory.HELVETICA,
-                        10,
-                        BaseColor.BLACK);
-
-                    PdfFont fontTotal = FontFactory.GetFont(
-                        FontFactory.HELVETICA_BOLD,
-                        16,
-                        new BaseColor(30, 40, 60));
-
-                    // ==================================
-                    // 1. CABECERA
-                    // ==================================
-
-                    Paragraph titulo = new Paragraph(
-                        "THE B-SIDE",
-                        fontTitulo);
-
-                    titulo.Alignment = Element.ALIGN_CENTER;
-                    titulo.SpacingAfter = 5;
-
-                    pdfDoc.Add(titulo);
-
-                    Paragraph subtitulo = new Paragraph(
-                        "TICKET DE VENTA",
-                        fontSubtitulo);
-
-                    subtitulo.Alignment = Element.ALIGN_CENTER;
-                    subtitulo.SpacingAfter = 10;
-
-                    pdfDoc.Add(subtitulo);
-
-                    pdfDoc.Add(new Paragraph(
-                        new Chunk(
-                            new iTextSharp.text.pdf.draw.LineSeparator(
-                                1f,
-                                100f,
-                                BaseColor.LIGHT_GRAY,
-                                Element.ALIGN_CENTER,
-                                -1))));
-
-                    pdfDoc.Add(new Paragraph(" "));
-
-                    // ==================================
                     // 2. INFORMACIÓN DE LA VENTA
-                    // ==================================
-
-                    PdfPTable tablaVenta = new PdfPTable(2);
-                    tablaVenta.WidthPercentage = 100;
-
-                    tablaVenta.AddCell(CrearCelda(
-                        "N° Venta: " + _idVenta,
-                        fontNormal));
-
-                    tablaVenta.AddCell(CrearCelda(
-                        "Fecha: " + _fecha.ToString("dd/MM/yyyy HH:mm"),
-                        fontNormal,
-                        Element.ALIGN_RIGHT));
-
-                    tablaVenta.AddCell(CrearCelda(
-                        "Tipo de documento: " + _tipoDocumento,
-                        fontNormal));
-
-                    tablaVenta.AddCell(CrearCelda(
-                        "Forma de pago: " + _formaPago,
-                        fontNormal,
-                        Element.ALIGN_RIGHT));
-
-                    pdfDoc.Add(tablaVenta);
-
-                    pdfDoc.Add(new Paragraph(" "));
-
-                    // ==================================
-                    // 3. INFORMACIÓN DEL CLIENTE
-                    // ==================================
-
-                    pdfDoc.Add(new Paragraph(
-                        "INFORMACIÓN DEL CLIENTE",
-                        fontSubtitulo));
-
-                    PdfPTable tablaCliente = new PdfPTable(1);
-                    tablaCliente.WidthPercentage = 100;
-
-                    tablaCliente.AddCell(CrearCelda(
-                        "Nombre: " + _cliente,
-                        fontNormal));
-
-                    tablaCliente.AddCell(CrearCelda(
-                        "Documento: " + _dni,
-                        fontNormal));
-
-                    pdfDoc.Add(tablaCliente);
-
-                    pdfDoc.Add(new Paragraph(" "));
-
-                    // ==================================
-                    // 4. INFORMACIÓN DEL VENDEDOR
-                    // ==================================
-
-                    pdfDoc.Add(new Paragraph(
-                        "VENDEDOR",
-                        fontSubtitulo));
-
-                    pdfDoc.Add(new Paragraph(
-                        _vendedor,
-                        fontNormal));
-
-                    pdfDoc.Add(new Paragraph(" "));
-
-                    // ==================================
-                    // 5. DETALLE DE PRODUCTOS
-                    // ==================================
-
-                    pdfDoc.Add(new Paragraph(
-                        "PRODUCTOS",
-                        fontSubtitulo));
-
-                    PdfPTable tablaDetalle = new PdfPTable(4);
-                    tablaDetalle.WidthPercentage = 100;
-
-                    tablaDetalle.SetWidths(
-                        new float[] { 3f, 1f, 1.5f, 1.5f });
-
-                    string[] encabezados =
+                    pdfDoc.Add(new Paragraph($"{lblNumeroVenta.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"{lblFecha.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"{lblVendedor.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"{lblCliente.Text}", fontNormal));
+                    if (!string.IsNullOrEmpty(lblDocumento.Text))
                     {
-                        "Producto",
-                        "Cantidad",
-                        "Precio unitario",
-                        "Subtotal"
-                    };
-
-                    foreach (string encabezado in encabezados)
-                    {
-                        PdfPCell celda = new PdfPCell(
-                            new Phrase(encabezado, fontCabecera));
-
-                        celda.BackgroundColor =
-                            new BaseColor(230, 230, 230);
-
-                        celda.HorizontalAlignment =
-                            Element.ALIGN_CENTER;
-
-                        celda.Padding = 7;
-
-                        celda.BorderColor = BaseColor.LIGHT_GRAY;
-
-                        tablaDetalle.AddCell(celda);
+                        pdfDoc.Add(new Paragraph($"{lblDocumento.Text}", fontNormal));
                     }
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
-                    foreach (DataRow fila in _detalle.Rows)
+                    // 3. TABLA DE DETALLE DE PRODUCTOS (4 Columnas)
+                    PdfPTable tablaDetalle = new PdfPTable(4) { WidthPercentage = 100 };
+                    tablaDetalle.SetWidths(new float[] { 3f, 1f, 1.5f, 1.5f }); // Proporciones de columnas
+
+                    // Encabezados sin bordes
+                    tablaDetalle.AddCell(new PdfPCell(new Phrase("Producto", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaDetalle.AddCell(new PdfPCell(new Phrase("Cant", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER });
+                    tablaDetalle.AddCell(new PdfPCell(new Phrase("Precio", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    tablaDetalle.AddCell(new PdfPCell(new Phrase("SubTotal", fontNegrita)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    // Filas provenientes de dgvProductosTicket
+                    foreach (DataGridViewRow row in dgvProductosTicket.Rows)
                     {
-                        string producto = fila["Producto"].ToString();
+                        if (row.IsNewRow) continue;
 
-                        if (_detalle.Columns.Contains("CodigoProducto"))
-                        {
-                            string codigo = fila["CodigoProducto"].ToString();
+                        string prod = row.Cells[0].Value?.ToString() ?? "";
+                        string cant = row.Cells[1].Value?.ToString() ?? "";
+                        string prec = row.Cells[2].Value?.ToString() ?? "";
+                        string subt = row.Cells[3].Value?.ToString() ?? "";
 
-                            if (!string.IsNullOrEmpty(codigo))
-                            {
-                                producto = codigo + " - " + producto;
-                            }
-                        }
-
-                        int cantidad =
-                            Convert.ToInt32(fila["Cantidad"]);
-
-                        decimal precio =
-                            Convert.ToDecimal(fila["PrecioVenta"]);
-
-                        decimal subtotal = cantidad * precio;
-
-                        tablaDetalle.AddCell(CrearCelda(
-                            producto, fontNormal));
-
-                        tablaDetalle.AddCell(CrearCelda(
-                            cantidad.ToString(),
-                            fontNormal,
-                            Element.ALIGN_CENTER));
-
-                        tablaDetalle.AddCell(CrearCelda(
-                            "$ " + precio.ToString("N2"),
-                            fontNormal,
-                            Element.ALIGN_CENTER));
-
-                        tablaDetalle.AddCell(CrearCelda(
-                            "$ " + subtotal.ToString("N2"),
-                            fontNormal,
-                            Element.ALIGN_CENTER));
+                        tablaDetalle.AddCell(new PdfPCell(new Phrase(prod, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                        tablaDetalle.AddCell(new PdfPCell(new Phrase(cant, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER });
+                        tablaDetalle.AddCell(new PdfPCell(new Phrase(prec, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                        tablaDetalle.AddCell(new PdfPCell(new Phrase(subt, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
                     }
 
                     pdfDoc.Add(tablaDetalle);
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
-                    pdfDoc.Add(new Paragraph(" "));
+                    // 4. TOTAL Y MÉTODO DE PAGO
+                    PdfPTable tablaTotales = new PdfPTable(2) { WidthPercentage = 100 };
+                    tablaTotales.SetWidths(new float[] { 1.5f, 2f });
 
-                    // ==================================
-                    // 6. TOTAL
-                    // ==================================
-
-                    PdfPTable tablaTotal = new PdfPTable(1);
-                    tablaTotal.WidthPercentage = 100;
-
-                    PdfPCell celdaTotal = new PdfPCell(
-                        new Phrase(
-                            "TOTAL A PAGAR: $ " + _total.ToString("N2"),
-                            fontTotal));
-
-                    celdaTotal.Border =
-                        PdfRectangle.NO_BORDER;
-
-                    celdaTotal.HorizontalAlignment =
-                        Element.ALIGN_RIGHT;
-
-                    celdaTotal.Padding = 10;
-
-                    tablaTotal.AddCell(celdaTotal);
-
-                    pdfDoc.Add(tablaTotal);
-
-                    // ==================================
-                    // 7. PAGO Y CAMBIO
-                    // ==================================
-
-                    if (_formaPago.Equals(
-                        "Efectivo",
-                        StringComparison.OrdinalIgnoreCase))
+                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblFormaPago.Text, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    if(_formaPago.Equals("Efectivo", StringComparison.OrdinalIgnoreCase))
                     {
-                        PdfPTable tablaPago = new PdfPTable(1);
-                        tablaPago.WidthPercentage = 100;
-
-                        tablaPago.AddCell(CrearCelda(
-                            "Paga con: $ " + _pagaCon.ToString("N2"),
-                            fontNormal));
-
-                        tablaPago.AddCell(CrearCelda(
-                            "Cambio: $ " + _cambio.ToString("N2"),
-                            fontNormal));
-
-                        pdfDoc.Add(tablaPago);
+                        tablaTotales.AddCell(new PdfPCell(new Phrase($"Pago con: {lblPagoCon.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER});
+                        tablaTotales.AddCell(new PdfPCell(new Phrase($"Cambio: {lblCambio.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
                     }
+                    tablaTotales.AddCell(new Paragraph(new Phrase("TOTAL:", fontNegrita)));
+                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotal.Text, fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
 
-                    pdfDoc.Add(new Paragraph(" "));
+                    pdfDoc.Add(tablaTotales);
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
-                    // ==================================
-                    // 8. MENSAJE FINAL
-                    // ==================================
-
-                    Paragraph agradecimiento = new Paragraph(
-                        "¡GRACIAS POR SU COMPRA!",
-                        fontSubtitulo);
-
-                    agradecimiento.Alignment =
-                        Element.ALIGN_CENTER;
-
-                    agradecimiento.SpacingBefore = 15;
-
-                    pdfDoc.Add(agradecimiento);
-
-                    Paragraph mensajeFinal = new Paragraph(
-                        "Conserve este comprobante.",
-                        fontNormal);
-
-                    mensajeFinal.Alignment =
-                        Element.ALIGN_CENTER;
-
-                    pdfDoc.Add(mensajeFinal);
+                    // 5. PIE
+                    pdfDoc.Add(new Paragraph("¡GRACIAS POR SU COMPRA!", fontSubtitulo) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("Conserve este comprobante", fontSubtitulo) { Alignment = Element.ALIGN_CENTER });
 
                     pdfDoc.Close();
+                    stream.Close();
+
+                    MessageBox.Show("Ticket PDF generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                MessageBox.Show(
-                    "Ticket PDF generado correctamente.",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                // Abrimos el PDF generado.
-                System.Diagnostics.Process.Start(
-                    new System.Diagnostics.ProcessStartInfo()
-                    {
-                        FileName = savefile.FileName,
-                        UseShellExecute = true
-                    });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error al generar el ticket PDF: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
             }
         }
 

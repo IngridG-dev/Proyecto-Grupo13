@@ -2,69 +2,60 @@
 using CapaLogica;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Proyecto_Grupo13.Administrador
 {
     public partial class FormBuscarProductos : Form
     {
+        // Productos del proveedor elegido (sobre esta lista se hace la búsqueda)
+        private List<Producto> productosDelProveedor = new List<Producto>();
+
+        public Producto productoSeleccionado { get; set; }
+        public int idProveedorFiltro { get; set; } = 0; // ID del proveedor elegido en Registrar Compra
+
         public FormBuscarProductos()
         {
             InitializeComponent();
+
         }
 
-        public Producto productoSeleccionado { get; set; }
-        public int idProveedorFiltro { get; set; } = 0; // Propiedad para almacenar el ID del proveedor seleccionado
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            if (dgvProductos.SelectedRows.Count > 0)
+            Producto p = dgvProductos.CurrentRow?.Tag as Producto; // Producto asociado a la fila seleccionada
+            if (p == null)
             {
-                int index = dgvProductos.SelectedRows[0].Index;
-
-                productoSeleccionado = new Producto()
-                {
-                    // Asume que la columna 0 está oculta y tiene el ID
-                    id_producto = Convert.ToInt32(dgvProductos.Rows[index].Cells[0].Value),
-                    codigo = dgvProductos.Rows[index].Cells[1].Value.ToString(),
-                    nombreProducto = dgvProductos.Rows[index].Cells[2].Value.ToString()
-                };
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                MessageBox.Show("Seleccione un producto de la lista.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                MessageBox.Show("Seleccione un producto de la lista.");
-            }
+            productoSeleccionado = p; // producto completo, incluyendo el artista
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-            this.Close(); // Cerramos esta ventanita
+            this.Close();
         }
 
         private void FormBuscarProductos_Load(object sender, EventArgs e)
         {
-            // Cargar los productos en el DataGridView al cargar el formulario
-            dgvProductos.Rows.Clear();
-            List<Producto> lista = new CL_Producto().Listar();
+            // Solo los productos que tienen proveedor y es el elegido
+            productosDelProveedor = new CL_Producto().Listar()
+                .Where(p => p.proveedor != null && p.proveedor.id_proveedor == idProveedorFiltro)
+                .ToList();
 
-            foreach (Producto item in lista)
-            {
-                if (item.proveedor.id_proveedor == idProveedorFiltro) // Filtra por el ID del proveedor
-                    dgvProductos.Rows.Add(item.id_producto, item.codigo, item.nombreProducto, item.categoria.descripcion);
-            }
+            MostrarProductos(productosDelProveedor);
 
+            // Las opciones de "Buscar por" son las columnas visibles de la grilla
+            comboBoxBuscar.Items.Clear();
             foreach (DataGridViewColumn columna in dgvProductos.Columns)
             {
-                if (columna.Visible == true)
+                if (columna.Visible)
                 {
                     comboBoxBuscar.Items.Add(columna.HeaderText);
                 }
@@ -72,53 +63,88 @@ namespace Proyecto_Grupo13.Administrador
 
             if (comboBoxBuscar.Items.Count > 0)
             {
-                comboBoxBuscar.SelectedIndex = 0; 
+                comboBoxBuscar.SelectedIndex = 0;
+            }
+        }
+
+        // Muestra la lista en la grilla. El orden coincide con las columnas del diseñador:
+        // ID (oculta) | Codigo | Nombre / Album | Artista | Categoria
+        private void MostrarProductos(List<Producto> lista)
+        {
+            dgvProductos.Rows.Clear();
+
+            foreach (Producto item in lista)
+            {
+                int n = dgvProductos.Rows.Add(
+                    item.id_producto,
+                    item.codigo,
+                    item.nombreProducto,
+                    item.artista,   // en reproductores queda en blanco
+                    item.categoria?.descripcion);
+
+                dgvProductos.Rows[n].Tag = item; // Asocia el producto completo a la fila
+            }
+        }
+
+        private void AplicarFiltro()
+        {
+            // Normalizar saca las tildes y pasa a mayúsculas: "Codigo" -> "CODIGO", "Nombre / Album" -> "NOMBRE / ALBUM"
+            string criterio = Normalizar(comboBoxBuscar.Text);
+            string texto = Normalizar(textBuscar.Text.Trim());
+
+            List<Producto> filtrados = productosDelProveedor.Where(p =>
+            {
+                if (texto == "") return true;   // sin texto: se muestran todos
+
+                string valor;
+
+                if (criterio.Contains("CODIGO"))
+                    valor = p.codigo;
+                else if (criterio.Contains("NOMBRE") || criterio.Contains("ALBUM"))
+                    valor = p.nombreProducto;
+                else if (criterio.Contains("ARTISTA"))
+                    valor = p.artista;
+                else if (criterio.Contains("CATEGORIA"))
+                    valor = p.categoria?.descripcion;
+                else
+                    valor = "";
+
+                return Normalizar(valor).Contains(texto);
+            }).ToList();
+
+            MostrarProductos(filtrados);
+
+            if (filtrados.Count == 0)
+            {
+                MessageBox.Show("No se encontraron productos con ese criterio.",
+                    "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void iconBuscar_Click(object sender, EventArgs e)
         {
-            if (comboBoxBuscar.SelectedItem == null) return;
-
-            string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
-            string textoBusqueda = textBuscar.Text.Trim().ToUpper();
-
-            // Recorrer cada fila del DataGridView dgvProductos
-            foreach (DataGridViewRow row in dgvProductos.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    // Busca la celda específica de la columna seleccionada
-                    var celda = row.Cells.Cast<DataGridViewCell>().FirstOrDefault(c => c.OwningColumn.HeaderText == columnaFiltro);
-
-                    if (celda != null && celda.Value != null)
-                    {
-                        // Verifica si el texto de la celda contiene lo que se escribió en el TextBox
-                        string valorCelda = celda.Value.ToString().ToUpper();
-                        row.Visible = valorCelda.Contains(textoBusqueda);
-                    }
-                    else
-                    {
-                        row.Visible = false;
-                    }
-                }
-            }
+            AplicarFiltro();
         }
 
         private void iconBtnLimpiar_Click(object sender, EventArgs e)
         {
             textBuscar.Clear();
-
-            // Mostrar todas las filas nuevamente
-            foreach (DataGridViewRow row in dgvProductos.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    row.Visible = true;
-                }
-            }
-
+            MostrarProductos(productosDelProveedor);   // vuelven todos los productos del proveedor
             textBuscar.Focus(); // Coloca el foco en el TextBox para que el usuario pueda escribir de inmediato
+        }
+
+        // Pasa a mayúsculas y le saca las tildes: "Beyoncé" -> "BEYONCE"
+        private static string Normalizar(string texto)
+        {
+            if (string.IsNullOrEmpty(texto)) return "";
+
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in texto.Normalize(NormalizationForm.FormD))
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            }
+            return sb.ToString().ToUpperInvariant();
         }
     }
 }
