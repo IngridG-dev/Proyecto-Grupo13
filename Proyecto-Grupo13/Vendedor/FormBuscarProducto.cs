@@ -25,7 +25,7 @@ namespace Proyecto_Grupo13.Vendedor
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             comboBoxBuscar.Items.Clear();
-            comboBoxBuscar.Items.AddRange(new object[] {"Codigo", "Producto / Album", "Descripción", "Categoría", "Artista" });
+            comboBoxBuscar.Items.AddRange(new object[] {"Código", "Producto / Album", "Descripción", "Categoría", "Artista" });
             comboBoxBuscar.SelectedIndex = 0;
 
             todosLosProductos = new CL_Producto().Listar();   // todos los productos de la base de datos
@@ -66,6 +66,10 @@ namespace Proyecto_Grupo13.Vendedor
                     item.artista);
 
                 dataGridView1.Rows[n].Tag = item;   // guardamos el producto completo en la fila
+                if(item.stock == 0)
+                {
+                    dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.FromArgb(254, 78, 78);
+                }
             }
         }
 

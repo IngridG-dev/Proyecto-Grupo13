@@ -58,6 +58,10 @@ namespace Proyecto_Grupo13.Vendedor
                     p.precioVenta.ToString("0.00"),
                     p.stock,
                     p.artista);
+                if(p.stock == 0)
+                {
+                    dgvProductos.Rows[dgvProductos.Rows.Count - 1].DefaultCellStyle.BackColor = Color.FromArgb(254, 78, 78);
+                }
             }
         }
 
@@ -93,7 +97,7 @@ namespace Proyecto_Grupo13.Vendedor
                         break;
                     default: // Todos los campos: las palabras pueden estar en campos distintos
                         campo = p.codigo + " " + p.nombreProducto + " " +
-                                p.categoria?.descripcion + " " + p.descripcion;
+                                p.categoria?.descripcion + " " + p.descripcion + " " + p.artista;
                         break;
                 }
 
