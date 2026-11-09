@@ -18,6 +18,8 @@ namespace Proyecto_Grupo13.Administrador
         private int filaEditar = -1; // Variable para almacenar la fila que se está editando
         private readonly Color colorNormal = Color.FromArgb(70, 75, 85); // Color normal de los TextBox
 
+        // Lista global de proveedores para evitar múltiples llamadas a la base de datos
+        private List<Proveedor> listaProveedoresGlobal = new List<Proveedor>();
         public UcProductos1()
         {
             InitializeComponent();
@@ -490,17 +492,49 @@ namespace Proyecto_Grupo13.Administrador
 
         private void CargarComboBoxProveedores()
         {
-            List<Proveedor> listaProveedores = new CL_Proveedor().ListarProveedores();
-
-            comboBoxProveedor.DataSource = listaProveedores;
-            comboBoxProveedor.DisplayMember = "razonSocial";
-            comboBoxProveedor.ValueMember = "id_proveedor";
-            comboBoxProveedor.SelectedIndex = -1;
+            //solo guardamos los datos en la mememoria, no se muestran todavia
+            listaProveedoresGlobal = new CL_Proveedor().ListarProveedores();
+            comboBoxProveedor.DataSource = null; // Limpiar antes de asignar nueva fuente
         }
 
         private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarCamposMusicales();
+            // 1. Obtenemos la categoría que el usuario seleccionó
+            Categoria categoriaSeleccionada = comboBoxCategoria.SelectedItem as Categoria;
+
+            if (categoriaSeleccionada != null)
+            {
+                List<Proveedor> proveedoresFiltrados = new List<Proveedor>();
+                string descCategoria = categoriaSeleccionada.descripcion.ToUpper();
+
+                // 2. Filtramos la lista según el nombre de la categoría y el proveedor
+                if (descCategoria.Contains("CD"))
+                {
+                    // Busca el proveedor que tenga "TAYLOR" en su razón social
+                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("TAYLOR")).ToList();
+                }
+                else if (descCategoria.Contains("VINILO"))
+                {
+                    // Busca el proveedor que tenga "VUELTA" en su razón social
+                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("VUELTA")).ToList();
+                }
+                else if (descCategoria.Contains("REPRODUCTOR"))
+                {
+                    // Busca el proveedor que tenga "CAMBIO" en su razón social
+                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("CAMBIO")).ToList();
+                }
+
+                // 3. Asignamos la lista filtrada al ComboBox
+                comboBoxProveedor.DataSource = proveedoresFiltrados;
+                comboBoxProveedor.DisplayMember = "razonSocial";
+                comboBoxProveedor.ValueMember = "id_proveedor";
+                comboBoxProveedor.SelectedIndex = -1; // Lo dejamos en blanco para que el usuario deba seleccionarlo
+            }
+            else
+            {
+                comboBoxProveedor.DataSource = null; // Si no hay categoría, no hay proveedores
+            }
         }
 
         private void ActualizarCamposMusicales()

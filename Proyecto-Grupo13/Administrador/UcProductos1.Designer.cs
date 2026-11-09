@@ -77,10 +77,10 @@
             this.labelProductos.AutoSize = true;
             this.labelProductos.Font = new System.Drawing.Font("Cooper Black", 14F);
             this.labelProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelProductos.Location = new System.Drawing.Point(255, 53);
+            this.labelProductos.Location = new System.Drawing.Point(305, 66);
             this.labelProductos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProductos.Name = "labelProductos";
-            this.labelProductos.Size = new System.Drawing.Size(168, 21);
+            this.labelProductos.Size = new System.Drawing.Size(211, 27);
             this.labelProductos.TabIndex = 15;
             this.labelProductos.Text = "Datos Productos";
             this.labelProductos.Click += new System.EventHandler(this.labelProductos_Click);
@@ -90,10 +90,10 @@
             this.lStock.AutoSize = true;
             this.lStock.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lStock.Location = new System.Drawing.Point(221, 314);
+            this.lStock.Location = new System.Drawing.Point(276, 392);
             this.lStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lStock.Name = "lStock";
-            this.lStock.Size = new System.Drawing.Size(84, 15);
+            this.lStock.Size = new System.Drawing.Size(103, 20);
             this.lStock.TabIndex = 19;
             this.lStock.Text = "Stock Minimo:";
             // 
@@ -102,10 +102,10 @@
             this.lCategoria.AutoSize = true;
             this.lCategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCategoria.Location = new System.Drawing.Point(224, 102);
+            this.lCategoria.Location = new System.Drawing.Point(280, 128);
             this.lCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCategoria.Name = "lCategoria";
-            this.lCategoria.Size = new System.Drawing.Size(61, 15);
+            this.lCategoria.Size = new System.Drawing.Size(77, 20);
             this.lCategoria.TabIndex = 18;
             this.lCategoria.Text = "Categoría:";
             // 
@@ -114,10 +114,10 @@
             this.lDescripcion.AutoSize = true;
             this.lDescripcion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lDescripcion.Location = new System.Drawing.Point(221, 265);
+            this.lDescripcion.Location = new System.Drawing.Point(276, 331);
             this.lDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lDescripcion.Name = "lDescripcion";
-            this.lDescripcion.Size = new System.Drawing.Size(72, 15);
+            this.lDescripcion.Size = new System.Drawing.Size(90, 20);
             this.lDescripcion.TabIndex = 17;
             this.lDescripcion.Text = "Descripción:";
             // 
@@ -126,10 +126,10 @@
             this.lCodigo.AutoSize = true;
             this.lCodigo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lCodigo.Location = new System.Drawing.Point(229, 226);
+            this.lCodigo.Location = new System.Drawing.Point(286, 282);
             this.lCodigo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lCodigo.Name = "lCodigo";
-            this.lCodigo.Size = new System.Drawing.Size(49, 15);
+            this.lCodigo.Size = new System.Drawing.Size(61, 20);
             this.lCodigo.TabIndex = 16;
             this.lCodigo.Text = "Código:";
             // 
@@ -138,10 +138,10 @@
             this.lNombreP.AutoSize = true;
             this.lNombreP.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lNombreP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.lNombreP.Location = new System.Drawing.Point(224, 141);
+            this.lNombreP.Location = new System.Drawing.Point(280, 176);
             this.lNombreP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNombreP.Name = "lNombreP";
-            this.lNombreP.Size = new System.Drawing.Size(54, 15);
+            this.lNombreP.Size = new System.Drawing.Size(67, 20);
             this.lNombreP.TabIndex = 14;
             this.lNombreP.Text = "Nombre:";
             // 
@@ -150,10 +150,10 @@
             this.labelBuscarPor2.AutoSize = true;
             this.labelBuscarPor2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelBuscarPor2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelBuscarPor2.Location = new System.Drawing.Point(456, 113);
+            this.labelBuscarPor2.Location = new System.Drawing.Point(570, 141);
             this.labelBuscarPor2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBuscarPor2.Name = "labelBuscarPor2";
-            this.labelBuscarPor2.Size = new System.Drawing.Size(77, 19);
+            this.labelBuscarPor2.Size = new System.Drawing.Size(95, 23);
             this.labelBuscarPor2.TabIndex = 33;
             this.labelBuscarPor2.Text = "Buscar por:";
             // 
@@ -162,10 +162,10 @@
             this.labelBuscar2.AutoSize = true;
             this.labelBuscar2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelBuscar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelBuscar2.Location = new System.Drawing.Point(680, 113);
+            this.labelBuscar2.Location = new System.Drawing.Point(850, 141);
             this.labelBuscar2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBuscar2.Name = "labelBuscar2";
-            this.labelBuscar2.Size = new System.Drawing.Size(52, 19);
+            this.labelBuscar2.Size = new System.Drawing.Size(64, 23);
             this.labelBuscar2.TabIndex = 30;
             this.labelBuscar2.Text = "Buscar:";
             // 
@@ -174,10 +174,10 @@
             this.labelListaProductos.AutoSize = true;
             this.labelListaProductos.Font = new System.Drawing.Font("Cooper Black", 14F);
             this.labelListaProductos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelListaProductos.Location = new System.Drawing.Point(766, 53);
+            this.labelListaProductos.Location = new System.Drawing.Point(958, 66);
             this.labelListaProductos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelListaProductos.Name = "labelListaProductos";
-            this.labelListaProductos.Size = new System.Drawing.Size(188, 21);
+            this.labelListaProductos.Size = new System.Drawing.Size(237, 27);
             this.labelListaProductos.TabIndex = 28;
             this.labelListaProductos.Text = "Lista de Productos";
             // 
@@ -187,10 +187,10 @@
             this.textNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textNombre.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.textNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textNombre.Location = new System.Drawing.Point(307, 141);
+            this.textNombre.Location = new System.Drawing.Point(384, 176);
             this.textNombre.Margin = new System.Windows.Forms.Padding(2);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(122, 20);
+            this.textNombre.Size = new System.Drawing.Size(152, 25);
             this.textNombre.TabIndex = 35;
             this.textNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNombre_KeyPress);
             // 
@@ -200,10 +200,10 @@
             this.textCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textCodigo.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.textCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textCodigo.Location = new System.Drawing.Point(307, 222);
+            this.textCodigo.Location = new System.Drawing.Point(384, 278);
             this.textCodigo.Margin = new System.Windows.Forms.Padding(2);
             this.textCodigo.Name = "textCodigo";
-            this.textCodigo.Size = new System.Drawing.Size(122, 20);
+            this.textCodigo.Size = new System.Drawing.Size(152, 25);
             this.textCodigo.TabIndex = 36;
             this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCodigo_KeyPress);
             this.textCodigo.Leave += new System.EventHandler(this.textCodigo_Leave);
@@ -214,10 +214,10 @@
             this.textDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textDescripcion.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.textDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textDescripcion.Location = new System.Drawing.Point(307, 265);
+            this.textDescripcion.Location = new System.Drawing.Point(384, 331);
             this.textDescripcion.Margin = new System.Windows.Forms.Padding(2);
             this.textDescripcion.Name = "textDescripcion";
-            this.textDescripcion.Size = new System.Drawing.Size(122, 20);
+            this.textDescripcion.Size = new System.Drawing.Size(152, 25);
             this.textDescripcion.TabIndex = 37;
             this.textDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDescripcion_KeyPress);
             // 
@@ -227,10 +227,10 @@
             this.textStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textStock.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.textStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textStock.Location = new System.Drawing.Point(307, 314);
+            this.textStock.Location = new System.Drawing.Point(384, 392);
             this.textStock.Margin = new System.Windows.Forms.Padding(2);
             this.textStock.Name = "textStock";
-            this.textStock.Size = new System.Drawing.Size(122, 20);
+            this.textStock.Size = new System.Drawing.Size(152, 25);
             this.textStock.TabIndex = 38;
             this.textStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textStock_KeyPress);
             // 
@@ -241,10 +241,10 @@
             this.comboBoxCategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.comboBoxCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxCategoria.FormattingEnabled = true;
-            this.comboBoxCategoria.Location = new System.Drawing.Point(307, 100);
+            this.comboBoxCategoria.Location = new System.Drawing.Point(384, 125);
             this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
-            this.comboBoxCategoria.Size = new System.Drawing.Size(122, 23);
+            this.comboBoxCategoria.Size = new System.Drawing.Size(152, 28);
             this.comboBoxCategoria.TabIndex = 39;
             this.comboBoxCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategoria_SelectedIndexChanged_1);
             // 
@@ -254,10 +254,10 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(1000, 110);
+            this.btnBuscar.Location = new System.Drawing.Point(1250, 138);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(72, 22);
+            this.btnBuscar.Size = new System.Drawing.Size(90, 28);
             this.btnBuscar.TabIndex = 41;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -273,10 +273,10 @@
             "Codigo",
             "Nombre",
             "Categoría"});
-            this.comboBoxBuscar.Location = new System.Drawing.Point(535, 111);
+            this.comboBoxBuscar.Location = new System.Drawing.Point(669, 139);
             this.comboBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBuscar.Name = "comboBoxBuscar";
-            this.comboBoxBuscar.Size = new System.Drawing.Size(119, 23);
+            this.comboBoxBuscar.Size = new System.Drawing.Size(148, 28);
             this.comboBoxBuscar.TabIndex = 42;
             // 
             // dataGridView2
@@ -296,13 +296,13 @@
             this.dataGridViewTextBoxColumn5,
             this.precioVenta,
             this.Proveedor});
-            this.dataGridView2.Location = new System.Drawing.Point(459, 152);
+            this.dataGridView2.Location = new System.Drawing.Point(574, 190);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(782, 416);
+            this.dataGridView2.Size = new System.Drawing.Size(978, 520);
             this.dataGridView2.TabIndex = 43;
             // 
             // id_producto
@@ -375,10 +375,10 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(224, 406);
+            this.btnAgregar.Location = new System.Drawing.Point(280, 508);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(99, 38);
+            this.btnAgregar.Size = new System.Drawing.Size(124, 48);
             this.btnAgregar.TabIndex = 44;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -393,10 +393,10 @@
             this.btnEliminar.ForeColor = System.Drawing.Color.Black;
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(330, 406);
+            this.btnEliminar.Location = new System.Drawing.Point(412, 508);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(99, 38);
+            this.btnEliminar.Size = new System.Drawing.Size(124, 48);
             this.btnEliminar.TabIndex = 45;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -411,10 +411,10 @@
             this.btnEditar.ForeColor = System.Drawing.Color.Black;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(282, 465);
+            this.btnEditar.Location = new System.Drawing.Point(352, 581);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(99, 38);
+            this.btnEditar.Size = new System.Drawing.Size(124, 48);
             this.btnEditar.TabIndex = 46;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -427,28 +427,29 @@
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBuscar.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textBuscar.Location = new System.Drawing.Point(750, 110);
+            this.textBuscar.Location = new System.Drawing.Point(938, 138);
+            this.textBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBuscar.Multiline = true;
             this.textBuscar.Name = "textBuscar";
-            this.textBuscar.Size = new System.Drawing.Size(239, 24);
+            this.textBuscar.Size = new System.Drawing.Size(298, 30);
             this.textBuscar.TabIndex = 47;
             // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(198, 34);
+            this.label1.Location = new System.Drawing.Point(248, 42);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 552);
+            this.label1.Size = new System.Drawing.Size(304, 690);
             this.label1.TabIndex = 48;
             // 
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(447, 34);
+            this.label2.Location = new System.Drawing.Point(559, 42);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(812, 552);
+            this.label2.Size = new System.Drawing.Size(1014, 690);
             this.label2.TabIndex = 49;
             // 
             // iconBtnCancelar
@@ -461,9 +462,10 @@
             this.iconBtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnCancelar.IconSize = 30;
             this.iconBtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnCancelar.Location = new System.Drawing.Point(330, 406);
+            this.iconBtnCancelar.Location = new System.Drawing.Point(412, 508);
+            this.iconBtnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnCancelar.Name = "iconBtnCancelar";
-            this.iconBtnCancelar.Size = new System.Drawing.Size(99, 38);
+            this.iconBtnCancelar.Size = new System.Drawing.Size(124, 48);
             this.iconBtnCancelar.TabIndex = 89;
             this.iconBtnCancelar.Text = "Cancelar";
             this.iconBtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -481,9 +483,10 @@
             this.iconBtnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBtnActualizar.IconSize = 30;
             this.iconBtnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnActualizar.Location = new System.Drawing.Point(224, 406);
+            this.iconBtnActualizar.Location = new System.Drawing.Point(280, 508);
+            this.iconBtnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconBtnActualizar.Name = "iconBtnActualizar";
-            this.iconBtnActualizar.Size = new System.Drawing.Size(99, 38);
+            this.iconBtnActualizar.Size = new System.Drawing.Size(124, 48);
             this.iconBtnActualizar.TabIndex = 90;
             this.iconBtnActualizar.Text = "Actualizar";
             this.iconBtnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -501,10 +504,10 @@
             this.iconLimpiar.IconColor = System.Drawing.Color.Black;
             this.iconLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconLimpiar.IconSize = 25;
-            this.iconLimpiar.Location = new System.Drawing.Point(1093, 110);
+            this.iconLimpiar.Location = new System.Drawing.Point(1366, 138);
             this.iconLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.iconLimpiar.Name = "iconLimpiar";
-            this.iconLimpiar.Size = new System.Drawing.Size(72, 22);
+            this.iconLimpiar.Size = new System.Drawing.Size(90, 28);
             this.iconLimpiar.TabIndex = 91;
             this.iconLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconLimpiar.UseVisualStyleBackColor = false;
@@ -515,10 +518,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.label3.Location = new System.Drawing.Point(224, 355);
+            this.label3.Location = new System.Drawing.Point(280, 444);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 15);
+            this.label3.Size = new System.Drawing.Size(80, 20);
             this.label3.TabIndex = 92;
             this.label3.Text = "Proveedor:";
             // 
@@ -529,10 +532,10 @@
             this.comboBoxProveedor.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.comboBoxProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.comboBoxProveedor.FormattingEnabled = true;
-            this.comboBoxProveedor.Location = new System.Drawing.Point(307, 353);
+            this.comboBoxProveedor.Location = new System.Drawing.Point(384, 441);
             this.comboBoxProveedor.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxProveedor.Name = "comboBoxProveedor";
-            this.comboBoxProveedor.Size = new System.Drawing.Size(122, 23);
+            this.comboBoxProveedor.Size = new System.Drawing.Size(152, 28);
             this.comboBoxProveedor.TabIndex = 93;
             // 
             // labelArtista
@@ -540,10 +543,10 @@
             this.labelArtista.AutoSize = true;
             this.labelArtista.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelArtista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.labelArtista.Location = new System.Drawing.Point(229, 184);
+            this.labelArtista.Location = new System.Drawing.Point(286, 230);
             this.labelArtista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelArtista.Name = "labelArtista";
-            this.labelArtista.Size = new System.Drawing.Size(44, 15);
+            this.labelArtista.Size = new System.Drawing.Size(55, 20);
             this.labelArtista.TabIndex = 94;
             this.labelArtista.Text = "Artista:";
             // 
@@ -553,16 +556,16 @@
             this.textArtista.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textArtista.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.textArtista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.textArtista.Location = new System.Drawing.Point(307, 184);
+            this.textArtista.Location = new System.Drawing.Point(384, 230);
             this.textArtista.Margin = new System.Windows.Forms.Padding(2);
             this.textArtista.Name = "textArtista";
-            this.textArtista.Size = new System.Drawing.Size(122, 20);
+            this.textArtista.Size = new System.Drawing.Size(152, 25);
             this.textArtista.TabIndex = 95;
             this.textArtista.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textArtista_KeyPress);
             // 
             // UcProductos1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.Controls.Add(this.iconBtnActualizar);
@@ -595,8 +598,9 @@
             this.Controls.Add(this.lNombreP);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UcProductos1";
-            this.Size = new System.Drawing.Size(1456, 619);
+            this.Size = new System.Drawing.Size(1820, 774);
             this.Load += new System.EventHandler(this.UcProductos1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
