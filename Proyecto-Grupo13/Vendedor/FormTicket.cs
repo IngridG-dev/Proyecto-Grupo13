@@ -206,20 +206,45 @@ namespace Proyecto_Grupo13.Vendedor
                     pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
                     // 4. TOTAL Y MÉTODO DE PAGO
-                    PdfPTable tablaTotales = new PdfPTable(2) { WidthPercentage = 100 };
+
+                    PdfPTable tablaTotales = new PdfPTable(2)
+                    {
+                        WidthPercentage = 100
+                    };
+
                     tablaTotales.SetWidths(new float[] { 1.5f, 2f });
 
-                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblFormaPago.Text, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    if(_formaPago.Equals("Efectivo", StringComparison.OrdinalIgnoreCase))
+                    // Forma de pago
+                    tablaTotales.AddCell(CrearCelda("Forma de pago:", fontNormal));
+                    tablaTotales.AddCell(CrearCelda(_formaPago, fontNormal, Element.ALIGN_RIGHT));
+
+                    // Si es efectivo, mostrar pago con y cambio
+                    if (_formaPago.Equals("Efectivo", StringComparison.OrdinalIgnoreCase))
                     {
-                        tablaTotales.AddCell(new PdfPCell(new Phrase($"Pago con: {lblPagoCon.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER});
-                        tablaTotales.AddCell(new PdfPCell(new Phrase($"Cambio: {lblCambio.Text}", fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                        tablaTotales.AddCell(CrearCelda("Pago con:", fontNormal));
+                        tablaTotales.AddCell(CrearCelda("$ " + _pagaCon.ToString("N2"), fontNormal, Element.ALIGN_RIGHT));
+
+                        tablaTotales.AddCell(CrearCelda("Cambio:", fontNormal));
+                        tablaTotales.AddCell(CrearCelda( "$ " + _cambio.ToString("N2"),fontNormal, Element.ALIGN_RIGHT));
                     }
-                    tablaTotales.AddCell(new Paragraph(new Phrase("TOTAL:", fontNegrita)));
-                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotal.Text, fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    // Espacio antes del total
+                    tablaTotales.AddCell(new PdfPCell(new Phrase(""))
+                    {
+                        Colspan = 2, Border = PdfRectangle.NO_BORDER, FixedHeight = 8
+                    });
+
+                    // TOTAL
+                    tablaTotales.AddCell(CrearCelda("TOTAL:", fontTitulo));
+                    tablaTotales.AddCell(CrearCelda("$ " + _total.ToString("N2"), fontTitulo, Element.ALIGN_RIGHT));
 
                     pdfDoc.Add(tablaTotales);
-                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
+
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
 
                     // 5. PIE
                     pdfDoc.Add(new Paragraph("¡GRACIAS POR SU COMPRA!", fontSubtitulo) { Alignment = Element.ALIGN_CENTER });
