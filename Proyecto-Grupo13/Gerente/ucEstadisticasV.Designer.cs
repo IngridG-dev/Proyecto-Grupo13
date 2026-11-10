@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaFin = new System.Windows.Forms.Label();
@@ -50,6 +49,8 @@
             this.totalVentas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDescargarPDF = new FontAwesome.Sharp.IconButton();
             this.btnDescargarExcel = new FontAwesome.Sharp.IconButton();
+            this.iconBtnLimpiar = new FontAwesome.Sharp.IconButton();
+            this.iconBtnBuscar = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +67,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnBuscar);
+            this.panel1.Controls.Add(this.iconBtnBuscar);
+            this.panel1.Controls.Add(this.iconBtnLimpiar);
             this.panel1.Controls.Add(this.dtpFechaFin);
             this.panel1.Controls.Add(this.dtpFechaInicio);
             this.panel1.Controls.Add(this.labelFechaFin);
@@ -77,26 +79,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(938, 118);
             this.panel1.TabIndex = 65;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnBuscar.IconColor = System.Drawing.Color.Black;
-            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscar.IconSize = 25;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(735, 65);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(100, 31);
-            this.btnBuscar.TabIndex = 64;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
             // 
             // dtpFechaFin
             // 
@@ -163,7 +145,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(529, 194);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -174,7 +156,7 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(848, 194);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -185,7 +167,7 @@
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(1152, 194);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -229,6 +211,7 @@
             this.textIngresos.Size = new System.Drawing.Size(180, 41);
             this.textIngresos.TabIndex = 71;
             this.textIngresos.Text = "0";
+            this.textIngresos.TextChanged += new System.EventHandler(this.textIngresos_TextChanged);
             // 
             // dgvVentas
             // 
@@ -254,6 +237,7 @@
             this.dgvVentas.RowTemplate.Height = 24;
             this.dgvVentas.Size = new System.Drawing.Size(938, 396);
             this.dgvVentas.TabIndex = 72;
+            this.dgvVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVentas_CellContentClick);
             // 
             // Fecha
             // 
@@ -312,6 +296,37 @@
             this.btnDescargarExcel.UseVisualStyleBackColor = false;
             this.btnDescargarExcel.Click += new System.EventHandler(this.btnDescargarExcel_Click);
             // 
+            // iconBtnLimpiar
+            // 
+            this.iconBtnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Eraser;
+            this.iconBtnLimpiar.IconColor = System.Drawing.Color.Black;
+            this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconBtnLimpiar.IconSize = 25;
+            this.iconBtnLimpiar.Location = new System.Drawing.Point(777, 67);
+            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
+            this.iconBtnLimpiar.Name = "iconBtnLimpiar";
+            this.iconBtnLimpiar.Size = new System.Drawing.Size(100, 31);
+            this.iconBtnLimpiar.TabIndex = 75;
+            this.iconBtnLimpiar.UseVisualStyleBackColor = false;
+            // 
+            // iconBtnBuscar
+            // 
+            this.iconBtnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.iconBtnBuscar.IconColor = System.Drawing.Color.Black;
+            this.iconBtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconBtnBuscar.IconSize = 25;
+            this.iconBtnBuscar.Location = new System.Drawing.Point(668, 68);
+            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.iconBtnBuscar.Name = "iconBtnBuscar";
+            this.iconBtnBuscar.Size = new System.Drawing.Size(101, 29);
+            this.iconBtnBuscar.TabIndex = 76;
+            this.iconBtnBuscar.UseVisualStyleBackColor = false;
+            this.iconBtnBuscar.Click += new System.EventHandler(this.iconBtnBuscar_Click);
+            // 
             // ucEstadisticasV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -362,6 +377,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalVentas;
         private FontAwesome.Sharp.IconButton btnDescargarPDF;
         private FontAwesome.Sharp.IconButton btnDescargarExcel;
-        private FontAwesome.Sharp.IconButton btnBuscar;
+        private FontAwesome.Sharp.IconButton iconBtnLimpiar;
+        private FontAwesome.Sharp.IconButton iconBtnBuscar;
     }
 }

@@ -87,25 +87,21 @@ namespace Proyecto_Grupo13.Administrador
             string columnaFiltro = comboBoxBuscar.SelectedItem.ToString();
             string textoBusqueda = textBuscar.Text.Trim().ToUpper();
 
-            // Recorrer cada fila del DataGridView dgvProveedores
+            // Evita el error de "fila actual no puede ocultarse"
+            dgvProveedores.CurrentCell = null;
+
+            DataGridViewColumn columna = dgvProveedores.Columns
+                .Cast<DataGridViewColumn>()
+                .FirstOrDefault(c => c.HeaderText == columnaFiltro);
+
+            if (columna == null) return;
+
             foreach (DataGridViewRow row in dgvProveedores.Rows)
             {
-                if (!row.IsNewRow)
-                {
-                    // Busca la celda específica de la columna seleccionada
-                    var celda = row.Cells.Cast<DataGridViewCell>().FirstOrDefault(c => c.OwningColumn.HeaderText == columnaFiltro);
+                if (row.IsNewRow) continue;
 
-                    if (celda != null && celda.Value != null)
-                    {
-                        // Verifica si el texto de la celda contiene lo que se escribió en el TextBox
-                        string valorCelda = celda.Value.ToString().ToUpper();
-                        row.Visible = valorCelda.Contains(textoBusqueda);
-                    }
-                    else
-                    {
-                        row.Visible = false;
-                    }
-                }
+                string valorCelda = row.Cells[columna.Index].Value?.ToString().ToUpper() ?? "";
+                row.Visible = valorCelda.Contains(textoBusqueda);
             }
         }
 

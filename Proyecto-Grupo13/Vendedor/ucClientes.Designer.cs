@@ -33,7 +33,6 @@
             this.textBuscar = new System.Windows.Forms.TextBox();
             this.comboBoxBuscar = new System.Windows.Forms.ComboBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.GridClientes = new System.Windows.Forms.DataGridView();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +58,8 @@
             this.textApellido = new System.Windows.Forms.TextBox();
             this.textNombre = new System.Windows.Forms.TextBox();
             this.lNombre = new System.Windows.Forms.Label();
+            this.iconBtnLimpiar = new FontAwesome.Sharp.IconButton();
+            this.iconBtnBuscar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.GridClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,20 +132,6 @@
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(1311, 110);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(70, 30);
-            this.btnBuscar.TabIndex = 96;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // GridClientes
             // 
@@ -297,7 +284,7 @@
             this.labelCliente2.Location = new System.Drawing.Point(695, 68);
             this.labelCliente2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCliente2.Name = "labelCliente2";
-            this.labelCliente2.Size = new System.Drawing.Size(764, 547);
+            this.labelCliente2.Size = new System.Drawing.Size(810, 547);
             this.labelCliente2.TabIndex = 110;
             // 
             // textDNI
@@ -447,11 +434,45 @@
             this.lNombre.TabIndex = 118;
             this.lNombre.Text = "Nombre\r\n";
             // 
+            // iconBtnLimpiar
+            // 
+            this.iconBtnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Eraser;
+            this.iconBtnLimpiar.IconColor = System.Drawing.Color.Black;
+            this.iconBtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconBtnLimpiar.IconSize = 25;
+            this.iconBtnLimpiar.Location = new System.Drawing.Point(1389, 109);
+            this.iconBtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
+            this.iconBtnLimpiar.Name = "iconBtnLimpiar";
+            this.iconBtnLimpiar.Size = new System.Drawing.Size(70, 30);
+            this.iconBtnLimpiar.TabIndex = 122;
+            this.iconBtnLimpiar.UseVisualStyleBackColor = false;
+            this.iconBtnLimpiar.Click += new System.EventHandler(this.iconBtnLimpiar_Click);
+            // 
+            // iconBtnBuscar
+            // 
+            this.iconBtnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.iconBtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconBtnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.iconBtnBuscar.IconColor = System.Drawing.Color.Black;
+            this.iconBtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconBtnBuscar.IconSize = 25;
+            this.iconBtnBuscar.Location = new System.Drawing.Point(1311, 109);
+            this.iconBtnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.iconBtnBuscar.Name = "iconBtnBuscar";
+            this.iconBtnBuscar.Size = new System.Drawing.Size(70, 30);
+            this.iconBtnBuscar.TabIndex = 123;
+            this.iconBtnBuscar.UseVisualStyleBackColor = false;
+            this.iconBtnBuscar.Click += new System.EventHandler(this.iconBtnBuscar_Click);
+            // 
             // ucClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Controls.Add(this.iconBtnBuscar);
+            this.Controls.Add(this.iconBtnLimpiar);
             this.Controls.Add(this.labelApellido);
             this.Controls.Add(this.textApellido);
             this.Controls.Add(this.textNombre);
@@ -466,7 +487,6 @@
             this.Controls.Add(this.textBuscar);
             this.Controls.Add(this.comboBoxBuscar);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.GridClientes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelListaClientes);
@@ -492,7 +512,6 @@
         private System.Windows.Forms.TextBox textBuscar;
         private System.Windows.Forms.ComboBox comboBoxBuscar;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView GridClientes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelListaClientes;
@@ -518,5 +537,7 @@
         private System.Windows.Forms.TextBox textApellido;
         private System.Windows.Forms.TextBox textNombre;
         private System.Windows.Forms.Label lNombre;
+        private FontAwesome.Sharp.IconButton iconBtnLimpiar;
+        private FontAwesome.Sharp.IconButton iconBtnBuscar;
     }
 }

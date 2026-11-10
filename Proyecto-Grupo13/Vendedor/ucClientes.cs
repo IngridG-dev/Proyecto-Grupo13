@@ -346,7 +346,71 @@ namespace Proyecto_Grupo13.Vendedor
             btnAgregar.Enabled = true;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            // 1. Validamos que no haya vacíos igual que al agregar
+            if (!ValidarCamposVacios())
+            {
+                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validar que el DNI no exista (ValidarDNIUnico ya sabe manejar si es el mismo cliente editándose)
+            if (!ValidarDNIUnico())
+            {
+                return;
+            }
+
+            // 3. Creamos el objeto AQUÍ adentro para que este botón lo reconozca
+            Cliente objCliente = new Cliente()
+            {
+                nombre = formatearTexto(textNombre.Text),
+                apellido = formatearTexto(textApellido.Text),
+                dni = Convert.ToInt32(textDNI.Text),
+                email = textEmail.Text,
+                telefono = textTelefono.Text,
+                direccion = textDireccion.Text
+            };
+
+            // 4. Modo Editar
+            if (filaEditar != -1)
+            {
+                objCliente.id_cliente = ((Cliente)GridClientes.Rows[filaEditar].Tag).id_cliente;
+                bool resultado = objCL_Cliente.EditarCliente(objCliente);
+
+                if (resultado)
+                {
+                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombre + " " + objCliente.apellido;
+                    GridClientes.Rows[filaEditar].Cells[1].Value = objCliente.dni;
+                    GridClientes.Rows[filaEditar].Cells[2].Value = objCliente.email;
+                    GridClientes.Rows[filaEditar].Cells[3].Value = objCliente.telefono;
+                    GridClientes.Rows[filaEditar].Cells[4].Value = objCliente.direccion;
+
+                    MessageBox.Show("Cliente editado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCampos(); // Esto va a ocultar los botones automáticamente
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo editar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void iconBtnLimpiar_Click(object sender, EventArgs e)
+        {
+            comboBoxBuscar.SelectedIndex = 0;
+            textBuscar.Clear();
+
+            cargarClientes(); // Recarga todos los clientes para mostrar la lista completa
+        }
+
+        private void iconBtnBuscar_Click(object sender, EventArgs e)
         {
             //Validar que se haya seleccionado un criterio de búsqueda
             if (comboBoxBuscar.SelectedIndex == -1)
@@ -423,62 +487,5 @@ namespace Proyecto_Grupo13.Vendedor
                 }
             }
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            // 1. Validamos que no haya vacíos igual que al agregar
-            if (!ValidarCamposVacios())
-            {
-                MessageBox.Show("Faltan completar campos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 2. Validar que el DNI no exista (ValidarDNIUnico ya sabe manejar si es el mismo cliente editándose)
-            if (!ValidarDNIUnico())
-            {
-                return;
-            }
-
-            // 3. Creamos el objeto AQUÍ adentro para que este botón lo reconozca
-            Cliente objCliente = new Cliente()
-            {
-                nombre = formatearTexto(textNombre.Text),
-                apellido = formatearTexto(textApellido.Text),
-                dni = Convert.ToInt32(textDNI.Text),
-                email = textEmail.Text,
-                telefono = textTelefono.Text,
-                direccion = textDireccion.Text
-            };
-
-            // 4. Modo Editar
-            if (filaEditar != -1)
-            {
-                objCliente.id_cliente = ((Cliente)GridClientes.Rows[filaEditar].Tag).id_cliente;
-                bool resultado = objCL_Cliente.EditarCliente(objCliente);
-
-                if (resultado)
-                {
-                    GridClientes.Rows[filaEditar].Cells[0].Value = objCliente.nombre + " " + objCliente.apellido;
-                    GridClientes.Rows[filaEditar].Cells[1].Value = objCliente.dni;
-                    GridClientes.Rows[filaEditar].Cells[2].Value = objCliente.email;
-                    GridClientes.Rows[filaEditar].Cells[3].Value = objCliente.telefono;
-                    GridClientes.Rows[filaEditar].Cells[4].Value = objCliente.direccion;
-
-                    MessageBox.Show("Cliente editado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCampos(); // Esto va a ocultar los botones automáticamente
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo editar el cliente en la Base de Datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        
     }
 }

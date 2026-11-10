@@ -150,6 +150,8 @@
             // 
             this.textBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.textBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBuscar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.textBuscar.ForeColor = System.Drawing.Color.White;
             this.textBuscar.Location = new System.Drawing.Point(611, 51);
             this.textBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.textBuscar.Multiline = true;

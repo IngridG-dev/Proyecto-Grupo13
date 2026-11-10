@@ -82,14 +82,14 @@ namespace Proyecto_Grupo13.Gerente
                 dgvVentas.Rows.Add(
                     fechaAgrupada,
                     productosDia,
-                    ingresosDia.ToString("0.00")
+                    ingresosDia.ToString("N2", new System.Globalization.CultureInfo("es-AR"))
                 );
             }
 
             // Actualizamos los campos indicadores
             textCantVentas.Text = totalCantidadVentas.ToString();
             textProductosVendidos.Text = totalProductosVendidos.ToString();
-            textIngresos.Text = "$ " + totalIngresos.ToString("0.00");
+            textIngresos.Text = "$ " + totalIngresos.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
         }
 
         private void btnDescargarExcel_Click(object sender, EventArgs e)
@@ -284,7 +284,19 @@ namespace Proyecto_Grupo13.Gerente
             }
         }
 
-        private void btnBuscar_Click_1(object sender, EventArgs e)
+        
+
+        private void textIngresos_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void iconBtnBuscar_Click(object sender, EventArgs e)
         {
             DateTime desde = dtpFechaInicio.Value.Date;
             DateTime hasta = dtpFechaFin.Value.Date;
