@@ -279,20 +279,63 @@ namespace Proyecto_Grupo13.Administrador
                     iTextSharp.text.Font fontSubtitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 9, BaseColor.BLACK);
                     iTextSharp.text.Font fontNormal = FontFactory.GetFont(FontFactory.COURIER, 8, BaseColor.BLACK);
                     iTextSharp.text.Font fontNegrita = FontFactory.GetFont(FontFactory.COURIER_BOLD, 8, BaseColor.BLACK);
+                    
+                    // 1. CABECERA DEL NEGOCIO
+                    iTextSharp.text.Font fontEslogan = FontFactory.GetFont(
+                        FontFactory.COURIER_BOLD, 8, BaseColor.BLACK);
 
-                    // 1. CABECERA CON MARCA
-                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("TICKET DE VENTA", fontSubtitulo) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph("MUSICA QUE TE ACOMPANA", fontEslogan)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Venta de CDs - Vinilos - Reproductores", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Direccion: 9 de Julio 1234", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Telefono: 379 123 4567", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Instagram: @thebside", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph("TICKET DE VENTA", fontSubtitulo)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
 
                     // 2. INFORMACIÓN DE LA VENTA
-                    pdfDoc.Add(new Paragraph($"{lblNumVenta.Text}", fontNormal));
-                    pdfDoc.Add(new Paragraph($"{lblFecha.Text}", fontNormal));
-                    pdfDoc.Add(new Paragraph($"{lblVendedor.Text}", fontNormal));
-                    pdfDoc.Add(new Paragraph($"{lblCliente.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Numero de venta: {lblNumVenta.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Fecha: {lblFecha.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Vendedor: {lblVendedor.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Cliente: {lblCliente.Text}", fontNormal));
                     if (!string.IsNullOrEmpty(lblDNI.Text))
                     {
-                        pdfDoc.Add(new Paragraph($"{lblDNI.Text}", fontNormal));
+                        pdfDoc.Add(new Paragraph($"DNI: {lblDNI.Text}", fontNormal));
                     }
                     pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
@@ -329,8 +372,8 @@ namespace Proyecto_Grupo13.Administrador
                     PdfPTable tablaTotales = new PdfPTable(2) { WidthPercentage = 100 };
                     tablaTotales.SetWidths(new float[] { 1.5f, 2f });
 
-                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblMetodoPago.Text, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    tablaTotales.AddCell(new PdfPCell(new Phrase(lblTotalDetalle.Text, fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    tablaTotales.AddCell(new PdfPCell(new Phrase("Metodo de pago: " + lblMetodoPago.Text, fontNormal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    tablaTotales.AddCell(new PdfPCell(new Phrase("Total: " + lblTotalDetalle.Text, fontTitulo)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
 
                     pdfDoc.Add(tablaTotales);
                     pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });

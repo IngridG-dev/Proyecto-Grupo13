@@ -159,20 +159,63 @@ namespace Proyecto_Grupo13.Vendedor
                     iTextSharp.text.Font fontSubtitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 9, BaseColor.BLACK);
                     iTextSharp.text.Font fontNormal = FontFactory.GetFont(FontFactory.COURIER, 8, BaseColor.BLACK);
                     iTextSharp.text.Font fontNegrita = FontFactory.GetFont(FontFactory.COURIER_BOLD, 6, BaseColor.BLACK);
+                   
+                    // 1. CABECERA DEL NEGOCIO
+                    PdfFont fontEslogan = FontFactory.GetFont(
+                        FontFactory.COURIER_BOLD, 8, BaseColor.BLACK);
 
-                    // 1. CABECERA CON MARCA
-                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("TICKET DE VENTA", fontSubtitulo) { Alignment = Element.ALIGN_CENTER });
-                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
+                    pdfDoc.Add(new Paragraph("THE B-SIDE", fontTitulo)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph("MUSICA QUE TE ACOMPANA", fontEslogan)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Venta de CDs - Vinilos - Reproductores", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Direccion: 9 de Julio 1234", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Telefono: 379 123 4567", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph(
+                        "Instagram: @thebside", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph("--------------------------------", fontNormal)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
+
+                    pdfDoc.Add(new Paragraph("TICKET DE VENTA", fontSubtitulo)
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    });
 
                     // 2. INFORMACIÓN DE LA VENTA
-                    pdfDoc.Add(new Paragraph($"{lblNumeroVenta.Text}", fontNormal));
-                    pdfDoc.Add(new Paragraph($"{lblFecha.Text}", fontNormal));
-                    pdfDoc.Add(new Paragraph($"{lblVendedor.Text}", fontNormal));
-                    pdfDoc.Add(new Paragraph($"{lblCliente.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Numero de venta: {lblNumeroVenta.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Fecha: {lblFecha.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Vendedor: {lblVendedor.Text}", fontNormal));
+                    pdfDoc.Add(new Paragraph($"Cliente: {lblCliente.Text}", fontNormal));
                     if (!string.IsNullOrEmpty(lblDocumento.Text))
                     {
-                        pdfDoc.Add(new Paragraph($"{lblDocumento.Text}", fontNormal));
+                        pdfDoc.Add(new Paragraph($"DNI: {lblDocumento.Text}", fontNormal));
                     }
                     pdfDoc.Add(new Paragraph("--------------------------------", fontNormal) { Alignment = Element.ALIGN_CENTER });
 
@@ -262,10 +305,7 @@ namespace Proyecto_Grupo13.Vendedor
         // MÉTODO AUXILIAR PARA CREAR CELDAS
         // ==========================================
 
-        private PdfPCell CrearCelda(
-            string texto,
-            PdfFont fuente,
-            int alineacion = Element.ALIGN_LEFT)
+        private PdfPCell CrearCelda(string texto, PdfFont fuente, int alineacion = Element.ALIGN_LEFT)
         {
             PdfPCell celda = new PdfPCell(
                 new Phrase(texto ?? "", fuente));
