@@ -348,17 +348,37 @@ namespace Proyecto_Grupo13.Administrador
 
         private void iconBtnExcel_Click(object sender, EventArgs e)
         {
-            // 1. Validar que la grilla tenga registros cargados
-            if (dgvVentas.Rows.Count == 0)
+            // 1. Verificar que exista una venta seleccionada
+            DataGridViewRow rowVenta = dgvVentas.CurrentRow;
+
+            if (rowVenta == null || rowVenta.IsNewRow)
             {
-                MessageBox.Show("No hay datos cargados en la grilla para exportar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Seleccione una venta para exportar.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            // 2. Diálogo para guardar el archivo Excel
+            // 2. Verificar que existan detalles cargados
+            if (dgvDetalle.Rows.Cast<DataGridViewRow>()
+                .All(f => f.IsNewRow))
+            {
+                MessageBox.Show(
+                    "La venta seleccionada no tiene detalles para exportar.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            // 3. Diálogo para guardar el Excel
             SaveFileDialog savefile = new SaveFileDialog()
             {
-                FileName = $"Reporte_Ventas_{DateTime.Now:yyyyMMdd_HHmm}.xlsx",
+                FileName = $"Reporte_Venta_{DateTime.Now:yyyyMMdd}.xlsx",
                 Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
             };
 
@@ -370,106 +390,227 @@ namespace Proyecto_Grupo13.Administrador
                     {
                         var hoja = wb.Worksheets.Add("Reporte de Ventas");
 
-                        // --- CABECERA DE LA EMPRESA ---
-                        hoja.Range("B2:E2").Merge().Value = "THE B-SIDE - REPORTE GENERAL DE VENTAS";
-                        hoja.Cell("B2").Style.Font.Bold = true;
-                        hoja.Cell("B2").Style.Font.FontSize = 14;
-                        hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1E283C"); // Azul noche / Gris oscuro
+                        // ==========================================
+                        // 4. TÍTULO Y PERÍODO DEL REPORTE
+                        // ==========================================
 
-                        hoja.Cell("B3").Value = $"Período: {dtpInicio.Value:dd/MM/yyyy} al {dtpFin.Value:dd/MM/yyyy}";
-                        hoja.Cell("B3").Style.Font.Italic = true;
-                        hoja.Cell("B3").Style.Font.FontColor = XLColor.Gray;
+                        hoja.Range("A1:I1").Merge();
+                        hoja.Cell("A1").Value = "THE B-SIDE - REPORTE GENERAL DE VENTAS";
 
-                        // --- TABLA DE VENTAS (Comienza en fila 5, Columna B) ---
-                        int filaInicio = 5;
-                        int colInicio = 2;
+                        hoja.Cell("A1").Style.Font.Bold = true;
+                        hoja.Cell("A1").Style.Font.FontSize = 16;
+                        hoja.Cell("A1").Style.Font.FontColor = XLColor.White;
+                        hoja.Cell("A1").Style.Fill.BackgroundColor =
+                            XLColor.FromHtml("#1E283C");
 
-                        // A. Encabezados de las columnas (excluyendo la columna 'Ver' si existe)
-                        int colIndex = colInicio;
-                        for (int i = 0; i < dgvVentas.Columns.Count; i++)
+                        hoja.Cell("A1").Style.Alignment.Horizontal =
+                            XLAlignmentHorizontalValues.Center;
+
+                        hoja.Cell("A1").Style.Alignment.Vertical =
+                            XLAlignmentVerticalValues.Center;
+
+                        hoja.Row(1).Height = 30;
+
+                        // Período seleccionado
+                        hoja.Range("A2:I2").Merge();
+
+                        hoja.Cell("A2").Value =
+                            $"Período: {dtpInicio.Value:dd/MM/yyyy} al {dtpFin.Value:dd/MM/yyyy}";
+
+                        hoja.Cell("A2").Style.Font.Italic = true;
+                        hoja.Cell("A2").Style.Font.FontColor = XLColor.Gray;
+                        hoja.Cell("A2").Style.Font.FontSize = 11;
+
+                        // ==========================================
+                        // 5. ENCABEZADOS DE LA TABLA
+                        // ==========================================
+
+                        string[] encabezados =
                         {
-                            // Ocultar columnas con botones o irrelevantes (ej: botón "Ver")
-                            if (dgvVentas.Columns[i].HeaderText.Equals("Ver", StringComparison.OrdinalIgnoreCase))
+                    "N° Venta",
+                    "Fecha",
+                    "Vendedor",
+                    "Cliente",
+                    "Total Venta",
+                    "Nombre Producto",
+                    "Cantidad",
+                    "Precio",
+                    "SubTotal"
+                };
+
+                        for (int i = 0; i < encabezados.Length; i++)
+                        {
+                            hoja.Cell(4, i + 1).Value = encabezados[i];
+                        }
+
+                        // ==========================================
+                        // 6. OBTENER DATOS GENERALES DE LA VENTA
+                        // ==========================================
+
+                        string numVenta =
+                            rowVenta.Cells[0].FormattedValue?.ToString() ?? "";
+
+                        string fecha =
+                            rowVenta.Cells[1].FormattedValue?.ToString() ?? "";
+
+                        string vendedor =
+                            rowVenta.Cells[2].FormattedValue?.ToString() ?? "";
+
+                        string cliente =
+                            rowVenta.Cells[3].FormattedValue?.ToString() ?? "";
+
+                        string totalTexto =
+                            rowVenta.Cells[4].FormattedValue?.ToString() ?? "";
+
+                        int filaExcel = 5;
+
+                        // ==========================================
+                        // 7. RECORRER LOS DETALLES DE LA VENTA
+                        // ==========================================
+
+                        foreach (DataGridViewRow rowDetalle in dgvDetalle.Rows)
+                        {
+                            if (rowDetalle.IsNewRow)
                                 continue;
 
-                            hoja.Cell(filaInicio, colIndex).Value = dgvVentas.Columns[i].HeaderText;
-                            colIndex++;
-                        }
+                            // Datos del producto
+                            string nombreProducto =
+                                rowDetalle.Cells[0].FormattedValue?.ToString() ?? "";
 
-                        // B. Cargar Filas de Datos
-                        int filaActual = filaInicio + 1;
-                        foreach (DataGridViewRow row in dgvVentas.Rows)
-                        {
-                            if (row.IsNewRow) continue;
+                            string cantidad =
+                                rowDetalle.Cells[1].FormattedValue?.ToString() ?? "";
 
-                            colIndex = colInicio;
-                            for (int j = 0; j < dgvVentas.Columns.Count; j++)
+                            string precioTexto =
+                                rowDetalle.Cells[2].FormattedValue?.ToString() ?? "";
+
+                            string subtotalTexto =
+                                rowDetalle.Cells[3].FormattedValue?.ToString() ?? "";
+
+                            // Repetimos los datos generales de la venta
+                            hoja.Cell(filaExcel, 1).Value = numVenta;
+                            hoja.Cell(filaExcel, 2).Value = fecha;
+                            hoja.Cell(filaExcel, 3).Value = vendedor;
+                            hoja.Cell(filaExcel, 4).Value = cliente;
+
+                            // Total de la venta
+                            if (decimal.TryParse(totalTexto,
+                                System.Globalization.NumberStyles.Any,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out decimal totalVenta))
                             {
-                                if (dgvVentas.Columns[j].HeaderText.Equals("Ver", StringComparison.OrdinalIgnoreCase))
-                                    continue;
-
-                                object valor = row.Cells[j].Value;
-                                var celda = hoja.Cell(filaActual, colIndex);
-
-                                // Mapear tipos de datos para que Excel aplique formatos correctos
-                                if (valor != null)
-                                {
-                                    string nombreColumna = dgvVentas.Columns[j].HeaderText.ToLower();
-
-                                    if (nombreColumna.Contains("total") || nombreColumna.Contains("monto") || nombreColumna.Contains("precio"))
-                                    {
-                                        if (decimal.TryParse(valor.ToString().Replace("$", "").Trim(), out decimal monto))
-                                        {
-                                            celda.Value = monto;
-                                            celda.Style.NumberFormat.Format = "$ #,##0.00"; // Formato Moneda
-                                        }
-                                        else
-                                        {
-                                            celda.Value = valor.ToString();
-                                        }
-                                    }
-                                    else if (nombreColumna.Contains("fecha"))
-                                    {
-                                        celda.Value = valor.ToString();
-                                        celda.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                                    }
-                                    else
-                                    {
-                                        celda.Value = valor.ToString();
-                                    }
-                                }
-
-                                colIndex++;
+                                hoja.Cell(filaExcel, 5).Value = totalVenta;
+                                hoja.Cell(filaExcel, 5).Style.NumberFormat.Format =
+                                    "$ #,##0.00";
                             }
-                            filaActual++;
+                            else
+                            {
+                                hoja.Cell(filaExcel, 5).Value = totalTexto;
+                            }
+
+                            // Información del producto
+                            hoja.Cell(filaExcel, 6).Value = nombreProducto;
+
+                            if (int.TryParse(cantidad, out int cant))
+                            {
+                                hoja.Cell(filaExcel, 7).Value = cant;
+                            }
+                            else
+                            {
+                                hoja.Cell(filaExcel, 7).Value = cantidad;
+                            }
+
+                            // Precio unitario
+                            if (decimal.TryParse(precioTexto,
+                                System.Globalization.NumberStyles.Any,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out decimal precio))
+                            {
+                                hoja.Cell(filaExcel, 8).Value = precio;
+                                hoja.Cell(filaExcel, 8).Style.NumberFormat.Format =
+                                    "$ #,##0.00";
+                            }
+                            else
+                            {
+                                hoja.Cell(filaExcel, 8).Value = precioTexto;
+                            }
+
+                            // Subtotal del producto
+                            if (decimal.TryParse(subtotalTexto,
+                                System.Globalization.NumberStyles.Any,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out decimal subtotal))
+                            {
+                                hoja.Cell(filaExcel, 9).Value = subtotal;
+                                hoja.Cell(filaExcel, 9).Style.NumberFormat.Format =
+                                    "$ #,##0.00";
+                            }
+                            else
+                            {
+                                hoja.Cell(filaExcel, 9).Value = subtotalTexto;
+                            }
+
+                            filaExcel++;
                         }
 
-                        // --- ESTILO DE TABLA ELEGANTE ---
-                        int totalFilas = filaActual - 1;
-                        int totalColumnas = colIndex - 1;
+                        // ==========================================
+                        // 8. APLICAR DISEÑO A LA TABLA
+                        // ==========================================
 
-                        if (totalFilas >= filaInicio)
-                        {
-                            var rangoTabla = hoja.Range(filaInicio, colInicio, totalFilas, totalColumnas);
-                            var tablaElegante = rangoTabla.CreateTable();
-                            tablaElegante.Theme = XLTableTheme.TableStyleLight9; // Estilo limpio en tonos grises/azules
-                            tablaElegante.ShowAutoFilter = true; // Activa filtros automáticos
-                        }
+                        var rangoDatos = hoja.Range(4, 1, filaExcel - 1, 9);
 
-                        // Autoajustar ancho de las columnas
+                        var tabla = rangoDatos.CreateTable();
+
+                        tabla.Theme = XLTableTheme.TableStyleMedium9;
+                        tabla.ShowAutoFilter = true;
+
+                        // Ajustar columnas al contenido
                         hoja.Columns().AdjustToContents();
 
-                        // Guardar archivo
+                        // Ancho mínimo para evitar columnas demasiado pequeñas
+                        hoja.Column(6).Width = Math.Max(hoja.Column(6).Width, 22);
+
+                        // Centrar cantidades
+                        hoja.Column(7).Style.Alignment.Horizontal =
+                            XLAlignmentHorizontalValues.Center;
+
+                        // Alinear importes
+                        hoja.Range(5, 5, filaExcel - 1, 5)
+                            .Style.Alignment.Horizontal =
+                            XLAlignmentHorizontalValues.Right;
+
+                        // Congelar encabezados
+                        hoja.SheetView.FreezeRows(4);
+
+                        // Configurar impresión horizontal
+                        hoja.PageSetup.PageOrientation =
+                            XLPageOrientation.Landscape;
+
+                        hoja.PageSetup.FitToPages(1, 0);
+
+                        // ==========================================
+                        // 9. GUARDAR ARCHIVO
+                        // ==========================================
+
                         wb.SaveAs(savefile.FileName);
-                        MessageBox.Show("Reporte de ventas exportado a Excel correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        MessageBox.Show(
+                            "Reporte Excel generado correctamente.",
+                            "Éxito",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ocurrió un error al exportar a Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        $"Ocurrió un error al exportar: {ex.Message}",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
                 }
             }
-
         }
     }
 }

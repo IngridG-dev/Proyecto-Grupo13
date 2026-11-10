@@ -309,7 +309,7 @@ namespace Proyecto_Grupo13.Gerente
             if (tipo == "Categoría")
             {
                 serie.ChartType = SeriesChartType.Pie;
-                serie.Label = "#VALX: #VAL{C0}";
+                serie.Label = "#VALX: $ #VAL{#, ##0}";
             }
             else
             {
@@ -455,7 +455,7 @@ namespace Proyecto_Grupo13.Gerente
             serie.Font = new System.Drawing.Font("Segoe UI", 7, FontStyle.Regular);
             serie.LabelForeColor = Color.White;
 
-            serie["PieLabelStyle"] = "Inside";
+            serie["PieLabelStyle"] = "inside";
 
             serie.Legend = "Default";
 
