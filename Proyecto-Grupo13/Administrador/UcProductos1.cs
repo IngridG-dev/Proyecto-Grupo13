@@ -511,8 +511,8 @@ namespace Proyecto_Grupo13.Administrador
                 // 2. Filtramos la lista según el nombre de la categoría y el proveedor
                 if (descCategoria.Contains("CD"))
                 {
-                    // Busca el proveedor que tenga "TAYLOR" en su razón social
-                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("TAYLOR")).ToList();
+                    // Busca el proveedor que tenga "DISCO" en su razón social
+                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("DISCO")).ToList();
                 }
                 else if (descCategoria.Contains("VINILO"))
                 {
@@ -521,8 +521,8 @@ namespace Proyecto_Grupo13.Administrador
                 }
                 else if (descCategoria.Contains("REPRODUCTOR"))
                 {
-                    // Busca el proveedor que tenga "CAMBIO" en su razón social
-                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("CAMBIO")).ToList();
+                    // Busca el proveedor que tenga "AUDIO" en su razón social
+                    proveedoresFiltrados = listaProveedoresGlobal.Where(p => p.razonSocial.ToUpper().Contains("AUDIO")).ToList();
                 }
 
                 // 3. Asignamos la lista filtrada al ComboBox
