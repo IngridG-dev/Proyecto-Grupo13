@@ -27,7 +27,7 @@ namespace Proyecto_Grupo13.Gerente
     {
         private const int TOP_GRAFICO = 10;   // cantidad de productos que muestra el gráfico
 
-        private readonly CL_Estadistica logica = new CL_Estadistica();
+        private readonly CL_Estadistica logica = new CL_Estadistica(); // instancia de la capa lógica para acceder a los métodos de estadísticas
 
         // Rango de fechas aplicado (null = sin filtro, o sea, todo el historial)
         private DateTime? filtroDesde = null;
@@ -106,7 +106,7 @@ namespace Proyecto_Grupo13.Gerente
             labelVendidos.Text = "PRODUCTO MÁS VENDIDO:";
 
             // indicamos que la lista contiene ItemEstadistica
-            List<Estadisticas> productos = logica.productosMasVendidos(filtroDesde, filtroHasta);
+            List<Estadisticas> productos = logica.productosMasVendidos(filtroDesde, filtroHasta); // devuelve una lista de productos con sus ventas y sus ingresos
             {
                 mostrarDestacado(productos);
                 //la grilla muestra todos los productos, pero el gráfico solo los primeros
@@ -215,7 +215,7 @@ namespace Proyecto_Grupo13.Gerente
         private void MostrarVendedores()
         {
             // indicamos que la lista contiene VendedorEstadistica
-            List<VendedorEstadistica> vendedores = logica.ventasPorVendedor(filtroDesde, filtroHasta);
+            List<VendedorEstadistica> vendedores = logica.ventasPorVendedor(filtroDesde, filtroHasta); // devuelve una lista de vendedores con sus ventas y sus ingresos
             {
                 if (vendedores.Count == 0)
                 {

@@ -43,7 +43,7 @@ namespace CapaLogica
                 return false;
             }
 
-            foreach (DataRow fila in detalle.Rows)
+            foreach (DataRow fila in detalle.Rows) // Validar que las cantidades y precios de venta sean mayores a 0
             {
                 if (Convert.ToInt32(fila["Cantidad"]) <= 0)
                 {
@@ -58,7 +58,7 @@ namespace CapaLogica
             }
 
             obj.montoPago = detalle.Rows.Cast<DataRow>()
-                .Sum(f => Convert.ToDecimal(f["PrecioVenta"]) * Convert.ToInt32(f["Cantidad"]));
+                .Sum(f => Convert.ToDecimal(f["PrecioVenta"]) * Convert.ToInt32(f["Cantidad"])); // Calcular el monto total de la venta sumando los subtotales de cada producto
 
             return objCapaDatos.RegistrarVenta(obj, detalle, out idVenta, out mensaje);
         }
@@ -70,10 +70,10 @@ namespace CapaLogica
 
         public List<Venta> ListarTodasLasVentas(DateTime? desde, DateTime? hasta)
         {
-            return objCapaDatos.ListarVentas(0, desde, hasta); // O para todos los vendedores 
+            return objCapaDatos.ListarVentas(0, desde, hasta); // retornando 0 como idUsuario, lo que indica que no se filtra por usuario
         }
 
-        public List<DetalleVenta> ObtenerDetalleVenta(int idVenta)
+        public List<DetalleVenta> ObtenerDetalleVenta(int idVenta) // Método para obtener los detalles de una venta específica
         {
             if (idVenta <= 0) return new List<DetalleVenta>();
             return objCapaDatos.ObtenerDetalleVenta(idVenta);

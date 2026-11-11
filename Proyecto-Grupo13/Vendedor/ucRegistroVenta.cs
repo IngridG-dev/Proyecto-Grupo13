@@ -15,7 +15,7 @@ namespace Proyecto_Grupo13.Vendedor
     public partial class ucRegistroVenta : UserControl
     {
         private int filaEditando = -1; // Variable para almacenar el índice de la fila que se está editando
-        decimal totalAPagar = 0;
+        decimal totalAPagar = 0; 
         public ucRegistroVenta()
         {
             InitializeComponent();
@@ -123,13 +123,13 @@ namespace Proyecto_Grupo13.Vendedor
         // Evento para agregar un producto al DataGridView
         private void iconBtnAgregarV_Click(object sender, EventArgs e)
         {
-            if (textBoxCodProduct.Tag == null || Convert.ToInt32(textBoxCodProduct.Tag) <= 0)
+            if (textBoxCodProduct.Tag == null || Convert.ToInt32(textBoxCodProduct.Tag) <= 0) //si no hay producto seleccionado
             {
                 MessageBox.Show("Seleccione un producto con la lupa.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int idProducto = Convert.ToInt32(textBoxCodProduct.Tag);
+            int idProducto = Convert.ToInt32(textBoxCodProduct.Tag);  // Obtener el ID del producto desde el Tag del TextBox
 
             if (!decimal.TryParse(textPrecio.Text, out decimal precio) || precio <= 0)
             {
@@ -137,13 +137,13 @@ namespace Proyecto_Grupo13.Vendedor
                 return;
             }
 
-            if (!int.TryParse(textStock.Text, out int stockDisponible))
+            if (!int.TryParse(textStock.Text, out int stockDisponible)) // Validar que el stock sea un número entero
             {
                 MessageBox.Show("El valor del stock no es válido o está vacío.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int cantidad = (int)numericCantidad.Value;
+            int cantidad = (int)numericCantidad.Value; // Obtener la cantidad desde el NumericUpDown
             if (cantidad <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -171,7 +171,7 @@ namespace Proyecto_Grupo13.Vendedor
              LimpiarCampos();
                 return;
             }
-            // 2) ¿EL PRODUCTO YA ESTÁ EN LA VENTA? -> se suma a la fila existente
+            // 2) SI EL PRODUCTO YA ESTA en la venta, se suma a la fila existente
             foreach (DataGridViewRow fila in dataGridView1.Rows)
             {
                 if (fila.IsNewRow) continue;
@@ -205,7 +205,7 @@ namespace Proyecto_Grupo13.Vendedor
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            // Agregar una nueva fila al DataGridView
             int nueva = dataGridView1.Rows.Add();
             DataGridViewRow filaNueva = dataGridView1.Rows[nueva];
             filaNueva.Cells["IdProducto"].Value = idProducto;
@@ -239,14 +239,14 @@ namespace Proyecto_Grupo13.Vendedor
         {
             decimal total = 0;
 
-            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            foreach (DataGridViewRow fila in dataGridView1.Rows) // Iterar sobre cada fila del DataGridView
             {
-                if (fila.IsNewRow)
+                if (fila.IsNewRow) // Si es la fila nueva (vacía) del DataGridView, se omite
                     continue;
 
-                if (decimal.TryParse(
+                if (decimal.TryParse( 
                     fila.Cells["SubTotal"].Value?.ToString(),
-                    out decimal subTotal))
+                    out decimal subTotal)) //si el valor de SubTotal es válido, se suma al total
                 {
                     total += subTotal;
                 }
@@ -341,17 +341,17 @@ namespace Proyecto_Grupo13.Vendedor
                     Convert.ToInt32(row.Cells["Cantidad"].Value));
             }
 
-            Venta oVenta = new Venta()
+            Venta oVenta = new Venta() // Crear un objeto Venta con los datos necesarios
             {
-                usuario = new Usuario() { id_usuario = SesionActual.usuarioLogueado.id_usuario },
-                cliente = new Cliente() { id_cliente = Convert.ToInt32(textNumDocumento.Tag) },
-                tipoDocumento = comboTipoDocumento.Text,
-                metodoPago = new MetodoPago() { id_metodoPago = Convert.ToInt32(comboFormaPago.SelectedValue) }
+                usuario = new Usuario() { id_usuario = SesionActual.usuarioLogueado.id_usuario }, //usuario logueado
+                cliente = new Cliente() { id_cliente = Convert.ToInt32(textNumDocumento.Tag) }, //cliente seleccionado
+                tipoDocumento = comboTipoDocumento.Text, //tipo de documento seleccionado
+                metodoPago = new MetodoPago() { id_metodoPago = Convert.ToInt32(comboFormaPago.SelectedValue) } //forma de pago seleccionada
             };
 
             string mensaje;
             int idVenta;
-            bool resultado = new CL_Venta().RegistrarVenta(oVenta, detalleVenta, out idVenta, out mensaje);
+            bool resultado = new CL_Venta().RegistrarVenta(oVenta, detalleVenta, out idVenta, out mensaje); // Llamada a la capa lógica para registrar la venta
 
             if (!resultado)
             {
@@ -416,11 +416,11 @@ namespace Proyecto_Grupo13.Vendedor
             LimpiarCampos();
         }
 
-        private void buttonBuscar2_Click(object sender, EventArgs e)
+        private void buttonBuscar2_Click(object sender, EventArgs e) // Botón para buscar un producto
         {
-            using (FormBuscarProducto modal = new FormBuscarProducto())
+            using (FormBuscarProducto modal = new FormBuscarProducto()) // Crear una instancia del formulario de búsqueda de productos
             {
-                if (modal.ShowDialog() == DialogResult.OK && modal.productoSeleccionado != null)
+                if (modal.ShowDialog() == DialogResult.OK && modal.productoSeleccionado != null) // Si se seleccionó un producto (se hizo doble clic en la grilla del modal)
                 {
                     // Procesar el producto seleccionado
                     Producto producto = modal.productoSeleccionado;
@@ -486,7 +486,7 @@ namespace Proyecto_Grupo13.Vendedor
 
         private void textPagaCon_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(textPagaCon.Text, out decimal pagaCon))
+            if (decimal.TryParse(textPagaCon.Text, out decimal pagaCon)) // Validar que el valor ingresado sea un número decimal
             {
                 decimal cambio = pagaCon - totalAPagar;
 

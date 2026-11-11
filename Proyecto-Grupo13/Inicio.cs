@@ -62,7 +62,7 @@ namespace Proyecto_Grupo13
             string contraseña = textContraseña.Text;
 
             //Buscar usuario
-            Usuario usuario = objCL_Usuario.Login(dni, contraseña);
+            Usuario usuario = objCL_Usuario.Login(dni, contraseña); // Llamada a la capa lógica para verificar el login
             if (usuario != null)
             {
                 SesionActual.usuarioLogueado = usuario; // Guardar el usuario en la sesión actual
