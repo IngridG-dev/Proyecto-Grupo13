@@ -131,7 +131,7 @@ namespace Proyecto_Grupo13.Administrador
 
             SaveFileDialog savefile = new SaveFileDialog()
             {
-                FileName = $"Reporte_Compras_{DateTime.Now:yyyyMMdd_HHmm}.xlsx",
+                FileName = $"Reporte_Compras_Detallado_{DateTime.Now:yyyyMMdd_HHmm}.xlsx",
                 Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
             };
 
@@ -144,10 +144,11 @@ namespace Proyecto_Grupo13.Administrador
                         var hoja = wb.Worksheets.Add("Reporte de Compras");
 
                         // --- CABECERA ESTÉTICA ---
-                        hoja.Range("B2:F2").Merge().Value = "THE B-SIDE - REPORTE GENERAL DE COMPRAS";
+                        // Extendemos el rango de combinación hasta la columna J para cubrir todas las columnas nuevas
+                        hoja.Range("B2:J2").Merge().Value = "THE B-SIDE - REPORTE DETALLADO DE COMPRAS";
                         hoja.Cell("B2").Style.Font.Bold = true;
                         hoja.Cell("B2").Style.Font.FontSize = 15;
-                        hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1E283C"); // Azul oscuro
+                        hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1E283C");
 
                         hoja.Cell("B3").Value = $"Período: {ReporteHelper.ObtenerTextoPeriodo(filtroDesde, filtroHasta, dgvCompras, 2, "las compras")}";
                         hoja.Cell("B3").Style.Font.Italic = true;
@@ -158,74 +159,80 @@ namespace Proyecto_Grupo13.Administrador
 
                         // --- TABLA DE DATOS ---
                         int filaInicio = 6;
-                        int colInicio = 2; // Empezamos en la columna B por estética
-                        int colIndex = colInicio;
+                        int colInicio = 2; // Empezamos en la columna B
 
-                        // Encabezados (Omitimos columnas ocultas como el ID)
-                        for (int i = 0; i < dgvCompras.Columns.Count; i++)
-                        {
-                            if (dgvCompras.Columns[i].Visible)
-                            {
-                                hoja.Cell(filaInicio, colIndex).Value = dgvCompras.Columns[i].HeaderText;
-                                colIndex++;
-                            }
-                        }
+                        // Encabezados fusionados (Grilla Izquierda + Grilla Derecha)
+                        hoja.Cell(filaInicio, colInicio).Value = "N° Compra";
+                        hoja.Cell(filaInicio, colInicio + 1).Value = "Fecha";
+                        hoja.Cell(filaInicio, colInicio + 2).Value = "Proveedor";
+                        hoja.Cell(filaInicio, colInicio + 3).Value = "Administrador";
+                        hoja.Cell(filaInicio, colInicio + 4).Value = "Total Compra";
+                        hoja.Cell(filaInicio, colInicio + 5).Value = "Cantidad";
+                        hoja.Cell(filaInicio, colInicio + 6).Value = "Producto";
+                        hoja.Cell(filaInicio, colInicio + 7).Value = "Precio Compra";
+                        hoja.Cell(filaInicio, colInicio + 8).Value = "SubTotal";
 
-                        // Filas
                         int filaActual = filaInicio + 1;
-                        foreach (DataGridViewRow row in dgvCompras.Rows)
+
+                        // Recorremos solo las compras visibles en la grilla principal
+                        foreach (DataGridViewRow rowCompra in dgvCompras.Rows)
                         {
-                            if (row.IsNewRow) continue;
-                            colIndex = colInicio;
+                            if (rowCompra.IsNewRow || !rowCompra.Visible) continue;
 
-                            for (int j = 0; j < dgvCompras.Columns.Count; j++)
+                            // Recuperamos el objeto Compra desde el Tag (tal como lo haces en el CellClick)
+                            Compra oCompra = (Compra)rowCompra.Tag;
+                            if (oCompra == null) continue;
+
+                            // El total general de la compra está en la columna 5 de tu grilla
+                            string totalCompraGrilla = rowCompra.Cells[5].Value?.ToString();
+
+                            // Buscamos el detalle de esta compra específica en la BD
+                            List<DetalleCompra> detalle = new CL_Compra().ObtenerDetalleCompra(oCompra.id_compra);
+
+                            // Por cada producto, imprimimos una fila en Excel
+                            foreach (DetalleCompra item in detalle)
                             {
-                                if (!dgvCompras.Columns[j].Visible) continue;
+                                // 1. Datos estáticos de la compra (Grilla Izquierda)
+                                hoja.Cell(filaActual, colInicio).Value = oCompra.numeroCompra;
+                                hoja.Cell(filaActual, colInicio + 1).Value = Convert.ToDateTime(oCompra.fechaRegistro).ToString("dd/MM/yyyy");
+                                hoja.Cell(filaActual, colInicio + 2).Value = oCompra.proveedor.razonSocial;
+                                hoja.Cell(filaActual, colInicio + 3).Value = oCompra.usuario.nombre;
 
-                                object valor = row.Cells[j].Value;
-                                var celda = hoja.Cell(filaActual, colIndex);
-
-                                if (valor != null)
+                                if (decimal.TryParse(totalCompraGrilla?.Replace("$", "").Trim(), out decimal totalMonto))
                                 {
-                                    string nombreColumna = dgvCompras.Columns[j].HeaderText.ToLower();
-
-                                    // Formato moneda para la columna Total
-                                    if (nombreColumna.Contains("total"))
-                                    {
-                                        if (decimal.TryParse(valor.ToString().Replace("$", "").Trim(), out decimal monto))
-                                        {
-                                            celda.Value = monto;
-                                            celda.Style.NumberFormat.Format = "$ #,##0.00";
-                                        }
-                                        else celda.Value = valor.ToString();
-                                    }
-                                    else if (nombreColumna.Contains("fecha"))
-                                    {
-                                        celda.Value = valor.ToString();
-                                        celda.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                                    }
-                                    else
-                                    {
-                                        celda.Value = valor.ToString();
-                                    }
+                                    hoja.Cell(filaActual, colInicio + 4).Value = totalMonto;
+                                    hoja.Cell(filaActual, colInicio + 4).Style.NumberFormat.Format = "$ #,##0.00";
                                 }
-                                colIndex++;
+                                else hoja.Cell(filaActual, colInicio + 4).Value = totalCompraGrilla;
+
+                                // 2. Datos dinámicos del producto (Grilla Derecha)
+                                hoja.Cell(filaActual, colInicio + 5).Value = item.cantidad;
+                                hoja.Cell(filaActual, colInicio + 6).Value = item.producto.nombreProducto;
+
+                                hoja.Cell(filaActual, colInicio + 7).Value = item.precioCompra;
+                                hoja.Cell(filaActual, colInicio + 7).Style.NumberFormat.Format = "$ #,##0.00";
+
+                                decimal subTotalCalculado = item.precioCompra * item.cantidad;
+                                hoja.Cell(filaActual, colInicio + 8).Value = subTotalCalculado;
+                                hoja.Cell(filaActual, colInicio + 8).Style.NumberFormat.Format = "$ #,##0.00";
+
+                                filaActual++;
                             }
-                            filaActual++;
                         }
 
                         // --- FORMATO DE TABLA AUTOMÁTICA ---
                         if (filaActual > filaInicio + 1)
                         {
-                            var rangoTabla = hoja.Range(filaInicio, colInicio, filaActual - 1, colIndex - 1);
+                            // Abarcamos hasta la columna + 8 porque ahora tenemos 9 columnas en total
+                            var rangoTabla = hoja.Range(filaInicio, colInicio, filaActual - 1, colInicio + 8);
                             var tablaElegante = rangoTabla.CreateTable();
-                            tablaElegante.Theme = XLTableTheme.TableStyleLight9; // Tema gris/azul limpio[cite: 2, 4]
+                            tablaElegante.Theme = XLTableTheme.TableStyleLight9; // Tema gris/azul limpio
                             tablaElegante.ShowAutoFilter = true;
                         }
 
-                        hoja.Columns().AdjustToContents(); // Auto-ajuste perfecto
+                        hoja.Columns().AdjustToContents();
                         wb.SaveAs(savefile.FileName);
-                        MessageBox.Show("Reporte Excel generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Reporte Excel detallado generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)

@@ -35,13 +35,15 @@ namespace Proyecto_Grupo13.Gerente
 
         private void CargarVentas(DateTime? desde, DateTime? hasta)
         {
+            //Se guardan los filtros para poder mostrarlos en el reporte
             filtroDesde = desde;
             filtroHasta = hasta;
 
+            // Llamamos a la lógica de negocio para obtener las ventas según el filtro
             CL_Venta logicaVenta = new CL_Venta();
             List<Venta> listaVentas = logicaVenta.ListarTodasLasVentas(desde, hasta);
 
-            dgvVentas.Rows.Clear();
+            dgvVentas.Rows.Clear(); // Limpiamos la grilla antes de llenarla nuevamente
 
             int totalCantidadVentas = listaVentas.Count;
             int totalProductosVendidos = 0;
@@ -49,7 +51,7 @@ namespace Proyecto_Grupo13.Gerente
 
             Dictionary<string, int> productosPorFecha = new Dictionary<string, int>();
             Dictionary<string, decimal> ingresosPorFecha = new Dictionary<string, decimal>();
-
+            // Iteramos sobre cada venta para calcular los totales y llenar la grilla
             foreach (Venta v in listaVentas)
             {
                 // Formateamos la fecha para usarla como clave en los diccionarios
@@ -75,13 +77,13 @@ namespace Proyecto_Grupo13.Gerente
                 ingresosPorFecha[fecha] += v.montoPago;
 
                 // 3. Acumulamos para los cuadros superiores
-                totalProductosVendidos += cantidadProductosFila;
-                totalIngresos += v.montoPago;
+                totalProductosVendidos += cantidadProductosFila; // Acumulamos la cantidad total de productos vendidos
+                totalIngresos += v.montoPago; // Acumulamos el monto total de ingresos
             }
             // 3. Llenamos la grilla iterando sobre las fechas agrupadas
             foreach (var item in productosPorFecha)
             {
-                string fechaAgrupada = item.Key;
+                string fechaAgrupada = item.Key; // Fecha en formato "dd/MM/yyyy"
                 int productosDia = item.Value;
                 decimal ingresosDia = ingresosPorFecha[fechaAgrupada];
 
@@ -93,9 +95,9 @@ namespace Proyecto_Grupo13.Gerente
             }
 
             // Actualizamos los campos indicadores
-            textCantVentas.Text = totalCantidadVentas.ToString();
-            textProductosVendidos.Text = totalProductosVendidos.ToString();
-            textIngresos.Text = "$ " + totalIngresos.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
+            textCantVentas.Text = totalCantidadVentas.ToString(); // Total de ventas (cantidad de filas)
+            textProductosVendidos.Text = totalProductosVendidos.ToString(); // Total de productos vendidos (suma de cantidades)
+            textIngresos.Text = "$ " + totalIngresos.ToString("N2", new System.Globalization.CultureInfo("es-AR")); // Total de ingresos (suma de montos) 
         }
 
         private string ObtenerTextoPeriodo()

@@ -11,11 +11,13 @@ namespace CapaDatos
 {
     public class CD_Compra
     {
+        // Método para registrar una compra junto con sus detalles y actualizar el stock y precio de venta de los productos
         public bool RegistrarCompra(Compra obj, DataTable DetalleCompra, out string mensaje)
         {
             bool respuesta = false;
             mensaje = string.Empty;
 
+            // Usamos una transacción para asegurar que todas las operaciones se realicen correctamente
             using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
@@ -74,6 +76,7 @@ namespace CapaDatos
                         }
                     }
                 }
+                // 4. Manejo de errores generales
                 catch (Exception ex)
                 {
                     mensaje = ex.Message;

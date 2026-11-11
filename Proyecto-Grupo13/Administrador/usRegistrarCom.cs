@@ -14,8 +14,8 @@ namespace Proyecto_Grupo13.Administrador
 {
     public partial class usRegistrarCom : UserControl
     {
-        private int filaEditando = -1;
-        decimal totalAPagar = 0;
+        private int filaEditando = -1; // Variable para almacenar el índice de la fila que se está editando
+        decimal totalAPagar = 0; // Variable para almacenar el total a pagar de la compra
         public usRegistrarCom()
         {
             InitializeComponent();
@@ -46,9 +46,10 @@ namespace Proyecto_Grupo13.Administrador
             FormProveedor buscarProveedor = new FormProveedor();
             if (buscarProveedor.ShowDialog() == DialogResult.OK)
             {
-                int nuevoId = buscarProveedor.proveedorSeleccionado.id_proveedor;
-                int idActual = textNumDocumento.Tag == null ? 0 : Convert.ToInt32(textNumDocumento.Tag);
+                int nuevoId = buscarProveedor.proveedorSeleccionado.id_proveedor; // Guardamos el ID del proveedor seleccionado
+                int idActual = textNumDocumento.Tag == null ? 0 : Convert.ToInt32(textNumDocumento.Tag); // Obtenemos el ID actual del proveedor (si existe)
 
+                // Si el proveedor seleccionado es diferente al actual, preguntar si desea continuar
                 if (idActual != 0 && idActual != nuevoId)
                 {
                     bool hayProductos = dataGridView1.Rows.Cast<DataGridViewRow>().Any(r => !r.IsNewRow);
@@ -71,7 +72,7 @@ namespace Proyecto_Grupo13.Administrador
                     iconBtnActualizarC.Enabled = false;
                 }
 
-                textNumDocumento.Tag = nuevoId;
+                textNumDocumento.Tag = nuevoId; // Guardamos el ID del proveedor en el Tag del TextBox
                 textNumDocumento.Text = buscarProveedor.proveedorSeleccionado.documento.ToString();
                 textRazonSocial.Text = buscarProveedor.proveedorSeleccionado.razonSocial;
             }
@@ -214,7 +215,8 @@ namespace Proyecto_Grupo13.Administrador
             CalcularTotal();
             LimpiarCampos();
         }
-            // Limpiar campos del formulario
+        
+        // Limpiar campos del formulario
         private void LimpiarCampos()
         {
             textCodProduct.Clear();
@@ -226,6 +228,7 @@ namespace Proyecto_Grupo13.Administrador
             numericPorcentaje.Value = 0;
             iconBtnAgregarC.Enabled = true; // Habilitar el botón Agregar
         }
+       
         // Calcular el total general de la venta
         private void CalcularTotal()
         {
@@ -240,7 +243,7 @@ namespace Proyecto_Grupo13.Administrador
                     fila.Cells["SubTotal"].Value?.ToString(),
                     out decimal subTotal))
                 {
-                    total += subTotal;
+                    total += subTotal; // Sumar el subtotal de cada fila al total general
                 }
             }
 
@@ -378,7 +381,7 @@ namespace Proyecto_Grupo13.Administrador
                 if (!row.IsNewRow)
                 {
                     detalleCompra.Rows.Add(
-                        Convert.ToInt32(row.Cells["IdProducto"].Value), // Reemplaza "IdProducto" con el nombre real de tu columna oculta
+                        Convert.ToInt32(row.Cells["IdProducto"].Value),
                         row.Cells["Producto"].Value.ToString(),
                         Convert.ToDecimal(row.Cells["PrecioCompra"].Value),
                         Convert.ToDecimal(row.Cells["PrecioVenta"].Value),
@@ -515,15 +518,16 @@ namespace Proyecto_Grupo13.Administrador
 
         }
 
+        // Calculamos el precio de venta automáticamente cuando se cambia el porcentaje o el precio de compra
         private void CalcularPrecioVenta()
         {
             if (decimal.TryParse(textPrecioCompra.Text, out decimal precioCompra))
             {
-                decimal porcentaje = numericPorcentaje.Value;
+                decimal porcentaje = numericPorcentaje.Value; // Obtenemos el porcentaje del NumericUpDown
 
-                decimal precioVenta = precioCompra + (precioCompra * porcentaje / 100);
+                decimal precioVenta = precioCompra + (precioCompra * porcentaje / 100); // Calculamos el precio de venta basado en el porcentaje
 
-                textPrecioVenta.Text = precioVenta.ToString("0.00");
+                textPrecioVenta.Text = precioVenta.ToString("0.00"); // Formateamos el precio de venta a dos decimales
             }
             else
             {

@@ -391,37 +391,15 @@ namespace Proyecto_Grupo13.Administrador
 
         private void iconBtnExcel_Click(object sender, EventArgs e)
         {
-            // 1. Verificar que exista una venta seleccionada
-            DataGridViewRow rowVenta = dgvVentas.CurrentRow;
-
-            if (rowVenta == null || rowVenta.IsNewRow)
+            if (dgvVentas.Rows.Count == 0)
             {
-                MessageBox.Show(
-                    "Seleccione una venta para exportar.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                MessageBox.Show("No hay ventas cargadas para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Verificar que existan detalles cargados
-            if (dgvDetalle.Rows.Cast<DataGridViewRow>()
-                .All(f => f.IsNewRow))
-            {
-                MessageBox.Show(
-                    "La venta seleccionada no tiene detalles para exportar.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return;
-            }
-
-            // 3. Diálogo para guardar el Excel
             SaveFileDialog savefile = new SaveFileDialog()
             {
-                FileName = $"Reporte_Venta_{DateTime.Now:yyyyMMdd}.xlsx",
+                FileName = $"Reporte_Ventas_Detallado_{DateTime.Now:yyyyMMdd_HHmm}.xlsx",
                 Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
             };
 
@@ -433,226 +411,90 @@ namespace Proyecto_Grupo13.Administrador
                     {
                         var hoja = wb.Worksheets.Add("Reporte de Ventas");
 
-                        // ==========================================
-                        // 4. TÍTULO Y PERÍODO DEL REPORTE
-                        // ==========================================
+                        // --- CABECERA ESTÉTICA ---
+                        hoja.Range("B2:J2").Merge().Value = "THE B-SIDE - REPORTE DETALLADO DE VENTAS";
+                        hoja.Cell("B2").Style.Font.Bold = true;
+                        hoja.Cell("B2").Style.Font.FontSize = 15;
+                        hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1E283C");
 
-                        hoja.Range("A1:I1").Merge();
-                        hoja.Cell("A1").Value = "THE B-SIDE - REPORTE DE VENTA";
+                        string textoPeriodo = (filtroDesde.HasValue && filtroHasta.HasValue)
+                            ? $"{filtroDesde.Value:dd/MM/yyyy} al {filtroHasta.Value:dd/MM/yyyy}"
+                            : "Todas las ventas históricas";
 
-                        hoja.Cell("A1").Style.Font.Bold = true;
-                        hoja.Cell("A1").Style.Font.FontSize = 16;
-                        hoja.Cell("A1").Style.Font.FontColor = XLColor.White;
-                        hoja.Cell("A1").Style.Fill.BackgroundColor =
-                            XLColor.FromHtml("#1E283C");
+                        hoja.Cell("B3").Value = $"Período: {textoPeriodo}";
+                        hoja.Cell("B3").Style.Font.Italic = true;
+                        hoja.Cell("B3").Style.Font.FontColor = XLColor.DimGray;
 
-                        hoja.Cell("A1").Style.Alignment.Horizontal =
-                            XLAlignmentHorizontalValues.Center;
+                        hoja.Cell("B4").Value = $"Total de Ventas listadas: {lMontoTotal.Text}";
+                        hoja.Cell("B4").Style.Font.Bold = true;
 
-                        hoja.Cell("A1").Style.Alignment.Vertical =
-                            XLAlignmentVerticalValues.Center;
+                        // --- TABLA DE DATOS ---
+                        int filaInicio = 6;
+                        int colInicio = 2; // Empezamos en la columna B
 
-                        hoja.Row(1).Height = 30;
-
-                        // Período seleccionado
-                        hoja.Range("A2:I2").Merge();
-
-                        hoja.Cell("A2").Value =
-                            $"Venta N° {rowVenta.Cells[0].FormattedValue} - Fecha: {rowVenta.Cells[1].FormattedValue}";
-
-
-                        hoja.Cell("A2").Style.Font.Italic = true;
-                        hoja.Cell("A2").Style.Font.FontColor = XLColor.Gray;
-                        hoja.Cell("A2").Style.Font.FontSize = 11;
-
-                        // ==========================================
-                        // 5. ENCABEZADOS DE LA TABLA
-                        // ==========================================
-
-                        string[] encabezados =
-                        {
-                    "N° Venta",
-                    "Fecha",
-                    "Vendedor",
-                    "Cliente",
-                    "Total Venta",
-                    "Nombre Producto",
-                    "Cantidad",
-                    "Precio",
-                    "SubTotal"
-                };
-
+                        // Encabezados fusionados
+                        string[] encabezados = { "N° Venta", "Fecha", "Vendedor", "Cliente", "Total Venta", "Producto", "Cantidad", "Precio Unitario", "SubTotal" };
                         for (int i = 0; i < encabezados.Length; i++)
                         {
-                            hoja.Cell(4, i + 1).Value = encabezados[i];
+                            hoja.Cell(filaInicio, colInicio + i).Value = encabezados[i];
                         }
 
-                        // ==========================================
-                        // 6. OBTENER DATOS GENERALES DE LA VENTA
-                        // ==========================================
+                        int filaActual = filaInicio + 1;
 
-                        string numVenta =
-                            rowVenta.Cells[0].FormattedValue?.ToString() ?? "";
-
-                        string fecha =
-                            rowVenta.Cells[1].FormattedValue?.ToString() ?? "";
-
-                        string vendedor =
-                            rowVenta.Cells[2].FormattedValue?.ToString() ?? "";
-
-                        string cliente =
-                            rowVenta.Cells[3].FormattedValue?.ToString() ?? "";
-
-                        string totalTexto =
-                            rowVenta.Cells[4].FormattedValue?.ToString() ?? "";
-
-                        int filaExcel = 5;
-
-                        // ==========================================
-                        // 7. RECORRER LOS DETALLES DE LA VENTA
-                        // ==========================================
-
-                        foreach (DataGridViewRow rowDetalle in dgvDetalle.Rows)
+                        // Recorremos solo las ventas visibles en la grilla principal
+                        foreach (DataGridViewRow rowVenta in dgvVentas.Rows)
                         {
-                            if (rowDetalle.IsNewRow)
-                                continue;
+                            if (rowVenta.IsNewRow || !rowVenta.Visible) continue;
 
-                            // Datos del producto
-                            string nombreProducto =
-                                rowDetalle.Cells[0].FormattedValue?.ToString() ?? "";
+                            Venta v = (Venta)rowVenta.Tag;
+                            if (v == null) continue;
 
-                            string cantidad =
-                                rowDetalle.Cells[1].FormattedValue?.ToString() ?? "";
+                            // Buscamos el detalle de esta venta en la BD
+                            List<DetalleVenta> detalle = new CL_Venta().ObtenerDetalleVenta(v.id_venta);
 
-                            string precioTexto =
-                                rowDetalle.Cells[2].FormattedValue?.ToString() ?? "";
-
-                            string subtotalTexto =
-                                rowDetalle.Cells[3].FormattedValue?.ToString() ?? "";
-
-                            // Repetimos los datos generales de la venta
-                            hoja.Cell(filaExcel, 1).Value = numVenta;
-                            hoja.Cell(filaExcel, 2).Value = fecha;
-                            hoja.Cell(filaExcel, 3).Value = vendedor;
-                            hoja.Cell(filaExcel, 4).Value = cliente;
-
-                            // Total de la venta
-                            if (decimal.TryParse(totalTexto,
-                                System.Globalization.NumberStyles.Any,
-                                System.Globalization.CultureInfo.InvariantCulture,
-                                out decimal totalVenta))
+                            // Por cada producto, imprimimos una fila en Excel
+                            foreach (DetalleVenta item in detalle)
                             {
-                                hoja.Cell(filaExcel, 5).Value = totalVenta;
-                                hoja.Cell(filaExcel, 5).Style.NumberFormat.Format =
-                                    "$ #,##0.00";
-                            }
-                            else
-                            {
-                                hoja.Cell(filaExcel, 5).Value = totalTexto;
-                            }
+                                // 1. Datos estáticos de la venta
+                                hoja.Cell(filaActual, colInicio).Value = v.id_venta.ToString("000000");
+                                hoja.Cell(filaActual, colInicio + 1).Value = v.fechaCreacion.ToString("dd/MM/yyyy HH:mm");
+                                hoja.Cell(filaActual, colInicio + 2).Value = v.usuario.nombre + " " + v.usuario.apellido;
+                                hoja.Cell(filaActual, colInicio + 3).Value = v.cliente.nombre + " " + v.cliente.apellido;
 
-                            // Información del producto
-                            hoja.Cell(filaExcel, 6).Value = nombreProducto;
+                                hoja.Cell(filaActual, colInicio + 4).Value = v.montoPago;
+                                hoja.Cell(filaActual, colInicio + 4).Style.NumberFormat.Format = "$ #,##0.00";
 
-                            if (int.TryParse(cantidad, out int cant))
-                            {
-                                hoja.Cell(filaExcel, 7).Value = cant;
-                            }
-                            else
-                            {
-                                hoja.Cell(filaExcel, 7).Value = cantidad;
-                            }
+                                // 2. Datos dinámicos del producto
+                                hoja.Cell(filaActual, colInicio + 5).Value = item.producto.nombreProducto;
+                                hoja.Cell(filaActual, colInicio + 6).Value = item.cantidad;
 
-                            // Precio unitario
-                            if (decimal.TryParse(precioTexto,
-                                System.Globalization.NumberStyles.Any,
-                                System.Globalization.CultureInfo.InvariantCulture,
-                                out decimal precio))
-                            {
-                                hoja.Cell(filaExcel, 8).Value = precio;
-                                hoja.Cell(filaExcel, 8).Style.NumberFormat.Format =
-                                    "$ #,##0.00";
-                            }
-                            else
-                            {
-                                hoja.Cell(filaExcel, 8).Value = precioTexto;
-                            }
+                                hoja.Cell(filaActual, colInicio + 7).Value = item.precioUnitario;
+                                hoja.Cell(filaActual, colInicio + 7).Style.NumberFormat.Format = "$ #,##0.00";
 
-                            // Subtotal del producto
-                            if (decimal.TryParse(subtotalTexto,
-                                System.Globalization.NumberStyles.Any,
-                                System.Globalization.CultureInfo.InvariantCulture,
-                                out decimal subtotal))
-                            {
-                                hoja.Cell(filaExcel, 9).Value = subtotal;
-                                hoja.Cell(filaExcel, 9).Style.NumberFormat.Format =
-                                    "$ #,##0.00";
-                            }
-                            else
-                            {
-                                hoja.Cell(filaExcel, 9).Value = subtotalTexto;
-                            }
+                                hoja.Cell(filaActual, colInicio + 8).Value = item.subtotal;
+                                hoja.Cell(filaActual, colInicio + 8).Style.NumberFormat.Format = "$ #,##0.00";
 
-                            filaExcel++;
+                                filaActual++;
+                            }
                         }
 
-                        // ==========================================
-                        // 8. APLICAR DISEÑO A LA TABLA
-                        // ==========================================
+                        // --- FORMATO DE TABLA AUTOMÁTICA ---
+                        if (filaActual > filaInicio + 1)
+                        {
+                            var rangoTabla = hoja.Range(filaInicio, colInicio, filaActual - 1, colInicio + 8);
+                            var tablaElegante = rangoTabla.CreateTable();
+                            tablaElegante.Theme = XLTableTheme.TableStyleLight9;
+                            tablaElegante.ShowAutoFilter = true;
+                        }
 
-                        var rangoDatos = hoja.Range(4, 1, filaExcel - 1, 9);
-
-                        var tabla = rangoDatos.CreateTable();
-
-                        tabla.Theme = XLTableTheme.TableStyleMedium9;
-                        tabla.ShowAutoFilter = true;
-
-                        // Ajustar columnas al contenido
                         hoja.Columns().AdjustToContents();
-
-                        // Ancho mínimo para evitar columnas demasiado pequeñas
-                        hoja.Column(6).Width = Math.Max(hoja.Column(6).Width, 22);
-
-                        // Centrar cantidades
-                        hoja.Column(7).Style.Alignment.Horizontal =
-                            XLAlignmentHorizontalValues.Center;
-
-                        // Alinear importes
-                        hoja.Range(5, 5, filaExcel - 1, 5)
-                            .Style.Alignment.Horizontal =
-                            XLAlignmentHorizontalValues.Right;
-
-                        // Congelar encabezados
-                        hoja.SheetView.FreezeRows(4);
-
-                        // Configurar impresión horizontal
-                        hoja.PageSetup.PageOrientation =
-                            XLPageOrientation.Landscape;
-
-                        hoja.PageSetup.FitToPages(1, 0);
-
-                        // ==========================================
-                        // 9. GUARDAR ARCHIVO
-                        // ==========================================
-
                         wb.SaveAs(savefile.FileName);
-
-                        MessageBox.Show(
-                            "Reporte Excel generado correctamente.",
-                            "Éxito",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information
-                        );
+                        MessageBox.Show("Reporte Excel detallado generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
-                        $"Ocurrió un error al exportar: {ex.Message}",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                    MessageBox.Show($"Error al exportar a Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
