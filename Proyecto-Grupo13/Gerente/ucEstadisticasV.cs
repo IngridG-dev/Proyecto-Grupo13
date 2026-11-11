@@ -18,6 +18,9 @@ namespace Proyecto_Grupo13.Gerente
 {
     public partial class ucEstadisticasV : UserControl
     {
+        // Guardan el filtro con el que se cargó la grilla (null = sin filtro)
+        private DateTime? filtroDesde = null;
+        private DateTime? filtroHasta = null;
         public ucEstadisticasV()
         {
             InitializeComponent();
@@ -32,6 +35,9 @@ namespace Proyecto_Grupo13.Gerente
 
         private void CargarVentas(DateTime? desde, DateTime? hasta)
         {
+            filtroDesde = desde;
+            filtroHasta = hasta;
+
             CL_Venta logicaVenta = new CL_Venta();
             List<Venta> listaVentas = logicaVenta.ListarTodasLasVentas(desde, hasta);
 
@@ -92,6 +98,35 @@ namespace Proyecto_Grupo13.Gerente
             textIngresos.Text = "$ " + totalIngresos.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
         }
 
+        private string ObtenerTextoPeriodo()
+        {
+            // Con filtro aplicado: mostramos el rango elegido
+            if (filtroDesde.HasValue && filtroHasta.HasValue)
+            {
+                return $"{filtroDesde.Value:dd/MM/yyyy} al {filtroHasta.Value:dd/MM/yyyy}";
+            }
+
+            // Sin filtro: tomamos la fecha más antigua y la más reciente de la grilla
+            List<DateTime> fechas = new List<DateTime>();
+            foreach (DataGridViewRow fila in dgvVentas.Rows)
+            {
+                if (DateTime.TryParseExact(
+                        fila.Cells[0].Value?.ToString(),
+                        "dd/MM/yyyy",
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        System.Globalization.DateTimeStyles.None,
+                        out DateTime f))
+                {
+                    fechas.Add(f);
+                }
+            }
+
+            if (fechas.Count == 0)
+                return "Todas las ventas";
+
+            return $"Todas las ventas ({fechas.Min():dd/MM/yyyy} al {fechas.Max():dd/MM/yyyy})";
+        }
+
         private void btnDescargarExcel_Click(object sender, EventArgs e)
         {
             if (dgvVentas.Rows.Count == 0)
@@ -118,8 +153,7 @@ namespace Proyecto_Grupo13.Gerente
                     hoja.Cell("B2").Style.Font.FontSize = 16;
                     hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1e283c"); // Azul oscuro
 
-                    hoja.Cell("B3").Value = $"Período: {dtpFechaInicio.Value:dd/MM/yyyy} al {dtpFechaFin.Value:dd/MM/yyyy}";
-                    hoja.Cell("B3").Style.Font.Italic = true;
+                    hoja.Cell("B3").Value = $"Período: {ObtenerTextoPeriodo()}";
                     hoja.Cell("B3").Style.Font.FontColor = XLColor.Gray;
 
                     // CUADROS DE RESUMEN
@@ -226,7 +260,7 @@ namespace Proyecto_Grupo13.Gerente
                     headerTable.AddCell(celdaTitulo);
                     pdfDoc.Add(headerTable);
 
-                    pdfDoc.Add(new Paragraph($"Período: {dtpFechaInicio.Value:dd/MM/yyyy} al {dtpFechaFin.Value:dd/MM/yyyy}", fontSubtitulo) { Alignment = Element.ALIGN_RIGHT });
+                    pdfDoc.Add(new Paragraph($"Período: {ObtenerTextoPeriodo()}", fontSubtitulo) { Alignment = Element.ALIGN_RIGHT });
                     pdfDoc.Add(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.LIGHT_GRAY, Element.ALIGN_CENTER, -1)));
                     pdfDoc.Add(new Paragraph(" "));
 

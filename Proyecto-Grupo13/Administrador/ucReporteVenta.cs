@@ -438,7 +438,7 @@ namespace Proyecto_Grupo13.Administrador
                         // ==========================================
 
                         hoja.Range("A1:I1").Merge();
-                        hoja.Cell("A1").Value = "THE B-SIDE - REPORTE GENERAL DE VENTAS";
+                        hoja.Cell("A1").Value = "THE B-SIDE - REPORTE DE VENTA";
 
                         hoja.Cell("A1").Style.Font.Bold = true;
                         hoja.Cell("A1").Style.Font.FontSize = 16;
@@ -458,7 +458,8 @@ namespace Proyecto_Grupo13.Administrador
                         hoja.Range("A2:I2").Merge();
 
                         hoja.Cell("A2").Value =
-                            $"Período: {dtpInicio.Value:dd/MM/yyyy} al {dtpFin.Value:dd/MM/yyyy}";
+                            $"Venta N° {rowVenta.Cells[0].FormattedValue} - Fecha: {rowVenta.Cells[1].FormattedValue}";
+
 
                         hoja.Cell("A2").Style.Font.Italic = true;
                         hoja.Cell("A2").Style.Font.FontColor = XLColor.Gray;

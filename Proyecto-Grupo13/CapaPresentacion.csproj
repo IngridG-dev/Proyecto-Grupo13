@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteHelper.cs" />
     <Compile Include="Vendedor\FormBuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>

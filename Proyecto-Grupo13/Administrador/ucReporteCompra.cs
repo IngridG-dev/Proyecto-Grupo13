@@ -149,7 +149,7 @@ namespace Proyecto_Grupo13.Administrador
                         hoja.Cell("B2").Style.Font.FontSize = 15;
                         hoja.Cell("B2").Style.Font.FontColor = XLColor.FromHtml("#1E283C"); // Azul oscuro
 
-                        hoja.Cell("B3").Value = $"Período: {dtpFechaInicio.Value:dd/MM/yyyy} al {dtpFechaFin.Value:dd/MM/yyyy}";
+                        hoja.Cell("B3").Value = $"Período: {ReporteHelper.ObtenerTextoPeriodo(filtroDesde, filtroHasta, dgvCompras, 2, "las compras")}";
                         hoja.Cell("B3").Style.Font.Italic = true;
                         hoja.Cell("B3").Style.Font.FontColor = XLColor.DimGray;
 
